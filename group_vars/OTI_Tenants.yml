@@ -7,7 +7,11 @@ tenants:
         vrf_vni: 10
         vtep_diagnostic:
           loopback: 10
-          loopback_ip_range: 10.255.10.0/27
+          loopback_ip_pools:
+            - pod: DC01_Pod1
+              ipv4_pool: 10.1.10.0/27
+            - pod: DC02_Pod1
+              ipv4_pool: 10.2.10.0/27
         svis:
           - id: 11
             name: Compute
@@ -27,12 +31,16 @@ tenants:
             enabled: true
             ip_address_virtual: 10.10.13.1/24
             tags:
-              - idrac
+              - idrac_dc01
       - name: RED
         vrf_vni: 11
         vtep_diagnostic:
           loopback: 11
-          loopback_ip_range: 10.255.11.0/27
+          loopback_ip_pools:
+            - pod: DC01_Pod1
+              ipv4_pool: 10.1.11.0/27
+            - pod: DC02_Pod1
+              ipv4_pool: 10.2.11.0/27
         svis:
           - id: 21
             name: VRF11_VLAN21

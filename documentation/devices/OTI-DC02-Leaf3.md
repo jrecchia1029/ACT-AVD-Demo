@@ -315,8 +315,8 @@ interface Ethernet56/1
 | --------- | ----------- | --- | ---------- |
 | Loopback0 | EVPN_Overlay_Peering | default | 10.245.218.5/32 |
 | Loopback1 | VTEP_VXLAN_Tunnel_Source | default | 10.245.218.37/32 |
-| Loopback10 | BLUE_VTEP_DIAGNOSTICS | BLUE | 10.255.10.5/32 |
-| Loopback11 | RED_VTEP_DIAGNOSTICS | RED | 10.255.11.5/32 |
+| Loopback10 | BLUE_VTEP_DIAGNOSTICS | BLUE | 10.2.10.5/32 |
+| Loopback11 | RED_VTEP_DIAGNOSTICS | RED | 10.2.11.5/32 |
 
 ##### IPv6
 
@@ -345,13 +345,13 @@ interface Loopback10
    description BLUE_VTEP_DIAGNOSTICS
    no shutdown
    vrf BLUE
-   ip address 10.255.10.5/32
+   ip address 10.2.10.5/32
 !
 interface Loopback11
    description RED_VTEP_DIAGNOSTICS
    no shutdown
    vrf RED
-   ip address 10.255.11.5/32
+   ip address 10.2.11.5/32
 ```
 
 ### VLAN Interfaces
@@ -788,13 +788,13 @@ vrf instance RED
 
 | Source NAT VRF | Source NAT IP Address |
 | -------------- | --------------------- |
-| BLUE | 10.255.10.5 |
-| RED | 10.255.11.5 |
+| BLUE | 10.2.10.5 |
+| RED | 10.2.11.5 |
 
 ### Virtual Source NAT Configuration
 
 ```eos
 !
-ip address virtual source-nat vrf BLUE address 10.255.10.5
-ip address virtual source-nat vrf RED address 10.255.11.5
+ip address virtual source-nat vrf BLUE address 10.2.10.5
+ip address virtual source-nat vrf RED address 10.2.11.5
 ```

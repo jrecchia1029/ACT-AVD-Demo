@@ -10,10 +10,6 @@
         name: arista.avd.eos_designs
       vars:
         documentation_dir_name: documentation/DC01
-    - name: generate device intended config and documentation
-      tags: [generate]
-      import_role:
-        name: arista.avd.eos_cli_config_gen
 
 - name: Build Switch configuration
   hosts: DC01_OOB
@@ -26,6 +22,12 @@
         name: arista.avd.eos_designs
       vars:
         documentation_dir_name: documentation/DC01_OOB
+
+- name: Build CLI configuration
+  hosts: DC01
+  connection: local
+  gather_facts: no
+  tasks:
     - name: generate device intended config and documentation
       tags: [generate]
       import_role:

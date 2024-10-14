@@ -1,6 +1,6 @@
 fabric_name: DC02_Fabric
 dc_name: DC02
-pod_name: Pod1
+pod_name: DC02_Pod1
 
 # MGMT
 mgmt_interface_vrf: default
@@ -132,6 +132,21 @@ l3leaf:
       filter:
         tags: ['compute', 'border', 'all']
         tenants: ['all']
+      evpn_gateway:
+        remote_peers:
+          - hostname: OTI-DC01-Leaf5A
+            ip_address: 10.245.217.7
+            bgp_as: 65005
+          - hostname: OTI-DC01-Leaf5B
+            ip_address: 10.245.217.8
+            bgp_as: 65005
+        # # Enable EVPN Gateway functionality for route-types 2 (MAC-IP) and 3 (IMET).
+        # evpn_l2:
+        #   enabled: true
+        # Enable EVPN Gateway functionality for route-type 5 (IP-PREFIX).
+        evpn_l3:
+          enabled: true
+          inter_domain: false
       nodes:
         - name: OTI-DC02-Leaf5A
           id: 5

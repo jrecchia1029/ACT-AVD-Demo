@@ -17,14 +17,14 @@
 
 | POD | Type | Node | Management IP | Platform | Provisioned in CloudVision | Serial Number |
 | --- | ---- | ---- | ------------- | -------- | -------------------------- | ------------- |
-| Pod1 | l3leaf | OTI-DC01-Leaf1 | 192.168.255.13/24 | 7050SX3-48YC8 | Provisioned | SN-OTI-DC01-Leaf1 |
-| Pod1 | l3leaf | OTI-DC01-Leaf2 | 192.168.255.14/24 | 7050SX3-48YC8 | Provisioned | SN-OTI-DC01-Leaf2 |
-| Pod1 | l3leaf | OTI-DC01-Leaf3 | 192.168.255.15/24 | 7050SX3-48YC8 | Provisioned | SN-OTI-DC01-Leaf3 |
-| Pod1 | l3leaf | OTI-DC01-Leaf4 | 192.168.255.16/24 | 7050SX3-48YC8 | Provisioned | SN-OTI-DC01-Leaf4 |
-| Pod1 | l3leaf | OTI-DC01-Leaf5A | 192.168.255.17/24 | 7050SX3-48YC8 | Provisioned | SN-OTI-DC01-Leaf5A |
-| Pod1 | l3leaf | OTI-DC01-Leaf5B | 192.168.255.18/24 | 7050SX3-48YC8 | Provisioned | SN-OTI-DC01-Leaf5B |
-| Pod1 | spine | OTI-DC01-Spine1 | 192.168.255.11/24 | 7050CX3 | Provisioned | SN-OTI-DC01-Spine1 |
-| Pod1 | spine | OTI-DC01-Spine2 | 192.168.255.12/24 | 7050CX3 | Provisioned | SN-OTI-DC01-Spine2 |
+| DC01_Pod1 | l3leaf | OTI-DC01-Leaf1 | 192.168.255.13/24 | 7050SX3-48YC8 | Provisioned | SN-OTI-DC01-Leaf1 |
+| DC01_Pod1 | l3leaf | OTI-DC01-Leaf2 | 192.168.255.14/24 | 7050SX3-48YC8 | Provisioned | SN-OTI-DC01-Leaf2 |
+| DC01_Pod1 | l3leaf | OTI-DC01-Leaf3 | 192.168.255.15/24 | 7050SX3-48YC8 | Provisioned | SN-OTI-DC01-Leaf3 |
+| DC01_Pod1 | l3leaf | OTI-DC01-Leaf4 | 192.168.255.16/24 | 7050SX3-48YC8 | Provisioned | SN-OTI-DC01-Leaf4 |
+| DC01_Pod1 | l3leaf | OTI-DC01-Leaf5A | 192.168.255.17/24 | 7050SX3-48YC8 | Provisioned | SN-OTI-DC01-Leaf5A |
+| DC01_Pod1 | l3leaf | OTI-DC01-Leaf5B | 192.168.255.18/24 | 7050SX3-48YC8 | Provisioned | SN-OTI-DC01-Leaf5B |
+| DC01_Pod1 | spine | OTI-DC01-Spine1 | 192.168.255.11/24 | 7050CX3 | Provisioned | SN-OTI-DC01-Spine1 |
+| DC01_Pod1 | spine | OTI-DC01-Spine2 | 192.168.255.12/24 | 7050CX3 | Provisioned | SN-OTI-DC01-Spine2 |
 
 > Provision status is based on Ansible inventory declaration and do not represent real status from CloudVision.
 
@@ -87,14 +87,14 @@
 
 | POD | Node | Loopback0 |
 | --- | ---- | --------- |
-| Pod1 | OTI-DC01-Leaf1 | 10.245.217.3/32 |
-| Pod1 | OTI-DC01-Leaf2 | 10.245.217.4/32 |
-| Pod1 | OTI-DC01-Leaf3 | 10.245.217.5/32 |
-| Pod1 | OTI-DC01-Leaf4 | 10.245.217.6/32 |
-| Pod1 | OTI-DC01-Leaf5A | 10.245.217.7/32 |
-| Pod1 | OTI-DC01-Leaf5B | 10.245.217.8/32 |
-| Pod1 | OTI-DC01-Spine1 | 10.245.217.1/32 |
-| Pod1 | OTI-DC01-Spine2 | 10.245.217.2/32 |
+| DC01_Pod1 | OTI-DC01-Leaf1 | 10.245.217.3/32 |
+| DC01_Pod1 | OTI-DC01-Leaf2 | 10.245.217.4/32 |
+| DC01_Pod1 | OTI-DC01-Leaf3 | 10.245.217.5/32 |
+| DC01_Pod1 | OTI-DC01-Leaf4 | 10.245.217.6/32 |
+| DC01_Pod1 | OTI-DC01-Leaf5A | 10.245.217.7/32 |
+| DC01_Pod1 | OTI-DC01-Leaf5B | 10.245.217.8/32 |
+| DC01_Pod1 | OTI-DC01-Spine1 | 10.245.217.1/32 |
+| DC01_Pod1 | OTI-DC01-Spine2 | 10.245.217.2/32 |
 
 ### VTEP Loopback VXLAN Tunnel Source Interfaces (VTEPs Only)
 
@@ -106,9 +106,9 @@
 
 | POD | Node | Loopback1 |
 | --- | ---- | --------- |
-| Pod1 | OTI-DC01-Leaf1 | 10.245.217.35/32 |
-| Pod1 | OTI-DC01-Leaf2 | 10.245.217.36/32 |
-| Pod1 | OTI-DC01-Leaf3 | 10.245.217.37/32 |
-| Pod1 | OTI-DC01-Leaf4 | 10.245.217.38/32 |
-| Pod1 | OTI-DC01-Leaf5A | 10.245.217.39/32 |
-| Pod1 | OTI-DC01-Leaf5B | 10.245.217.39/32 |
+| DC01_Pod1 | OTI-DC01-Leaf1 | 10.245.217.35/32 |
+| DC01_Pod1 | OTI-DC01-Leaf2 | 10.245.217.36/32 |
+| DC01_Pod1 | OTI-DC01-Leaf3 | 10.245.217.37/32 |
+| DC01_Pod1 | OTI-DC01-Leaf4 | 10.245.217.38/32 |
+| DC01_Pod1 | OTI-DC01-Leaf5A | 10.245.217.39/32 |
+| DC01_Pod1 | OTI-DC01-Leaf5B | 10.245.217.39/32 |

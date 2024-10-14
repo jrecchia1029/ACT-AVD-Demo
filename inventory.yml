@@ -62,6 +62,8 @@ OTI_Tenants:
   children:
     DC01_Leafs:
     DC02_Leafs:
+    DC01_OOB:
+    DC02_OOB:
 DC01_Endpoints:
   children:
     DC01_Leafs:
@@ -70,10 +72,6 @@ DC02_Endpoints:
   children:
     DC02_Leafs:
     DC02_OOB:
-OTI_DCI:
-  children:
-    DC01_Leaf5:
-    DC02_Leaf5:
 Spines:
   children:
     DC01_Spines:

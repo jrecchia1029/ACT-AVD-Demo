@@ -1,0 +1,513 @@
+hostname: OTI-DC02-Leaf5A
+is_deployed: true
+serial_number: SN-OTI-DC02-Leaf5A
+router_bgp:
+  as: '65105'
+  router_id: 10.245.218.7
+  distance:
+    external_routes: 20
+    internal_routes: 200
+    local_routes: 200
+  bgp:
+    default:
+      ipv4_unicast: true
+  maximum_paths:
+    paths: 4
+    ecmp: 4
+  updates:
+    wait_install: true
+  graceful_restart:
+    enabled: true
+    restart_time: 300
+  peer_groups:
+  - name: MLAG-IPv4-UNDERLAY-PEER
+    type: ipv4
+    remote_as: '65105'
+    next_hop_self: true
+    description: OTI-DC02-Leaf5B
+    maximum_routes: 12000
+    send_community: all
+    route_map_in: RM-MLAG-PEER-IN
+  - name: IPv4-UNDERLAY-PEERS
+    type: ipv4
+    maximum_routes: 12000
+    send_community: all
+  - name: EVPN-OVERLAY-PEERS
+    type: evpn
+    update_source: Loopback0
+    bfd: true
+    send_community: all
+    maximum_routes: 0
+    ebgp_multihop: 3
+  - name: EVPN-OVERLAY-CORE
+    type: evpn
+    update_source: Loopback0
+    bfd: true
+    send_community: all
+    maximum_routes: 0
+    ebgp_multihop: 15
+  address_family_ipv4:
+    peer_groups:
+    - name: MLAG-IPv4-UNDERLAY-PEER
+      activate: true
+    - name: IPv4-UNDERLAY-PEERS
+      activate: true
+    - name: EVPN-OVERLAY-PEERS
+      activate: false
+    - name: EVPN-OVERLAY-CORE
+      activate: false
+  neighbors:
+  - ip_address: 192.168.14.73
+    peer_group: MLAG-IPv4-UNDERLAY-PEER
+    peer: OTI-DC02-Leaf5B
+    description: OTI-DC02-Leaf5B
+  - ip_address: 192.168.12.16
+    peer_group: IPv4-UNDERLAY-PEERS
+    remote_as: '65100'
+    peer: OTI-DC02-Spine1
+    description: OTI-DC02-Spine1_Ethernet5/1
+  - ip_address: 192.168.12.18
+    peer_group: IPv4-UNDERLAY-PEERS
+    remote_as: '65100'
+    peer: OTI-DC02-Spine2
+    description: OTI-DC02-Spine2_Ethernet5/1
+  - ip_address: 10.245.218.1
+    peer_group: EVPN-OVERLAY-PEERS
+    peer: OTI-DC02-Spine1
+    description: OTI-DC02-Spine1
+    remote_as: '65100'
+  - ip_address: 10.245.218.2
+    peer_group: EVPN-OVERLAY-PEERS
+    peer: OTI-DC02-Spine2
+    description: OTI-DC02-Spine2
+    remote_as: '65100'
+  - ip_address: 10.245.217.7
+    peer_group: EVPN-OVERLAY-CORE
+    peer: OTI-DC01-Leaf5A
+    description: OTI-DC01-Leaf5A
+    remote_as: '65005'
+  - ip_address: 10.245.217.8
+    peer_group: EVPN-OVERLAY-CORE
+    peer: OTI-DC01-Leaf5B
+    description: OTI-DC01-Leaf5B
+    remote_as: '65005'
+  - ip_address: 192.168.10.249
+    remote_as: '65005'
+    peer: OTI-DC01-Leaf5A
+    description: OTI-DC01-Leaf5A
+    peer_group: IPv4-UNDERLAY-PEERS
+  redistribute_routes:
+  - source_protocol: connected
+    route_map: RM-CONN-2-BGP
+  address_family_evpn:
+    neighbor_default:
+      next_hop_self_received_evpn_routes:
+        enable: true
+        inter_domain: false
+    peer_groups:
+    - name: EVPN-OVERLAY-PEERS
+      activate: true
+    - name: EVPN-OVERLAY-CORE
+      domain_remote: true
+      activate: true
+  vrfs:
+  - name: BLUE
+    router_id: 10.245.218.7
+    rd: 10.245.218.7:10
+    route_targets:
+      import:
+      - address_family: evpn
+        route_targets:
+        - '10:10'
+      export:
+      - address_family: evpn
+        route_targets:
+        - '10:10'
+    redistribute_routes:
+    - source_protocol: connected
+    neighbors:
+    - ip_address: 192.168.14.73
+      peer_group: MLAG-IPv4-UNDERLAY-PEER
+    updates:
+      wait_install: true
+  - name: RED
+    router_id: 10.245.218.7
+    rd: 10.245.218.7:11
+    route_targets:
+      import:
+      - address_family: evpn
+        route_targets:
+        - '11:11'
+      export:
+      - address_family: evpn
+        route_targets:
+        - '11:11'
+    redistribute_routes:
+    - source_protocol: connected
+    neighbors:
+    - ip_address: 192.168.14.73
+      peer_group: MLAG-IPv4-UNDERLAY-PEER
+    updates:
+      wait_install: true
+  vlans:
+  - id: 11
+    tenant: OTI
+    rd: 10.245.218.7:10011
+    route_targets:
+      both:
+      - 10011:10011
+    redistribute_routes:
+    - learned
+  - id: 12
+    tenant: OTI
+    rd: 10.245.218.7:10012
+    route_targets:
+      both:
+      - 10012:10012
+    redistribute_routes:
+    - learned
+  - id: 13
+    tenant: OTI
+    rd: 10.245.218.7:10013
+    route_targets:
+      both:
+      - 10013:10013
+    redistribute_routes:
+    - learned
+  - id: 21
+    tenant: OTI
+    rd: 10.245.218.7:10021
+    route_targets:
+      both:
+      - 10021:10021
+    redistribute_routes:
+    - learned
+  - id: 22
+    tenant: OTI
+    rd: 10.245.218.7:10022
+    route_targets:
+      both:
+      - 10022:10022
+    redistribute_routes:
+    - learned
+  - id: 3401
+    tenant: OTI
+    rd: 10.245.218.7:13401
+    route_targets:
+      both:
+      - 13401:13401
+    redistribute_routes:
+    - learned
+  - id: 3402
+    tenant: OTI
+    rd: 10.245.218.7:13402
+    route_targets:
+      both:
+      - 13402:13402
+    redistribute_routes:
+    - learned
+service_routing_protocols_model: multi-agent
+ip_routing: true
+daemon_terminattr:
+  cvaddrs:
+  - apiserver.arista.io:443
+  cvauth:
+    method: token-secure
+    token_file: /tmp/cv-onboarding-token
+  cvvrf: default
+  smashexcludes: ale,flexCounter,hardware,kni,pulse,strata
+  ingestexclude: /Sysdb/cell/1/agent,/Sysdb/cell/2/agent
+  disable_aaa: false
+vlan_internal_order:
+  allocation: ascending
+  range:
+    beginning: 1006
+    ending: 1199
+spanning_tree:
+  mode: mstp
+  mst_instances:
+  - id: '0'
+    priority: 4096
+  no_spanning_tree_vlan: 4093-4094
+local_users:
+- name: cvpadmin
+  privilege: 15
+  role: network-admin
+  sha512_password: $6$ikGzKyb6w4yEqLly$mJLofKfPrT2Mx6UffrY2dwFXuTCbtf2Okjfu9CgyuduVdN3WIrq9quRZXXFjrRI754ewFQ3uZSlwSEKAe2zbP1
+vrfs:
+- name: default
+  ip_routing: false
+- name: BLUE
+  tenant: OTI
+  ip_routing: true
+- name: RED
+  tenant: OTI
+  ip_routing: true
+management_interfaces:
+- name: Management1
+  description: oob_management
+  shutdown: false
+  vrf: default
+  ip_address: 192.168.255.27/24
+  gateway: null
+  type: oob
+  lldp:
+    transmit: false
+    receive: false
+management_api_http:
+  enable_vrfs:
+  - name: default
+  enable_https: true
+vlans:
+- id: 4093
+  tenant: system
+  name: LEAF_PEER_L3
+  trunk_groups:
+  - LEAF_PEER_L3
+- id: 4094
+  tenant: system
+  name: MLAG_PEER
+  trunk_groups:
+  - MLAG
+- id: 11
+  name: Compute
+  tenant: OTI
+- id: 12
+  name: Data
+  tenant: OTI
+- id: 13
+  name: Server_MGMT
+  tenant: OTI
+- id: 3009
+  name: MLAG_iBGP_BLUE
+  trunk_groups:
+  - LEAF_PEER_L3
+  tenant: OTI
+- id: 21
+  name: VRF11_VLAN21
+  tenant: OTI
+- id: 22
+  name: VRF11_VLAN22
+  tenant: OTI
+- id: 3010
+  name: MLAG_iBGP_RED
+  trunk_groups:
+  - LEAF_PEER_L3
+  tenant: OTI
+- id: 3401
+  name: L2_VLAN3401
+  tenant: OTI
+- id: 3402
+  name: L2_VLAN3402
+  tenant: OTI
+vlan_interfaces:
+- name: Vlan4093
+  description: MLAG_PEER_L3_PEERING
+  shutdown: false
+  mtu: 9000
+  ip_address: 192.168.14.72/31
+- name: Vlan4094
+  description: MLAG_PEER
+  shutdown: false
+  no_autostate: true
+  mtu: 9000
+  ip_address: 192.168.14.104/31
+- name: Vlan11
+  tenant: OTI
+  tags:
+  - compute
+  description: Compute
+  shutdown: false
+  ip_address_virtual: 10.10.11.1/24
+  vrf: BLUE
+- name: Vlan12
+  tenant: OTI
+  tags:
+  - data
+  - border
+  description: Data
+  shutdown: false
+  ip_address_virtual: 10.10.12.1/24
+  vrf: BLUE
+- name: Vlan13
+  tenant: OTI
+  tags:
+  - idrac_dc01
+  description: Server_MGMT
+  shutdown: false
+  ip_address_virtual: 10.10.13.1/24
+  vrf: BLUE
+- name: Vlan3009
+  tenant: OTI
+  type: underlay_peering
+  shutdown: false
+  description: 'MLAG_PEER_L3_iBGP: vrf BLUE'
+  vrf: BLUE
+  mtu: 9000
+  ip_address: 192.168.14.72/31
+- name: Vlan21
+  tenant: OTI
+  description: VRF11_VLAN21
+  shutdown: false
+  ip_address_virtual: 10.10.21.1/24
+  vrf: RED
+- name: Vlan22
+  tenant: OTI
+  description: VRF11_VLAN22
+  shutdown: false
+  ip_address_virtual: 10.10.22.1/24
+  vrf: RED
+- name: Vlan3010
+  tenant: OTI
+  type: underlay_peering
+  shutdown: false
+  description: 'MLAG_PEER_L3_iBGP: vrf RED'
+  vrf: RED
+  mtu: 9000
+  ip_address: 192.168.14.72/31
+port_channel_interfaces:
+- name: Port-Channel531
+  description: MLAG_PEER_OTI-DC02-Leaf5B_Po531
+  type: switched
+  shutdown: false
+  mode: trunk
+  trunk_groups:
+  - LEAF_PEER_L3
+  - MLAG
+ethernet_interfaces:
+- name: Ethernet53/1
+  peer: OTI-DC02-Leaf5B
+  peer_interface: Ethernet53/1
+  peer_type: mlag_peer
+  description: MLAG_PEER_OTI-DC02-Leaf5B_Ethernet53/1
+  type: port-channel-member
+  shutdown: false
+  channel_group:
+    id: 531
+    mode: active
+- name: Ethernet54/1
+  peer: OTI-DC02-Leaf5B
+  peer_interface: Ethernet54/1
+  peer_type: mlag_peer
+  description: MLAG_PEER_OTI-DC02-Leaf5B_Ethernet54/1
+  type: port-channel-member
+  shutdown: false
+  channel_group:
+    id: 531
+    mode: active
+- name: Ethernet55/1
+  peer: OTI-DC02-Spine1
+  peer_interface: Ethernet5/1
+  peer_type: spine
+  description: P2P_LINK_TO_OTI-DC02-SPINE1_Ethernet5/1
+  shutdown: false
+  mtu: 9000
+  type: routed
+  ip_address: 192.168.12.17/31
+- name: Ethernet56/1
+  peer: OTI-DC02-Spine2
+  peer_interface: Ethernet5/1
+  peer_type: spine
+  description: P2P_LINK_TO_OTI-DC02-SPINE2_Ethernet5/1
+  shutdown: false
+  mtu: 9000
+  type: routed
+  ip_address: 192.168.12.19/31
+- name: Ethernet52/1
+  peer: OTI-DC01-Leaf5A
+  peer_interface: Ethernet52/1
+  peer_type: other
+  description: P2P_LINK_TO_OTI-DC01-Leaf5A_Ethernet52/1
+  type: routed
+  shutdown: false
+  mtu: 9000
+  ip_address: 192.168.10.248/31
+mlag_configuration:
+  domain_id: OTI-DC02-Leaf5
+  local_interface: Vlan4094
+  peer_address: 192.168.14.105
+  peer_link: Port-Channel531
+  reload_delay_mlag: '300'
+  reload_delay_non_mlag: '330'
+route_maps:
+- name: RM-MLAG-PEER-IN
+  sequence_numbers:
+  - sequence: 10
+    type: permit
+    set:
+    - origin incomplete
+    description: Make routes learned over MLAG Peer-link less preferred on spines to ensure optimal routing
+- name: RM-CONN-2-BGP
+  sequence_numbers:
+  - sequence: 10
+    type: permit
+    match:
+    - ip address prefix-list PL-LOOPBACKS-EVPN-OVERLAY
+loopback_interfaces:
+- name: Loopback0
+  description: EVPN_Overlay_Peering
+  shutdown: false
+  ip_address: 10.245.218.7/32
+- name: Loopback1
+  description: VTEP_VXLAN_Tunnel_Source
+  shutdown: false
+  ip_address: 10.245.218.39/32
+- name: Loopback10
+  description: BLUE_VTEP_DIAGNOSTICS
+  shutdown: false
+  vrf: BLUE
+  ip_address: 10.2.10.7/32
+- name: Loopback11
+  description: RED_VTEP_DIAGNOSTICS
+  shutdown: false
+  vrf: RED
+  ip_address: 10.2.11.7/32
+prefix_lists:
+- name: PL-LOOPBACKS-EVPN-OVERLAY
+  sequence_numbers:
+  - sequence: 10
+    action: permit 10.245.218.0/27 eq 32
+  - sequence: 20
+    action: permit 10.245.218.32/27 eq 32
+router_bfd:
+  multihop:
+    interval: 300
+    min_rx: 300
+    multiplier: 3
+ip_igmp_snooping:
+  globally_enabled: true
+ip_virtual_router_mac_address: 00:1c:73:00:09:99
+vxlan_interface:
+  Vxlan1:
+    description: OTI-DC02-Leaf5A_VTEP
+    vxlan:
+      udp_port: 4789
+      source_interface: Loopback1
+      virtual_router_encapsulation_mac_address: mlag-system-id
+      vlans:
+      - id: 11
+        vni: 10011
+      - id: 12
+        vni: 10012
+      - id: 13
+        vni: 10013
+      - id: 21
+        vni: 10021
+      - id: 22
+        vni: 10022
+      - id: 3401
+        vni: 13401
+      - id: 3402
+        vni: 13402
+      vrfs:
+      - name: BLUE
+        vni: 10
+      - name: RED
+        vni: 11
+virtual_source_nat_vrfs:
+- name: BLUE
+  ip_address: 10.2.10.7
+- name: RED
+  ip_address: 10.2.11.7
+metadata:
+  platform: 7050SX3-48YC8

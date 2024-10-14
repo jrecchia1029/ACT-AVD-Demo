@@ -410,8 +410,8 @@ interface Port-Channel531
 | --------- | ----------- | --- | ---------- |
 | Loopback0 | EVPN_Overlay_Peering | default | 10.245.217.7/32 |
 | Loopback1 | VTEP_VXLAN_Tunnel_Source | default | 10.245.217.39/32 |
-| Loopback10 | BLUE_VTEP_DIAGNOSTICS | BLUE | 10.255.10.7/32 |
-| Loopback11 | RED_VTEP_DIAGNOSTICS | RED | 10.255.11.7/32 |
+| Loopback10 | BLUE_VTEP_DIAGNOSTICS | BLUE | 10.1.10.7/32 |
+| Loopback11 | RED_VTEP_DIAGNOSTICS | RED | 10.1.11.7/32 |
 
 ##### IPv6
 
@@ -440,13 +440,13 @@ interface Loopback10
    description BLUE_VTEP_DIAGNOSTICS
    no shutdown
    vrf BLUE
-   ip address 10.255.10.7/32
+   ip address 10.1.10.7/32
 !
 interface Loopback11
    description RED_VTEP_DIAGNOSTICS
    no shutdown
    vrf RED
-   ip address 10.255.11.7/32
+   ip address 10.1.11.7/32
 ```
 
 ### VLAN Interfaces
@@ -676,6 +676,17 @@ ASN Notation: asplain
 
 #### Router BGP Peer Groups
 
+##### EVPN-OVERLAY-CORE
+
+| Settings | Value |
+| -------- | ----- |
+| Address Family | evpn |
+| Source | Loopback0 |
+| BFD | True |
+| Ebgp multihop | 15 |
+| Send community | all |
+| Maximum routes | 0 (no limit) |
+
 ##### EVPN-OVERLAY-PEERS
 
 | Settings | Value |
@@ -711,6 +722,8 @@ ASN Notation: asplain
 | -------- | --------- | --- | -------- | -------------- | -------------- | ---------- | --- | --------------------- | ---------------------- | ------- | ------------ |
 | 10.245.217.1 | 65000 | default | - | Inherited from peer group EVPN-OVERLAY-PEERS | Inherited from peer group EVPN-OVERLAY-PEERS | - | Inherited from peer group EVPN-OVERLAY-PEERS | - | - | - | - |
 | 10.245.217.2 | 65000 | default | - | Inherited from peer group EVPN-OVERLAY-PEERS | Inherited from peer group EVPN-OVERLAY-PEERS | - | Inherited from peer group EVPN-OVERLAY-PEERS | - | - | - | - |
+| 10.245.218.7 | 65105 | default | - | Inherited from peer group EVPN-OVERLAY-CORE | Inherited from peer group EVPN-OVERLAY-CORE | - | Inherited from peer group EVPN-OVERLAY-CORE | - | - | - | - |
+| 10.245.218.8 | 65105 | default | - | Inherited from peer group EVPN-OVERLAY-CORE | Inherited from peer group EVPN-OVERLAY-CORE | - | Inherited from peer group EVPN-OVERLAY-CORE | - | - | - | - |
 | 192.168.10.248 | 65105 | default | - | Inherited from peer group IPv4-UNDERLAY-PEERS | Inherited from peer group IPv4-UNDERLAY-PEERS | - | - | - | - | - | - |
 | 192.168.11.16 | 65000 | default | - | Inherited from peer group IPv4-UNDERLAY-PEERS | Inherited from peer group IPv4-UNDERLAY-PEERS | - | - | - | - | - | - |
 | 192.168.11.18 | 65000 | default | - | Inherited from peer group IPv4-UNDERLAY-PEERS | Inherited from peer group IPv4-UNDERLAY-PEERS | - | - | - | - | - | - |
@@ -724,7 +737,15 @@ ASN Notation: asplain
 
 | Peer Group | Activate | Encapsulation |
 | ---------- | -------- | ------------- |
+| EVPN-OVERLAY-CORE | True | default |
 | EVPN-OVERLAY-PEERS | True | default |
+
+##### EVPN DCI Gateway Summary
+
+| Settings | Value |
+| -------- | ----- |
+| Remote Domain Peer Groups | EVPN-OVERLAY-CORE |
+| L3 Gateway Configured | True |
 
 #### Router BGP VLANs
 
@@ -757,6 +778,12 @@ router bgp 65005
    maximum-paths 4 ecmp 4
    update wait-install
    bgp default ipv4-unicast
+   neighbor EVPN-OVERLAY-CORE peer group
+   neighbor EVPN-OVERLAY-CORE update-source Loopback0
+   neighbor EVPN-OVERLAY-CORE bfd
+   neighbor EVPN-OVERLAY-CORE ebgp-multihop 15
+   neighbor EVPN-OVERLAY-CORE send-community
+   neighbor EVPN-OVERLAY-CORE maximum-routes 0
    neighbor EVPN-OVERLAY-PEERS peer group
    neighbor EVPN-OVERLAY-PEERS update-source Loopback0
    neighbor EVPN-OVERLAY-PEERS bfd
@@ -779,6 +806,12 @@ router bgp 65005
    neighbor 10.245.217.2 peer group EVPN-OVERLAY-PEERS
    neighbor 10.245.217.2 remote-as 65000
    neighbor 10.245.217.2 description OTI-DC01-Spine2
+   neighbor 10.245.218.7 peer group EVPN-OVERLAY-CORE
+   neighbor 10.245.218.7 remote-as 65105
+   neighbor 10.245.218.7 description OTI-DC02-Leaf5A
+   neighbor 10.245.218.8 peer group EVPN-OVERLAY-CORE
+   neighbor 10.245.218.8 remote-as 65105
+   neighbor 10.245.218.8 description OTI-DC02-Leaf5B
    neighbor 192.168.10.248 peer group IPv4-UNDERLAY-PEERS
    neighbor 192.168.10.248 remote-as 65105
    neighbor 192.168.10.248 description OTI-DC02-Leaf5A
@@ -828,9 +861,13 @@ router bgp 65005
       redistribute learned
    !
    address-family evpn
+      neighbor EVPN-OVERLAY-CORE activate
+      neighbor EVPN-OVERLAY-CORE domain remote
       neighbor EVPN-OVERLAY-PEERS activate
+      neighbor default next-hop-self received-evpn-routes route-type ip-prefix
    !
    address-family ipv4
+      no neighbor EVPN-OVERLAY-CORE activate
       no neighbor EVPN-OVERLAY-PEERS activate
       neighbor IPv4-UNDERLAY-PEERS activate
       neighbor MLAG-IPv4-UNDERLAY-PEER activate
@@ -961,13 +998,13 @@ vrf instance RED
 
 | Source NAT VRF | Source NAT IP Address |
 | -------------- | --------------------- |
-| BLUE | 10.255.10.7 |
-| RED | 10.255.11.7 |
+| BLUE | 10.1.10.7 |
+| RED | 10.1.11.7 |
 
 ### Virtual Source NAT Configuration
 
 ```eos
 !
-ip address virtual source-nat vrf BLUE address 10.255.10.7
-ip address virtual source-nat vrf RED address 10.255.11.7
+ip address virtual source-nat vrf BLUE address 10.1.10.7
+ip address virtual source-nat vrf RED address 10.1.11.7
 ```
