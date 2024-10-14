@@ -669,23 +669,11 @@ ASN Notation: asplain
 | ---------- |
 | graceful-restart restart-time 300 |
 | graceful-restart |
-| update wait-install |
 | bgp default ipv4-unicast |
 | distance bgp 20 200 200 |
 | maximum-paths 4 ecmp 4 |
 
 #### Router BGP Peer Groups
-
-##### EVPN-OVERLAY-CORE
-
-| Settings | Value |
-| -------- | ----- |
-| Address Family | evpn |
-| Source | Loopback0 |
-| BFD | True |
-| Ebgp multihop | 15 |
-| Send community | all |
-| Maximum routes | 0 (no limit) |
 
 ##### EVPN-OVERLAY-PEERS
 
@@ -697,6 +685,16 @@ ASN Notation: asplain
 | Ebgp multihop | 3 |
 | Send community | all |
 | Maximum routes | 0 (no limit) |
+
+##### INTER-DC-EVPN-PEERS
+
+| Settings | Value |
+| -------- | ----- |
+| Remote AS | 65105 |
+| Source | Loopback0 |
+| Ebgp multihop | 10 |
+| Send community | all |
+| Maximum routes | 0 (no limit) (warning-limit 500000) |
 
 ##### IPv4-UNDERLAY-PEERS
 
@@ -722,8 +720,8 @@ ASN Notation: asplain
 | -------- | --------- | --- | -------- | -------------- | -------------- | ---------- | --- | --------------------- | ---------------------- | ------- | ------------ |
 | 10.245.217.1 | 65000 | default | - | Inherited from peer group EVPN-OVERLAY-PEERS | Inherited from peer group EVPN-OVERLAY-PEERS | - | Inherited from peer group EVPN-OVERLAY-PEERS | - | - | - | - |
 | 10.245.217.2 | 65000 | default | - | Inherited from peer group EVPN-OVERLAY-PEERS | Inherited from peer group EVPN-OVERLAY-PEERS | - | Inherited from peer group EVPN-OVERLAY-PEERS | - | - | - | - |
-| 10.245.218.7 | 65105 | default | - | Inherited from peer group EVPN-OVERLAY-CORE | Inherited from peer group EVPN-OVERLAY-CORE | - | Inherited from peer group EVPN-OVERLAY-CORE | - | - | - | - |
-| 10.245.218.8 | 65105 | default | - | Inherited from peer group EVPN-OVERLAY-CORE | Inherited from peer group EVPN-OVERLAY-CORE | - | Inherited from peer group EVPN-OVERLAY-CORE | - | - | - | - |
+| 10.245.218.7 | Inherited from peer group INTER-DC-EVPN-PEERS | default | - | Inherited from peer group INTER-DC-EVPN-PEERS | Inherited from peer group INTER-DC-EVPN-PEERS | - | - | - | - | - | - |
+| 10.245.218.8 | Inherited from peer group INTER-DC-EVPN-PEERS | default | - | Inherited from peer group INTER-DC-EVPN-PEERS | Inherited from peer group INTER-DC-EVPN-PEERS | - | - | - | - | - | - |
 | 192.168.10.248 | 65105 | default | - | Inherited from peer group IPv4-UNDERLAY-PEERS | Inherited from peer group IPv4-UNDERLAY-PEERS | - | - | - | - | - | - |
 | 192.168.11.16 | 65000 | default | - | Inherited from peer group IPv4-UNDERLAY-PEERS | Inherited from peer group IPv4-UNDERLAY-PEERS | - | - | - | - | - | - |
 | 192.168.11.18 | 65000 | default | - | Inherited from peer group IPv4-UNDERLAY-PEERS | Inherited from peer group IPv4-UNDERLAY-PEERS | - | - | - | - | - | - |
@@ -737,15 +735,8 @@ ASN Notation: asplain
 
 | Peer Group | Activate | Encapsulation |
 | ---------- | -------- | ------------- |
-| EVPN-OVERLAY-CORE | True | default |
 | EVPN-OVERLAY-PEERS | True | default |
-
-##### EVPN DCI Gateway Summary
-
-| Settings | Value |
-| -------- | ----- |
-| Remote Domain Peer Groups | EVPN-OVERLAY-CORE |
-| L3 Gateway Configured | True |
+| INTER-DC-EVPN-PEERS | True | default |
 
 #### Router BGP VLANs
 
@@ -776,20 +767,19 @@ router bgp 65005
    graceful-restart restart-time 300
    graceful-restart
    maximum-paths 4 ecmp 4
-   update wait-install
    bgp default ipv4-unicast
-   neighbor EVPN-OVERLAY-CORE peer group
-   neighbor EVPN-OVERLAY-CORE update-source Loopback0
-   neighbor EVPN-OVERLAY-CORE bfd
-   neighbor EVPN-OVERLAY-CORE ebgp-multihop 15
-   neighbor EVPN-OVERLAY-CORE send-community
-   neighbor EVPN-OVERLAY-CORE maximum-routes 0
    neighbor EVPN-OVERLAY-PEERS peer group
    neighbor EVPN-OVERLAY-PEERS update-source Loopback0
    neighbor EVPN-OVERLAY-PEERS bfd
    neighbor EVPN-OVERLAY-PEERS ebgp-multihop 3
    neighbor EVPN-OVERLAY-PEERS send-community
    neighbor EVPN-OVERLAY-PEERS maximum-routes 0
+   neighbor INTER-DC-EVPN-PEERS peer group
+   neighbor INTER-DC-EVPN-PEERS remote-as 65105
+   neighbor INTER-DC-EVPN-PEERS update-source Loopback0
+   neighbor INTER-DC-EVPN-PEERS ebgp-multihop 10
+   neighbor INTER-DC-EVPN-PEERS send-community
+   neighbor INTER-DC-EVPN-PEERS maximum-routes 0 warning-limit 500000
    neighbor IPv4-UNDERLAY-PEERS peer group
    neighbor IPv4-UNDERLAY-PEERS send-community
    neighbor IPv4-UNDERLAY-PEERS maximum-routes 12000
@@ -806,11 +796,9 @@ router bgp 65005
    neighbor 10.245.217.2 peer group EVPN-OVERLAY-PEERS
    neighbor 10.245.217.2 remote-as 65000
    neighbor 10.245.217.2 description OTI-DC01-Spine2
-   neighbor 10.245.218.7 peer group EVPN-OVERLAY-CORE
-   neighbor 10.245.218.7 remote-as 65105
+   neighbor 10.245.218.7 peer group INTER-DC-EVPN-PEERS
    neighbor 10.245.218.7 description OTI-DC02-Leaf5A
-   neighbor 10.245.218.8 peer group EVPN-OVERLAY-CORE
-   neighbor 10.245.218.8 remote-as 65105
+   neighbor 10.245.218.8 peer group INTER-DC-EVPN-PEERS
    neighbor 10.245.218.8 description OTI-DC02-Leaf5B
    neighbor 192.168.10.248 peer group IPv4-UNDERLAY-PEERS
    neighbor 192.168.10.248 remote-as 65105
@@ -861,14 +849,12 @@ router bgp 65005
       redistribute learned
    !
    address-family evpn
-      neighbor EVPN-OVERLAY-CORE activate
-      neighbor EVPN-OVERLAY-CORE domain remote
       neighbor EVPN-OVERLAY-PEERS activate
-      neighbor default next-hop-self received-evpn-routes route-type ip-prefix
+      neighbor INTER-DC-EVPN-PEERS activate
    !
    address-family ipv4
-      no neighbor EVPN-OVERLAY-CORE activate
       no neighbor EVPN-OVERLAY-PEERS activate
+      neighbor INTER-DC-EVPN-PEERS activate
       neighbor IPv4-UNDERLAY-PEERS activate
       neighbor MLAG-IPv4-UNDERLAY-PEER activate
    !
@@ -877,7 +863,6 @@ router bgp 65005
       route-target import evpn 10:10
       route-target export evpn 10:10
       router-id 10.245.217.7
-      update wait-install
       neighbor 192.168.13.73 peer group MLAG-IPv4-UNDERLAY-PEER
       redistribute connected
    !
@@ -886,7 +871,6 @@ router bgp 65005
       route-target import evpn 11:11
       route-target export evpn 11:11
       router-id 10.245.217.7
-      update wait-install
       neighbor 192.168.13.73 peer group MLAG-IPv4-UNDERLAY-PEER
       redistribute connected
 ```

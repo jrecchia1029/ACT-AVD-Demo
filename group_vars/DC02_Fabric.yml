@@ -44,7 +44,7 @@ spine:
   defaults:
     # node BGP AS | Required.
     bgp_as: 65100
-    platform: 7050CX3
+    platform: vEOS-lab  # 7050CX3
     # IPv4 subnet for Loopback0 allocation
     loopback_ipv4_pool: 10.245.218.0/27
   nodes:
@@ -59,7 +59,7 @@ spine:
 
 l3leaf:
   defaults:
-    platform: 7050SX3-48YC8
+    platform: vEOS-lab  # 7050SX3
     # Spanning tree mode | Required.
     spanning_tree_mode: mstp
     # Spanning tree priority.
@@ -132,21 +132,47 @@ l3leaf:
       filter:
         tags: ['compute', 'border', 'all']
         tenants: ['all']
-      evpn_gateway:
-        remote_peers:
-          - hostname: OTI-DC01-Leaf5A
-            ip_address: 10.245.217.7
-            bgp_as: 65005
-          - hostname: OTI-DC01-Leaf5B
-            ip_address: 10.245.217.8
-            bgp_as: 65005
-        # # Enable EVPN Gateway functionality for route-types 2 (MAC-IP) and 3 (IMET).
-        # evpn_l2:
-        #   enabled: true
-        # Enable EVPN Gateway functionality for route-type 5 (IP-PREFIX).
-        evpn_l3:
-          enabled: true
-          inter_domain: false
+      structured_config:
+        router_bgp:
+          peer_groups:
+            - name: INTER-DC-EVPN-PEERS
+              update_source: Loopback0
+              ebgp_multihop: 10
+              maximum_routes: 0
+              maximum_routes_warning_limit: 500000
+              send_community: all
+              remote_as: 65005
+          address_family_ipv4:
+            peer_groups:
+              - name: INTER-DC-EVPN-PEERS
+                activate: true
+          address_family_evpn:
+            peer_groups:
+              - name: INTER-DC-EVPN-PEERS
+                activate: true
+          neighbors:
+            # DC01 Border Leafs
+            - ip_address: 10.245.217.7
+              description: OTI-DC01-Leaf5A
+              peer_group: INTER-DC-EVPN-PEERS
+            - ip_address: 10.245.217.8
+              description: OTI-DC01-Leaf5B
+              peer_group: INTER-DC-EVPN-PEERS
+      # evpn_gateway:
+      #   remote_peers:
+      #     - hostname: OTI-DC01-Leaf5A
+      #       ip_address: 10.245.217.7
+      #       bgp_as: 65005
+      #     - hostname: OTI-DC01-Leaf5B
+      #       ip_address: 10.245.217.8
+      #       bgp_as: 65005
+      #   # Enable EVPN Gateway functionality for route-types 2 (MAC-IP) and 3 (IMET).
+      #   evpn_l2:
+      #     enabled: true
+      #   # Enable EVPN Gateway functionality for route-type 5 (IP-PREFIX).
+      #   evpn_l3:
+      #     enabled: true
+      #     inter_domain: false
       nodes:
         - name: OTI-DC02-Leaf5A
           id: 5

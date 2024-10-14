@@ -669,23 +669,11 @@ ASN Notation: asplain
 | ---------- |
 | graceful-restart restart-time 300 |
 | graceful-restart |
-| update wait-install |
 | bgp default ipv4-unicast |
 | distance bgp 20 200 200 |
 | maximum-paths 4 ecmp 4 |
 
 #### Router BGP Peer Groups
-
-##### EVPN-OVERLAY-CORE
-
-| Settings | Value |
-| -------- | ----- |
-| Address Family | evpn |
-| Source | Loopback0 |
-| BFD | True |
-| Ebgp multihop | 15 |
-| Send community | all |
-| Maximum routes | 0 (no limit) |
 
 ##### EVPN-OVERLAY-PEERS
 
@@ -697,6 +685,16 @@ ASN Notation: asplain
 | Ebgp multihop | 3 |
 | Send community | all |
 | Maximum routes | 0 (no limit) |
+
+##### INTER-DC-EVPN-PEERS
+
+| Settings | Value |
+| -------- | ----- |
+| Remote AS | 65005 |
+| Source | Loopback0 |
+| Ebgp multihop | 10 |
+| Send community | all |
+| Maximum routes | 0 (no limit) (warning-limit 500000) |
 
 ##### IPv4-UNDERLAY-PEERS
 
@@ -720,8 +718,8 @@ ASN Notation: asplain
 
 | Neighbor | Remote AS | VRF | Shutdown | Send-community | Maximum-routes | Allowas-in | BFD | RIB Pre-Policy Retain | Route-Reflector Client | Passive | TTL Max Hops |
 | -------- | --------- | --- | -------- | -------------- | -------------- | ---------- | --- | --------------------- | ---------------------- | ------- | ------------ |
-| 10.245.217.7 | 65005 | default | - | Inherited from peer group EVPN-OVERLAY-CORE | Inherited from peer group EVPN-OVERLAY-CORE | - | Inherited from peer group EVPN-OVERLAY-CORE | - | - | - | - |
-| 10.245.217.8 | 65005 | default | - | Inherited from peer group EVPN-OVERLAY-CORE | Inherited from peer group EVPN-OVERLAY-CORE | - | Inherited from peer group EVPN-OVERLAY-CORE | - | - | - | - |
+| 10.245.217.7 | Inherited from peer group INTER-DC-EVPN-PEERS | default | - | Inherited from peer group INTER-DC-EVPN-PEERS | Inherited from peer group INTER-DC-EVPN-PEERS | - | - | - | - | - | - |
+| 10.245.217.8 | Inherited from peer group INTER-DC-EVPN-PEERS | default | - | Inherited from peer group INTER-DC-EVPN-PEERS | Inherited from peer group INTER-DC-EVPN-PEERS | - | - | - | - | - | - |
 | 10.245.218.1 | 65100 | default | - | Inherited from peer group EVPN-OVERLAY-PEERS | Inherited from peer group EVPN-OVERLAY-PEERS | - | Inherited from peer group EVPN-OVERLAY-PEERS | - | - | - | - |
 | 10.245.218.2 | 65100 | default | - | Inherited from peer group EVPN-OVERLAY-PEERS | Inherited from peer group EVPN-OVERLAY-PEERS | - | Inherited from peer group EVPN-OVERLAY-PEERS | - | - | - | - |
 | 192.168.10.250 | 65005 | default | - | Inherited from peer group IPv4-UNDERLAY-PEERS | Inherited from peer group IPv4-UNDERLAY-PEERS | - | - | - | - | - | - |
@@ -737,15 +735,8 @@ ASN Notation: asplain
 
 | Peer Group | Activate | Encapsulation |
 | ---------- | -------- | ------------- |
-| EVPN-OVERLAY-CORE | True | default |
 | EVPN-OVERLAY-PEERS | True | default |
-
-##### EVPN DCI Gateway Summary
-
-| Settings | Value |
-| -------- | ----- |
-| Remote Domain Peer Groups | EVPN-OVERLAY-CORE |
-| L3 Gateway Configured | True |
+| INTER-DC-EVPN-PEERS | True | default |
 
 #### Router BGP VLANs
 
@@ -776,20 +767,19 @@ router bgp 65105
    graceful-restart restart-time 300
    graceful-restart
    maximum-paths 4 ecmp 4
-   update wait-install
    bgp default ipv4-unicast
-   neighbor EVPN-OVERLAY-CORE peer group
-   neighbor EVPN-OVERLAY-CORE update-source Loopback0
-   neighbor EVPN-OVERLAY-CORE bfd
-   neighbor EVPN-OVERLAY-CORE ebgp-multihop 15
-   neighbor EVPN-OVERLAY-CORE send-community
-   neighbor EVPN-OVERLAY-CORE maximum-routes 0
    neighbor EVPN-OVERLAY-PEERS peer group
    neighbor EVPN-OVERLAY-PEERS update-source Loopback0
    neighbor EVPN-OVERLAY-PEERS bfd
    neighbor EVPN-OVERLAY-PEERS ebgp-multihop 3
    neighbor EVPN-OVERLAY-PEERS send-community
    neighbor EVPN-OVERLAY-PEERS maximum-routes 0
+   neighbor INTER-DC-EVPN-PEERS peer group
+   neighbor INTER-DC-EVPN-PEERS remote-as 65005
+   neighbor INTER-DC-EVPN-PEERS update-source Loopback0
+   neighbor INTER-DC-EVPN-PEERS ebgp-multihop 10
+   neighbor INTER-DC-EVPN-PEERS send-community
+   neighbor INTER-DC-EVPN-PEERS maximum-routes 0 warning-limit 500000
    neighbor IPv4-UNDERLAY-PEERS peer group
    neighbor IPv4-UNDERLAY-PEERS send-community
    neighbor IPv4-UNDERLAY-PEERS maximum-routes 12000
@@ -800,11 +790,9 @@ router bgp 65105
    neighbor MLAG-IPv4-UNDERLAY-PEER send-community
    neighbor MLAG-IPv4-UNDERLAY-PEER maximum-routes 12000
    neighbor MLAG-IPv4-UNDERLAY-PEER route-map RM-MLAG-PEER-IN in
-   neighbor 10.245.217.7 peer group EVPN-OVERLAY-CORE
-   neighbor 10.245.217.7 remote-as 65005
+   neighbor 10.245.217.7 peer group INTER-DC-EVPN-PEERS
    neighbor 10.245.217.7 description OTI-DC01-Leaf5A
-   neighbor 10.245.217.8 peer group EVPN-OVERLAY-CORE
-   neighbor 10.245.217.8 remote-as 65005
+   neighbor 10.245.217.8 peer group INTER-DC-EVPN-PEERS
    neighbor 10.245.217.8 description OTI-DC01-Leaf5B
    neighbor 10.245.218.1 peer group EVPN-OVERLAY-PEERS
    neighbor 10.245.218.1 remote-as 65100
@@ -861,14 +849,12 @@ router bgp 65105
       redistribute learned
    !
    address-family evpn
-      neighbor EVPN-OVERLAY-CORE activate
-      neighbor EVPN-OVERLAY-CORE domain remote
       neighbor EVPN-OVERLAY-PEERS activate
-      neighbor default next-hop-self received-evpn-routes route-type ip-prefix
+      neighbor INTER-DC-EVPN-PEERS activate
    !
    address-family ipv4
-      no neighbor EVPN-OVERLAY-CORE activate
       no neighbor EVPN-OVERLAY-PEERS activate
+      neighbor INTER-DC-EVPN-PEERS activate
       neighbor IPv4-UNDERLAY-PEERS activate
       neighbor MLAG-IPv4-UNDERLAY-PEER activate
    !
@@ -877,7 +863,6 @@ router bgp 65105
       route-target import evpn 10:10
       route-target export evpn 10:10
       router-id 10.245.218.8
-      update wait-install
       neighbor 192.168.14.72 peer group MLAG-IPv4-UNDERLAY-PEER
       redistribute connected
    !
@@ -886,7 +871,6 @@ router bgp 65105
       route-target import evpn 11:11
       route-target export evpn 11:11
       router-id 10.245.218.8
-      update wait-install
       neighbor 192.168.14.72 peer group MLAG-IPv4-UNDERLAY-PEER
       redistribute connected
 ```

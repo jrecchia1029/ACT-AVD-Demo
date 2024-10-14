@@ -17,14 +17,14 @@
 
 | POD | Type | Node | Management IP | Platform | Provisioned in CloudVision | Serial Number |
 | --- | ---- | ---- | ------------- | -------- | -------------------------- | ------------- |
-| DC01_Pod1 | l3leaf | OTI-DC01-Leaf1 | 192.168.255.13/24 | 7050SX3-48YC8 | Provisioned | SN-OTI-DC01-Leaf1 |
-| DC01_Pod1 | l3leaf | OTI-DC01-Leaf2 | 192.168.255.14/24 | 7050SX3-48YC8 | Provisioned | SN-OTI-DC01-Leaf2 |
-| DC01_Pod1 | l3leaf | OTI-DC01-Leaf3 | 192.168.255.15/24 | 7050SX3-48YC8 | Provisioned | SN-OTI-DC01-Leaf3 |
-| DC01_Pod1 | l3leaf | OTI-DC01-Leaf4 | 192.168.255.16/24 | 7050SX3-48YC8 | Provisioned | SN-OTI-DC01-Leaf4 |
-| DC01_Pod1 | l3leaf | OTI-DC01-Leaf5A | 192.168.255.17/24 | 7050SX3-48YC8 | Provisioned | SN-OTI-DC01-Leaf5A |
-| DC01_Pod1 | l3leaf | OTI-DC01-Leaf5B | 192.168.255.18/24 | 7050SX3-48YC8 | Provisioned | SN-OTI-DC01-Leaf5B |
-| DC01_Pod1 | spine | OTI-DC01-Spine1 | 192.168.255.11/24 | 7050CX3 | Provisioned | SN-OTI-DC01-Spine1 |
-| DC01_Pod1 | spine | OTI-DC01-Spine2 | 192.168.255.12/24 | 7050CX3 | Provisioned | SN-OTI-DC01-Spine2 |
+| DC01_Pod1 | l3leaf | OTI-DC01-Leaf1 | 192.168.255.13/24 | vEOS-lab | Provisioned | SN-OTI-DC01-Leaf1 |
+| DC01_Pod1 | l3leaf | OTI-DC01-Leaf2 | 192.168.255.14/24 | vEOS-lab | Provisioned | SN-OTI-DC01-Leaf2 |
+| DC01_Pod1 | l3leaf | OTI-DC01-Leaf3 | 192.168.255.15/24 | vEOS-lab | Provisioned | SN-OTI-DC01-Leaf3 |
+| DC01_Pod1 | l3leaf | OTI-DC01-Leaf4 | 192.168.255.16/24 | vEOS-lab | Provisioned | SN-OTI-DC01-Leaf4 |
+| DC01_Pod1 | l3leaf | OTI-DC01-Leaf5A | 192.168.255.17/24 | vEOS-lab | Provisioned | SN-OTI-DC01-Leaf5A |
+| DC01_Pod1 | l3leaf | OTI-DC01-Leaf5B | 192.168.255.18/24 | vEOS-lab | Provisioned | SN-OTI-DC01-Leaf5B |
+| DC01_Pod1 | spine | OTI-DC01-Spine1 | 192.168.255.11/24 | vEOS-lab | Provisioned | SN-OTI-DC01-Spine1 |
+| DC01_Pod1 | spine | OTI-DC01-Spine2 | 192.168.255.12/24 | vEOS-lab | Provisioned | SN-OTI-DC01-Spine2 |
 
 > Provision status is based on Ansible inventory declaration and do not represent real status from CloudVision.
 
