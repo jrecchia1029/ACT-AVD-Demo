@@ -36,6 +36,21 @@ custom_structured_configuration_management_interfaces:
       transmit: false
       receive: false
 
+l3_edge:
+  p2p_links:
+    # DCI Link - BL01-8340 (Kingston) to SS01-8595 (Lefrak)
+    - nodes: [OTI-DC01-Leaf5A,  OTI-DC02-Leaf5A]
+      interfaces: [Ethernet52/1, Ethernet52/1]
+      ip: [192.168.10.249/31, 192.168.10.248/31]
+      as: [65005, 65105]
+      include_in_underlay_protocol: true
+    # DCI Link - BL02-8340 (Kingston) to SS02-8595 (Grahamsville)
+    - nodes: [OTI-DC01-Leaf5B, OTI-DC02-Leaf5B]
+      interfaces: [Ethernet52/1, Ethernet52/1]
+      ip: [192.168.10.250/31, 192.168.10.251/31]
+      as: [65005, 65105]
+      include_in_underlay_protocol: true
+
 
 # EOS connection vars
 ansible_connection: httpapi

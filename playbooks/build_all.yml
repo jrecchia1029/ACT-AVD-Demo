@@ -1,5 +1,5 @@
 ---
-- name: Build DC01 Switch configuration
+- name: Build DC01 structured configuration
   hosts: DC01_Fabric
   connection: local
   gather_facts: no
@@ -10,12 +10,8 @@
         name: arista.avd.eos_designs
       vars:
         documentation_dir_name: documentation/DC01
-    - name: generate device intended config and documentation
-      tags: [generate]
-      import_role:
-        name: arista.avd.eos_cli_config_gen
 
-- name: Build DC01 OOB Switch configuration
+- name: Build DC01 OOB structured configuration
   hosts: DC01_OOB
   connection: local
   gather_facts: no
@@ -26,12 +22,8 @@
         name: arista.avd.eos_designs
       vars:
         documentation_dir_name: documentation/DC01_OOB
-    - name: generate device intended config and documentation
-      tags: [generate]
-      import_role:
-        name: arista.avd.eos_cli_config_gen
 
-- name: Build DC02 Switch configuration
+- name: Build DC02 structured configuration
   hosts: DC02_Fabric
   connection: local
   gather_facts: no
@@ -42,12 +34,8 @@
         name: arista.avd.eos_designs
       vars:
         documentation_dir_name: documentation/DC02
-    - name: generate device intended config and documentation
-      tags: [generate]
-      import_role:
-        name: arista.avd.eos_cli_config_gen
 
-- name: Build DC02 OOB Switch configuration
+- name: Build DC02 OOB structured configuration
   hosts: DC02_OOB
   connection: local
   gather_facts: no
@@ -58,6 +46,12 @@
         name: arista.avd.eos_designs
       vars:
         documentation_dir_name: documentation/DC02_OOB
+
+- name: Generate CLI
+  hosts: OTI
+  connection: local
+  gather_facts: no
+  tasks:
     - name: generate device intended config and documentation
       tags: [generate]
       import_role:

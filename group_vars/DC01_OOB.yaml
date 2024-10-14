@@ -23,7 +23,7 @@ leaf:
     - group: OTI-DC01-OOB1
       bgp_as: 65001
       filter:
-        tags: ['Compute']
+        tags: ['idrac']
         tenants: ['all']
       nodes:
         - name: OTI-DC01-OBM1

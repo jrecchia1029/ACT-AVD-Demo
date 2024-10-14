@@ -7,10 +7,12 @@ l3leaf,OTI-DC02-Leaf3,Ethernet55/1,spine,OTI-DC02-Spine1,Ethernet3/1,True
 l3leaf,OTI-DC02-Leaf3,Ethernet56/1,spine,OTI-DC02-Spine2,Ethernet3/1,True
 l3leaf,OTI-DC02-Leaf4,Ethernet55/1,spine,OTI-DC02-Spine1,Ethernet4/1,True
 l3leaf,OTI-DC02-Leaf4,Ethernet56/1,spine,OTI-DC02-Spine2,Ethernet4/1,True
+l3leaf,OTI-DC02-Leaf5A,Ethernet52/1,other,OTI-DC01-Leaf5A,Ethernet52/1,True
 l3leaf,OTI-DC02-Leaf5A,Ethernet53/1,mlag_peer,OTI-DC02-Leaf5B,Ethernet53/1,True
 l3leaf,OTI-DC02-Leaf5A,Ethernet54/1,mlag_peer,OTI-DC02-Leaf5B,Ethernet54/1,True
 l3leaf,OTI-DC02-Leaf5A,Ethernet55/1,spine,OTI-DC02-Spine1,Ethernet5/1,True
 l3leaf,OTI-DC02-Leaf5A,Ethernet56/1,spine,OTI-DC02-Spine2,Ethernet5/1,True
+l3leaf,OTI-DC02-Leaf5B,Ethernet52/1,other,OTI-DC01-Leaf5B,Ethernet52/1,True
 l3leaf,OTI-DC02-Leaf5B,Ethernet53/1,mlag_peer,OTI-DC02-Leaf5A,Ethernet53/1,True
 l3leaf,OTI-DC02-Leaf5B,Ethernet54/1,mlag_peer,OTI-DC02-Leaf5A,Ethernet54/1,True
 l3leaf,OTI-DC02-Leaf5B,Ethernet55/1,spine,OTI-DC02-Spine1,Ethernet6/1,True

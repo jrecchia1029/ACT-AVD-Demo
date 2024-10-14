@@ -18,9 +18,13 @@
 - [Internal VLAN Allocation Policy](#internal-vlan-allocation-policy)
   - [Internal VLAN Allocation Policy Summary](#internal-vlan-allocation-policy-summary)
   - [Internal VLAN Allocation Policy Device Configuration](#internal-vlan-allocation-policy-device-configuration)
+- [VLANs](#vlans)
+  - [VLANs Summary](#vlans-summary)
+  - [VLANs Device Configuration](#vlans-device-configuration)
 - [Interfaces](#interfaces)
   - [Ethernet Interfaces](#ethernet-interfaces)
   - [Loopback Interfaces](#loopback-interfaces)
+  - [VLAN Interfaces](#vlan-interfaces)
   - [VXLAN Interface](#vxlan-interface)
 - [Routing](#routing)
   - [Service Routing Protocols Model](#service-routing-protocols-model)
@@ -39,6 +43,9 @@
 - [VRF Instances](#vrf-instances)
   - [VRF Instances Summary](#vrf-instances-summary)
   - [VRF Instances Device Configuration](#vrf-instances-device-configuration)
+- [Virtual Source NAT](#virtual-source-nat)
+  - [Virtual Source NAT Summary](#virtual-source-nat-summary)
+  - [Virtual Source NAT Configuration](#virtual-source-nat-configuration)
 
 ## Management
 
@@ -219,6 +226,46 @@ spanning-tree mst 0 priority 4096
 vlan internal order ascending range 1006 1199
 ```
 
+## VLANs
+
+### VLANs Summary
+
+| VLAN ID | Name | Trunk Groups |
+| ------- | ---- | ------------ |
+| 11 | Compute | - |
+| 12 | Data | - |
+| 13 | Server_MGMT | - |
+| 21 | VRF11_VLAN21 | - |
+| 22 | VRF11_VLAN22 | - |
+| 3401 | L2_VLAN3401 | - |
+| 3402 | L2_VLAN3402 | - |
+
+### VLANs Device Configuration
+
+```eos
+!
+vlan 11
+   name Compute
+!
+vlan 12
+   name Data
+!
+vlan 13
+   name Server_MGMT
+!
+vlan 21
+   name VRF11_VLAN21
+!
+vlan 22
+   name VRF11_VLAN22
+!
+vlan 3401
+   name L2_VLAN3401
+!
+vlan 3402
+   name L2_VLAN3402
+```
+
 ## Interfaces
 
 ### Ethernet Interfaces
@@ -268,6 +315,8 @@ interface Ethernet56/1
 | --------- | ----------- | --- | ---------- |
 | Loopback0 | EVPN_Overlay_Peering | default | 10.245.218.6/32 |
 | Loopback1 | VTEP_VXLAN_Tunnel_Source | default | 10.245.218.38/32 |
+| Loopback10 | BLUE_VTEP_DIAGNOSTICS | BLUE | 10.255.10.6/32 |
+| Loopback11 | RED_VTEP_DIAGNOSTICS | RED | 10.255.11.6/32 |
 
 ##### IPv6
 
@@ -275,6 +324,8 @@ interface Ethernet56/1
 | --------- | ----------- | --- | ------------ |
 | Loopback0 | EVPN_Overlay_Peering | default | - |
 | Loopback1 | VTEP_VXLAN_Tunnel_Source | default | - |
+| Loopback10 | BLUE_VTEP_DIAGNOSTICS | BLUE | - |
+| Loopback11 | RED_VTEP_DIAGNOSTICS | RED | - |
 
 #### Loopback Interfaces Device Configuration
 
@@ -289,6 +340,75 @@ interface Loopback1
    description VTEP_VXLAN_Tunnel_Source
    no shutdown
    ip address 10.245.218.38/32
+!
+interface Loopback10
+   description BLUE_VTEP_DIAGNOSTICS
+   no shutdown
+   vrf BLUE
+   ip address 10.255.10.6/32
+!
+interface Loopback11
+   description RED_VTEP_DIAGNOSTICS
+   no shutdown
+   vrf RED
+   ip address 10.255.11.6/32
+```
+
+### VLAN Interfaces
+
+#### VLAN Interfaces Summary
+
+| Interface | Description | VRF |  MTU | Shutdown |
+| --------- | ----------- | --- | ---- | -------- |
+| Vlan11 | Compute | BLUE | - | False |
+| Vlan12 | Data | BLUE | - | False |
+| Vlan13 | Server_MGMT | BLUE | - | False |
+| Vlan21 | VRF11_VLAN21 | RED | - | False |
+| Vlan22 | VRF11_VLAN22 | RED | - | False |
+
+##### IPv4
+
+| Interface | VRF | IP Address | IP Address Virtual | IP Router Virtual Address | VRRP | ACL In | ACL Out |
+| --------- | --- | ---------- | ------------------ | ------------------------- | ---- | ------ | ------- |
+| Vlan11 |  BLUE  |  -  |  10.10.11.1/24  |  -  |  -  |  -  |  -  |
+| Vlan12 |  BLUE  |  -  |  10.10.12.1/24  |  -  |  -  |  -  |  -  |
+| Vlan13 |  BLUE  |  -  |  10.10.13.1/24  |  -  |  -  |  -  |  -  |
+| Vlan21 |  RED  |  -  |  10.10.21.1/24  |  -  |  -  |  -  |  -  |
+| Vlan22 |  RED  |  -  |  10.10.22.1/24  |  -  |  -  |  -  |  -  |
+
+#### VLAN Interfaces Device Configuration
+
+```eos
+!
+interface Vlan11
+   description Compute
+   no shutdown
+   vrf BLUE
+   ip address virtual 10.10.11.1/24
+!
+interface Vlan12
+   description Data
+   no shutdown
+   vrf BLUE
+   ip address virtual 10.10.12.1/24
+!
+interface Vlan13
+   description Server_MGMT
+   no shutdown
+   vrf BLUE
+   ip address virtual 10.10.13.1/24
+!
+interface Vlan21
+   description VRF11_VLAN21
+   no shutdown
+   vrf RED
+   ip address virtual 10.10.21.1/24
+!
+interface Vlan22
+   description VRF11_VLAN22
+   no shutdown
+   vrf RED
+   ip address virtual 10.10.22.1/24
 ```
 
 ### VXLAN Interface
@@ -300,6 +420,25 @@ interface Loopback1
 | Source Interface | Loopback1 |
 | UDP port | 4789 |
 
+##### VLAN to VNI, Flood List and Multicast Group Mappings
+
+| VLAN | VNI | Flood List | Multicast Group |
+| ---- | --- | ---------- | --------------- |
+| 11 | 10011 | - | - |
+| 12 | 10012 | - | - |
+| 13 | 10013 | - | - |
+| 21 | 10021 | - | - |
+| 22 | 10022 | - | - |
+| 3401 | 13401 | - | - |
+| 3402 | 13402 | - | - |
+
+##### VRF to VNI and Multicast Group Mappings
+
+| VRF | VNI | Multicast Group |
+| ---- | --- | --------------- |
+| BLUE | 10 | - |
+| RED | 11 | - |
+
 #### VXLAN Interface Device Configuration
 
 ```eos
@@ -308,6 +447,15 @@ interface Vxlan1
    description OTI-DC02-Leaf4_VTEP
    vxlan source-interface Loopback1
    vxlan udp-port 4789
+   vxlan vlan 11 vni 10011
+   vxlan vlan 12 vni 10012
+   vxlan vlan 13 vni 10013
+   vxlan vlan 21 vni 10021
+   vxlan vlan 22 vni 10022
+   vxlan vlan 3401 vni 13401
+   vxlan vlan 3402 vni 13402
+   vxlan vrf BLUE vni 10
+   vxlan vrf RED vni 11
 ```
 
 ## Routing
@@ -341,12 +489,16 @@ ip virtual-router mac-address 00:1c:73:00:09:99
 | VRF | Routing Enabled |
 | --- | --------------- |
 | default | True |
+| BLUE | True |
+| RED | True |
 
 #### IP Routing Device Configuration
 
 ```eos
 !
 ip routing
+ip routing vrf BLUE
+ip routing vrf RED
 ```
 
 ### IPv6 Routing
@@ -356,7 +508,9 @@ ip routing
 | VRF | Routing Enabled |
 | --- | --------------- |
 | default | False |
+| BLUE | false |
 | default | false |
+| RED | false |
 
 ### ARP
 
@@ -426,6 +580,25 @@ ASN Notation: asplain
 | ---------- | -------- | ------------- |
 | EVPN-OVERLAY-PEERS | True | default |
 
+#### Router BGP VLANs
+
+| VLAN | Route-Distinguisher | Both Route-Target | Import Route Target | Export Route-Target | Redistribute |
+| ---- | ------------------- | ----------------- | ------------------- | ------------------- | ------------ |
+| 11 | 10.245.218.6:10011 | 10011:10011 | - | - | learned |
+| 12 | 10.245.218.6:10012 | 10012:10012 | - | - | learned |
+| 13 | 10.245.218.6:10013 | 10013:10013 | - | - | learned |
+| 21 | 10.245.218.6:10021 | 10021:10021 | - | - | learned |
+| 22 | 10.245.218.6:10022 | 10022:10022 | - | - | learned |
+| 3401 | 10.245.218.6:13401 | 13401:13401 | - | - | learned |
+| 3402 | 10.245.218.6:13402 | 13402:13402 | - | - | learned |
+
+#### Router BGP VRFs
+
+| VRF | Route-Distinguisher | Redistribute |
+| --- | ------------------- | ------------ |
+| BLUE | 10.245.218.6:10 | connected |
+| RED | 10.245.218.6:11 | connected |
+
 #### Router BGP Device Configuration
 
 ```eos
@@ -461,12 +634,61 @@ router bgp 65104
    neighbor 192.168.12.14 description OTI-DC02-Spine2_Ethernet4/1
    redistribute connected route-map RM-CONN-2-BGP
    !
+   vlan 11
+      rd 10.245.218.6:10011
+      route-target both 10011:10011
+      redistribute learned
+   !
+   vlan 12
+      rd 10.245.218.6:10012
+      route-target both 10012:10012
+      redistribute learned
+   !
+   vlan 13
+      rd 10.245.218.6:10013
+      route-target both 10013:10013
+      redistribute learned
+   !
+   vlan 21
+      rd 10.245.218.6:10021
+      route-target both 10021:10021
+      redistribute learned
+   !
+   vlan 22
+      rd 10.245.218.6:10022
+      route-target both 10022:10022
+      redistribute learned
+   !
+   vlan 3401
+      rd 10.245.218.6:13401
+      route-target both 13401:13401
+      redistribute learned
+   !
+   vlan 3402
+      rd 10.245.218.6:13402
+      route-target both 13402:13402
+      redistribute learned
+   !
    address-family evpn
       neighbor EVPN-OVERLAY-PEERS activate
    !
    address-family ipv4
       no neighbor EVPN-OVERLAY-PEERS activate
       neighbor IPv4-UNDERLAY-PEERS activate
+   !
+   vrf BLUE
+      rd 10.245.218.6:10
+      route-target import evpn 10:10
+      route-target export evpn 10:10
+      router-id 10.245.218.6
+      redistribute connected
+   !
+   vrf RED
+      rd 10.245.218.6:11
+      route-target import evpn 11:11
+      route-target export evpn 11:11
+      router-id 10.245.218.6
+      redistribute connected
 ```
 
 ## BFD
@@ -548,8 +770,31 @@ route-map RM-CONN-2-BGP permit 10
 
 | VRF Name | IP Routing |
 | -------- | ---------- |
+| BLUE | enabled |
+| RED | enabled |
 
 ### VRF Instances Device Configuration
 
 ```eos
+!
+vrf instance BLUE
+!
+vrf instance RED
+```
+
+## Virtual Source NAT
+
+### Virtual Source NAT Summary
+
+| Source NAT VRF | Source NAT IP Address |
+| -------------- | --------------------- |
+| BLUE | 10.255.10.6 |
+| RED | 10.255.11.6 |
+
+### Virtual Source NAT Configuration
+
+```eos
+!
+ip address virtual source-nat vrf BLUE address 10.255.10.6
+ip address virtual source-nat vrf RED address 10.255.11.6
 ```

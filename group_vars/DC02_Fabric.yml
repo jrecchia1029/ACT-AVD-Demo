@@ -85,7 +85,7 @@ l3leaf:
     - group: OTI-DC02-Leaf1
       bgp_as: 65101
       filter:
-        tags: ['Compute']
+        tags: ['compute', 'storage', 'all']
         tenants: ['all']
       nodes:
         - name: OTI-DC02-Leaf1
@@ -97,7 +97,7 @@ l3leaf:
     - group: OTI-DC02-Leaf2
       bgp_as: 65102
       filter:
-        tags: ['Compute']
+        tags: ['compute', 'storage', 'all']
         tenants: ['all']
       nodes:
         - name: OTI-DC02-Leaf2
@@ -108,7 +108,7 @@ l3leaf:
     - group: OTI-DC02-Leaf3
       bgp_as: 65103
       filter:
-        tags: ['Compute']
+        tags: ['compute', 'data', 'all']
         tenants: ['all']
       nodes:
         - name: OTI-DC02-Leaf3
@@ -119,7 +119,7 @@ l3leaf:
     - group: OTI-DC02-Leaf4
       bgp_as: 65104
       filter:
-        tags: ['Compute']
+        tags: ['compute', 'data', 'all']
         tenants: ['all']
       nodes:
         - name: OTI-DC02-Leaf4
@@ -130,7 +130,7 @@ l3leaf:
     - group: OTI-DC02-Leaf5
       bgp_as: 65105
       filter:
-        tags: ['Compute', 'Border']
+        tags: ['compute', 'border', 'all']
         tenants: ['all']
       nodes:
         - name: OTI-DC02-Leaf5A
