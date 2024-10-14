@@ -1,0 +1,145 @@
+fabric_name: DC02_Fabric
+dc_name: DC02
+pod_name: Pod1
+
+# MGMT
+mgmt_interface_vrf: default
+# mgmt_gateway: 192.168.255.1
+
+# Routing protocols
+underlay_routing_protocol: EBGP
+overlay_routing_protocol: EBGP
+
+# BGP Settings
+bgp_default_ipv4_unicast: true
+bgp_graceful_restart:
+  enabled: true
+  restart_time: 300
+bgp_distance:
+  external_routes: 20
+  internal_routes: 200
+  local_routes: 200
+
+# BFD Settings
+bfd_multihop:
+  interval: 300
+  min_rx: 300
+  multiplier: 3
+
+# MAC and ARP Timers
+arp:
+  aging:
+    timeout_default: 5400
+serial_number_table:
+  aging_time: 7200
+
+# Uplink MTU
+p2p_uplinks_mtu: 9000
+
+# Max spines
+max_spines: 2
+
+# Node Types
+spine:
+  defaults:
+    # node BGP AS | Required.
+    bgp_as: 65100
+    platform: 7050CX3
+    # IPv4 subnet for Loopback0 allocation
+    loopback_ipv4_pool: 10.245.218.0/27
+  nodes:
+    - name: OTI-DC02-Spine1
+      id: 1
+      mgmt_ip: 192.168.255.21/24
+      serial_number: 'SN-OTI-DC02-Spine1'
+    - name: OTI-DC02-Spine2
+      id: 2
+      mgmt_ip: 192.168.255.22/24
+      serial_number: 'SN-OTI-DC02-Spine2'
+
+l3leaf:
+  defaults:
+    platform: 7050SX3-48YC8
+    # Spanning tree mode | Required.
+    spanning_tree_mode: mstp
+    # Spanning tree priority.
+    spanning_tree_priority: 4096
+    # MLAG interfaces
+    mlag_interfaces: ['Ethernet53/1', Ethernet54/1]
+    # MLAG peering VLAN 4094
+    mlag_peer_ipv4_pool: 192.168.14.96/27
+    # MLAG L3 peering VLAN 4093
+    mlag_peer_l3_ipv4_pool: 192.168.14.64/27
+    # Virtual Router MAC
+    virtual_router_mac_address: 00:1c:73:00:09:99
+    # Uplink Details
+    uplink_switches: ['OTI-DC02-Spine1', 'OTI-DC02-Spine2']
+    uplink_interfaces: ['Ethernet55/1', 'Ethernet56/1']
+    uplink_ipv4_pool: 192.168.12.0/26
+    # IPv4 subnet for Loopback0 allocation
+    loopback_ipv4_pool: 10.245.218.0/27
+    loopback_ipv4_offset: 2
+    # IPv4 subnet for VTEP/Loopback1 allocation.
+    vtep_loopback_ipv4_pool: 10.245.218.32/27
+  node_groups:
+    - group: OTI-DC02-Leaf1
+      bgp_as: 65101
+      filter:
+        tags: ['Compute']
+        tenants: ['all']
+      nodes:
+        - name: OTI-DC02-Leaf1
+          id: 1
+          mgmt_ip: 192.168.255.23/24
+          serial_number: 'SN-OTI-DC02-Leaf1'
+          uplink_switch_interfaces: ['Ethernet1/1', 'Ethernet1/1']
+          
+    - group: OTI-DC02-Leaf2
+      bgp_as: 65102
+      filter:
+        tags: ['Compute']
+        tenants: ['all']
+      nodes:
+        - name: OTI-DC02-Leaf2
+          id: 2
+          mgmt_ip: 192.168.255.24/24
+          serial_number: 'SN-OTI-DC02-Leaf2'
+          uplink_switch_interfaces: ['Ethernet2/1', 'Ethernet2/1']
+    - group: OTI-DC02-Leaf3
+      bgp_as: 65103
+      filter:
+        tags: ['Compute']
+        tenants: ['all']
+      nodes:
+        - name: OTI-DC02-Leaf3
+          id: 3
+          mgmt_ip: 192.168.255.25/24
+          serial_number: 'SN-OTI-DC02-Leaf3'
+          uplink_switch_interfaces: ['Ethernet3/1', 'Ethernet3/1']
+    - group: OTI-DC02-Leaf4
+      bgp_as: 65104
+      filter:
+        tags: ['Compute']
+        tenants: ['all']
+      nodes:
+        - name: OTI-DC02-Leaf4
+          id: 4
+          mgmt_ip: 192.168.255.26/24
+          serial_number: 'SN-OTI-DC02-Leaf4'
+          uplink_switch_interfaces: ['Ethernet4/1', 'Ethernet4/1']
+    - group: OTI-DC02-Leaf5
+      bgp_as: 65105
+      filter:
+        tags: ['Compute', 'Border']
+        tenants: ['all']
+      nodes:
+        - name: OTI-DC02-Leaf5A
+          id: 5
+          mgmt_ip: 192.168.255.27/24
+          serial_number: 'SN-OTI-DC02-Leaf5A'
+          uplink_switch_interfaces: ['Ethernet5/1', 'Ethernet5/1']
+        - name: OTI-DC02-Leaf5B
+          id: 6
+          mgmt_ip: 192.168.255.28/24
+          serial_number: 'SN-OTI-DC02-Leaf5B'
+          uplink_switch_interfaces: ['Ethernet6/1', 'Ethernet6/1']

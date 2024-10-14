@@ -1,0 +1,16 @@
+- name: validate states on DC01 EOS devices
+  hosts: DC01
+  tasks:
+    - name: validate states on EOS devices
+      import_role:
+         name: arista.avd.eos_validate_state
+      vars:
+        eos_validate_state_dir: '{{ root_dir }}/{{ eos_validate_state_name }}/DC01'
+- name: validate states on DC02 EOS devices
+  hosts: DC02
+  tasks:
+    - name: validate states on EOS devices
+      import_role:
+         name: arista.avd.eos_validate_state
+      vars:
+        eos_validate_state_dir: '{{ root_dir }}/{{ eos_validate_state_name }}/DC02'

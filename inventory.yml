@@ -1,0 +1,88 @@
+OTI:
+  children:
+    DC01:
+      children:
+        DC01_Fabric:
+          children:
+            DC01_Spines:
+              hosts:
+                OTI-DC01-Spine1:
+                OTI-DC01-Spine2:
+            DC01_Leafs:
+              children:
+                DC01_Leaf1: # Multi-homing
+                  hosts:
+                    OTI-DC01-Leaf1:
+                DC01_Leaf2:  # Multi-homing
+                  hosts:
+                    OTI-DC01-Leaf2:
+                DC01_Leaf3:  # Multi-homing
+                  hosts:
+                    OTI-DC01-Leaf3:
+                DC01_Leaf4:  # Multi-homing
+                  hosts:
+                    OTI-DC01-Leaf4:
+                DC01_Leaf5:  # MLAG
+                  hosts:
+                    OTI-DC01-Leaf5A:
+                    OTI-DC01-Leaf5B:
+        DC01_OOB:
+          hosts:
+            OTI-DC01-OBM1:
+    DC02:
+      children:
+        DC02_Fabric:
+          children:
+            DC02_Spines:
+              hosts:
+                OTI-DC02-Spine1:
+                OTI-DC02-Spine2:
+            DC02_Leafs:
+              children:
+                DC02_Leaf1:  # Multi-homing
+                  hosts:
+                    OTI-DC02-Leaf1:
+                DC02_Leaf2:  # Multi-homing
+                  hosts:
+                    OTI-DC02-Leaf2:
+                DC02_Leaf3:  # Multi-homing
+                  hosts:
+                    OTI-DC02-Leaf3:
+                DC02_Leaf4:  # Multi-homing
+                  hosts:
+                    OTI-DC02-Leaf4:
+                DC02_Leaf5:  # MLAG
+                  hosts:
+                    OTI-DC02-Leaf5A:
+                    OTI-DC02-Leaf5B:
+        DC02_OOB:
+          hosts:
+            OTI-DC02-OBM1:
+OTI_Tenants:
+  children:
+    DC01_Leafs:
+    DC02_Leafs:
+DC01_Endpoints:
+  children:
+    DC01_Leafs:
+    DC01_OOB:
+DC02_Endpoints:
+  children:
+    DC02_Leafs:
+    DC02_OOB:
+OTI_DCI:
+  children:
+    DC01_Leaf5:
+    DC02_Leaf5:
+Spines:
+  children:
+    DC01_Spines:
+    DC02_Spines:
+Leafs:
+  children:
+    DC01_Leafs:
+    DC02_Leafs:
+L2Leafs:
+  children:
+    DC01_OOB:
+    DC02_OOB:

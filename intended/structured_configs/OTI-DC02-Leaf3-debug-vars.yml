@@ -1,0 +1,1294 @@
+type: l3leaf
+cvp_instance_ips:
+- apiserver.arista.io
+local_users:
+- name: cvpadmin
+  privilege: 15
+  role: network-admin
+  sha512_password: $6$ikGzKyb6w4yEqLly$mJLofKfPrT2Mx6UffrY2dwFXuTCbtf2Okjfu9CgyuduVdN3WIrq9quRZXXFjrRI754ewFQ3uZSlwSEKAe2zbP1
+ip_name_servers:
+- ip_address: 169.254.169.254
+  vrf: default
+- ip_address: 8.8.8.8
+  vrf: default
+- ip_address: 1.1.1.1
+  vrf: default
+ntp:
+  servers:
+  - name: pool.ntp.org
+    vrf: default
+agents:
+- name: KernelFib
+  environment_variables:
+  - name: KERNELFIB_PROGRAM_ALL_ECMP
+    value: '''true'''
+custom_structured_configuration_management_interfaces:
+- name: Management1
+  lldp:
+    transmit: false
+    receive: false
+ansible_connection: httpapi
+ansible_network_os: eos
+ansible_user: cvpadmin
+ansible_ssh_pass: arista123
+ansible_become: true
+ansible_become_method: enable
+ansible_httpapi_use_ssl: true
+ansible_httpapi_validate_certs: false
+fabric_name: DC02_Fabric
+dc_name: DC02
+pod_name: Pod1
+mgmt_interface_vrf: default
+underlay_routing_protocol: EBGP
+overlay_routing_protocol: EBGP
+bgp_default_ipv4_unicast: true
+bgp_graceful_restart:
+  enabled: true
+  restart_time: 300
+bgp_distance:
+  external_routes: 20
+  internal_routes: 200
+  local_routes: 200
+bfd_multihop:
+  interval: 300
+  min_rx: 300
+  multiplier: 3
+arp:
+  aging:
+    timeout_default: 5400
+serial_number_table:
+  aging_time: 7200
+p2p_uplinks_mtu: 9000
+max_spines: 2
+spine:
+  defaults:
+    bgp_as: 65100
+    platform: 7050CX3
+    loopback_ipv4_pool: 10.245.218.0/27
+  nodes:
+  - name: OTI-DC02-Spine1
+    id: 1
+    mgmt_ip: 192.168.255.21/24
+    serial_number: SN-OTI-DC02-Spine1
+  - name: OTI-DC02-Spine2
+    id: 2
+    mgmt_ip: 192.168.255.22/24
+    serial_number: SN-OTI-DC02-Spine2
+l3leaf:
+  defaults:
+    platform: 7050SX3-48YC8
+    spanning_tree_mode: mstp
+    spanning_tree_priority: 4096
+    mlag_interfaces:
+    - Ethernet53/1
+    - Ethernet54/1
+    mlag_peer_ipv4_pool: 192.168.14.96/27
+    mlag_peer_l3_ipv4_pool: 192.168.14.64/27
+    virtual_router_mac_address: 00:1c:73:00:09:99
+    uplink_switches:
+    - OTI-DC02-Spine1
+    - OTI-DC02-Spine2
+    uplink_interfaces:
+    - Ethernet55/1
+    - Ethernet56/1
+    uplink_ipv4_pool: 192.168.12.0/26
+    loopback_ipv4_pool: 10.245.218.0/27
+    loopback_ipv4_offset: 2
+    vtep_loopback_ipv4_pool: 10.245.218.32/27
+  node_groups:
+  - group: OTI-DC02-Leaf1
+    bgp_as: 65101
+    filter:
+      tags:
+      - Compute
+      tenants:
+      - all
+    nodes:
+    - name: OTI-DC02-Leaf1
+      id: 1
+      mgmt_ip: 192.168.255.23/24
+      serial_number: SN-OTI-DC02-Leaf1
+      uplink_switch_interfaces:
+      - Ethernet1/1
+      - Ethernet1/1
+  - group: OTI-DC02-Leaf2
+    bgp_as: 65102
+    filter:
+      tags:
+      - Compute
+      tenants:
+      - all
+    nodes:
+    - name: OTI-DC02-Leaf2
+      id: 2
+      mgmt_ip: 192.168.255.24/24
+      serial_number: SN-OTI-DC02-Leaf2
+      uplink_switch_interfaces:
+      - Ethernet2/1
+      - Ethernet2/1
+  - group: OTI-DC02-Leaf3
+    bgp_as: 65103
+    filter:
+      tags:
+      - Compute
+      tenants:
+      - all
+    nodes:
+    - name: OTI-DC02-Leaf3
+      id: 3
+      mgmt_ip: 192.168.255.25/24
+      serial_number: SN-OTI-DC02-Leaf3
+      uplink_switch_interfaces:
+      - Ethernet3/1
+      - Ethernet3/1
+  - group: OTI-DC02-Leaf4
+    bgp_as: 65104
+    filter:
+      tags:
+      - Compute
+      tenants:
+      - all
+    nodes:
+    - name: OTI-DC02-Leaf4
+      id: 4
+      mgmt_ip: 192.168.255.26/24
+      serial_number: SN-OTI-DC02-Leaf4
+      uplink_switch_interfaces:
+      - Ethernet4/1
+      - Ethernet4/1
+  - group: OTI-DC02-Leaf5
+    bgp_as: 65105
+    filter:
+      tags:
+      - Compute
+      - Border
+      tenants:
+      - all
+    nodes:
+    - name: OTI-DC02-Leaf5A
+      id: 5
+      mgmt_ip: 192.168.255.27/24
+      serial_number: SN-OTI-DC02-Leaf5A
+      uplink_switch_interfaces:
+      - Ethernet5/1
+      - Ethernet5/1
+    - name: OTI-DC02-Leaf5B
+      id: 6
+      mgmt_ip: 192.168.255.28/24
+      serial_number: SN-OTI-DC02-Leaf5B
+      uplink_switch_interfaces:
+      - Ethernet6/1
+      - Ethernet6/1
+inventory_file: /Users/joerecchia/Arista/OTI/AVD-Demo/inventory.yml
+inventory_dir: /Users/joerecchia/Arista/OTI/AVD-Demo
+inventory_hostname: OTI-DC02-Leaf3
+inventory_hostname_short: OTI-DC02-Leaf3
+group_names:
+- DC02
+- DC02_Endpoints
+- DC02_Fabric
+- DC02_Leaf3
+- DC02_Leafs
+- Leafs
+- OTI
+- OTI_Tenants
+ansible_facts:
+  avd_switch_facts:
+    OTI-DC02-Spine1:
+      switch:
+        id: 1
+        type: spine
+        platform: 7050CX3
+        is_deployed: true
+        serial_number: SN-OTI-DC02-Spine1
+        mgmt_interface: Management1
+        mgmt_ip: 192.168.255.21/24
+        mpls_lsr: false
+        loopback_ipv4_pool: 10.245.218.0/27
+        bgp_as: '65100'
+        underlay_routing_protocol: ebgp
+        inband_ztp_lacp_fallback_delay: 30
+        dc_name: DC02
+        router_id: 10.245.218.1
+        evpn_role: server
+        mpls_overlay_role: none
+        overlay:
+          peering_address: 10.245.218.1
+          evpn_mpls: false
+        max_parallel_uplinks: 1
+        max_uplink_switches: 0
+        uplinks: []
+        uplink_peers: []
+        vlans: ''
+        local_endpoint_trunk_groups: []
+        endpoint_trunk_groups: []
+    OTI-DC02-Spine2:
+      switch:
+        id: 2
+        type: spine
+        platform: 7050CX3
+        is_deployed: true
+        serial_number: SN-OTI-DC02-Spine2
+        mgmt_interface: Management1
+        mgmt_ip: 192.168.255.22/24
+        mpls_lsr: false
+        loopback_ipv4_pool: 10.245.218.0/27
+        bgp_as: '65100'
+        underlay_routing_protocol: ebgp
+        inband_ztp_lacp_fallback_delay: 30
+        dc_name: DC02
+        router_id: 10.245.218.2
+        evpn_role: server
+        mpls_overlay_role: none
+        overlay:
+          peering_address: 10.245.218.2
+          evpn_mpls: false
+        max_parallel_uplinks: 1
+        max_uplink_switches: 0
+        uplinks: []
+        uplink_peers: []
+        vlans: ''
+        local_endpoint_trunk_groups: []
+        endpoint_trunk_groups: []
+    OTI-DC02-Leaf1:
+      switch:
+        id: 1
+        type: l3leaf
+        platform: 7050SX3-48YC8
+        is_deployed: true
+        serial_number: SN-OTI-DC02-Leaf1
+        mgmt_interface: Management1
+        mgmt_ip: 192.168.255.23/24
+        mpls_lsr: false
+        loopback_ipv4_pool: 10.245.218.0/27
+        uplink_ipv4_pool: 192.168.12.0/26
+        bgp_as: '65101'
+        underlay_routing_protocol: ebgp
+        vtep_loopback_ipv4_pool: 10.245.218.32/27
+        inband_ztp_lacp_fallback_delay: 30
+        dc_name: DC02
+        group: OTI-DC02-Leaf1
+        router_id: 10.245.218.3
+        evpn_role: client
+        mpls_overlay_role: none
+        evpn_route_servers:
+        - OTI-DC02-Spine1
+        - OTI-DC02-Spine2
+        overlay:
+          peering_address: 10.245.218.3
+          evpn_mpls: false
+        vtep_ip: 10.245.218.35
+        max_parallel_uplinks: 1
+        max_uplink_switches: 2
+        uplinks:
+        - interface: Ethernet55/1
+          peer: OTI-DC02-Spine1
+          peer_interface: Ethernet1/1
+          peer_type: spine
+          peer_is_deployed: true
+          peer_bgp_as: '65100'
+          type: underlay_p2p
+          prefix_length: 31
+          ip_address: 192.168.12.1
+          peer_ip_address: 192.168.12.0
+        - interface: Ethernet56/1
+          peer: OTI-DC02-Spine2
+          peer_interface: Ethernet1/1
+          peer_type: spine
+          peer_is_deployed: true
+          peer_bgp_as: '65100'
+          type: underlay_p2p
+          prefix_length: 31
+          ip_address: 192.168.12.3
+          peer_ip_address: 192.168.12.2
+        uplink_peers:
+        - OTI-DC02-Spine1
+        - OTI-DC02-Spine2
+        vlans: ''
+        local_endpoint_trunk_groups: []
+        endpoint_trunk_groups: []
+    OTI-DC02-Leaf2:
+      switch:
+        id: 2
+        type: l3leaf
+        platform: 7050SX3-48YC8
+        is_deployed: true
+        serial_number: SN-OTI-DC02-Leaf2
+        mgmt_interface: Management1
+        mgmt_ip: 192.168.255.24/24
+        mpls_lsr: false
+        loopback_ipv4_pool: 10.245.218.0/27
+        uplink_ipv4_pool: 192.168.12.0/26
+        bgp_as: '65102'
+        underlay_routing_protocol: ebgp
+        vtep_loopback_ipv4_pool: 10.245.218.32/27
+        inband_ztp_lacp_fallback_delay: 30
+        dc_name: DC02
+        group: OTI-DC02-Leaf2
+        router_id: 10.245.218.4
+        evpn_role: client
+        mpls_overlay_role: none
+        evpn_route_servers:
+        - OTI-DC02-Spine1
+        - OTI-DC02-Spine2
+        overlay:
+          peering_address: 10.245.218.4
+          evpn_mpls: false
+        vtep_ip: 10.245.218.36
+        max_parallel_uplinks: 1
+        max_uplink_switches: 2
+        uplinks:
+        - interface: Ethernet55/1
+          peer: OTI-DC02-Spine1
+          peer_interface: Ethernet2/1
+          peer_type: spine
+          peer_is_deployed: true
+          peer_bgp_as: '65100'
+          type: underlay_p2p
+          prefix_length: 31
+          ip_address: 192.168.12.5
+          peer_ip_address: 192.168.12.4
+        - interface: Ethernet56/1
+          peer: OTI-DC02-Spine2
+          peer_interface: Ethernet2/1
+          peer_type: spine
+          peer_is_deployed: true
+          peer_bgp_as: '65100'
+          type: underlay_p2p
+          prefix_length: 31
+          ip_address: 192.168.12.7
+          peer_ip_address: 192.168.12.6
+        uplink_peers:
+        - OTI-DC02-Spine1
+        - OTI-DC02-Spine2
+        vlans: ''
+        local_endpoint_trunk_groups: []
+        endpoint_trunk_groups: []
+    OTI-DC02-Leaf3:
+      switch:
+        id: 3
+        type: l3leaf
+        platform: 7050SX3-48YC8
+        is_deployed: true
+        serial_number: SN-OTI-DC02-Leaf3
+        mgmt_interface: Management1
+        mgmt_ip: 192.168.255.25/24
+        mpls_lsr: false
+        loopback_ipv4_pool: 10.245.218.0/27
+        uplink_ipv4_pool: 192.168.12.0/26
+        bgp_as: '65103'
+        underlay_routing_protocol: ebgp
+        vtep_loopback_ipv4_pool: 10.245.218.32/27
+        inband_ztp_lacp_fallback_delay: 30
+        dc_name: DC02
+        group: OTI-DC02-Leaf3
+        router_id: 10.245.218.5
+        evpn_role: client
+        mpls_overlay_role: none
+        evpn_route_servers:
+        - OTI-DC02-Spine1
+        - OTI-DC02-Spine2
+        overlay:
+          peering_address: 10.245.218.5
+          evpn_mpls: false
+        vtep_ip: 10.245.218.37
+        max_parallel_uplinks: 1
+        max_uplink_switches: 2
+        uplinks:
+        - interface: Ethernet55/1
+          peer: OTI-DC02-Spine1
+          peer_interface: Ethernet3/1
+          peer_type: spine
+          peer_is_deployed: true
+          peer_bgp_as: '65100'
+          type: underlay_p2p
+          prefix_length: 31
+          ip_address: 192.168.12.9
+          peer_ip_address: 192.168.12.8
+        - interface: Ethernet56/1
+          peer: OTI-DC02-Spine2
+          peer_interface: Ethernet3/1
+          peer_type: spine
+          peer_is_deployed: true
+          peer_bgp_as: '65100'
+          type: underlay_p2p
+          prefix_length: 31
+          ip_address: 192.168.12.11
+          peer_ip_address: 192.168.12.10
+        uplink_peers:
+        - OTI-DC02-Spine1
+        - OTI-DC02-Spine2
+        vlans: ''
+        local_endpoint_trunk_groups: []
+        endpoint_trunk_groups: []
+    OTI-DC02-Leaf4:
+      switch:
+        id: 4
+        type: l3leaf
+        platform: 7050SX3-48YC8
+        is_deployed: true
+        serial_number: SN-OTI-DC02-Leaf4
+        mgmt_interface: Management1
+        mgmt_ip: 192.168.255.26/24
+        mpls_lsr: false
+        loopback_ipv4_pool: 10.245.218.0/27
+        uplink_ipv4_pool: 192.168.12.0/26
+        bgp_as: '65104'
+        underlay_routing_protocol: ebgp
+        vtep_loopback_ipv4_pool: 10.245.218.32/27
+        inband_ztp_lacp_fallback_delay: 30
+        dc_name: DC02
+        group: OTI-DC02-Leaf4
+        router_id: 10.245.218.6
+        evpn_role: client
+        mpls_overlay_role: none
+        evpn_route_servers:
+        - OTI-DC02-Spine1
+        - OTI-DC02-Spine2
+        overlay:
+          peering_address: 10.245.218.6
+          evpn_mpls: false
+        vtep_ip: 10.245.218.38
+        max_parallel_uplinks: 1
+        max_uplink_switches: 2
+        uplinks:
+        - interface: Ethernet55/1
+          peer: OTI-DC02-Spine1
+          peer_interface: Ethernet4/1
+          peer_type: spine
+          peer_is_deployed: true
+          peer_bgp_as: '65100'
+          type: underlay_p2p
+          prefix_length: 31
+          ip_address: 192.168.12.13
+          peer_ip_address: 192.168.12.12
+        - interface: Ethernet56/1
+          peer: OTI-DC02-Spine2
+          peer_interface: Ethernet4/1
+          peer_type: spine
+          peer_is_deployed: true
+          peer_bgp_as: '65100'
+          type: underlay_p2p
+          prefix_length: 31
+          ip_address: 192.168.12.15
+          peer_ip_address: 192.168.12.14
+        uplink_peers:
+        - OTI-DC02-Spine1
+        - OTI-DC02-Spine2
+        vlans: ''
+        local_endpoint_trunk_groups: []
+        endpoint_trunk_groups: []
+    OTI-DC02-Leaf5A:
+      switch:
+        id: 5
+        type: l3leaf
+        platform: 7050SX3-48YC8
+        is_deployed: true
+        serial_number: SN-OTI-DC02-Leaf5A
+        mgmt_interface: Management1
+        mgmt_ip: 192.168.255.27/24
+        mpls_lsr: false
+        loopback_ipv4_pool: 10.245.218.0/27
+        uplink_ipv4_pool: 192.168.12.0/26
+        bgp_as: '65105'
+        underlay_routing_protocol: ebgp
+        vtep_loopback_ipv4_pool: 10.245.218.32/27
+        inband_ztp_lacp_fallback_delay: 30
+        dc_name: DC02
+        group: OTI-DC02-Leaf5
+        router_id: 10.245.218.7
+        mlag_peer: OTI-DC02-Leaf5B
+        mlag_port_channel_id: 531
+        mlag_interfaces:
+        - Ethernet53/1
+        - Ethernet54/1
+        mlag_ip: 192.168.14.104
+        mlag_l3_ip: 192.168.14.72
+        mlag_switch_ids:
+          primary: 5
+          secondary: 6
+        evpn_role: client
+        mpls_overlay_role: none
+        evpn_route_servers:
+        - OTI-DC02-Spine1
+        - OTI-DC02-Spine2
+        overlay:
+          peering_address: 10.245.218.7
+          evpn_mpls: false
+        vtep_ip: 10.245.218.39
+        max_parallel_uplinks: 1
+        max_uplink_switches: 2
+        uplinks:
+        - interface: Ethernet55/1
+          peer: OTI-DC02-Spine1
+          peer_interface: Ethernet5/1
+          peer_type: spine
+          peer_is_deployed: true
+          peer_bgp_as: '65100'
+          type: underlay_p2p
+          prefix_length: 31
+          ip_address: 192.168.12.17
+          peer_ip_address: 192.168.12.16
+        - interface: Ethernet56/1
+          peer: OTI-DC02-Spine2
+          peer_interface: Ethernet5/1
+          peer_type: spine
+          peer_is_deployed: true
+          peer_bgp_as: '65100'
+          type: underlay_p2p
+          prefix_length: 31
+          ip_address: 192.168.12.19
+          peer_ip_address: 192.168.12.18
+        uplink_peers:
+        - OTI-DC02-Spine1
+        - OTI-DC02-Spine2
+        vlans: ''
+        local_endpoint_trunk_groups: []
+        endpoint_trunk_groups: []
+    OTI-DC02-Leaf5B:
+      switch:
+        id: 6
+        type: l3leaf
+        platform: 7050SX3-48YC8
+        is_deployed: true
+        serial_number: SN-OTI-DC02-Leaf5B
+        mgmt_interface: Management1
+        mgmt_ip: 192.168.255.28/24
+        mpls_lsr: false
+        loopback_ipv4_pool: 10.245.218.0/27
+        uplink_ipv4_pool: 192.168.12.0/26
+        bgp_as: '65105'
+        underlay_routing_protocol: ebgp
+        vtep_loopback_ipv4_pool: 10.245.218.32/27
+        inband_ztp_lacp_fallback_delay: 30
+        dc_name: DC02
+        group: OTI-DC02-Leaf5
+        router_id: 10.245.218.8
+        mlag_peer: OTI-DC02-Leaf5A
+        mlag_port_channel_id: 531
+        mlag_interfaces:
+        - Ethernet53/1
+        - Ethernet54/1
+        mlag_ip: 192.168.14.105
+        mlag_l3_ip: 192.168.14.73
+        mlag_switch_ids:
+          primary: 5
+          secondary: 6
+        evpn_role: client
+        mpls_overlay_role: none
+        evpn_route_servers:
+        - OTI-DC02-Spine1
+        - OTI-DC02-Spine2
+        overlay:
+          peering_address: 10.245.218.8
+          evpn_mpls: false
+        vtep_ip: 10.245.218.39
+        max_parallel_uplinks: 1
+        max_uplink_switches: 2
+        uplinks:
+        - interface: Ethernet55/1
+          peer: OTI-DC02-Spine1
+          peer_interface: Ethernet6/1
+          peer_type: spine
+          peer_is_deployed: true
+          peer_bgp_as: '65100'
+          type: underlay_p2p
+          prefix_length: 31
+          ip_address: 192.168.12.21
+          peer_ip_address: 192.168.12.20
+        - interface: Ethernet56/1
+          peer: OTI-DC02-Spine2
+          peer_interface: Ethernet6/1
+          peer_type: spine
+          peer_is_deployed: true
+          peer_bgp_as: '65100'
+          type: underlay_p2p
+          prefix_length: 31
+          ip_address: 192.168.12.23
+          peer_ip_address: 192.168.12.22
+        uplink_peers:
+        - OTI-DC02-Spine1
+        - OTI-DC02-Spine2
+        vlans: ''
+        local_endpoint_trunk_groups: []
+        endpoint_trunk_groups: []
+  avd_overlay_peers:
+    OTI-DC02-Spine1:
+    - OTI-DC02-Leaf1
+    - OTI-DC02-Leaf2
+    - OTI-DC02-Leaf3
+    - OTI-DC02-Leaf4
+    - OTI-DC02-Leaf5A
+    - OTI-DC02-Leaf5B
+    OTI-DC02-Spine2:
+    - OTI-DC02-Leaf1
+    - OTI-DC02-Leaf2
+    - OTI-DC02-Leaf3
+    - OTI-DC02-Leaf4
+    - OTI-DC02-Leaf5A
+    - OTI-DC02-Leaf5B
+  avd_topology_peers:
+    OTI-DC02-Spine1:
+    - OTI-DC02-Leaf1
+    - OTI-DC02-Leaf2
+    - OTI-DC02-Leaf3
+    - OTI-DC02-Leaf4
+    - OTI-DC02-Leaf5A
+    - OTI-DC02-Leaf5B
+    OTI-DC02-Spine2:
+    - OTI-DC02-Leaf1
+    - OTI-DC02-Leaf2
+    - OTI-DC02-Leaf3
+    - OTI-DC02-Leaf4
+    - OTI-DC02-Leaf5A
+    - OTI-DC02-Leaf5B
+avd_switch_facts:
+  OTI-DC02-Spine1:
+    switch:
+      id: 1
+      type: spine
+      platform: 7050CX3
+      is_deployed: true
+      serial_number: SN-OTI-DC02-Spine1
+      mgmt_interface: Management1
+      mgmt_ip: 192.168.255.21/24
+      mpls_lsr: false
+      loopback_ipv4_pool: 10.245.218.0/27
+      bgp_as: '65100'
+      underlay_routing_protocol: ebgp
+      inband_ztp_lacp_fallback_delay: 30
+      dc_name: DC02
+      router_id: 10.245.218.1
+      evpn_role: server
+      mpls_overlay_role: none
+      overlay:
+        peering_address: 10.245.218.1
+        evpn_mpls: false
+      max_parallel_uplinks: 1
+      max_uplink_switches: 0
+      uplinks: []
+      uplink_peers: []
+      vlans: ''
+      local_endpoint_trunk_groups: []
+      endpoint_trunk_groups: []
+  OTI-DC02-Spine2:
+    switch:
+      id: 2
+      type: spine
+      platform: 7050CX3
+      is_deployed: true
+      serial_number: SN-OTI-DC02-Spine2
+      mgmt_interface: Management1
+      mgmt_ip: 192.168.255.22/24
+      mpls_lsr: false
+      loopback_ipv4_pool: 10.245.218.0/27
+      bgp_as: '65100'
+      underlay_routing_protocol: ebgp
+      inband_ztp_lacp_fallback_delay: 30
+      dc_name: DC02
+      router_id: 10.245.218.2
+      evpn_role: server
+      mpls_overlay_role: none
+      overlay:
+        peering_address: 10.245.218.2
+        evpn_mpls: false
+      max_parallel_uplinks: 1
+      max_uplink_switches: 0
+      uplinks: []
+      uplink_peers: []
+      vlans: ''
+      local_endpoint_trunk_groups: []
+      endpoint_trunk_groups: []
+  OTI-DC02-Leaf1:
+    switch:
+      id: 1
+      type: l3leaf
+      platform: 7050SX3-48YC8
+      is_deployed: true
+      serial_number: SN-OTI-DC02-Leaf1
+      mgmt_interface: Management1
+      mgmt_ip: 192.168.255.23/24
+      mpls_lsr: false
+      loopback_ipv4_pool: 10.245.218.0/27
+      uplink_ipv4_pool: 192.168.12.0/26
+      bgp_as: '65101'
+      underlay_routing_protocol: ebgp
+      vtep_loopback_ipv4_pool: 10.245.218.32/27
+      inband_ztp_lacp_fallback_delay: 30
+      dc_name: DC02
+      group: OTI-DC02-Leaf1
+      router_id: 10.245.218.3
+      evpn_role: client
+      mpls_overlay_role: none
+      evpn_route_servers:
+      - OTI-DC02-Spine1
+      - OTI-DC02-Spine2
+      overlay:
+        peering_address: 10.245.218.3
+        evpn_mpls: false
+      vtep_ip: 10.245.218.35
+      max_parallel_uplinks: 1
+      max_uplink_switches: 2
+      uplinks:
+      - interface: Ethernet55/1
+        peer: OTI-DC02-Spine1
+        peer_interface: Ethernet1/1
+        peer_type: spine
+        peer_is_deployed: true
+        peer_bgp_as: '65100'
+        type: underlay_p2p
+        prefix_length: 31
+        ip_address: 192.168.12.1
+        peer_ip_address: 192.168.12.0
+      - interface: Ethernet56/1
+        peer: OTI-DC02-Spine2
+        peer_interface: Ethernet1/1
+        peer_type: spine
+        peer_is_deployed: true
+        peer_bgp_as: '65100'
+        type: underlay_p2p
+        prefix_length: 31
+        ip_address: 192.168.12.3
+        peer_ip_address: 192.168.12.2
+      uplink_peers:
+      - OTI-DC02-Spine1
+      - OTI-DC02-Spine2
+      vlans: ''
+      local_endpoint_trunk_groups: []
+      endpoint_trunk_groups: []
+  OTI-DC02-Leaf2:
+    switch:
+      id: 2
+      type: l3leaf
+      platform: 7050SX3-48YC8
+      is_deployed: true
+      serial_number: SN-OTI-DC02-Leaf2
+      mgmt_interface: Management1
+      mgmt_ip: 192.168.255.24/24
+      mpls_lsr: false
+      loopback_ipv4_pool: 10.245.218.0/27
+      uplink_ipv4_pool: 192.168.12.0/26
+      bgp_as: '65102'
+      underlay_routing_protocol: ebgp
+      vtep_loopback_ipv4_pool: 10.245.218.32/27
+      inband_ztp_lacp_fallback_delay: 30
+      dc_name: DC02
+      group: OTI-DC02-Leaf2
+      router_id: 10.245.218.4
+      evpn_role: client
+      mpls_overlay_role: none
+      evpn_route_servers:
+      - OTI-DC02-Spine1
+      - OTI-DC02-Spine2
+      overlay:
+        peering_address: 10.245.218.4
+        evpn_mpls: false
+      vtep_ip: 10.245.218.36
+      max_parallel_uplinks: 1
+      max_uplink_switches: 2
+      uplinks:
+      - interface: Ethernet55/1
+        peer: OTI-DC02-Spine1
+        peer_interface: Ethernet2/1
+        peer_type: spine
+        peer_is_deployed: true
+        peer_bgp_as: '65100'
+        type: underlay_p2p
+        prefix_length: 31
+        ip_address: 192.168.12.5
+        peer_ip_address: 192.168.12.4
+      - interface: Ethernet56/1
+        peer: OTI-DC02-Spine2
+        peer_interface: Ethernet2/1
+        peer_type: spine
+        peer_is_deployed: true
+        peer_bgp_as: '65100'
+        type: underlay_p2p
+        prefix_length: 31
+        ip_address: 192.168.12.7
+        peer_ip_address: 192.168.12.6
+      uplink_peers:
+      - OTI-DC02-Spine1
+      - OTI-DC02-Spine2
+      vlans: ''
+      local_endpoint_trunk_groups: []
+      endpoint_trunk_groups: []
+  OTI-DC02-Leaf3:
+    switch:
+      id: 3
+      type: l3leaf
+      platform: 7050SX3-48YC8
+      is_deployed: true
+      serial_number: SN-OTI-DC02-Leaf3
+      mgmt_interface: Management1
+      mgmt_ip: 192.168.255.25/24
+      mpls_lsr: false
+      loopback_ipv4_pool: 10.245.218.0/27
+      uplink_ipv4_pool: 192.168.12.0/26
+      bgp_as: '65103'
+      underlay_routing_protocol: ebgp
+      vtep_loopback_ipv4_pool: 10.245.218.32/27
+      inband_ztp_lacp_fallback_delay: 30
+      dc_name: DC02
+      group: OTI-DC02-Leaf3
+      router_id: 10.245.218.5
+      evpn_role: client
+      mpls_overlay_role: none
+      evpn_route_servers:
+      - OTI-DC02-Spine1
+      - OTI-DC02-Spine2
+      overlay:
+        peering_address: 10.245.218.5
+        evpn_mpls: false
+      vtep_ip: 10.245.218.37
+      max_parallel_uplinks: 1
+      max_uplink_switches: 2
+      uplinks:
+      - interface: Ethernet55/1
+        peer: OTI-DC02-Spine1
+        peer_interface: Ethernet3/1
+        peer_type: spine
+        peer_is_deployed: true
+        peer_bgp_as: '65100'
+        type: underlay_p2p
+        prefix_length: 31
+        ip_address: 192.168.12.9
+        peer_ip_address: 192.168.12.8
+      - interface: Ethernet56/1
+        peer: OTI-DC02-Spine2
+        peer_interface: Ethernet3/1
+        peer_type: spine
+        peer_is_deployed: true
+        peer_bgp_as: '65100'
+        type: underlay_p2p
+        prefix_length: 31
+        ip_address: 192.168.12.11
+        peer_ip_address: 192.168.12.10
+      uplink_peers:
+      - OTI-DC02-Spine1
+      - OTI-DC02-Spine2
+      vlans: ''
+      local_endpoint_trunk_groups: []
+      endpoint_trunk_groups: []
+  OTI-DC02-Leaf4:
+    switch:
+      id: 4
+      type: l3leaf
+      platform: 7050SX3-48YC8
+      is_deployed: true
+      serial_number: SN-OTI-DC02-Leaf4
+      mgmt_interface: Management1
+      mgmt_ip: 192.168.255.26/24
+      mpls_lsr: false
+      loopback_ipv4_pool: 10.245.218.0/27
+      uplink_ipv4_pool: 192.168.12.0/26
+      bgp_as: '65104'
+      underlay_routing_protocol: ebgp
+      vtep_loopback_ipv4_pool: 10.245.218.32/27
+      inband_ztp_lacp_fallback_delay: 30
+      dc_name: DC02
+      group: OTI-DC02-Leaf4
+      router_id: 10.245.218.6
+      evpn_role: client
+      mpls_overlay_role: none
+      evpn_route_servers:
+      - OTI-DC02-Spine1
+      - OTI-DC02-Spine2
+      overlay:
+        peering_address: 10.245.218.6
+        evpn_mpls: false
+      vtep_ip: 10.245.218.38
+      max_parallel_uplinks: 1
+      max_uplink_switches: 2
+      uplinks:
+      - interface: Ethernet55/1
+        peer: OTI-DC02-Spine1
+        peer_interface: Ethernet4/1
+        peer_type: spine
+        peer_is_deployed: true
+        peer_bgp_as: '65100'
+        type: underlay_p2p
+        prefix_length: 31
+        ip_address: 192.168.12.13
+        peer_ip_address: 192.168.12.12
+      - interface: Ethernet56/1
+        peer: OTI-DC02-Spine2
+        peer_interface: Ethernet4/1
+        peer_type: spine
+        peer_is_deployed: true
+        peer_bgp_as: '65100'
+        type: underlay_p2p
+        prefix_length: 31
+        ip_address: 192.168.12.15
+        peer_ip_address: 192.168.12.14
+      uplink_peers:
+      - OTI-DC02-Spine1
+      - OTI-DC02-Spine2
+      vlans: ''
+      local_endpoint_trunk_groups: []
+      endpoint_trunk_groups: []
+  OTI-DC02-Leaf5A:
+    switch:
+      id: 5
+      type: l3leaf
+      platform: 7050SX3-48YC8
+      is_deployed: true
+      serial_number: SN-OTI-DC02-Leaf5A
+      mgmt_interface: Management1
+      mgmt_ip: 192.168.255.27/24
+      mpls_lsr: false
+      loopback_ipv4_pool: 10.245.218.0/27
+      uplink_ipv4_pool: 192.168.12.0/26
+      bgp_as: '65105'
+      underlay_routing_protocol: ebgp
+      vtep_loopback_ipv4_pool: 10.245.218.32/27
+      inband_ztp_lacp_fallback_delay: 30
+      dc_name: DC02
+      group: OTI-DC02-Leaf5
+      router_id: 10.245.218.7
+      mlag_peer: OTI-DC02-Leaf5B
+      mlag_port_channel_id: 531
+      mlag_interfaces:
+      - Ethernet53/1
+      - Ethernet54/1
+      mlag_ip: 192.168.14.104
+      mlag_l3_ip: 192.168.14.72
+      mlag_switch_ids:
+        primary: 5
+        secondary: 6
+      evpn_role: client
+      mpls_overlay_role: none
+      evpn_route_servers:
+      - OTI-DC02-Spine1
+      - OTI-DC02-Spine2
+      overlay:
+        peering_address: 10.245.218.7
+        evpn_mpls: false
+      vtep_ip: 10.245.218.39
+      max_parallel_uplinks: 1
+      max_uplink_switches: 2
+      uplinks:
+      - interface: Ethernet55/1
+        peer: OTI-DC02-Spine1
+        peer_interface: Ethernet5/1
+        peer_type: spine
+        peer_is_deployed: true
+        peer_bgp_as: '65100'
+        type: underlay_p2p
+        prefix_length: 31
+        ip_address: 192.168.12.17
+        peer_ip_address: 192.168.12.16
+      - interface: Ethernet56/1
+        peer: OTI-DC02-Spine2
+        peer_interface: Ethernet5/1
+        peer_type: spine
+        peer_is_deployed: true
+        peer_bgp_as: '65100'
+        type: underlay_p2p
+        prefix_length: 31
+        ip_address: 192.168.12.19
+        peer_ip_address: 192.168.12.18
+      uplink_peers:
+      - OTI-DC02-Spine1
+      - OTI-DC02-Spine2
+      vlans: ''
+      local_endpoint_trunk_groups: []
+      endpoint_trunk_groups: []
+  OTI-DC02-Leaf5B:
+    switch:
+      id: 6
+      type: l3leaf
+      platform: 7050SX3-48YC8
+      is_deployed: true
+      serial_number: SN-OTI-DC02-Leaf5B
+      mgmt_interface: Management1
+      mgmt_ip: 192.168.255.28/24
+      mpls_lsr: false
+      loopback_ipv4_pool: 10.245.218.0/27
+      uplink_ipv4_pool: 192.168.12.0/26
+      bgp_as: '65105'
+      underlay_routing_protocol: ebgp
+      vtep_loopback_ipv4_pool: 10.245.218.32/27
+      inband_ztp_lacp_fallback_delay: 30
+      dc_name: DC02
+      group: OTI-DC02-Leaf5
+      router_id: 10.245.218.8
+      mlag_peer: OTI-DC02-Leaf5A
+      mlag_port_channel_id: 531
+      mlag_interfaces:
+      - Ethernet53/1
+      - Ethernet54/1
+      mlag_ip: 192.168.14.105
+      mlag_l3_ip: 192.168.14.73
+      mlag_switch_ids:
+        primary: 5
+        secondary: 6
+      evpn_role: client
+      mpls_overlay_role: none
+      evpn_route_servers:
+      - OTI-DC02-Spine1
+      - OTI-DC02-Spine2
+      overlay:
+        peering_address: 10.245.218.8
+        evpn_mpls: false
+      vtep_ip: 10.245.218.39
+      max_parallel_uplinks: 1
+      max_uplink_switches: 2
+      uplinks:
+      - interface: Ethernet55/1
+        peer: OTI-DC02-Spine1
+        peer_interface: Ethernet6/1
+        peer_type: spine
+        peer_is_deployed: true
+        peer_bgp_as: '65100'
+        type: underlay_p2p
+        prefix_length: 31
+        ip_address: 192.168.12.21
+        peer_ip_address: 192.168.12.20
+      - interface: Ethernet56/1
+        peer: OTI-DC02-Spine2
+        peer_interface: Ethernet6/1
+        peer_type: spine
+        peer_is_deployed: true
+        peer_bgp_as: '65100'
+        type: underlay_p2p
+        prefix_length: 31
+        ip_address: 192.168.12.23
+        peer_ip_address: 192.168.12.22
+      uplink_peers:
+      - OTI-DC02-Spine1
+      - OTI-DC02-Spine2
+      vlans: ''
+      local_endpoint_trunk_groups: []
+      endpoint_trunk_groups: []
+avd_overlay_peers:
+  OTI-DC02-Spine1:
+  - OTI-DC02-Leaf1
+  - OTI-DC02-Leaf2
+  - OTI-DC02-Leaf3
+  - OTI-DC02-Leaf4
+  - OTI-DC02-Leaf5A
+  - OTI-DC02-Leaf5B
+  OTI-DC02-Spine2:
+  - OTI-DC02-Leaf1
+  - OTI-DC02-Leaf2
+  - OTI-DC02-Leaf3
+  - OTI-DC02-Leaf4
+  - OTI-DC02-Leaf5A
+  - OTI-DC02-Leaf5B
+avd_topology_peers:
+  OTI-DC02-Spine1:
+  - OTI-DC02-Leaf1
+  - OTI-DC02-Leaf2
+  - OTI-DC02-Leaf3
+  - OTI-DC02-Leaf4
+  - OTI-DC02-Leaf5A
+  - OTI-DC02-Leaf5B
+  OTI-DC02-Spine2:
+  - OTI-DC02-Leaf1
+  - OTI-DC02-Leaf2
+  - OTI-DC02-Leaf3
+  - OTI-DC02-Leaf4
+  - OTI-DC02-Leaf5A
+  - OTI-DC02-Leaf5B
+avd_requirements:
+  failed: false
+  changed: false
+playbook_dir: /Users/joerecchia/Arista/OTI/AVD-Demo/playbooks
+ansible_playbook_python: /Users/joerecchia/Arista/.venv/bin/python3.10
+ansible_config_file: /Users/joerecchia/Arista/OTI/AVD-Demo/ansible.cfg
+groups:
+  all:
+  - OTI-DC01-OBM1
+  - OTI-DC02-OBM1
+  - OTI-DC01-Leaf5A
+  - OTI-DC01-Leaf5B
+  - OTI-DC02-Leaf5A
+  - OTI-DC02-Leaf5B
+  - OTI-DC01-Spine1
+  - OTI-DC01-Spine2
+  - OTI-DC02-Spine1
+  - OTI-DC02-Spine2
+  - OTI-DC02-Leaf1
+  - OTI-DC02-Leaf2
+  - OTI-DC02-Leaf3
+  - OTI-DC02-Leaf4
+  - OTI-DC01-Leaf1
+  - OTI-DC01-Leaf2
+  - OTI-DC01-Leaf3
+  - OTI-DC01-Leaf4
+  ungrouped: []
+  OTI:
+  - OTI-DC01-OBM1
+  - OTI-DC02-OBM1
+  - OTI-DC02-Spine1
+  - OTI-DC02-Spine2
+  - OTI-DC01-Spine1
+  - OTI-DC01-Spine2
+  - OTI-DC01-Leaf1
+  - OTI-DC01-Leaf2
+  - OTI-DC01-Leaf3
+  - OTI-DC01-Leaf4
+  - OTI-DC01-Leaf5A
+  - OTI-DC01-Leaf5B
+  - OTI-DC02-Leaf1
+  - OTI-DC02-Leaf2
+  - OTI-DC02-Leaf3
+  - OTI-DC02-Leaf4
+  - OTI-DC02-Leaf5A
+  - OTI-DC02-Leaf5B
+  DC01:
+  - OTI-DC01-OBM1
+  - OTI-DC01-Spine1
+  - OTI-DC01-Spine2
+  - OTI-DC01-Leaf1
+  - OTI-DC01-Leaf2
+  - OTI-DC01-Leaf3
+  - OTI-DC01-Leaf4
+  - OTI-DC01-Leaf5A
+  - OTI-DC01-Leaf5B
+  DC01_Fabric:
+  - OTI-DC01-Spine1
+  - OTI-DC01-Spine2
+  - OTI-DC01-Leaf1
+  - OTI-DC01-Leaf2
+  - OTI-DC01-Leaf3
+  - OTI-DC01-Leaf4
+  - OTI-DC01-Leaf5A
+  - OTI-DC01-Leaf5B
+  DC01_Spines:
+  - OTI-DC01-Spine1
+  - OTI-DC01-Spine2
+  DC01_Leafs:
+  - OTI-DC01-Leaf1
+  - OTI-DC01-Leaf2
+  - OTI-DC01-Leaf3
+  - OTI-DC01-Leaf4
+  - OTI-DC01-Leaf5A
+  - OTI-DC01-Leaf5B
+  DC01_Leaf1:
+  - OTI-DC01-Leaf1
+  DC01_Leaf2:
+  - OTI-DC01-Leaf2
+  DC01_Leaf3:
+  - OTI-DC01-Leaf3
+  DC01_Leaf4:
+  - OTI-DC01-Leaf4
+  DC01_Leaf5:
+  - OTI-DC01-Leaf5A
+  - OTI-DC01-Leaf5B
+  DC01_OOB:
+  - OTI-DC01-OBM1
+  DC02:
+  - OTI-DC02-OBM1
+  - OTI-DC02-Spine1
+  - OTI-DC02-Spine2
+  - OTI-DC02-Leaf1
+  - OTI-DC02-Leaf2
+  - OTI-DC02-Leaf3
+  - OTI-DC02-Leaf4
+  - OTI-DC02-Leaf5A
+  - OTI-DC02-Leaf5B
+  DC02_Fabric:
+  - OTI-DC02-Spine1
+  - OTI-DC02-Spine2
+  - OTI-DC02-Leaf1
+  - OTI-DC02-Leaf2
+  - OTI-DC02-Leaf3
+  - OTI-DC02-Leaf4
+  - OTI-DC02-Leaf5A
+  - OTI-DC02-Leaf5B
+  DC02_Spines:
+  - OTI-DC02-Spine1
+  - OTI-DC02-Spine2
+  DC02_Leafs:
+  - OTI-DC02-Leaf1
+  - OTI-DC02-Leaf2
+  - OTI-DC02-Leaf3
+  - OTI-DC02-Leaf4
+  - OTI-DC02-Leaf5A
+  - OTI-DC02-Leaf5B
+  DC02_Leaf1:
+  - OTI-DC02-Leaf1
+  DC02_Leaf2:
+  - OTI-DC02-Leaf2
+  DC02_Leaf3:
+  - OTI-DC02-Leaf3
+  DC02_Leaf4:
+  - OTI-DC02-Leaf4
+  DC02_Leaf5:
+  - OTI-DC02-Leaf5A
+  - OTI-DC02-Leaf5B
+  DC02_OOB:
+  - OTI-DC02-OBM1
+  OTI_Tenants:
+  - OTI-DC01-Leaf1
+  - OTI-DC01-Leaf2
+  - OTI-DC01-Leaf3
+  - OTI-DC01-Leaf4
+  - OTI-DC01-Leaf5A
+  - OTI-DC01-Leaf5B
+  - OTI-DC02-Leaf1
+  - OTI-DC02-Leaf2
+  - OTI-DC02-Leaf3
+  - OTI-DC02-Leaf4
+  - OTI-DC02-Leaf5A
+  - OTI-DC02-Leaf5B
+  DC01_Endpoints:
+  - OTI-DC01-OBM1
+  - OTI-DC01-Leaf1
+  - OTI-DC01-Leaf2
+  - OTI-DC01-Leaf3
+  - OTI-DC01-Leaf4
+  - OTI-DC01-Leaf5A
+  - OTI-DC01-Leaf5B
+  DC02_Endpoints:
+  - OTI-DC02-OBM1
+  - OTI-DC02-Leaf1
+  - OTI-DC02-Leaf2
+  - OTI-DC02-Leaf3
+  - OTI-DC02-Leaf4
+  - OTI-DC02-Leaf5A
+  - OTI-DC02-Leaf5B
+  OTI_DCI:
+  - OTI-DC01-Leaf5A
+  - OTI-DC01-Leaf5B
+  - OTI-DC02-Leaf5A
+  - OTI-DC02-Leaf5B
+  Spines:
+  - OTI-DC01-Spine1
+  - OTI-DC01-Spine2
+  - OTI-DC02-Spine1
+  - OTI-DC02-Spine2
+  Leafs:
+  - OTI-DC01-Leaf1
+  - OTI-DC01-Leaf2
+  - OTI-DC01-Leaf3
+  - OTI-DC01-Leaf4
+  - OTI-DC01-Leaf5A
+  - OTI-DC01-Leaf5B
+  - OTI-DC02-Leaf1
+  - OTI-DC02-Leaf2
+  - OTI-DC02-Leaf3
+  - OTI-DC02-Leaf4
+  - OTI-DC02-Leaf5A
+  - OTI-DC02-Leaf5B
+  L2Leafs:
+  - OTI-DC01-OBM1
+  - OTI-DC02-OBM1
+omit: __omit_place_holder__41e23cd066f92a483236fe60086bc0b13ed48120
+ansible_version:
+  string: 2.15.5
+  full: 2.15.5
+  major: 2
+  minor: 15
+  revision: 5
+ansible_check_mode: false
+ansible_diff_mode: false
+ansible_forks: 15
+ansible_inventory_sources:
+- /Users/joerecchia/Arista/OTI/AVD-Demo/inventory.yml
+ansible_skip_tags: []
+ansible_run_tags:
+- generate
+ansible_verbosity: 0

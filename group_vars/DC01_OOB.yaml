@@ -1,0 +1,32 @@
+fabric_name: DC01_OOB
+dc_name: DC01
+pod_name: Pod1
+
+design:
+  type: l2ls
+
+# MGMT
+mgmt_interface_vrf: default
+# mgmt_gateway: 192.168.255.1
+
+# Node Types
+leaf:
+  defaults:
+    platform: 7050SX3-48YC8
+    # Spanning tree mode | Required.
+    spanning_tree_mode: mstp
+    # Spanning tree priority.
+    spanning_tree_priority: 4096
+    # Virtual Router MAC
+    virtual_router_mac_address: 00:1c:73:00:09:99
+  node_groups:
+    - group: OTI-DC01-OOB1
+      bgp_as: 65001
+      filter:
+        tags: ['Compute']
+        tenants: ['all']
+      nodes:
+        - name: OTI-DC01-OBM1
+          id: 1
+          mgmt_ip: 192.168.255.19/24
+          serial_number: 'SN-OTI-DC01-OBM1'

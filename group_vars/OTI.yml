@@ -1,0 +1,49 @@
+cvp_instance_ips:
+  - apiserver.arista.io
+
+# local users
+local_users:
+  - name: cvpadmin
+    privilege: 15
+    role: network-admin
+    sha512_password: $6$ikGzKyb6w4yEqLly$mJLofKfPrT2Mx6UffrY2dwFXuTCbtf2Okjfu9CgyuduVdN3WIrq9quRZXXFjrRI754ewFQ3uZSlwSEKAe2zbP1
+
+# DNS Servers
+ip_name_servers:
+  - ip_address: 169.254.169.254
+    vrf: default
+  - ip_address: 8.8.8.8
+    vrf: default
+  - ip_address: 1.1.1.1
+    vrf: default
+
+# NTP servers
+ntp:
+  servers:
+    - name: pool.ntp.org
+      vrf: default
+
+# ACT agent
+agents:
+  - name: KernelFib
+    environment_variables:
+      - name: KERNELFIB_PROGRAM_ALL_ECMP
+        value: "'true'"
+
+custom_structured_configuration_management_interfaces:
+  - name: Management1
+    lldp:
+      transmit: false
+      receive: false
+
+
+# EOS connection vars
+ansible_connection: httpapi
+ansible_network_os: eos
+ansible_user: cvpadmin
+# should use vault for passwords
+ansible_ssh_pass: arista123
+ansible_become: true
+ansible_become_method: enable
+ansible_httpapi_use_ssl: true
+ansible_httpapi_validate_certs: false
