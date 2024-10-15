@@ -53,7 +53,7 @@ tenants:
         name: L2_VLAN3401
       - id: 3402
         name: L2_VLAN3402
-  - name: OTI_Mgmt
+  - name: OTI_OOB_Mgmt
     vrfs:
       - name: default
         vrf_id: 1
