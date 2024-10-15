@@ -57,6 +57,18 @@ l3_edge:
       as: [65005, 65105]
       include_in_underlay_protocol: true
 
+# AVD Settings
+# Dump all vars and facts per device after generating `avd_switch_facts`.
+avd_eos_designs_debug: false
+
+# Generate structured configuration per device.
+avd_eos_designs_structured_config: true
+
+# Unset `avd_switch_facts` to gain a small performance improvement since Ansible needs to handle fewer variables.
+avd_eos_designs_unset_facts: true
+# Include connected endpoints in the fabric-wide documentation.
+eos_designs_documentation:
+  connected_endpoints: true
 
 # EOS connection vars
 ansible_connection: httpapi

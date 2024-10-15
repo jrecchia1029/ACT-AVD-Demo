@@ -12,6 +12,10 @@
   - [Loopback0 Interfaces Node Allocation](#loopback0-interfaces-node-allocation)
   - [VTEP Loopback VXLAN Tunnel Source Interfaces (VTEPs Only)](#vtep-loopback-vxlan-tunnel-source-interfaces-vteps-only)
   - [VTEP Loopback Node allocation](#vtep-loopback-node-allocation)
+- [Connected Endpoints](#connected-endpoints)
+  - [Connected Endpoint Keys](#connected-endpoint-keys)
+  - [Servers](#servers)
+  - [Port Profiles](#port-profiles)
 
 ## Fabric Switches and Management IP
 
@@ -62,3 +66,35 @@
 
 | POD | Node | Loopback1 |
 | --- | ---- | --------- |
+
+## Connected Endpoints
+
+### Connected Endpoint Keys
+
+| Key | Type | Description |
+| --- | ---- | ----------- |
+| access_points | access_point | Access Point |
+| cameras | camera | Camera |
+| cpes | cpe | CPE |
+| firewalls | firewall | Firewall |
+| generic_devices | generic_device | Generic Device |
+| load_balancers | load_balancer | Load Balancer |
+| phones | phone | Phone |
+| printers | printer | Printer |
+| routers | router | Router |
+| servers | server | Server |
+| storage_arrays | storage_array | Storage Array |
+| workstations | workstation | Workstation |
+
+### Servers
+
+| Name | Port | Fabric Device | Fabric Port | Description | Shutdown | Type | Mode | VLANs | Profile |
+| ---- | ---- | ------------- | ------------| ----------- | -------- | ---- | ---- | ----- | ------- |
+| DC01-0601-ESX01 | idrac | OTI-DC01-OBM1 | Ethernet1 | DC01-0601-ESX01_idrac | False | switched | access | 3545 | iDRAC |
+
+### Port Profiles
+
+| Profile Name | Parent Profile |
+| ------------ | -------------- |
+| iDRAC | - |
+| VM_Servers | - |

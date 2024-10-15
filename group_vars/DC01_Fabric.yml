@@ -76,13 +76,13 @@ l3leaf:
     # IPv4 subnet for VTEP/Loopback1 allocation.
     vtep_loopback_ipv4_pool: 10.245.217.32/27
     filter:
+      tenants: ['OTI']
       only_vlans_in_use: true
   node_groups:
     - group: OTI-DC01-Leaf1
       bgp_as: 65001
       filter:
         tags: ['vms', 'compute', 'storage', 'all']
-        tenants: ['all']
       nodes:
         - name: OTI-DC01-Leaf1
           id: 1
@@ -94,7 +94,6 @@ l3leaf:
       bgp_as: 65002
       filter:
         tags: ['vms', 'compute', 'storage', 'all']
-        tenants: ['all']
       nodes:
         - name: OTI-DC01-Leaf2
           id: 2
@@ -105,7 +104,6 @@ l3leaf:
       bgp_as: 65003
       filter:
         tags: ['compute', 'data', 'all']
-        tenants: ['all']
       nodes:
         - name: OTI-DC01-Leaf3
           id: 3
@@ -116,7 +114,6 @@ l3leaf:
       bgp_as: 65004
       filter:
         tags: ['compute', 'data', 'all']
-        tenants: ['all']
       nodes:
         - name: OTI-DC01-Leaf4
           id: 4
@@ -127,7 +124,6 @@ l3leaf:
       bgp_as: 65005
       filter:
         tags: ['compute', 'border', 'all']
-        tenants: ['all']
       structured_config:
         router_bgp:
           peer_groups:

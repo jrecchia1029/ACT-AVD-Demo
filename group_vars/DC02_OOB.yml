@@ -19,13 +19,13 @@ leaf:
     spanning_tree_priority: 4096
     # Filter
     filter:
+      tenants: ['OTI_OOB_Mgmt']
       only_vlans_in_use: true
   node_groups:
     - group: OTI-DC02-OOB1
       bgp_as: 65001
       filter:
         tags: ['idrac_dc02']
-        tenants: ['all']
       nodes:
         - name: OTI-DC02-OBM1
           id: 1
