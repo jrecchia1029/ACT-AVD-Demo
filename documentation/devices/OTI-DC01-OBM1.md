@@ -21,6 +21,8 @@
 - [VLANs](#vlans)
   - [VLANs Summary](#vlans-summary)
   - [VLANs Device Configuration](#vlans-device-configuration)
+- [Interfaces](#interfaces)
+  - [Ethernet Interfaces](#ethernet-interfaces)
 - [Routing](#routing)
   - [Service Routing Protocols Model](#service-routing-protocols-model)
   - [IP Routing](#ip-routing)
@@ -216,14 +218,40 @@ vlan internal order ascending range 1006 1199
 
 | VLAN ID | Name | Trunk Groups |
 | ------- | ---- | ------------ |
-| 3545 | Server_MGMT | - |
+| 3545 | DC01_IDRAC | - |
 
 ### VLANs Device Configuration
 
 ```eos
 !
 vlan 3545
-   name Server_MGMT
+   name DC01_IDRAC
+```
+
+## Interfaces
+
+### Ethernet Interfaces
+
+#### Ethernet Interfaces Summary
+
+##### L2
+
+| Interface | Description | Mode | VLANs | Native VLAN | Trunk Group | Channel-Group |
+| --------- | ----------- | ---- | ----- | ----------- | ----------- | ------------- |
+| Ethernet1 |  DC01-0601-ESX01_idrac | access | 3545 | - | - | - |
+
+*Inherited from Port-Channel Interface
+
+#### Ethernet Interfaces Device Configuration
+
+```eos
+!
+interface Ethernet1
+   description DC01-0601-ESX01_idrac
+   no shutdown
+   switchport access vlan 3545
+   switchport mode access
+   switchport
 ```
 
 ## Routing

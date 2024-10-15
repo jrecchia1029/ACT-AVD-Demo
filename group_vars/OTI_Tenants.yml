@@ -27,17 +27,9 @@ tenants:
               - data
               - border
           - id: 3434
-            name: Server_MGMT
+            name: VM_Servers
             enabled: true
             ip_address_virtual: 10.34.34.1/24
-            tags:
-              - vms
-          - id: 3545
-            name: Server_MGMT
-            enabled: true
-            ip_address_virtual: 10.35.45.1/24
-            tags:
-              - idrac_dc01
       - name: Development
         vrf_vni: 11
         vtep_diagnostic:
@@ -56,9 +48,29 @@ tenants:
             name: VRF11_VLAN22
             enabled: true
             ip_address_virtual: 10.10.22.1/24
-
     l2vlans:
       - id: 3401
         name: L2_VLAN3401
       - id: 3402
         name: L2_VLAN3402
+  - name: OTI_Mgmt
+    vrfs:
+      - name: default
+        vrf_id: 1
+        svis:
+          - id: 3545
+            name: DC01_IDRAC
+            tags:
+              - idrac_dc01
+            enabled: true
+            nodes:
+              - node: OTI-DC01-OBM1
+                ip_address: 10.35.45.1/24
+          - id: 2545
+            name: DC02_IDRAC
+            tags:
+              - idrac_dc02
+            enabled: true
+            nodes:
+              - node: OTI-DC02-OBM1
+                ip_address: 10.25.45.1/24

@@ -1,1 +1,2 @@
 Node Type,Node,Node Interface,Peer Type,Peer Node,Peer Interface,Node Interface Enabled
+leaf,OTI-DC02-OBM1,Ethernet6,server,DC02-0901-ESX06,idrac,True

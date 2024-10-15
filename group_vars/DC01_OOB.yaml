@@ -17,8 +17,9 @@ leaf:
     spanning_tree_mode: mstp
     # Spanning tree priority.
     spanning_tree_priority: 4096
-    # Virtual Router MAC
-    virtual_router_mac_address: 00:1c:73:00:09:99
+    # Filter
+    filter:
+      only_vlans_in_use: true
   node_groups:
     - group: OTI-DC01-OOB1
       bgp_as: 65001

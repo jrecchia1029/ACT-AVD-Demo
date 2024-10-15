@@ -75,6 +75,8 @@ l3leaf:
     loopback_ipv4_offset: 2
     # IPv4 subnet for VTEP/Loopback1 allocation.
     vtep_loopback_ipv4_pool: 10.245.218.32/27
+    filter:
+      only_vlans_in_use: true
   node_groups:
     - group: OTI-DC02-Leaf1
       bgp_as: 65101

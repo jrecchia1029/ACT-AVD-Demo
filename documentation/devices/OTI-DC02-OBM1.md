@@ -18,6 +18,11 @@
 - [Internal VLAN Allocation Policy](#internal-vlan-allocation-policy)
   - [Internal VLAN Allocation Policy Summary](#internal-vlan-allocation-policy-summary)
   - [Internal VLAN Allocation Policy Device Configuration](#internal-vlan-allocation-policy-device-configuration)
+- [VLANs](#vlans)
+  - [VLANs Summary](#vlans-summary)
+  - [VLANs Device Configuration](#vlans-device-configuration)
+- [Interfaces](#interfaces)
+  - [Ethernet Interfaces](#ethernet-interfaces)
 - [Routing](#routing)
   - [Service Routing Protocols Model](#service-routing-protocols-model)
   - [IP Routing](#ip-routing)
@@ -205,6 +210,48 @@ spanning-tree mst 0 priority 4096
 ```eos
 !
 vlan internal order ascending range 1006 1199
+```
+
+## VLANs
+
+### VLANs Summary
+
+| VLAN ID | Name | Trunk Groups |
+| ------- | ---- | ------------ |
+| 2545 | DC02_IDRAC | - |
+
+### VLANs Device Configuration
+
+```eos
+!
+vlan 2545
+   name DC02_IDRAC
+```
+
+## Interfaces
+
+### Ethernet Interfaces
+
+#### Ethernet Interfaces Summary
+
+##### L2
+
+| Interface | Description | Mode | VLANs | Native VLAN | Trunk Group | Channel-Group |
+| --------- | ----------- | ---- | ----- | ----------- | ----------- | ------------- |
+| Ethernet6 |  DC02-0901-ESX06_idrac | access | 2545 | - | - | - |
+
+*Inherited from Port-Channel Interface
+
+#### Ethernet Interfaces Device Configuration
+
+```eos
+!
+interface Ethernet6
+   description DC02-0901-ESX06_idrac
+   no shutdown
+   switchport access vlan 2545
+   switchport mode access
+   switchport
 ```
 
 ## Routing

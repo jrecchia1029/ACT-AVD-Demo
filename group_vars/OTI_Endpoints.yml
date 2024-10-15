@@ -1,4 +1,6 @@
 port_profiles:
+  - profile: iDRAC
+    mode: access
   - profile: VM_Servers
     spanning_tree_portfast: edge
 
@@ -17,6 +19,12 @@ servers:
           mode: active
         ethernet_segment:
           short_esi: auto
+      - endpoint_ports: [ idrac ]
+        switch_ports: [ Ethernet1 ]
+        switches: [ OTI-DC01-OBM1 ]
+        profile: iDRAC
+        vlans: 3545
+
 
   - name: DC02-0901-ESX06
     rack: 0901.01.Rack09
@@ -32,3 +40,8 @@ servers:
           mode: active
         ethernet_segment:
           short_esi: auto
+      - endpoint_ports: [ idrac ]
+        switch_ports: [ Ethernet6 ]
+        switches: [ OTI-DC02-OBM1 ]
+        profile: iDRAC
+        vlans: 2545

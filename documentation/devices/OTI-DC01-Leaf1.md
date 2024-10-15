@@ -233,42 +233,14 @@ vlan internal order ascending range 1006 1199
 
 | VLAN ID | Name | Trunk Groups |
 | ------- | ---- | ------------ |
-| 21 | VRF11_VLAN21 | - |
-| 22 | VRF11_VLAN22 | - |
-| 100 | Compute | - |
-| 101 | Data | - |
-| 3401 | L2_VLAN3401 | - |
-| 3402 | L2_VLAN3402 | - |
-| 3434 | Server_MGMT | - |
-| 3545 | Server_MGMT | - |
+| 3434 | VM_Servers | - |
 
 ### VLANs Device Configuration
 
 ```eos
 !
-vlan 21
-   name VRF11_VLAN21
-!
-vlan 22
-   name VRF11_VLAN22
-!
-vlan 100
-   name Compute
-!
-vlan 101
-   name Data
-!
-vlan 3401
-   name L2_VLAN3401
-!
-vlan 3402
-   name L2_VLAN3402
-!
 vlan 3434
-   name Server_MGMT
-!
-vlan 3545
-   name Server_MGMT
+   name VM_Servers
 ```
 
 ## Interfaces
@@ -362,7 +334,6 @@ interface Port-Channel1
 | Loopback0 | EVPN_Overlay_Peering | default | 10.245.217.3/32 |
 | Loopback1 | VTEP_VXLAN_Tunnel_Source | default | 10.245.217.35/32 |
 | Loopback10 | Production_VTEP_DIAGNOSTICS | Production | 10.1.10.3/32 |
-| Loopback11 | Development_VTEP_DIAGNOSTICS | Development | 10.1.11.3/32 |
 
 ##### IPv6
 
@@ -371,7 +342,6 @@ interface Port-Channel1
 | Loopback0 | EVPN_Overlay_Peering | default | - |
 | Loopback1 | VTEP_VXLAN_Tunnel_Source | default | - |
 | Loopback10 | Production_VTEP_DIAGNOSTICS | Production | - |
-| Loopback11 | Development_VTEP_DIAGNOSTICS | Development | - |
 
 #### Loopback Interfaces Device Configuration
 
@@ -392,12 +362,6 @@ interface Loopback10
    no shutdown
    vrf Production
    ip address 10.1.10.3/32
-!
-interface Loopback11
-   description Development_VTEP_DIAGNOSTICS
-   no shutdown
-   vrf Development
-   ip address 10.1.11.3/32
 ```
 
 ### VLAN Interfaces
@@ -406,63 +370,23 @@ interface Loopback11
 
 | Interface | Description | VRF |  MTU | Shutdown |
 | --------- | ----------- | --- | ---- | -------- |
-| Vlan21 | VRF11_VLAN21 | Development | - | False |
-| Vlan22 | VRF11_VLAN22 | Development | - | False |
-| Vlan100 | Compute | Production | - | False |
-| Vlan101 | Data | Production | - | False |
-| Vlan3434 | Server_MGMT | Production | - | False |
-| Vlan3545 | Server_MGMT | Production | - | False |
+| Vlan3434 | VM_Servers | Production | - | False |
 
 ##### IPv4
 
 | Interface | VRF | IP Address | IP Address Virtual | IP Router Virtual Address | VRRP | ACL In | ACL Out |
 | --------- | --- | ---------- | ------------------ | ------------------------- | ---- | ------ | ------- |
-| Vlan21 |  Development  |  -  |  10.10.21.1/24  |  -  |  -  |  -  |  -  |
-| Vlan22 |  Development  |  -  |  10.10.22.1/24  |  -  |  -  |  -  |  -  |
-| Vlan100 |  Production  |  -  |  10.10.100.1/24  |  -  |  -  |  -  |  -  |
-| Vlan101 |  Production  |  -  |  10.10.101.1/24  |  -  |  -  |  -  |  -  |
 | Vlan3434 |  Production  |  -  |  10.34.34.1/24  |  -  |  -  |  -  |  -  |
-| Vlan3545 |  Production  |  -  |  10.35.45.1/24  |  -  |  -  |  -  |  -  |
 
 #### VLAN Interfaces Device Configuration
 
 ```eos
 !
-interface Vlan21
-   description VRF11_VLAN21
-   no shutdown
-   vrf Development
-   ip address virtual 10.10.21.1/24
-!
-interface Vlan22
-   description VRF11_VLAN22
-   no shutdown
-   vrf Development
-   ip address virtual 10.10.22.1/24
-!
-interface Vlan100
-   description Compute
-   no shutdown
-   vrf Production
-   ip address virtual 10.10.100.1/24
-!
-interface Vlan101
-   description Data
-   no shutdown
-   vrf Production
-   ip address virtual 10.10.101.1/24
-!
 interface Vlan3434
-   description Server_MGMT
+   description VM_Servers
    no shutdown
    vrf Production
    ip address virtual 10.34.34.1/24
-!
-interface Vlan3545
-   description Server_MGMT
-   no shutdown
-   vrf Production
-   ip address virtual 10.35.45.1/24
 ```
 
 ### VXLAN Interface
@@ -478,20 +402,12 @@ interface Vlan3545
 
 | VLAN | VNI | Flood List | Multicast Group |
 | ---- | --- | ---------- | --------------- |
-| 21 | 10021 | - | - |
-| 22 | 10022 | - | - |
-| 100 | 10100 | - | - |
-| 101 | 10101 | - | - |
-| 3401 | 13401 | - | - |
-| 3402 | 13402 | - | - |
 | 3434 | 13434 | - | - |
-| 3545 | 13545 | - | - |
 
 ##### VRF to VNI and Multicast Group Mappings
 
 | VRF | VNI | Multicast Group |
 | ---- | --- | --------------- |
-| Development | 11 | - |
 | Production | 10 | - |
 
 #### VXLAN Interface Device Configuration
@@ -502,15 +418,7 @@ interface Vxlan1
    description OTI-DC01-Leaf1_VTEP
    vxlan source-interface Loopback1
    vxlan udp-port 4789
-   vxlan vlan 21 vni 10021
-   vxlan vlan 22 vni 10022
-   vxlan vlan 100 vni 10100
-   vxlan vlan 101 vni 10101
-   vxlan vlan 3401 vni 13401
-   vxlan vlan 3402 vni 13402
    vxlan vlan 3434 vni 13434
-   vxlan vlan 3545 vni 13545
-   vxlan vrf Development vni 11
    vxlan vrf Production vni 10
 ```
 
@@ -545,7 +453,6 @@ ip virtual-router mac-address 00:1c:73:00:09:99
 | VRF | Routing Enabled |
 | --- | --------------- |
 | default | True |
-| Development | True |
 | Production | True |
 
 #### IP Routing Device Configuration
@@ -553,7 +460,6 @@ ip virtual-router mac-address 00:1c:73:00:09:99
 ```eos
 !
 ip routing
-ip routing vrf Development
 ip routing vrf Production
 ```
 
@@ -565,7 +471,6 @@ ip routing vrf Production
 | --- | --------------- |
 | default | False |
 | default | false |
-| Development | false |
 | Production | false |
 
 ### ARP
@@ -639,20 +544,12 @@ ASN Notation: asplain
 
 | VLAN | Route-Distinguisher | Both Route-Target | Import Route Target | Export Route-Target | Redistribute |
 | ---- | ------------------- | ----------------- | ------------------- | ------------------- | ------------ |
-| 21 | 10.245.217.3:10021 | 10021:10021 | - | - | learned |
-| 22 | 10.245.217.3:10022 | 10022:10022 | - | - | learned |
-| 100 | 10.245.217.3:10100 | 10100:10100 | - | - | learned |
-| 101 | 10.245.217.3:10101 | 10101:10101 | - | - | learned |
-| 3401 | 10.245.217.3:13401 | 13401:13401 | - | - | learned |
-| 3402 | 10.245.217.3:13402 | 13402:13402 | - | - | learned |
 | 3434 | 10.245.217.3:13434 | 13434:13434 | - | - | learned |
-| 3545 | 10.245.217.3:13545 | 13545:13545 | - | - | learned |
 
 #### Router BGP VRFs
 
 | VRF | Route-Distinguisher | Redistribute |
 | --- | ------------------- | ------------ |
-| Development | 10.245.217.3:11 | connected |
 | Production | 10.245.217.3:10 | connected |
 
 #### Router BGP Device Configuration
@@ -689,44 +586,9 @@ router bgp 65001
    neighbor 192.168.11.2 description OTI-DC01-Spine2_Ethernet1/1
    redistribute connected route-map RM-CONN-2-BGP
    !
-   vlan 100
-      rd 10.245.217.3:10100
-      route-target both 10100:10100
-      redistribute learned
-   !
-   vlan 101
-      rd 10.245.217.3:10101
-      route-target both 10101:10101
-      redistribute learned
-   !
-   vlan 21
-      rd 10.245.217.3:10021
-      route-target both 10021:10021
-      redistribute learned
-   !
-   vlan 22
-      rd 10.245.217.3:10022
-      route-target both 10022:10022
-      redistribute learned
-   !
-   vlan 3401
-      rd 10.245.217.3:13401
-      route-target both 13401:13401
-      redistribute learned
-   !
-   vlan 3402
-      rd 10.245.217.3:13402
-      route-target both 13402:13402
-      redistribute learned
-   !
    vlan 3434
       rd 10.245.217.3:13434
       route-target both 13434:13434
-      redistribute learned
-   !
-   vlan 3545
-      rd 10.245.217.3:13545
-      route-target both 13545:13545
       redistribute learned
    !
    address-family evpn
@@ -735,13 +597,6 @@ router bgp 65001
    address-family ipv4
       no neighbor EVPN-OVERLAY-PEERS activate
       neighbor IPv4-UNDERLAY-PEERS activate
-   !
-   vrf Development
-      rd 10.245.217.3:11
-      route-target import evpn 11:11
-      route-target export evpn 11:11
-      router-id 10.245.217.3
-      redistribute connected
    !
    vrf Production
       rd 10.245.217.3:10
@@ -830,14 +685,11 @@ route-map RM-CONN-2-BGP permit 10
 
 | VRF Name | IP Routing |
 | -------- | ---------- |
-| Development | enabled |
 | Production | enabled |
 
 ### VRF Instances Device Configuration
 
 ```eos
-!
-vrf instance Development
 !
 vrf instance Production
 ```
@@ -848,13 +700,11 @@ vrf instance Production
 
 | Source NAT VRF | Source NAT IP Address |
 | -------------- | --------------------- |
-| Development | 10.1.11.3 |
 | Production | 10.1.10.3 |
 
 ### Virtual Source NAT Configuration
 
 ```eos
 !
-ip address virtual source-nat vrf Development address 10.1.11.3
 ip address virtual source-nat vrf Production address 10.1.10.3
 ```
