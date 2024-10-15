@@ -64,12 +64,10 @@ OTI_Tenants:
     DC02_Leafs:
     DC01_OOB:
     DC02_OOB:
-DC01_Endpoints:
+OTI_Endpoints:
   children:
     DC01_Leafs:
     DC01_OOB:
-DC02_Endpoints:
-  children:
     DC02_Leafs:
     DC02_OOB:
 Spines:

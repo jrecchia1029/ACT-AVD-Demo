@@ -216,13 +216,13 @@ vlan internal order ascending range 1006 1199
 
 | VLAN ID | Name | Trunk Groups |
 | ------- | ---- | ------------ |
-| 13 | Server_MGMT | - |
+| 3545 | Server_MGMT | - |
 
 ### VLANs Device Configuration
 
 ```eos
 !
-vlan 13
+vlan 3545
    name Server_MGMT
 ```
 

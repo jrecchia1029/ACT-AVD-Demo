@@ -3,7 +3,7 @@ tenants:
   - name: OTI
     mac_vrf_vni_base: 10000
     vrfs:
-      - name: BLUE
+      - name: Production
         vrf_vni: 10
         vtep_diagnostic:
           loopback: 10
@@ -13,26 +13,32 @@ tenants:
             - pod: DC02_Pod1
               ipv4_pool: 10.2.10.0/27
         svis:
-          - id: 11
+          - id: 100
             name: Compute
             enabled: true
-            ip_address_virtual: 10.10.11.1/24
+            ip_address_virtual: 10.10.100.1/24
             tags:
               - compute
-          - id: 12
+          - id: 101
             name: Data
             enabled: true
-            ip_address_virtual: 10.10.12.1/24
+            ip_address_virtual: 10.10.101.1/24
             tags:
               - data
               - border
-          - id: 13
+          - id: 3434
             name: Server_MGMT
             enabled: true
-            ip_address_virtual: 10.10.13.1/24
+            ip_address_virtual: 10.34.34.1/24
+            tags:
+              - vms
+          - id: 3545
+            name: Server_MGMT
+            enabled: true
+            ip_address_virtual: 10.35.45.1/24
             tags:
               - idrac_dc01
-      - name: RED
+      - name: Development
         vrf_vni: 11
         vtep_diagnostic:
           loopback: 11

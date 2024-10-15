@@ -225,12 +225,12 @@ vlan internal order ascending range 1006 1199
 
 | Interface | Description | Type | Channel Group | IP Address | VRF |  MTU | Shutdown | ACL In | ACL Out |
 | --------- | ----------- | -----| ------------- | ---------- | ----| ---- | -------- | ------ | ------- |
-| Ethernet1/1 | P2P_LINK_TO_OTI-DC01-LEAF1_Ethernet55/1 | routed | - | 192.168.11.0/31 | default | 9000 | False | - | - |
-| Ethernet2/1 | P2P_LINK_TO_OTI-DC01-LEAF2_Ethernet55/1 | routed | - | 192.168.11.4/31 | default | 9000 | False | - | - |
-| Ethernet3/1 | P2P_LINK_TO_OTI-DC01-LEAF3_Ethernet55/1 | routed | - | 192.168.11.8/31 | default | 9000 | False | - | - |
-| Ethernet4/1 | P2P_LINK_TO_OTI-DC01-LEAF4_Ethernet55/1 | routed | - | 192.168.11.12/31 | default | 9000 | False | - | - |
-| Ethernet5/1 | P2P_LINK_TO_OTI-DC01-LEAF5A_Ethernet55/1 | routed | - | 192.168.11.16/31 | default | 9000 | False | - | - |
-| Ethernet6/1 | P2P_LINK_TO_OTI-DC01-LEAF5B_Ethernet55/1 | routed | - | 192.168.11.20/31 | default | 9000 | False | - | - |
+| Ethernet1/1 | P2P_LINK_TO_OTI-DC01-LEAF1_Ethernet55/1 | routed | - | 192.168.11.0/31 | default | 1500 | False | - | - |
+| Ethernet2/1 | P2P_LINK_TO_OTI-DC01-LEAF2_Ethernet55/1 | routed | - | 192.168.11.4/31 | default | 1500 | False | - | - |
+| Ethernet3/1 | P2P_LINK_TO_OTI-DC01-LEAF3_Ethernet55/1 | routed | - | 192.168.11.8/31 | default | 1500 | False | - | - |
+| Ethernet4/1 | P2P_LINK_TO_OTI-DC01-LEAF4_Ethernet55/1 | routed | - | 192.168.11.12/31 | default | 1500 | False | - | - |
+| Ethernet5/1 | P2P_LINK_TO_OTI-DC01-LEAF5A_Ethernet55/1 | routed | - | 192.168.11.16/31 | default | 1500 | False | - | - |
+| Ethernet6/1 | P2P_LINK_TO_OTI-DC01-LEAF5B_Ethernet55/1 | routed | - | 192.168.11.20/31 | default | 1500 | False | - | - |
 
 #### Ethernet Interfaces Device Configuration
 
@@ -239,42 +239,42 @@ vlan internal order ascending range 1006 1199
 interface Ethernet1/1
    description P2P_LINK_TO_OTI-DC01-LEAF1_Ethernet55/1
    no shutdown
-   mtu 9000
+   mtu 1500
    no switchport
    ip address 192.168.11.0/31
 !
 interface Ethernet2/1
    description P2P_LINK_TO_OTI-DC01-LEAF2_Ethernet55/1
    no shutdown
-   mtu 9000
+   mtu 1500
    no switchport
    ip address 192.168.11.4/31
 !
 interface Ethernet3/1
    description P2P_LINK_TO_OTI-DC01-LEAF3_Ethernet55/1
    no shutdown
-   mtu 9000
+   mtu 1500
    no switchport
    ip address 192.168.11.8/31
 !
 interface Ethernet4/1
    description P2P_LINK_TO_OTI-DC01-LEAF4_Ethernet55/1
    no shutdown
-   mtu 9000
+   mtu 1500
    no switchport
    ip address 192.168.11.12/31
 !
 interface Ethernet5/1
    description P2P_LINK_TO_OTI-DC01-LEAF5A_Ethernet55/1
    no shutdown
-   mtu 9000
+   mtu 1500
    no switchport
    ip address 192.168.11.16/31
 !
 interface Ethernet6/1
    description P2P_LINK_TO_OTI-DC01-LEAF5B_Ethernet55/1
    no shutdown
-   mtu 9000
+   mtu 1500
    no switchport
    ip address 192.168.11.20/31
 ```

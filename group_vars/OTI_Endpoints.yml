@@ -1,0 +1,34 @@
+port_profiles:
+  - profile: VM_Servers
+    spanning_tree_portfast: edge
+
+servers:
+  - name: DC01-0601-ESX01
+    rack: 0601.01.Rack01
+    adapters:
+      - endpoint_ports: [ Onboard_NIC_1, PCI_slot_1_Port_1 ]
+        switch_ports: [ Ethernet1, Ethernet1 ]
+        switches: [ OTI-DC01-Leaf1, OTI-DC01-Leaf2 ]
+        profile: VM_Servers
+        mode: trunk
+        vlans: 3434
+        port_channel:
+          description: PortChanne1
+          mode: active
+        ethernet_segment:
+          short_esi: auto
+
+  - name: DC02-0901-ESX06
+    rack: 0901.01.Rack09
+    adapters:
+      - endpoint_ports: [ Onboard_NIC_1, PCI_slot_1_Port_1 ]
+        switch_ports: [ Ethernet6, Ethernet6 ]
+        switches: [ OTI-DC02-Leaf1, OTI-DC02-Leaf2 ]
+        profile: VM_Servers
+        mode: trunk
+        vlans: 3434
+        port_channel:
+          description: PortChanne1
+          mode: active
+        ethernet_segment:
+          short_esi: auto

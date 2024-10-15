@@ -33,12 +33,6 @@ arp:
 serial_number_table:
   aging_time: 7200
 
-# Uplink MTU
-p2p_uplinks_mtu: 9000
-
-# Max spines
-max_spines: 2
-
 # Node Types
 spine:
   defaults:
@@ -85,7 +79,7 @@ l3leaf:
     - group: OTI-DC02-Leaf1
       bgp_as: 65101
       filter:
-        tags: ['compute', 'storage', 'all']
+        tags: ['vms', 'compute', 'storage', 'all']
         tenants: ['all']
       nodes:
         - name: OTI-DC02-Leaf1
@@ -97,7 +91,7 @@ l3leaf:
     - group: OTI-DC02-Leaf2
       bgp_as: 65102
       filter:
-        tags: ['compute', 'storage', 'all']
+        tags: ['vms', 'compute', 'storage', 'all']
         tenants: ['all']
       nodes:
         - name: OTI-DC02-Leaf2

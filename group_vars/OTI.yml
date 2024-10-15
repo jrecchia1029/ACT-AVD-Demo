@@ -8,6 +8,12 @@ local_users:
     role: network-admin
     sha512_password: $6$ikGzKyb6w4yEqLly$mJLofKfPrT2Mx6UffrY2dwFXuTCbtf2Okjfu9CgyuduVdN3WIrq9quRZXXFjrRI754ewFQ3uZSlwSEKAe2zbP1
 
+# vEOS
+p2p_uplinks_mtu: 1500
+
+# Max spines
+max_spines: 2
+
 # DNS Servers
 ip_name_servers:
   - ip_address: 169.254.169.254
