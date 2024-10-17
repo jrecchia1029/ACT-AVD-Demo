@@ -47,6 +47,9 @@
 - [VRF Instances](#vrf-instances)
   - [VRF Instances Summary](#vrf-instances-summary)
   - [VRF Instances Device Configuration](#vrf-instances-device-configuration)
+- [Virtual Source NAT](#virtual-source-nat)
+  - [Virtual Source NAT Summary](#virtual-source-nat-summary)
+  - [Virtual Source NAT Configuration](#virtual-source-nat-configuration)
 
 ## Management
 
@@ -261,12 +264,54 @@ vlan internal order ascending range 1006 1199
 
 | VLAN ID | Name | Trunk Groups |
 | ------- | ---- | ------------ |
+| 55 | HYPER_PROD | - |
+| 821 | SAN_Disk | - |
+| 2500 | Scada_Dev | - |
+| 2821 | Users_Dev | - |
+| 2822 | Voice_Dev | - |
+| 2833 | Broadcast1 | - |
+| 2834 | Broadcast2 | - |
+| 3009 | MLAG_iBGP_Production | LEAF_PEER_L3 |
+| 3010 | MLAG_iBGP_Development | LEAF_PEER_L3 |
+| 3911 | SCADA_PROD | - |
 | 4093 | LEAF_PEER_L3 | LEAF_PEER_L3 |
 | 4094 | MLAG_PEER | MLAG |
 
 ### VLANs Device Configuration
 
 ```eos
+!
+vlan 55
+   name HYPER_PROD
+!
+vlan 821
+   name SAN_Disk
+!
+vlan 2500
+   name Scada_Dev
+!
+vlan 2821
+   name Users_Dev
+!
+vlan 2822
+   name Voice_Dev
+!
+vlan 2833
+   name Broadcast1
+!
+vlan 2834
+   name Broadcast2
+!
+vlan 3009
+   name MLAG_iBGP_Production
+   trunk group LEAF_PEER_L3
+!
+vlan 3010
+   name MLAG_iBGP_Development
+   trunk group LEAF_PEER_L3
+!
+vlan 3911
+   name SCADA_PROD
 !
 vlan 4093
    name LEAF_PEER_L3
@@ -287,6 +332,13 @@ vlan 4094
 
 | Interface | Description | Mode | VLANs | Native VLAN | Trunk Group | Channel-Group |
 | --------- | ----------- | ---- | ----- | ----------- | ----------- | ------------- |
+| Ethernet1 | DC01-0601-ESX01_PCI_slot_1_Port_2 | *trunk | *2821, 2822, 2833, 2834 | *- | *- | 1 |
+| Ethernet2 | DC01-0601-ESX02_PCI_slot_1_Port_2 | *trunk | *821 | *- | *- | 2 |
+| Ethernet3 | DC01-0601-ESX03_PCI_slot_1_Port_2 | *access | *55 | *- | *- | 3 |
+| Ethernet4 | DC01-0601-ESX04_PCI_slot_1_Port_2 | *access | *55 | *- | *- | 4 |
+| Ethernet5 | DC01-0601-ESX05_PCI_slot_1_Port_2 | *trunk | *2821, 2822, 2833, 2834 | *- | *- | 5 |
+| Ethernet6 | DC01-0601-ESX06_PCI_slot_1_Port_2 | *access | *821 | *- | *- | 6 |
+| Ethernet25 | DC01-0601-SRVD_Port_2 | *trunk | *3911, 2500 | *- | *- | 25 |
 | Ethernet53/1 | MLAG_PEER_OTI-DC01-Leaf5B_Ethernet53/1 | *trunk | *- | *- | *['LEAF_PEER_L3', 'MLAG'] | 531 |
 | Ethernet54/1 | MLAG_PEER_OTI-DC01-Leaf5B_Ethernet54/1 | *trunk | *- | *- | *['LEAF_PEER_L3', 'MLAG'] | 531 |
 
@@ -303,6 +355,41 @@ vlan 4094
 #### Ethernet Interfaces Device Configuration
 
 ```eos
+!
+interface Ethernet1
+   description DC01-0601-ESX01_PCI_slot_1_Port_2
+   no shutdown
+   channel-group 1 mode active
+!
+interface Ethernet2
+   description DC01-0601-ESX02_PCI_slot_1_Port_2
+   no shutdown
+   channel-group 2 mode active
+!
+interface Ethernet3
+   description DC01-0601-ESX03_PCI_slot_1_Port_2
+   no shutdown
+   channel-group 3 mode active
+!
+interface Ethernet4
+   description DC01-0601-ESX04_PCI_slot_1_Port_2
+   no shutdown
+   channel-group 4 mode active
+!
+interface Ethernet5
+   description DC01-0601-ESX05_PCI_slot_1_Port_2
+   no shutdown
+   channel-group 5 mode active
+!
+interface Ethernet6
+   description DC01-0601-ESX06_PCI_slot_1_Port_2
+   no shutdown
+   channel-group 6 mode active
+!
+interface Ethernet25
+   description DC01-0601-SRVD_Port_2
+   no shutdown
+   channel-group 25 mode active
 !
 interface Ethernet52/1
    description P2P_LINK_TO_OTI-DC02-Leaf5A_Ethernet52/1
@@ -344,11 +431,78 @@ interface Ethernet56/1
 
 | Interface | Description | Type | Mode | VLANs | Native VLAN | Trunk Group | LACP Fallback Timeout | LACP Fallback Mode | MLAG ID | EVPN ESI |
 | --------- | ----------- | ---- | ---- | ----- | ----------- | ------------| --------------------- | ------------------ | ------- | -------- |
+| Port-Channel1 | DC01-0601-ESX01 | switched | trunk | 2821, 2822, 2833, 2834 | - | - | - | - | 1 | - |
+| Port-Channel2 | DC01-0601-ESX02 | switched | trunk | 821 | - | - | - | - | 2 | - |
+| Port-Channel3 | DC01-0601-ESX03 | switched | access | 55 | - | - | - | - | 3 | - |
+| Port-Channel4 | DC01-0601-ESX04 | switched | access | 55 | - | - | - | - | 4 | - |
+| Port-Channel5 | DC01-0601-ESX05 | switched | trunk | 2821, 2822, 2833, 2834 | - | - | - | - | 5 | - |
+| Port-Channel6 | DC01-0601-ESX06 | switched | access | 821 | - | - | - | - | 6 | - |
+| Port-Channel25 | DC01-0601-SRVD | switched | trunk | 3911, 2500 | - | - | - | - | 25 | - |
 | Port-Channel531 | MLAG_PEER_OTI-DC01-Leaf5B_Po531 | switched | trunk | - | - | ['LEAF_PEER_L3', 'MLAG'] | - | - | - | - |
 
 #### Port-Channel Interfaces Device Configuration
 
 ```eos
+!
+interface Port-Channel1
+   description DC01-0601-ESX01
+   no shutdown
+   mtu 9214
+   switchport
+   switchport trunk allowed vlan 2821, 2822, 2833, 2834
+   switchport mode trunk
+   mlag 1
+!
+interface Port-Channel2
+   description DC01-0601-ESX02
+   no shutdown
+   mtu 9214
+   switchport
+   switchport trunk allowed vlan 821
+   switchport mode trunk
+   mlag 2
+!
+interface Port-Channel3
+   description DC01-0601-ESX03
+   no shutdown
+   mtu 9214
+   switchport
+   switchport access vlan 55
+   mlag 3
+!
+interface Port-Channel4
+   description DC01-0601-ESX04
+   no shutdown
+   mtu 9214
+   switchport
+   switchport access vlan 55
+   mlag 4
+!
+interface Port-Channel5
+   description DC01-0601-ESX05
+   no shutdown
+   mtu 9214
+   switchport
+   switchport trunk allowed vlan 2821, 2822, 2833, 2834
+   switchport mode trunk
+   mlag 5
+!
+interface Port-Channel6
+   description DC01-0601-ESX06
+   no shutdown
+   mtu 9214
+   switchport
+   switchport access vlan 821
+   mlag 6
+!
+interface Port-Channel25
+   description DC01-0601-SRVD
+   no shutdown
+   mtu 9214
+   switchport
+   switchport trunk allowed vlan 3911, 2500
+   switchport mode trunk
+   mlag 25
 !
 interface Port-Channel531
    description MLAG_PEER_OTI-DC01-Leaf5B_Po531
@@ -369,6 +523,8 @@ interface Port-Channel531
 | --------- | ----------- | --- | ---------- |
 | Loopback0 | EVPN_Overlay_Peering | default | 10.245.217.7/32 |
 | Loopback1 | VTEP_VXLAN_Tunnel_Source | default | 10.245.217.39/32 |
+| Loopback10 | Production_VTEP_DIAGNOSTICS | Production | 10.1.10.7/32 |
+| Loopback11 | Development_VTEP_DIAGNOSTICS | Development | 10.1.11.7/32 |
 
 ##### IPv6
 
@@ -376,6 +532,8 @@ interface Port-Channel531
 | --------- | ----------- | --- | ------------ |
 | Loopback0 | EVPN_Overlay_Peering | default | - |
 | Loopback1 | VTEP_VXLAN_Tunnel_Source | default | - |
+| Loopback10 | Production_VTEP_DIAGNOSTICS | Production | - |
+| Loopback11 | Development_VTEP_DIAGNOSTICS | Development | - |
 
 #### Loopback Interfaces Device Configuration
 
@@ -390,6 +548,18 @@ interface Loopback1
    description VTEP_VXLAN_Tunnel_Source
    no shutdown
    ip address 10.245.217.39/32
+!
+interface Loopback10
+   description Production_VTEP_DIAGNOSTICS
+   no shutdown
+   vrf Production
+   ip address 10.1.10.7/32
+!
+interface Loopback11
+   description Development_VTEP_DIAGNOSTICS
+   no shutdown
+   vrf Development
+   ip address 10.1.11.7/32
 ```
 
 ### VLAN Interfaces
@@ -398,6 +568,16 @@ interface Loopback1
 
 | Interface | Description | VRF |  MTU | Shutdown |
 | --------- | ----------- | --- | ---- | -------- |
+| Vlan55 | HYPER_PROD | Production | - | False |
+| Vlan821 | SAN_Disk | Production | - | False |
+| Vlan2500 | Scada_Dev | Development | - | False |
+| Vlan2821 | Users_Dev | Development | - | False |
+| Vlan2822 | Voice_Dev | Development | - | False |
+| Vlan2833 | Broadcast1 | Development | - | False |
+| Vlan2834 | Broadcast2 | Development | - | False |
+| Vlan3009 | MLAG_PEER_L3_iBGP: vrf Production | Production | 1500 | False |
+| Vlan3010 | MLAG_PEER_L3_iBGP: vrf Development | Development | 1500 | False |
+| Vlan3911 | SCADA_PROD | Production | - | False |
 | Vlan4093 | MLAG_PEER_L3_PEERING | default | 1500 | False |
 | Vlan4094 | MLAG_PEER | default | 1500 | False |
 
@@ -405,12 +585,84 @@ interface Loopback1
 
 | Interface | VRF | IP Address | IP Address Virtual | IP Router Virtual Address | VRRP | ACL In | ACL Out |
 | --------- | --- | ---------- | ------------------ | ------------------------- | ---- | ------ | ------- |
+| Vlan55 |  Production  |  -  |  10.10.55.1/24  |  -  |  -  |  -  |  -  |
+| Vlan821 |  Production  |  -  |  10.82.1.1/24  |  -  |  -  |  -  |  -  |
+| Vlan2500 |  Development  |  -  |  12.50.0.1/24  |  -  |  -  |  -  |  -  |
+| Vlan2821 |  Development  |  -  |  10.28.21.1/24  |  -  |  -  |  -  |  -  |
+| Vlan2822 |  Development  |  -  |  10.28.22.1/24  |  -  |  -  |  -  |  -  |
+| Vlan2833 |  Development  |  -  |  10.28.33.1/24  |  -  |  -  |  -  |  -  |
+| Vlan2834 |  Development  |  -  |  10.28.34.1/24  |  -  |  -  |  -  |  -  |
+| Vlan3009 |  Production  |  192.168.13.72/31  |  -  |  -  |  -  |  -  |  -  |
+| Vlan3010 |  Development  |  192.168.13.72/31  |  -  |  -  |  -  |  -  |  -  |
+| Vlan3911 |  Production  |  -  |  10.39.11.1/24  |  -  |  -  |  -  |  -  |
 | Vlan4093 |  default  |  192.168.13.72/31  |  -  |  -  |  -  |  -  |  -  |
 | Vlan4094 |  default  |  192.168.13.104/31  |  -  |  -  |  -  |  -  |  -  |
 
 #### VLAN Interfaces Device Configuration
 
 ```eos
+!
+interface Vlan55
+   description HYPER_PROD
+   no shutdown
+   vrf Production
+   ip address virtual 10.10.55.1/24
+!
+interface Vlan821
+   description SAN_Disk
+   no shutdown
+   vrf Production
+   ip address virtual 10.82.1.1/24
+!
+interface Vlan2500
+   description Scada_Dev
+   no shutdown
+   vrf Development
+   ip address virtual 12.50.0.1/24
+!
+interface Vlan2821
+   description Users_Dev
+   no shutdown
+   vrf Development
+   ip address virtual 10.28.21.1/24
+!
+interface Vlan2822
+   description Voice_Dev
+   no shutdown
+   vrf Development
+   ip address virtual 10.28.22.1/24
+!
+interface Vlan2833
+   description Broadcast1
+   no shutdown
+   vrf Development
+   ip address virtual 10.28.33.1/24
+!
+interface Vlan2834
+   description Broadcast2
+   no shutdown
+   vrf Development
+   ip address virtual 10.28.34.1/24
+!
+interface Vlan3009
+   description MLAG_PEER_L3_iBGP: vrf Production
+   no shutdown
+   mtu 1500
+   vrf Production
+   ip address 192.168.13.72/31
+!
+interface Vlan3010
+   description MLAG_PEER_L3_iBGP: vrf Development
+   no shutdown
+   mtu 1500
+   vrf Development
+   ip address 192.168.13.72/31
+!
+interface Vlan3911
+   description SCADA_PROD
+   no shutdown
+   vrf Production
+   ip address virtual 10.39.11.1/24
 !
 interface Vlan4093
    description MLAG_PEER_L3_PEERING
@@ -436,6 +688,26 @@ interface Vlan4094
 | UDP port | 4789 |
 | EVPN MLAG Shared Router MAC | mlag-system-id |
 
+##### VLAN to VNI, Flood List and Multicast Group Mappings
+
+| VLAN | VNI | Flood List | Multicast Group |
+| ---- | --- | ---------- | --------------- |
+| 55 | 10055 | - | - |
+| 821 | 10821 | - | - |
+| 2500 | 12500 | - | - |
+| 2821 | 12821 | - | - |
+| 2822 | 12822 | - | - |
+| 2833 | 12833 | - | - |
+| 2834 | 12834 | - | - |
+| 3911 | 13911 | - | - |
+
+##### VRF to VNI and Multicast Group Mappings
+
+| VRF | VNI | Multicast Group |
+| ---- | --- | --------------- |
+| Development | 11 | - |
+| Production | 10 | - |
+
 #### VXLAN Interface Device Configuration
 
 ```eos
@@ -445,6 +717,16 @@ interface Vxlan1
    vxlan source-interface Loopback1
    vxlan virtual-router encapsulation mac-address mlag-system-id
    vxlan udp-port 4789
+   vxlan vlan 55 vni 10055
+   vxlan vlan 821 vni 10821
+   vxlan vlan 2500 vni 12500
+   vxlan vlan 2821 vni 12821
+   vxlan vlan 2822 vni 12822
+   vxlan vlan 2833 vni 12833
+   vxlan vlan 2834 vni 12834
+   vxlan vlan 3911 vni 13911
+   vxlan vrf Development vni 11
+   vxlan vrf Production vni 10
 ```
 
 ## Routing
@@ -478,12 +760,16 @@ ip virtual-router mac-address 00:1c:73:00:09:99
 | VRF | Routing Enabled |
 | --- | --------------- |
 | default | True |
+| Development | True |
+| Production | True |
 
 #### IP Routing Device Configuration
 
 ```eos
 !
 ip routing
+ip routing vrf Development
+ip routing vrf Production
 ```
 
 ### IPv6 Routing
@@ -494,6 +780,8 @@ ip routing
 | --- | --------------- |
 | default | False |
 | default | false |
+| Development | false |
+| Production | false |
 
 ### ARP
 
@@ -577,6 +865,8 @@ ASN Notation: asplain
 | 192.168.11.16 | 65000 | default | - | Inherited from peer group IPv4-UNDERLAY-PEERS | Inherited from peer group IPv4-UNDERLAY-PEERS | - | - | - | - | - | - |
 | 192.168.11.18 | 65000 | default | - | Inherited from peer group IPv4-UNDERLAY-PEERS | Inherited from peer group IPv4-UNDERLAY-PEERS | - | - | - | - | - | - |
 | 192.168.13.73 | Inherited from peer group MLAG-IPv4-UNDERLAY-PEER | default | - | Inherited from peer group MLAG-IPv4-UNDERLAY-PEER | Inherited from peer group MLAG-IPv4-UNDERLAY-PEER | - | - | - | - | - | - |
+| 192.168.13.73 | Inherited from peer group MLAG-IPv4-UNDERLAY-PEER | Development | - | Inherited from peer group MLAG-IPv4-UNDERLAY-PEER | Inherited from peer group MLAG-IPv4-UNDERLAY-PEER | - | - | - | - | - | - |
+| 192.168.13.73 | Inherited from peer group MLAG-IPv4-UNDERLAY-PEER | Production | - | Inherited from peer group MLAG-IPv4-UNDERLAY-PEER | Inherited from peer group MLAG-IPv4-UNDERLAY-PEER | - | - | - | - | - | - |
 
 #### Router BGP EVPN Address Family
 
@@ -586,6 +876,26 @@ ASN Notation: asplain
 | ---------- | -------- | ------------- |
 | EVPN-OVERLAY-PEERS | True | default |
 | INTER-DC-EVPN-PEERS | True | default |
+
+#### Router BGP VLANs
+
+| VLAN | Route-Distinguisher | Both Route-Target | Import Route Target | Export Route-Target | Redistribute |
+| ---- | ------------------- | ----------------- | ------------------- | ------------------- | ------------ |
+| 55 | 10.245.217.7:10055 | 10055:10055 | - | - | learned |
+| 821 | 10.245.217.7:10821 | 10821:10821 | - | - | learned |
+| 2500 | 10.245.217.7:12500 | 12500:12500 | - | - | learned |
+| 2821 | 10.245.217.7:12821 | 12821:12821 | - | - | learned |
+| 2822 | 10.245.217.7:12822 | 12822:12822 | - | - | learned |
+| 2833 | 10.245.217.7:12833 | 12833:12833 | - | - | learned |
+| 2834 | 10.245.217.7:12834 | 12834:12834 | - | - | learned |
+| 3911 | 10.245.217.7:13911 | 13911:13911 | - | - | learned |
+
+#### Router BGP VRFs
+
+| VRF | Route-Distinguisher | Redistribute |
+| --- | ------------------- | ------------ |
+| Development | 10.245.217.7:11 | connected |
+| Production | 10.245.217.7:10 | connected |
 
 #### Router BGP Device Configuration
 
@@ -643,6 +953,46 @@ router bgp 65005
    neighbor 192.168.13.73 description OTI-DC01-Leaf5B
    redistribute connected route-map RM-CONN-2-BGP
    !
+   vlan 2500
+      rd 10.245.217.7:12500
+      route-target both 12500:12500
+      redistribute learned
+   !
+   vlan 2821
+      rd 10.245.217.7:12821
+      route-target both 12821:12821
+      redistribute learned
+   !
+   vlan 2822
+      rd 10.245.217.7:12822
+      route-target both 12822:12822
+      redistribute learned
+   !
+   vlan 2833
+      rd 10.245.217.7:12833
+      route-target both 12833:12833
+      redistribute learned
+   !
+   vlan 2834
+      rd 10.245.217.7:12834
+      route-target both 12834:12834
+      redistribute learned
+   !
+   vlan 3911
+      rd 10.245.217.7:13911
+      route-target both 13911:13911
+      redistribute learned
+   !
+   vlan 55
+      rd 10.245.217.7:10055
+      route-target both 10055:10055
+      redistribute learned
+   !
+   vlan 821
+      rd 10.245.217.7:10821
+      route-target both 10821:10821
+      redistribute learned
+   !
    address-family evpn
       neighbor EVPN-OVERLAY-PEERS activate
       neighbor INTER-DC-EVPN-PEERS activate
@@ -652,6 +1002,22 @@ router bgp 65005
       neighbor INTER-DC-EVPN-PEERS activate
       neighbor IPv4-UNDERLAY-PEERS activate
       neighbor MLAG-IPv4-UNDERLAY-PEER activate
+   !
+   vrf Development
+      rd 10.245.217.7:11
+      route-target import evpn 11:11
+      route-target export evpn 11:11
+      router-id 10.245.217.7
+      neighbor 192.168.13.73 peer group MLAG-IPv4-UNDERLAY-PEER
+      redistribute connected
+   !
+   vrf Production
+      rd 10.245.217.7:10
+      route-target import evpn 10:10
+      route-target export evpn 10:10
+      router-id 10.245.217.7
+      neighbor 192.168.13.73 peer group MLAG-IPv4-UNDERLAY-PEER
+      redistribute connected
 ```
 
 ## BFD
@@ -743,8 +1109,31 @@ route-map RM-MLAG-PEER-IN permit 10
 
 | VRF Name | IP Routing |
 | -------- | ---------- |
+| Development | enabled |
+| Production | enabled |
 
 ### VRF Instances Device Configuration
 
 ```eos
+!
+vrf instance Development
+!
+vrf instance Production
+```
+
+## Virtual Source NAT
+
+### Virtual Source NAT Summary
+
+| Source NAT VRF | Source NAT IP Address |
+| -------------- | --------------------- |
+| Development | 10.1.11.7 |
+| Production | 10.1.10.7 |
+
+### Virtual Source NAT Configuration
+
+```eos
+!
+ip address virtual source-nat vrf Development address 10.1.11.7
+ip address virtual source-nat vrf Production address 10.1.10.7
 ```

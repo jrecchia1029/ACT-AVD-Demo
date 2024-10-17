@@ -89,6 +89,10 @@ tenants:
             name: UCP_MGMT_2
             enabled: true
             ip_address_virtual: 12.0.2.1/24
+          - id: 2000
+            name: Data_Prod
+            enabled: true
+            ip_address_virtual: 20.0.0.1/24
           - id: 3434
             name: VM_Servers
             enabled: true
@@ -115,10 +119,6 @@ tenants:
             name: VRF11_VLAN22
             enabled: true
             ip_address_virtual: 10.10.22.1/24
-          - id: 2000
-            name: Data_Dev
-            enabled: true
-            ip_address_virtual: 20.0.0.1/24
           - id: 2500
             name: Scada_Dev
             enabled: true

@@ -238,7 +238,15 @@ vlan 2545
 
 | Interface | Description | Mode | VLANs | Native VLAN | Trunk Group | Channel-Group |
 | --------- | ----------- | ---- | ----- | ----------- | ----------- | ------------- |
+| Ethernet1 |  DC02-0901-ESX01_idrac | access | 2545 | - | - | - |
+| Ethernet2 |  DC02-0901-ESX02_idrac | access | 2545 | - | - | - |
+| Ethernet3 |  DC02-0901-ESX03_idrac | access | 2545 | - | - | - |
+| Ethernet4 |  DC02-0901-ESX04_idrac | access | 2545 | - | - | - |
+| Ethernet5 |  DC02-0901-ESX05_idrac | access | 2545 | - | - | - |
 | Ethernet6 |  DC02-0901-ESX06_idrac | access | 2545 | - | - | - |
+| Ethernet7 |  DC02-0901-SRVA_iLo | access | 2545 | - | - | - |
+| Ethernet8 |  DC02-0901-SRVB_iLo | access | 2545 | - | - | - |
+| Ethernet9 |  DC02-0901-SRVC_iLo | access | 2545 | - | - | - |
 
 *Inherited from Port-Channel Interface
 
@@ -246,8 +254,64 @@ vlan 2545
 
 ```eos
 !
+interface Ethernet1
+   description DC02-0901-ESX01_idrac
+   no shutdown
+   switchport access vlan 2545
+   switchport mode access
+   switchport
+!
+interface Ethernet2
+   description DC02-0901-ESX02_idrac
+   no shutdown
+   switchport access vlan 2545
+   switchport mode access
+   switchport
+!
+interface Ethernet3
+   description DC02-0901-ESX03_idrac
+   no shutdown
+   switchport access vlan 2545
+   switchport mode access
+   switchport
+!
+interface Ethernet4
+   description DC02-0901-ESX04_idrac
+   no shutdown
+   switchport access vlan 2545
+   switchport mode access
+   switchport
+!
+interface Ethernet5
+   description DC02-0901-ESX05_idrac
+   no shutdown
+   switchport access vlan 2545
+   switchport mode access
+   switchport
+!
 interface Ethernet6
    description DC02-0901-ESX06_idrac
+   no shutdown
+   switchport access vlan 2545
+   switchport mode access
+   switchport
+!
+interface Ethernet7
+   description DC02-0901-SRVA_iLo
+   no shutdown
+   switchport access vlan 2545
+   switchport mode access
+   switchport
+!
+interface Ethernet8
+   description DC02-0901-SRVB_iLo
+   no shutdown
+   switchport access vlan 2545
+   switchport mode access
+   switchport
+!
+interface Ethernet9
+   description DC02-0901-SRVC_iLo
    no shutdown
    switchport access vlan 2545
    switchport mode access

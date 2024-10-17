@@ -15,7 +15,6 @@
 - [Connected Endpoints](#connected-endpoints)
   - [Connected Endpoint Keys](#connected-endpoint-keys)
   - [Servers](#servers)
-  - [Port Profiles](#port-profiles)
 
 ## Fabric Switches and Management IP
 
@@ -90,11 +89,13 @@
 
 | Name | Port | Fabric Device | Fabric Port | Description | Shutdown | Type | Mode | VLANs | Profile |
 | ---- | ---- | ------------- | ------------| ----------- | -------- | ---- | ---- | ----- | ------- |
-| DC01-0601-ESX01 | idrac | OTI-DC01-OBM1 | Ethernet1 | DC01-0601-ESX01_idrac | False | switched | access | 3545 | iDRAC |
-
-### Port Profiles
-
-| Profile Name | Parent Profile |
-| ------------ | -------------- |
-| iDRAC | - |
-| VM_Servers | - |
+| DC01-0601-ESX01 | idrac | OTI-DC01-OBM1 | Ethernet1 | DC01-0601-ESX01_idrac | False | switched | access | 3545 | - |
+| DC01-0601-ESX02 | idrac | OTI-DC01-OBM1 | Ethernet2 | DC01-0601-ESX02_idrac | False | switched | access | 3545 | - |
+| DC01-0601-ESX03 | idrac | OTI-DC01-OBM1 | Ethernet3 | DC01-0601-ESX03_idrac | False | switched | access | 3545 | - |
+| DC01-0601-ESX04 | idrac | OTI-DC01-OBM1 | Ethernet4 | DC01-0601-ESX04_idrac | False | switched | access | 3545 | - |
+| DC01-0601-ESX05 | idrac | OTI-DC01-OBM1 | Ethernet5 | DC01-0601-ESX05_idrac | False | switched | access | 3545 | - |
+| DC01-0601-ESX06 | idrac | OTI-DC01-OBM1 | Ethernet6 | DC01-0601-ESX06_idrac | False | switched | access | 3545 | - |
+| DC01-0601-SRVA | iLo | OTI-DC01-OBM1 | Ethernet7 | DC01-0601-SRVA_iLo | False | switched | access | 3545 | - |
+| DC01-0601-SRVB | iLo | OTI-DC01-OBM1 | Ethernet8 | DC01-0601-SRVB_iLo | False | switched | access | 3545 | - |
+| DC01-0601-SRVC | iLo | OTI-DC01-OBM1 | Ethernet9 | DC01-0601-SRVC_iLo | False | switched | access | 3545 | - |
+| DC01-0601-SRVD | iLo | OTI-DC01-OBM1 | Ethernet10 | DC01-0601-SRVD_iLo | False | switched | access | 3545 | - |
