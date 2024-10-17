@@ -148,6 +148,21 @@ servers:
       switches:
       - OTI-DC02-Leaf1
       - OTI-DC02-Leaf2
+   -  endpoint_ports:
+      - PCI_slot_1_Port_2
+      - PCI_slot_2_Port_1
+      ethernet_segment:
+         short_esi: auto
+      mode: trunk
+      mtu: 9214
+      port_channel:
+         mode: active
+      switch_ports:
+      - Ethernet1
+      - Ethernet1
+      switches:
+      - OTI-DC02-Leaf3
+      - OTI-DC02-Leaf4
    name: DC02-0901-ESX01
    rack: 0901.01.Rack01
 -  adapters:
@@ -189,6 +204,21 @@ servers:
       switches:
       - OTI-DC02-Leaf1
       - OTI-DC02-Leaf2
+   -  endpoint_ports:
+      - PCI_slot_1_Port_2
+      - PCI_slot_2_Port_1
+      ethernet_segment:
+         short_esi: auto
+      mode: trunk
+      mtu: 9214
+      port_channel:
+         mode: active
+      switch_ports:
+      - Ethernet2
+      - Ethernet2
+      switches:
+      - OTI-DC02-Leaf3
+      - OTI-DC02-Leaf4
    name: DC02-0901-ESX02
    rack: 0901.01.Rack01
 -  adapters:

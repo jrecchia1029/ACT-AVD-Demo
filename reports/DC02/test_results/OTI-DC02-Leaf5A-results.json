@@ -951,6 +951,33 @@
   },
   {
     "name": "OTI-DC02-Leaf5A",
+    "test": "VerifyCPUUtilization",
+    "categories": [
+      "system"
+    ],
+    "description": "Verifies whether the CPU utilization is below 75%.",
+    "result": "success"
+  },
+  {
+    "name": "OTI-DC02-Leaf5A",
+    "test": "VerifyFileSystemUtilization",
+    "categories": [
+      "system"
+    ],
+    "description": "Verifies that no partition is utilizing more than 75% of its disk space.",
+    "result": "success"
+  },
+  {
+    "name": "OTI-DC02-Leaf5A",
+    "test": "VerifyMemoryUtilization",
+    "categories": [
+      "system"
+    ],
+    "description": "Verifies whether the memory utilization is below 75%.",
+    "result": "success"
+  },
+  {
+    "name": "OTI-DC02-Leaf5A",
     "test": "VerifyNTP",
     "categories": [
       "system"

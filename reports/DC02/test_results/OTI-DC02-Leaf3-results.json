@@ -298,6 +298,26 @@
     ],
     "description": "Verifies the status of the provided interfaces.",
     "result": "success",
+    "custom_field": "Interface Ethernet1 - DC02-0901-ESX01_PCI_slot_1_Port_2 = 'up'"
+  },
+  {
+    "name": "OTI-DC02-Leaf3",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the status of the provided interfaces.",
+    "result": "success",
+    "custom_field": "Interface Ethernet2 - DC02-0901-ESX02_PCI_slot_1_Port_2 = 'up'"
+  },
+  {
+    "name": "OTI-DC02-Leaf3",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the status of the provided interfaces.",
+    "result": "success",
     "custom_field": "Interface Ethernet25 - DC02-0901-SRVB_Port_0 = 'up'"
   },
   {
@@ -409,6 +429,26 @@
     "description": "Verifies the status of the provided interfaces.",
     "result": "success",
     "custom_field": "Interface Loopback11 - Development_VTEP_DIAGNOSTICS = 'up'"
+  },
+  {
+    "name": "OTI-DC02-Leaf3",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the status of the provided interfaces.",
+    "result": "success",
+    "custom_field": "Interface Port-Channel1 - DC02-0901-ESX01 = 'up'"
+  },
+  {
+    "name": "OTI-DC02-Leaf3",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the status of the provided interfaces.",
+    "result": "success",
+    "custom_field": "Interface Port-Channel2 - DC02-0901-ESX02 = 'up'"
   },
   {
     "name": "OTI-DC02-Leaf3",
@@ -1048,6 +1088,36 @@
     "description": "Verifies that the provided routes are present in the routing table of a specified VRF.",
     "result": "success",
     "custom_field": "Route: 10.245.218.8 - Peer: OTI-DC02-Leaf5B"
+  },
+  {
+    "name": "OTI-DC02-Leaf3",
+    "test": "VerifyCPUUtilization",
+    "categories": [
+      "system"
+    ],
+    "description": "Verifies whether the CPU utilization is below 75%.",
+    "result": "failure",
+    "messages": [
+      "Device has reported a high CPU utilization: 87.5%"
+    ]
+  },
+  {
+    "name": "OTI-DC02-Leaf3",
+    "test": "VerifyFileSystemUtilization",
+    "categories": [
+      "system"
+    ],
+    "description": "Verifies that no partition is utilizing more than 75% of its disk space.",
+    "result": "success"
+  },
+  {
+    "name": "OTI-DC02-Leaf3",
+    "test": "VerifyMemoryUtilization",
+    "categories": [
+      "system"
+    ],
+    "description": "Verifies whether the memory utilization is below 75%.",
+    "result": "success"
   },
   {
     "name": "OTI-DC02-Leaf3",

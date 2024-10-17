@@ -142,6 +142,33 @@
   },
   {
     "name": "OTI-DC02-OBM1",
+    "test": "VerifyCPUUtilization",
+    "categories": [
+      "system"
+    ],
+    "description": "Verifies whether the CPU utilization is below 75%.",
+    "result": "success"
+  },
+  {
+    "name": "OTI-DC02-OBM1",
+    "test": "VerifyFileSystemUtilization",
+    "categories": [
+      "system"
+    ],
+    "description": "Verifies that no partition is utilizing more than 75% of its disk space.",
+    "result": "success"
+  },
+  {
+    "name": "OTI-DC02-OBM1",
+    "test": "VerifyMemoryUtilization",
+    "categories": [
+      "system"
+    ],
+    "description": "Verifies whether the memory utilization is below 75%.",
+    "result": "success"
+  },
+  {
+    "name": "OTI-DC02-OBM1",
     "test": "VerifyNTP",
     "categories": [
       "system"

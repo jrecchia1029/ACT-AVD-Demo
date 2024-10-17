@@ -21,6 +21,8 @@ l3leaf,OTI-DC02-Leaf2,Ethernet47,server,DC02-0901-ESX02,PCI_slot_2_Port_2,True
 l3leaf,OTI-DC02-Leaf2,Ethernet48,server,DC02-0901-ESX01,PCI_slot_2_Port_2,True
 l3leaf,OTI-DC02-Leaf2,Ethernet55/1,spine,OTI-DC02-Spine1,Ethernet2/1,True
 l3leaf,OTI-DC02-Leaf2,Ethernet56/1,spine,OTI-DC02-Spine2,Ethernet2/1,True
+l3leaf,OTI-DC02-Leaf3,Ethernet1,server,DC02-0901-ESX01,PCI_slot_1_Port_2,True
+l3leaf,OTI-DC02-Leaf3,Ethernet2,server,DC02-0901-ESX02,PCI_slot_1_Port_2,True
 l3leaf,OTI-DC02-Leaf3,Ethernet4,server,DC02-0901-ESX05,Onboard_NIC_2,True
 l3leaf,OTI-DC02-Leaf3,Ethernet5,server,DC02-0901-SRVA,Port_2,True
 l3leaf,OTI-DC02-Leaf3,Ethernet25,server,DC02-0901-SRVB,Port_0,True
@@ -29,6 +31,8 @@ l3leaf,OTI-DC02-Leaf3,Ethernet49/1,server,DC02-0901-ESX03,PCI_slot_1_Port_2,True
 l3leaf,OTI-DC02-Leaf3,Ethernet50/1,server,DC02-0901-ESX04,PCI_slot_1_Port_2,True
 l3leaf,OTI-DC02-Leaf3,Ethernet55/1,spine,OTI-DC02-Spine1,Ethernet3/1,True
 l3leaf,OTI-DC02-Leaf3,Ethernet56/1,spine,OTI-DC02-Spine2,Ethernet3/1,True
+l3leaf,OTI-DC02-Leaf4,Ethernet1,server,DC02-0901-ESX01,PCI_slot_2_Port_1,True
+l3leaf,OTI-DC02-Leaf4,Ethernet2,server,DC02-0901-ESX02,PCI_slot_2_Port_1,True
 l3leaf,OTI-DC02-Leaf4,Ethernet4,server,DC02-0901-ESX05,PCI_slot_2_Port_2,True
 l3leaf,OTI-DC02-Leaf4,Ethernet5,server,DC02-0901-SRVA,Port_3,True
 l3leaf,OTI-DC02-Leaf4,Ethernet25,server,DC02-0901-SRVB,Port_1,True

@@ -143,10 +143,14 @@
 | DC02-0901-ESX01 | Onboard_NIC_2 | OTI-DC02-Leaf1 | Ethernet48 | DC02-0901-ESX01_Onboard_NIC_2 | False | switched | trunk | - | - |
 | DC02-0901-ESX01 | PCI_slot_1_Port_1 | OTI-DC02-Leaf2 | Ethernet1 | DC02-0901-ESX01_PCI_slot_1_Port_1 | False | switched | trunk | - | - |
 | DC02-0901-ESX01 | PCI_slot_2_Port_2 | OTI-DC02-Leaf2 | Ethernet48 | DC02-0901-ESX01_PCI_slot_2_Port_2 | False | switched | trunk | - | - |
+| DC02-0901-ESX01 | PCI_slot_1_Port_2 | OTI-DC02-Leaf3 | Ethernet1 | DC02-0901-ESX01_PCI_slot_1_Port_2 | False | switched | trunk | - | - |
+| DC02-0901-ESX01 | PCI_slot_2_Port_1 | OTI-DC02-Leaf4 | Ethernet1 | DC02-0901-ESX01_PCI_slot_2_Port_1 | False | switched | trunk | - | - |
 | DC02-0901-ESX02 | Onboard_NIC_1 | OTI-DC02-Leaf1 | Ethernet2 | DC02-0901-ESX02_Onboard_NIC_1 | False | switched | trunk | - | - |
 | DC02-0901-ESX02 | Onboard_NIC_2 | OTI-DC02-Leaf1 | Ethernet47 | DC02-0901-ESX02_Onboard_NIC_2 | False | switched | trunk | - | - |
 | DC02-0901-ESX02 | PCI_slot_1_Port_1 | OTI-DC02-Leaf2 | Ethernet2 | DC02-0901-ESX02_PCI_slot_1_Port_1 | False | switched | trunk | - | - |
 | DC02-0901-ESX02 | PCI_slot_2_Port_2 | OTI-DC02-Leaf2 | Ethernet47 | DC02-0901-ESX02_PCI_slot_2_Port_2 | False | switched | trunk | - | - |
+| DC02-0901-ESX02 | PCI_slot_1_Port_2 | OTI-DC02-Leaf3 | Ethernet2 | DC02-0901-ESX02_PCI_slot_1_Port_2 | False | switched | trunk | - | - |
+| DC02-0901-ESX02 | PCI_slot_2_Port_1 | OTI-DC02-Leaf4 | Ethernet2 | DC02-0901-ESX02_PCI_slot_2_Port_1 | False | switched | trunk | - | - |
 | DC02-0901-ESX03 | Onboard_NIC_1 | OTI-DC02-Leaf1 | Ethernet3 | DC02-0901-ESX03_Onboard_NIC_1 | False | switched | trunk | - | - |
 | DC02-0901-ESX03 | PCI_slot_1_Port_1 | OTI-DC02-Leaf2 | Ethernet3 | DC02-0901-ESX03_PCI_slot_1_Port_1 | False | switched | trunk | - | - |
 | DC02-0901-ESX03 | PCI_slot_1_Port_2 | OTI-DC02-Leaf3 | Ethernet49/1 | DC02-0901-ESX03_PCI_slot_1_Port_2 | False | switched | trunk | - | - |
