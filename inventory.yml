@@ -7,28 +7,37 @@ OTI:
             DC01_Spines:
               hosts:
                 OTI-DC01-Spine1:
+                  ansible_host: 10.18.162.82
                 OTI-DC01-Spine2:
+                  ansible_host: 10.18.185.35
             DC01_Leafs:
               children:
                 DC01_Leaf1: # Multi-homing
                   hosts:
                     OTI-DC01-Leaf1:
+                      ansible_host: 10.18.185.46
                 DC01_Leaf2:  # Multi-homing
                   hosts:
                     OTI-DC01-Leaf2:
+                      ansible_host: 10.18.157.42
                 DC01_Leaf3:  # Multi-homing
                   hosts:
                     OTI-DC01-Leaf3:
+                      ansible_host: 10.18.152.11
                 DC01_Leaf4:  # Multi-homing
                   hosts:
                     OTI-DC01-Leaf4:
+                      ansible_host: 10.18.182.168
                 DC01_Leaf5:  # MLAG
                   hosts:
                     OTI-DC01-Leaf5A:
+                      ansible_host: 10.18.184.194
                     OTI-DC01-Leaf5B:
+                      ansible_host: 10.18.129.14
         DC01_OOB:
           hosts:
             OTI-DC01-OBM1:
+              ansible_host: 10.18.140.61
     DC02:
       children:
         DC02_Fabric:
@@ -36,28 +45,37 @@ OTI:
             DC02_Spines:
               hosts:
                 OTI-DC02-Spine1:
+                  ansible_host: 10.18.168.107
                 OTI-DC02-Spine2:
+                  ansible_host: 10.18.185.34
             DC02_Leafs:
               children:
                 DC02_Leaf1:  # Multi-homing
                   hosts:
                     OTI-DC02-Leaf1:
+                      ansible_host: 10.18.167.71
                 DC02_Leaf2:  # Multi-homing
                   hosts:
                     OTI-DC02-Leaf2:
+                      ansible_host: 10.18.181.120
                 DC02_Leaf3:  # Multi-homing
                   hosts:
                     OTI-DC02-Leaf3:
+                      ansible_host: 10.18.185.31
                 DC02_Leaf4:  # Multi-homing
                   hosts:
                     OTI-DC02-Leaf4:
+                      ansible_host: 10.18.167.99
                 DC02_Leaf5:  # MLAG
                   hosts:
                     OTI-DC02-Leaf5A:
+                      ansible_host: 10.18.160.148
                     OTI-DC02-Leaf5B:
+                      ansible_host: 10.18.182.170
         DC02_OOB:
           hosts:
             OTI-DC02-OBM1:
+              ansible_host: 10.18.182.247
 OTI_Tenants:
   children:
     DC01_Leafs:

@@ -1,0 +1,162 @@
+[
+  {
+    "name": "OTI-DC01-OBM1",
+    "test": "VerifyEnvironmentCooling",
+    "categories": [
+      "hardware"
+    ],
+    "description": "Verifies the status of power supply fans and all fan trays.",
+    "result": "skipped",
+    "messages": [
+      "VerifyEnvironmentCooling test is not supported on vEOS-lab."
+    ],
+    "custom_field": "Accepted States: 'ok'"
+  },
+  {
+    "name": "OTI-DC01-OBM1",
+    "test": "VerifyEnvironmentPower",
+    "categories": [
+      "hardware"
+    ],
+    "description": "Verifies the power supplies status.",
+    "result": "skipped",
+    "messages": [
+      "VerifyEnvironmentPower test is not supported on vEOS-lab."
+    ],
+    "custom_field": "Accepted States: 'ok'"
+  },
+  {
+    "name": "OTI-DC01-OBM1",
+    "test": "VerifyTemperature",
+    "categories": [
+      "hardware"
+    ],
+    "description": "Verifies the device temperature.",
+    "result": "skipped",
+    "messages": [
+      "VerifyTemperature test is not supported on vEOS-lab."
+    ]
+  },
+  {
+    "name": "OTI-DC01-OBM1",
+    "test": "VerifyTransceiversManufacturers",
+    "categories": [
+      "hardware"
+    ],
+    "description": "Verifies if all transceivers come from approved manufacturers.",
+    "result": "skipped",
+    "messages": [
+      "VerifyTransceiversManufacturers test is not supported on vEOS-lab."
+    ],
+    "custom_field": "Accepted Manufacturers: 'Arista Networks', 'Arastra, Inc.', 'Not Present'"
+  },
+  {
+    "name": "OTI-DC01-OBM1",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the status of the provided interfaces.",
+    "result": "success",
+    "custom_field": "Interface Ethernet1 - DC01-0601-ESX01_idrac = 'up'"
+  },
+  {
+    "name": "OTI-DC01-OBM1",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the status of the provided interfaces.",
+    "result": "success",
+    "custom_field": "Interface Ethernet10 - DC01-0601-SRVD_iLo = 'up'"
+  },
+  {
+    "name": "OTI-DC01-OBM1",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the status of the provided interfaces.",
+    "result": "success",
+    "custom_field": "Interface Ethernet2 - DC01-0601-ESX02_idrac = 'up'"
+  },
+  {
+    "name": "OTI-DC01-OBM1",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the status of the provided interfaces.",
+    "result": "success",
+    "custom_field": "Interface Ethernet3 - DC01-0601-ESX03_idrac = 'up'"
+  },
+  {
+    "name": "OTI-DC01-OBM1",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the status of the provided interfaces.",
+    "result": "success",
+    "custom_field": "Interface Ethernet4 - DC01-0601-ESX04_idrac = 'up'"
+  },
+  {
+    "name": "OTI-DC01-OBM1",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the status of the provided interfaces.",
+    "result": "success",
+    "custom_field": "Interface Ethernet5 - DC01-0601-ESX05_idrac = 'up'"
+  },
+  {
+    "name": "OTI-DC01-OBM1",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the status of the provided interfaces.",
+    "result": "success",
+    "custom_field": "Interface Ethernet6 - DC01-0601-ESX06_idrac = 'up'"
+  },
+  {
+    "name": "OTI-DC01-OBM1",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the status of the provided interfaces.",
+    "result": "success",
+    "custom_field": "Interface Ethernet7 - DC01-0601-SRVA_iLo = 'up'"
+  },
+  {
+    "name": "OTI-DC01-OBM1",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the status of the provided interfaces.",
+    "result": "success",
+    "custom_field": "Interface Ethernet8 - DC01-0601-SRVB_iLo = 'up'"
+  },
+  {
+    "name": "OTI-DC01-OBM1",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the status of the provided interfaces.",
+    "result": "success",
+    "custom_field": "Interface Ethernet9 - DC01-0601-SRVC_iLo = 'up'"
+  },
+  {
+    "name": "OTI-DC01-OBM1",
+    "test": "VerifyNTP",
+    "categories": [
+      "system"
+    ],
+    "description": "Verifies if NTP is synchronised.",
+    "result": "success"
+  }
+]

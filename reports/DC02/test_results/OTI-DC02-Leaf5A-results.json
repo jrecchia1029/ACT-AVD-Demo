@@ -1,0 +1,961 @@
+[
+  {
+    "name": "OTI-DC02-Leaf5A",
+    "test": "VerifyBGPSpecificPeers",
+    "categories": [
+      "bgp"
+    ],
+    "description": "Verifies the health of specific BGP peer(s).",
+    "result": "success",
+    "custom_field": "BGP EVPN Peer: 10.245.217.7"
+  },
+  {
+    "name": "OTI-DC02-Leaf5A",
+    "test": "VerifyBGPSpecificPeers",
+    "categories": [
+      "bgp"
+    ],
+    "description": "Verifies the health of specific BGP peer(s).",
+    "result": "success",
+    "custom_field": "BGP EVPN Peer: 10.245.217.8"
+  },
+  {
+    "name": "OTI-DC02-Leaf5A",
+    "test": "VerifyBGPSpecificPeers",
+    "categories": [
+      "bgp"
+    ],
+    "description": "Verifies the health of specific BGP peer(s).",
+    "result": "success",
+    "custom_field": "BGP EVPN Peer: OTI-DC02-Spine1 (IP: 10.245.218.1)"
+  },
+  {
+    "name": "OTI-DC02-Leaf5A",
+    "test": "VerifyBGPSpecificPeers",
+    "categories": [
+      "bgp"
+    ],
+    "description": "Verifies the health of specific BGP peer(s).",
+    "result": "success",
+    "custom_field": "BGP EVPN Peer: OTI-DC02-Spine2 (IP: 10.245.218.2)"
+  },
+  {
+    "name": "OTI-DC02-Leaf5A",
+    "test": "VerifyBGPSpecificPeers",
+    "categories": [
+      "bgp"
+    ],
+    "description": "Verifies the health of specific BGP peer(s).",
+    "result": "success",
+    "custom_field": "BGP IPv4 Unicast Peer: 10.245.217.7"
+  },
+  {
+    "name": "OTI-DC02-Leaf5A",
+    "test": "VerifyBGPSpecificPeers",
+    "categories": [
+      "bgp"
+    ],
+    "description": "Verifies the health of specific BGP peer(s).",
+    "result": "success",
+    "custom_field": "BGP IPv4 Unicast Peer: 10.245.217.8"
+  },
+  {
+    "name": "OTI-DC02-Leaf5A",
+    "test": "VerifyBGPSpecificPeers",
+    "categories": [
+      "bgp"
+    ],
+    "description": "Verifies the health of specific BGP peer(s).",
+    "result": "success",
+    "custom_field": "BGP IPv4 Unicast Peer: OTI-DC01-Leaf5A (IP: 192.168.10.249)"
+  },
+  {
+    "name": "OTI-DC02-Leaf5A",
+    "test": "VerifyBGPSpecificPeers",
+    "categories": [
+      "bgp"
+    ],
+    "description": "Verifies the health of specific BGP peer(s).",
+    "result": "success",
+    "custom_field": "BGP IPv4 Unicast Peer: OTI-DC02-Leaf5B (IP: 192.168.14.73)"
+  },
+  {
+    "name": "OTI-DC02-Leaf5A",
+    "test": "VerifyBGPSpecificPeers",
+    "categories": [
+      "bgp"
+    ],
+    "description": "Verifies the health of specific BGP peer(s).",
+    "result": "success",
+    "custom_field": "BGP IPv4 Unicast Peer: OTI-DC02-Spine1 (IP: 192.168.12.16)"
+  },
+  {
+    "name": "OTI-DC02-Leaf5A",
+    "test": "VerifyBGPSpecificPeers",
+    "categories": [
+      "bgp"
+    ],
+    "description": "Verifies the health of specific BGP peer(s).",
+    "result": "success",
+    "custom_field": "BGP IPv4 Unicast Peer: OTI-DC02-Spine2 (IP: 192.168.12.18)"
+  },
+  {
+    "name": "OTI-DC02-Leaf5A",
+    "test": "VerifyLLDPNeighbors",
+    "categories": [
+      "connectivity"
+    ],
+    "description": "Verifies that the provided LLDP neighbors are connected properly.",
+    "result": "success",
+    "custom_field": "Local: Ethernet52/1 - Remote: OTI-DC01-Leaf5A Ethernet52/1"
+  },
+  {
+    "name": "OTI-DC02-Leaf5A",
+    "test": "VerifyLLDPNeighbors",
+    "categories": [
+      "connectivity"
+    ],
+    "description": "Verifies that the provided LLDP neighbors are connected properly.",
+    "result": "success",
+    "custom_field": "Local: Ethernet53/1 - Remote: OTI-DC02-Leaf5B Ethernet53/1"
+  },
+  {
+    "name": "OTI-DC02-Leaf5A",
+    "test": "VerifyLLDPNeighbors",
+    "categories": [
+      "connectivity"
+    ],
+    "description": "Verifies that the provided LLDP neighbors are connected properly.",
+    "result": "success",
+    "custom_field": "Local: Ethernet54/1 - Remote: OTI-DC02-Leaf5B Ethernet54/1"
+  },
+  {
+    "name": "OTI-DC02-Leaf5A",
+    "test": "VerifyLLDPNeighbors",
+    "categories": [
+      "connectivity"
+    ],
+    "description": "Verifies that the provided LLDP neighbors are connected properly.",
+    "result": "success",
+    "custom_field": "Local: Ethernet55/1 - Remote: OTI-DC02-Spine1 Ethernet5/1"
+  },
+  {
+    "name": "OTI-DC02-Leaf5A",
+    "test": "VerifyLLDPNeighbors",
+    "categories": [
+      "connectivity"
+    ],
+    "description": "Verifies that the provided LLDP neighbors are connected properly.",
+    "result": "success",
+    "custom_field": "Local: Ethernet56/1 - Remote: OTI-DC02-Spine2 Ethernet5/1"
+  },
+  {
+    "name": "OTI-DC02-Leaf5A",
+    "test": "VerifyReachability",
+    "categories": [
+      "connectivity"
+    ],
+    "description": "Test the network reachability to one or many destination IP(s).",
+    "result": "success",
+    "custom_field": "Source: Loopback0 (IP: 10.245.218.7) - Destination: OTI-DC01-Leaf1 Loopback0 (IP: 10.245.217.3)"
+  },
+  {
+    "name": "OTI-DC02-Leaf5A",
+    "test": "VerifyReachability",
+    "categories": [
+      "connectivity"
+    ],
+    "description": "Test the network reachability to one or many destination IP(s).",
+    "result": "success",
+    "custom_field": "Source: Loopback0 (IP: 10.245.218.7) - Destination: OTI-DC01-Leaf2 Loopback0 (IP: 10.245.217.4)"
+  },
+  {
+    "name": "OTI-DC02-Leaf5A",
+    "test": "VerifyReachability",
+    "categories": [
+      "connectivity"
+    ],
+    "description": "Test the network reachability to one or many destination IP(s).",
+    "result": "success",
+    "custom_field": "Source: Loopback0 (IP: 10.245.218.7) - Destination: OTI-DC01-Leaf3 Loopback0 (IP: 10.245.217.5)"
+  },
+  {
+    "name": "OTI-DC02-Leaf5A",
+    "test": "VerifyReachability",
+    "categories": [
+      "connectivity"
+    ],
+    "description": "Test the network reachability to one or many destination IP(s).",
+    "result": "success",
+    "custom_field": "Source: Loopback0 (IP: 10.245.218.7) - Destination: OTI-DC01-Leaf4 Loopback0 (IP: 10.245.217.6)"
+  },
+  {
+    "name": "OTI-DC02-Leaf5A",
+    "test": "VerifyReachability",
+    "categories": [
+      "connectivity"
+    ],
+    "description": "Test the network reachability to one or many destination IP(s).",
+    "result": "success",
+    "custom_field": "Source: Loopback0 (IP: 10.245.218.7) - Destination: OTI-DC01-Leaf5A Loopback0 (IP: 10.245.217.7)"
+  },
+  {
+    "name": "OTI-DC02-Leaf5A",
+    "test": "VerifyReachability",
+    "categories": [
+      "connectivity"
+    ],
+    "description": "Test the network reachability to one or many destination IP(s).",
+    "result": "success",
+    "custom_field": "Source: Loopback0 (IP: 10.245.218.7) - Destination: OTI-DC01-Leaf5B Loopback0 (IP: 10.245.217.8)"
+  },
+  {
+    "name": "OTI-DC02-Leaf5A",
+    "test": "VerifyReachability",
+    "categories": [
+      "connectivity"
+    ],
+    "description": "Test the network reachability to one or many destination IP(s).",
+    "result": "success",
+    "custom_field": "Source: Loopback0 (IP: 10.245.218.7) - Destination: OTI-DC01-Spine1 Loopback0 (IP: 10.245.217.1)"
+  },
+  {
+    "name": "OTI-DC02-Leaf5A",
+    "test": "VerifyReachability",
+    "categories": [
+      "connectivity"
+    ],
+    "description": "Test the network reachability to one or many destination IP(s).",
+    "result": "success",
+    "custom_field": "Source: Loopback0 (IP: 10.245.218.7) - Destination: OTI-DC01-Spine2 Loopback0 (IP: 10.245.217.2)"
+  },
+  {
+    "name": "OTI-DC02-Leaf5A",
+    "test": "VerifyReachability",
+    "categories": [
+      "connectivity"
+    ],
+    "description": "Test the network reachability to one or many destination IP(s).",
+    "result": "success",
+    "custom_field": "Source: Loopback0 (IP: 10.245.218.7) - Destination: OTI-DC02-Leaf1 Loopback0 (IP: 10.245.218.3)"
+  },
+  {
+    "name": "OTI-DC02-Leaf5A",
+    "test": "VerifyReachability",
+    "categories": [
+      "connectivity"
+    ],
+    "description": "Test the network reachability to one or many destination IP(s).",
+    "result": "success",
+    "custom_field": "Source: Loopback0 (IP: 10.245.218.7) - Destination: OTI-DC02-Leaf2 Loopback0 (IP: 10.245.218.4)"
+  },
+  {
+    "name": "OTI-DC02-Leaf5A",
+    "test": "VerifyReachability",
+    "categories": [
+      "connectivity"
+    ],
+    "description": "Test the network reachability to one or many destination IP(s).",
+    "result": "success",
+    "custom_field": "Source: Loopback0 (IP: 10.245.218.7) - Destination: OTI-DC02-Leaf3 Loopback0 (IP: 10.245.218.5)"
+  },
+  {
+    "name": "OTI-DC02-Leaf5A",
+    "test": "VerifyReachability",
+    "categories": [
+      "connectivity"
+    ],
+    "description": "Test the network reachability to one or many destination IP(s).",
+    "result": "success",
+    "custom_field": "Source: Loopback0 (IP: 10.245.218.7) - Destination: OTI-DC02-Leaf4 Loopback0 (IP: 10.245.218.6)"
+  },
+  {
+    "name": "OTI-DC02-Leaf5A",
+    "test": "VerifyReachability",
+    "categories": [
+      "connectivity"
+    ],
+    "description": "Test the network reachability to one or many destination IP(s).",
+    "result": "success",
+    "custom_field": "Source: Loopback0 (IP: 10.245.218.7) - Destination: OTI-DC02-Leaf5A Loopback0 (IP: 10.245.218.7)"
+  },
+  {
+    "name": "OTI-DC02-Leaf5A",
+    "test": "VerifyReachability",
+    "categories": [
+      "connectivity"
+    ],
+    "description": "Test the network reachability to one or many destination IP(s).",
+    "result": "success",
+    "custom_field": "Source: Loopback0 (IP: 10.245.218.7) - Destination: OTI-DC02-Leaf5B Loopback0 (IP: 10.245.218.8)"
+  },
+  {
+    "name": "OTI-DC02-Leaf5A",
+    "test": "VerifyReachability",
+    "categories": [
+      "connectivity"
+    ],
+    "description": "Test the network reachability to one or many destination IP(s).",
+    "result": "success",
+    "custom_field": "Source: Loopback0 (IP: 10.245.218.7) - Destination: OTI-DC02-Spine1 Loopback0 (IP: 10.245.218.1)"
+  },
+  {
+    "name": "OTI-DC02-Leaf5A",
+    "test": "VerifyReachability",
+    "categories": [
+      "connectivity"
+    ],
+    "description": "Test the network reachability to one or many destination IP(s).",
+    "result": "success",
+    "custom_field": "Source: Loopback0 (IP: 10.245.218.7) - Destination: OTI-DC02-Spine2 Loopback0 (IP: 10.245.218.2)"
+  },
+  {
+    "name": "OTI-DC02-Leaf5A",
+    "test": "VerifyReachability",
+    "categories": [
+      "connectivity"
+    ],
+    "description": "Test the network reachability to one or many destination IP(s).",
+    "result": "success",
+    "custom_field": "Source: P2P Interface Ethernet52/1 (IP: 192.168.10.248) - Destination: OTI-DC01-Leaf5A Ethernet52/1 (IP: 192.168.10.249)"
+  },
+  {
+    "name": "OTI-DC02-Leaf5A",
+    "test": "VerifyReachability",
+    "categories": [
+      "connectivity"
+    ],
+    "description": "Test the network reachability to one or many destination IP(s).",
+    "result": "success",
+    "custom_field": "Source: P2P Interface Ethernet55/1 (IP: 192.168.12.17) - Destination: OTI-DC02-Spine1 Ethernet5/1 (IP: 192.168.12.16)"
+  },
+  {
+    "name": "OTI-DC02-Leaf5A",
+    "test": "VerifyReachability",
+    "categories": [
+      "connectivity"
+    ],
+    "description": "Test the network reachability to one or many destination IP(s).",
+    "result": "success",
+    "custom_field": "Source: P2P Interface Ethernet56/1 (IP: 192.168.12.19) - Destination: OTI-DC02-Spine2 Ethernet5/1 (IP: 192.168.12.18)"
+  },
+  {
+    "name": "OTI-DC02-Leaf5A",
+    "test": "VerifyEnvironmentCooling",
+    "categories": [
+      "hardware"
+    ],
+    "description": "Verifies the status of power supply fans and all fan trays.",
+    "result": "skipped",
+    "messages": [
+      "VerifyEnvironmentCooling test is not supported on vEOS-lab."
+    ],
+    "custom_field": "Accepted States: 'ok'"
+  },
+  {
+    "name": "OTI-DC02-Leaf5A",
+    "test": "VerifyEnvironmentPower",
+    "categories": [
+      "hardware"
+    ],
+    "description": "Verifies the power supplies status.",
+    "result": "skipped",
+    "messages": [
+      "VerifyEnvironmentPower test is not supported on vEOS-lab."
+    ],
+    "custom_field": "Accepted States: 'ok'"
+  },
+  {
+    "name": "OTI-DC02-Leaf5A",
+    "test": "VerifyTemperature",
+    "categories": [
+      "hardware"
+    ],
+    "description": "Verifies the device temperature.",
+    "result": "skipped",
+    "messages": [
+      "VerifyTemperature test is not supported on vEOS-lab."
+    ]
+  },
+  {
+    "name": "OTI-DC02-Leaf5A",
+    "test": "VerifyTransceiversManufacturers",
+    "categories": [
+      "hardware"
+    ],
+    "description": "Verifies if all transceivers come from approved manufacturers.",
+    "result": "skipped",
+    "messages": [
+      "VerifyTransceiversManufacturers test is not supported on vEOS-lab."
+    ],
+    "custom_field": "Accepted Manufacturers: 'Arista Networks', 'Arastra, Inc.', 'Not Present'"
+  },
+  {
+    "name": "OTI-DC02-Leaf5A",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the status of the provided interfaces.",
+    "result": "success",
+    "custom_field": "Interface Ethernet1 - DC02-0901-ESX04_Onboard_NIC_2 = 'up'"
+  },
+  {
+    "name": "OTI-DC02-Leaf5A",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the status of the provided interfaces.",
+    "result": "success",
+    "custom_field": "Interface Ethernet2 - DC02-0901-ESX06_Onboard_NIC_2 = 'up'"
+  },
+  {
+    "name": "OTI-DC02-Leaf5A",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the status of the provided interfaces.",
+    "result": "success",
+    "custom_field": "Interface Ethernet49/1 - DC02-0901-ESX05_PCI_slot_1_Port_2 = 'up'"
+  },
+  {
+    "name": "OTI-DC02-Leaf5A",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the status of the provided interfaces.",
+    "result": "success",
+    "custom_field": "Interface Ethernet50/1 - DC02-0901-ESX06_PCI_slot_1_Port_2 = 'up'"
+  },
+  {
+    "name": "OTI-DC02-Leaf5A",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the status of the provided interfaces.",
+    "result": "success",
+    "custom_field": "Interface Ethernet52/1 - P2P_LINK_TO_OTI-DC01-Leaf5A_Ethernet52/1 = 'up'"
+  },
+  {
+    "name": "OTI-DC02-Leaf5A",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the status of the provided interfaces.",
+    "result": "success",
+    "custom_field": "Interface Ethernet53/1 - MLAG_PEER_OTI-DC02-Leaf5B_Ethernet53/1 = 'up'"
+  },
+  {
+    "name": "OTI-DC02-Leaf5A",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the status of the provided interfaces.",
+    "result": "success",
+    "custom_field": "Interface Ethernet54/1 - MLAG_PEER_OTI-DC02-Leaf5B_Ethernet54/1 = 'up'"
+  },
+  {
+    "name": "OTI-DC02-Leaf5A",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the status of the provided interfaces.",
+    "result": "success",
+    "custom_field": "Interface Ethernet55/1 - P2P_LINK_TO_OTI-DC02-SPINE1_Ethernet5/1 = 'up'"
+  },
+  {
+    "name": "OTI-DC02-Leaf5A",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the status of the provided interfaces.",
+    "result": "success",
+    "custom_field": "Interface Ethernet56/1 - P2P_LINK_TO_OTI-DC02-SPINE2_Ethernet5/1 = 'up'"
+  },
+  {
+    "name": "OTI-DC02-Leaf5A",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the status of the provided interfaces.",
+    "result": "success",
+    "custom_field": "Interface Loopback0 - EVPN_Overlay_Peering = 'up'"
+  },
+  {
+    "name": "OTI-DC02-Leaf5A",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the status of the provided interfaces.",
+    "result": "success",
+    "custom_field": "Interface Loopback1 - VTEP_VXLAN_Tunnel_Source = 'up'"
+  },
+  {
+    "name": "OTI-DC02-Leaf5A",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the status of the provided interfaces.",
+    "result": "success",
+    "custom_field": "Interface Loopback10 - Production_VTEP_DIAGNOSTICS = 'up'"
+  },
+  {
+    "name": "OTI-DC02-Leaf5A",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the status of the provided interfaces.",
+    "result": "success",
+    "custom_field": "Interface Port-Channel1 - DC02-0901-ESX04 = 'up'"
+  },
+  {
+    "name": "OTI-DC02-Leaf5A",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the status of the provided interfaces.",
+    "result": "success",
+    "custom_field": "Interface Port-Channel2 - DC02-0901-ESX06 = 'up'"
+  },
+  {
+    "name": "OTI-DC02-Leaf5A",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the status of the provided interfaces.",
+    "result": "success",
+    "custom_field": "Interface Port-Channel491 - DC02-0901-ESX05 = 'up'"
+  },
+  {
+    "name": "OTI-DC02-Leaf5A",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the status of the provided interfaces.",
+    "result": "success",
+    "custom_field": "Interface Port-Channel501 - DC02-0901-ESX06 = 'up'"
+  },
+  {
+    "name": "OTI-DC02-Leaf5A",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the status of the provided interfaces.",
+    "result": "success",
+    "custom_field": "Interface Port-Channel531 - MLAG_PEER_OTI-DC02-Leaf5B_Po531 = 'up'"
+  },
+  {
+    "name": "OTI-DC02-Leaf5A",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the status of the provided interfaces.",
+    "result": "success",
+    "custom_field": "Interface Vlan1100 - SRVR_FARM_BLADE_0 = 'up'"
+  },
+  {
+    "name": "OTI-DC02-Leaf5A",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the status of the provided interfaces.",
+    "result": "success",
+    "custom_field": "Interface Vlan1101 - SRVR_FARM_BLADE_1 = 'up'"
+  },
+  {
+    "name": "OTI-DC02-Leaf5A",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the status of the provided interfaces.",
+    "result": "success",
+    "custom_field": "Interface Vlan1102 - SRVR_FARM_BLADE_2 = 'up'"
+  },
+  {
+    "name": "OTI-DC02-Leaf5A",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the status of the provided interfaces.",
+    "result": "success",
+    "custom_field": "Interface Vlan3009 - MLAG_PEER_L3_iBGP: vrf Production = 'up'"
+  },
+  {
+    "name": "OTI-DC02-Leaf5A",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the status of the provided interfaces.",
+    "result": "success",
+    "custom_field": "Interface Vlan4093 - MLAG_PEER_L3_PEERING = 'up'"
+  },
+  {
+    "name": "OTI-DC02-Leaf5A",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the status of the provided interfaces.",
+    "result": "success",
+    "custom_field": "Interface Vlan4094 - MLAG_PEER = 'up'"
+  },
+  {
+    "name": "OTI-DC02-Leaf5A",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the status of the provided interfaces.",
+    "result": "success",
+    "custom_field": "Interface Vlan887 - NOCB_WORKLOAD1 = 'up'"
+  },
+  {
+    "name": "OTI-DC02-Leaf5A",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the status of the provided interfaces.",
+    "result": "success",
+    "custom_field": "Interface Vlan888 - NOCB_WORKLOAD2 = 'up'"
+  },
+  {
+    "name": "OTI-DC02-Leaf5A",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the status of the provided interfaces.",
+    "result": "success",
+    "custom_field": "Interface Vlan899 - NAS = 'up'"
+  },
+  {
+    "name": "OTI-DC02-Leaf5A",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the status of the provided interfaces.",
+    "result": "success",
+    "custom_field": "Interface Vlan999 - BWS = 'up'"
+  },
+  {
+    "name": "OTI-DC02-Leaf5A",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the status of the provided interfaces.",
+    "result": "success",
+    "custom_field": "Interface Vxlan1 = 'up'"
+  },
+  {
+    "name": "OTI-DC02-Leaf5A",
+    "test": "VerifyMlagStatus",
+    "categories": [
+      "mlag"
+    ],
+    "description": "Verifies the health status of the MLAG configuration.",
+    "result": "success"
+  },
+  {
+    "name": "OTI-DC02-Leaf5A",
+    "test": "VerifyRoutingProtocolModel",
+    "categories": [
+      "routing"
+    ],
+    "description": "Verifies the configured routing protocol model.",
+    "result": "success",
+    "custom_field": "Routing protocol model: multi-agent"
+  },
+  {
+    "name": "OTI-DC02-Leaf5A",
+    "test": "VerifyRoutingTableEntry",
+    "categories": [
+      "routing"
+    ],
+    "description": "Verifies that the provided routes are present in the routing table of a specified VRF.",
+    "result": "success",
+    "custom_field": "Route: 10.245.217.1 - Peer: OTI-DC01-Spine1"
+  },
+  {
+    "name": "OTI-DC02-Leaf5A",
+    "test": "VerifyRoutingTableEntry",
+    "categories": [
+      "routing"
+    ],
+    "description": "Verifies that the provided routes are present in the routing table of a specified VRF.",
+    "result": "success",
+    "custom_field": "Route: 10.245.217.2 - Peer: OTI-DC01-Spine2"
+  },
+  {
+    "name": "OTI-DC02-Leaf5A",
+    "test": "VerifyRoutingTableEntry",
+    "categories": [
+      "routing"
+    ],
+    "description": "Verifies that the provided routes are present in the routing table of a specified VRF.",
+    "result": "success",
+    "custom_field": "Route: 10.245.217.3 - Peer: OTI-DC01-Leaf1"
+  },
+  {
+    "name": "OTI-DC02-Leaf5A",
+    "test": "VerifyRoutingTableEntry",
+    "categories": [
+      "routing"
+    ],
+    "description": "Verifies that the provided routes are present in the routing table of a specified VRF.",
+    "result": "success",
+    "custom_field": "Route: 10.245.217.35 - Peer: OTI-DC01-Leaf1"
+  },
+  {
+    "name": "OTI-DC02-Leaf5A",
+    "test": "VerifyRoutingTableEntry",
+    "categories": [
+      "routing"
+    ],
+    "description": "Verifies that the provided routes are present in the routing table of a specified VRF.",
+    "result": "success",
+    "custom_field": "Route: 10.245.217.36 - Peer: OTI-DC01-Leaf2"
+  },
+  {
+    "name": "OTI-DC02-Leaf5A",
+    "test": "VerifyRoutingTableEntry",
+    "categories": [
+      "routing"
+    ],
+    "description": "Verifies that the provided routes are present in the routing table of a specified VRF.",
+    "result": "success",
+    "custom_field": "Route: 10.245.217.37 - Peer: OTI-DC01-Leaf3"
+  },
+  {
+    "name": "OTI-DC02-Leaf5A",
+    "test": "VerifyRoutingTableEntry",
+    "categories": [
+      "routing"
+    ],
+    "description": "Verifies that the provided routes are present in the routing table of a specified VRF.",
+    "result": "success",
+    "custom_field": "Route: 10.245.217.38 - Peer: OTI-DC01-Leaf4"
+  },
+  {
+    "name": "OTI-DC02-Leaf5A",
+    "test": "VerifyRoutingTableEntry",
+    "categories": [
+      "routing"
+    ],
+    "description": "Verifies that the provided routes are present in the routing table of a specified VRF.",
+    "result": "success",
+    "custom_field": "Route: 10.245.217.39 - Peer: OTI-DC01-Leaf5A"
+  },
+  {
+    "name": "OTI-DC02-Leaf5A",
+    "test": "VerifyRoutingTableEntry",
+    "categories": [
+      "routing"
+    ],
+    "description": "Verifies that the provided routes are present in the routing table of a specified VRF.",
+    "result": "success",
+    "custom_field": "Route: 10.245.217.4 - Peer: OTI-DC01-Leaf2"
+  },
+  {
+    "name": "OTI-DC02-Leaf5A",
+    "test": "VerifyRoutingTableEntry",
+    "categories": [
+      "routing"
+    ],
+    "description": "Verifies that the provided routes are present in the routing table of a specified VRF.",
+    "result": "success",
+    "custom_field": "Route: 10.245.217.5 - Peer: OTI-DC01-Leaf3"
+  },
+  {
+    "name": "OTI-DC02-Leaf5A",
+    "test": "VerifyRoutingTableEntry",
+    "categories": [
+      "routing"
+    ],
+    "description": "Verifies that the provided routes are present in the routing table of a specified VRF.",
+    "result": "success",
+    "custom_field": "Route: 10.245.217.6 - Peer: OTI-DC01-Leaf4"
+  },
+  {
+    "name": "OTI-DC02-Leaf5A",
+    "test": "VerifyRoutingTableEntry",
+    "categories": [
+      "routing"
+    ],
+    "description": "Verifies that the provided routes are present in the routing table of a specified VRF.",
+    "result": "success",
+    "custom_field": "Route: 10.245.217.7 - Peer: OTI-DC01-Leaf5A"
+  },
+  {
+    "name": "OTI-DC02-Leaf5A",
+    "test": "VerifyRoutingTableEntry",
+    "categories": [
+      "routing"
+    ],
+    "description": "Verifies that the provided routes are present in the routing table of a specified VRF.",
+    "result": "success",
+    "custom_field": "Route: 10.245.217.8 - Peer: OTI-DC01-Leaf5B"
+  },
+  {
+    "name": "OTI-DC02-Leaf5A",
+    "test": "VerifyRoutingTableEntry",
+    "categories": [
+      "routing"
+    ],
+    "description": "Verifies that the provided routes are present in the routing table of a specified VRF.",
+    "result": "success",
+    "custom_field": "Route: 10.245.218.1 - Peer: OTI-DC02-Spine1"
+  },
+  {
+    "name": "OTI-DC02-Leaf5A",
+    "test": "VerifyRoutingTableEntry",
+    "categories": [
+      "routing"
+    ],
+    "description": "Verifies that the provided routes are present in the routing table of a specified VRF.",
+    "result": "success",
+    "custom_field": "Route: 10.245.218.2 - Peer: OTI-DC02-Spine2"
+  },
+  {
+    "name": "OTI-DC02-Leaf5A",
+    "test": "VerifyRoutingTableEntry",
+    "categories": [
+      "routing"
+    ],
+    "description": "Verifies that the provided routes are present in the routing table of a specified VRF.",
+    "result": "success",
+    "custom_field": "Route: 10.245.218.3 - Peer: OTI-DC02-Leaf1"
+  },
+  {
+    "name": "OTI-DC02-Leaf5A",
+    "test": "VerifyRoutingTableEntry",
+    "categories": [
+      "routing"
+    ],
+    "description": "Verifies that the provided routes are present in the routing table of a specified VRF.",
+    "result": "success",
+    "custom_field": "Route: 10.245.218.35 - Peer: OTI-DC02-Leaf1"
+  },
+  {
+    "name": "OTI-DC02-Leaf5A",
+    "test": "VerifyRoutingTableEntry",
+    "categories": [
+      "routing"
+    ],
+    "description": "Verifies that the provided routes are present in the routing table of a specified VRF.",
+    "result": "success",
+    "custom_field": "Route: 10.245.218.36 - Peer: OTI-DC02-Leaf2"
+  },
+  {
+    "name": "OTI-DC02-Leaf5A",
+    "test": "VerifyRoutingTableEntry",
+    "categories": [
+      "routing"
+    ],
+    "description": "Verifies that the provided routes are present in the routing table of a specified VRF.",
+    "result": "success",
+    "custom_field": "Route: 10.245.218.37 - Peer: OTI-DC02-Leaf3"
+  },
+  {
+    "name": "OTI-DC02-Leaf5A",
+    "test": "VerifyRoutingTableEntry",
+    "categories": [
+      "routing"
+    ],
+    "description": "Verifies that the provided routes are present in the routing table of a specified VRF.",
+    "result": "success",
+    "custom_field": "Route: 10.245.218.38 - Peer: OTI-DC02-Leaf4"
+  },
+  {
+    "name": "OTI-DC02-Leaf5A",
+    "test": "VerifyRoutingTableEntry",
+    "categories": [
+      "routing"
+    ],
+    "description": "Verifies that the provided routes are present in the routing table of a specified VRF.",
+    "result": "success",
+    "custom_field": "Route: 10.245.218.39 - Peer: OTI-DC02-Leaf5A"
+  },
+  {
+    "name": "OTI-DC02-Leaf5A",
+    "test": "VerifyRoutingTableEntry",
+    "categories": [
+      "routing"
+    ],
+    "description": "Verifies that the provided routes are present in the routing table of a specified VRF.",
+    "result": "success",
+    "custom_field": "Route: 10.245.218.4 - Peer: OTI-DC02-Leaf2"
+  },
+  {
+    "name": "OTI-DC02-Leaf5A",
+    "test": "VerifyRoutingTableEntry",
+    "categories": [
+      "routing"
+    ],
+    "description": "Verifies that the provided routes are present in the routing table of a specified VRF.",
+    "result": "success",
+    "custom_field": "Route: 10.245.218.5 - Peer: OTI-DC02-Leaf3"
+  },
+  {
+    "name": "OTI-DC02-Leaf5A",
+    "test": "VerifyRoutingTableEntry",
+    "categories": [
+      "routing"
+    ],
+    "description": "Verifies that the provided routes are present in the routing table of a specified VRF.",
+    "result": "success",
+    "custom_field": "Route: 10.245.218.6 - Peer: OTI-DC02-Leaf4"
+  },
+  {
+    "name": "OTI-DC02-Leaf5A",
+    "test": "VerifyRoutingTableEntry",
+    "categories": [
+      "routing"
+    ],
+    "description": "Verifies that the provided routes are present in the routing table of a specified VRF.",
+    "result": "success",
+    "custom_field": "Route: 10.245.218.7 - Peer: OTI-DC02-Leaf5A"
+  },
+  {
+    "name": "OTI-DC02-Leaf5A",
+    "test": "VerifyRoutingTableEntry",
+    "categories": [
+      "routing"
+    ],
+    "description": "Verifies that the provided routes are present in the routing table of a specified VRF.",
+    "result": "success",
+    "custom_field": "Route: 10.245.218.8 - Peer: OTI-DC02-Leaf5B"
+  },
+  {
+    "name": "OTI-DC02-Leaf5A",
+    "test": "VerifyNTP",
+    "categories": [
+      "system"
+    ],
+    "description": "Verifies if NTP is synchronised.",
+    "result": "success"
+  }
+]
