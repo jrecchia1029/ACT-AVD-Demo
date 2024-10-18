@@ -19,8 +19,17 @@ jobs:
       - name: Install Python requirements
         run: pip install -r requirements-python.yml
 
+      - name: Check paths for Endpoints file
+        uses: dorny/paths-filter@v3
+        id: endpoints_xlsx
+        with:
+          filters: |
+            workflows:
+              - 'OtiNetworkConnectivitySpreadsheet.xlsx'
+
       - name: Update OTI Endpoints based on xlsx
         run: python OTI_XLSX_TO_AVD_ENDPOINTS.py
+        if: steps.endpoints_xlsx.outputs.workflows == 'true'
 
       - name: Run pre-commit on files
         uses: pre-commit/action@v3.0.0
@@ -31,8 +40,8 @@ jobs:
         with:
           filters: |
             workflows:
-              - 'group_vars/DC01**'
-              - 'group_vars/OTI_**'
+              - 'group_vars/DC01*'
+              - 'group_vars/OTI*'
 
       - name: Check paths for group_vars/DC02
         uses: dorny/paths-filter@v3
@@ -40,20 +49,20 @@ jobs:
         with:
           filters: |
             workflows:
-              - 'group_vars/DC02**'
-              - 'group_vars/OTI_**'
+              - 'group_vars/DC02*'
+              - 'group_vars/OTI*'
 
       - name: Install collections
         run: ansible-galaxy collection install -r requirements.yml
-        if: steps.filter-site1.outputs.workflows == 'true' || steps.filter-site2.outputs.workflows == 'true'
+        if: steps.endpoints_xlsx.outputs.workflows == 'true' || steps.filter-site1.outputs.workflows == 'true' || steps.filter-site2.outputs.workflows == 'true'
 
       # - name: Test configuration
       #   run: ansible-playbook playbooks/build_all.yml -i inventory.yml --tags generate
 
       - name: Build DC01
         run: ansible-playbook playbooks/build_dc01.yml -i inventory.yml --tags generate
-        if: steps.filter-site1.outputs.workflows == 'true'
+        if: steps.endpoints_xlsx.outputs.workflows == 'true' || steps.filter-site1.outputs.workflows == 'true'
 
-      - name: Build DC01
+      - name: Build DC02
         run: ansible-playbook playbooks/build_dc02.yml -i inventory.yml --tags generate
-        if: steps.filter-site2.outputs.workflows == 'true'
+        if: steps.endpoints_xlsx.outputs.workflows == 'true' || steps.filter-site2.outputs.workflows == 'true'
