@@ -1,0 +1,648 @@
+hostname: OTI-DC01-Leaf5B
+is_deployed: true
+serial_number: SN-OTI-DC01-Leaf5B
+router_bgp:
+  as: '65005'
+  router_id: 10.245.217.8
+  distance:
+    external_routes: 20
+    internal_routes: 200
+    local_routes: 200
+  bgp:
+    default:
+      ipv4_unicast: true
+  maximum_paths:
+    paths: 4
+    ecmp: 4
+  graceful_restart:
+    enabled: true
+    restart_time: 300
+  peer_groups:
+  - name: MLAG-IPv4-UNDERLAY-PEER
+    type: ipv4
+    remote_as: '65005'
+    next_hop_self: true
+    description: OTI-DC01-Leaf5A
+    maximum_routes: 12000
+    send_community: all
+    route_map_in: RM-MLAG-PEER-IN
+  - name: IPv4-UNDERLAY-PEERS
+    type: ipv4
+    maximum_routes: 12000
+    send_community: all
+  - name: EVPN-OVERLAY-PEERS
+    type: evpn
+    update_source: Loopback0
+    bfd: true
+    send_community: all
+    maximum_routes: 0
+    ebgp_multihop: 3
+  - name: INTER-DC-EVPN-PEERS
+    update_source: Loopback0
+    ebgp_multihop: 10
+    maximum_routes: 0
+    maximum_routes_warning_limit: '500000'
+    send_community: all
+    remote_as: '65105'
+  address_family_ipv4:
+    peer_groups:
+    - name: MLAG-IPv4-UNDERLAY-PEER
+      activate: true
+    - name: IPv4-UNDERLAY-PEERS
+      activate: true
+    - name: EVPN-OVERLAY-PEERS
+      activate: false
+    - name: INTER-DC-EVPN-PEERS
+      activate: true
+  neighbors:
+  - ip_address: 192.168.13.72
+    peer_group: MLAG-IPv4-UNDERLAY-PEER
+    peer: OTI-DC01-Leaf5A
+    description: OTI-DC01-Leaf5A
+  - ip_address: 192.168.11.20
+    peer_group: IPv4-UNDERLAY-PEERS
+    remote_as: '65000'
+    peer: OTI-DC01-Spine1
+    description: OTI-DC01-Spine1_Ethernet6/1
+  - ip_address: 192.168.11.22
+    peer_group: IPv4-UNDERLAY-PEERS
+    remote_as: '65000'
+    peer: OTI-DC01-Spine2
+    description: OTI-DC01-Spine2_Ethernet6/1
+  - ip_address: 10.245.217.1
+    peer_group: EVPN-OVERLAY-PEERS
+    peer: OTI-DC01-Spine1
+    description: OTI-DC01-Spine1
+    remote_as: '65000'
+  - ip_address: 10.245.217.2
+    peer_group: EVPN-OVERLAY-PEERS
+    peer: OTI-DC01-Spine2
+    description: OTI-DC01-Spine2
+    remote_as: '65000'
+  - ip_address: 192.168.10.251
+    remote_as: '65105'
+    peer: OTI-DC02-Leaf5B
+    description: OTI-DC02-Leaf5B
+    peer_group: IPv4-UNDERLAY-PEERS
+  - ip_address: 10.245.218.7
+    description: OTI-DC02-Leaf5A
+    peer_group: INTER-DC-EVPN-PEERS
+  - ip_address: 10.245.218.8
+    description: OTI-DC02-Leaf5B
+    peer_group: INTER-DC-EVPN-PEERS
+  redistribute_routes:
+  - source_protocol: connected
+    route_map: RM-CONN-2-BGP
+  address_family_evpn:
+    peer_groups:
+    - name: EVPN-OVERLAY-PEERS
+      activate: true
+    - name: INTER-DC-EVPN-PEERS
+      activate: true
+  vrfs:
+  - name: Development
+    router_id: 10.245.217.8
+    rd: 10.245.217.8:11
+    route_targets:
+      import:
+      - address_family: evpn
+        route_targets:
+        - '11:11'
+      export:
+      - address_family: evpn
+        route_targets:
+        - '11:11'
+    redistribute_routes:
+    - source_protocol: connected
+    neighbors:
+    - ip_address: 192.168.13.72
+      peer_group: MLAG-IPv4-UNDERLAY-PEER
+  - name: Production
+    router_id: 10.245.217.8
+    rd: 10.245.217.8:10
+    route_targets:
+      import:
+      - address_family: evpn
+        route_targets:
+        - '10:10'
+      export:
+      - address_family: evpn
+        route_targets:
+        - '10:10'
+    redistribute_routes:
+    - source_protocol: connected
+    neighbors:
+    - ip_address: 192.168.13.72
+      peer_group: MLAG-IPv4-UNDERLAY-PEER
+  vlans:
+  - id: 2500
+    tenant: OTI
+    rd: 10.245.217.8:12500
+    route_targets:
+      both:
+      - 12500:12500
+    redistribute_routes:
+    - learned
+  - id: 2821
+    tenant: OTI
+    rd: 10.245.217.8:12821
+    route_targets:
+      both:
+      - 12821:12821
+    redistribute_routes:
+    - learned
+  - id: 2822
+    tenant: OTI
+    rd: 10.245.217.8:12822
+    route_targets:
+      both:
+      - 12822:12822
+    redistribute_routes:
+    - learned
+  - id: 2833
+    tenant: OTI
+    rd: 10.245.217.8:12833
+    route_targets:
+      both:
+      - 12833:12833
+    redistribute_routes:
+    - learned
+  - id: 2834
+    tenant: OTI
+    rd: 10.245.217.8:12834
+    route_targets:
+      both:
+      - 12834:12834
+    redistribute_routes:
+    - learned
+  - id: 55
+    tenant: OTI
+    rd: 10.245.217.8:10055
+    route_targets:
+      both:
+      - 10055:10055
+    redistribute_routes:
+    - learned
+  - id: 821
+    tenant: OTI
+    rd: 10.245.217.8:10821
+    route_targets:
+      both:
+      - 10821:10821
+    redistribute_routes:
+    - learned
+  - id: 3911
+    tenant: OTI
+    rd: 10.245.217.8:13911
+    route_targets:
+      both:
+      - 13911:13911
+    redistribute_routes:
+    - learned
+service_routing_protocols_model: multi-agent
+ip_routing: true
+daemon_terminattr:
+  cvaddrs:
+  - apiserver.arista.io:443
+  cvauth:
+    method: token-secure
+    token_file: /tmp/cv-onboarding-token
+  cvvrf: default
+  smashexcludes: ale,flexCounter,hardware,kni,pulse,strata
+  ingestexclude: /Sysdb/cell/1/agent,/Sysdb/cell/2/agent
+  disable_aaa: false
+vlan_internal_order:
+  allocation: ascending
+  range:
+    beginning: 1006
+    ending: 1199
+spanning_tree:
+  mode: mstp
+  mst_instances:
+  - id: '0'
+    priority: 4096
+  no_spanning_tree_vlan: 4093-4094
+local_users:
+- name: cvpadmin
+  privilege: 15
+  role: network-admin
+  sha512_password: $6$ikGzKyb6w4yEqLly$mJLofKfPrT2Mx6UffrY2dwFXuTCbtf2Okjfu9CgyuduVdN3WIrq9quRZXXFjrRI754ewFQ3uZSlwSEKAe2zbP1
+vrfs:
+- name: default
+  ip_routing: false
+- name: Development
+  tenant: OTI
+  ip_routing: true
+- name: Production
+  tenant: OTI
+  ip_routing: true
+management_interfaces:
+- name: Management1
+  description: oob_management
+  shutdown: false
+  vrf: default
+  ip_address: 192.168.255.18/24
+  gateway: null
+  type: oob
+  lldp:
+    transmit: false
+    receive: false
+management_api_http:
+  enable_vrfs:
+  - name: default
+  enable_https: true
+vlans:
+- id: 4093
+  tenant: system
+  name: LEAF_PEER_L3
+  trunk_groups:
+  - LEAF_PEER_L3
+- id: 4094
+  tenant: system
+  name: MLAG_PEER
+  trunk_groups:
+  - MLAG
+- id: 2500
+  name: Scada_Dev
+  tenant: OTI
+- id: 2821
+  name: Users_Dev
+  tenant: OTI
+- id: 2822
+  name: Voice_Dev
+  tenant: OTI
+- id: 2833
+  name: Broadcast1
+  tenant: OTI
+- id: 2834
+  name: Broadcast2
+  tenant: OTI
+- id: 3010
+  name: MLAG_iBGP_Development
+  trunk_groups:
+  - LEAF_PEER_L3
+  tenant: OTI
+- id: 55
+  name: HYPER_PROD
+  tenant: OTI
+- id: 821
+  name: SAN_Disk
+  tenant: OTI
+- id: 3911
+  name: SCADA_PROD
+  tenant: OTI
+- id: 3009
+  name: MLAG_iBGP_Production
+  trunk_groups:
+  - LEAF_PEER_L3
+  tenant: OTI
+vlan_interfaces:
+- name: Vlan4093
+  description: MLAG_PEER_L3_PEERING
+  shutdown: false
+  mtu: 1500
+  ip_address: 192.168.13.73/31
+- name: Vlan4094
+  description: MLAG_PEER
+  shutdown: false
+  no_autostate: true
+  mtu: 1500
+  ip_address: 192.168.13.105/31
+- name: Vlan2500
+  tenant: OTI
+  description: Scada_Dev
+  shutdown: false
+  ip_address_virtual: 12.50.0.1/24
+  vrf: Development
+- name: Vlan2821
+  tenant: OTI
+  description: Users_Dev
+  shutdown: false
+  ip_address_virtual: 10.28.21.1/24
+  vrf: Development
+- name: Vlan2822
+  tenant: OTI
+  description: Voice_Dev
+  shutdown: false
+  ip_address_virtual: 10.28.22.1/24
+  vrf: Development
+- name: Vlan2833
+  tenant: OTI
+  description: Broadcast1
+  shutdown: false
+  ip_address_virtual: 10.28.33.1/24
+  vrf: Development
+- name: Vlan2834
+  tenant: OTI
+  description: Broadcast2
+  shutdown: false
+  ip_address_virtual: 10.28.34.1/24
+  vrf: Development
+- name: Vlan3010
+  tenant: OTI
+  type: underlay_peering
+  shutdown: false
+  description: 'MLAG_PEER_L3_iBGP: vrf Development'
+  vrf: Development
+  mtu: 1500
+  ip_address: 192.168.13.73/31
+- name: Vlan55
+  tenant: OTI
+  description: HYPER_PROD
+  shutdown: false
+  ip_address_virtual: 10.10.55.1/24
+  vrf: Production
+- name: Vlan821
+  tenant: OTI
+  description: SAN_Disk
+  shutdown: false
+  ip_address_virtual: 10.82.1.1/24
+  vrf: Production
+- name: Vlan3911
+  tenant: OTI
+  description: SCADA_PROD
+  shutdown: false
+  ip_address_virtual: 10.39.11.1/24
+  vrf: Production
+- name: Vlan3009
+  tenant: OTI
+  type: underlay_peering
+  shutdown: false
+  description: 'MLAG_PEER_L3_iBGP: vrf Production'
+  vrf: Production
+  mtu: 1500
+  ip_address: 192.168.13.73/31
+port_channel_interfaces:
+- name: Port-Channel531
+  description: MLAG_PEER_OTI-DC01-Leaf5A_Po531
+  type: switched
+  shutdown: false
+  mode: trunk
+  trunk_groups:
+  - LEAF_PEER_L3
+  - MLAG
+- name: Port-Channel1
+  description: DC01-0601-ESX01
+  type: switched
+  shutdown: false
+  mtu: 9214
+  mode: trunk
+  vlans: 2821, 2822, 2833, 2834
+  mlag: 1
+- name: Port-Channel2
+  description: DC01-0601-ESX02
+  type: switched
+  shutdown: false
+  mtu: 9214
+  mode: trunk
+  vlans: '821'
+  mlag: 2
+- name: Port-Channel3
+  description: DC01-0601-ESX03
+  type: switched
+  shutdown: false
+  mtu: 9214
+  mode: access
+  vlans: '55'
+  mlag: 3
+- name: Port-Channel4
+  description: DC01-0601-ESX04
+  type: switched
+  shutdown: false
+  mtu: 9214
+  mode: access
+  vlans: '55'
+  mlag: 4
+- name: Port-Channel25
+  description: DC01-0601-SRVD
+  type: switched
+  shutdown: false
+  mtu: 9214
+  mode: trunk
+  vlans: 3911, 2500
+  mlag: 25
+- name: Port-Channel5
+  description: DC01-0601-ESX05
+  type: switched
+  shutdown: false
+  mtu: 9214
+  mode: trunk
+  vlans: 2821, 2822, 2833, 2834
+  mlag: 5
+- name: Port-Channel6
+  description: DC01-0601-ESX06
+  type: switched
+  shutdown: false
+  mtu: 9214
+  mode: access
+  vlans: '821'
+  mlag: 6
+ethernet_interfaces:
+- name: Ethernet53/1
+  peer: OTI-DC01-Leaf5A
+  peer_interface: Ethernet53/1
+  peer_type: mlag_peer
+  description: MLAG_PEER_OTI-DC01-Leaf5A_Ethernet53/1
+  type: port-channel-member
+  shutdown: false
+  channel_group:
+    id: 531
+    mode: active
+- name: Ethernet54/1
+  peer: OTI-DC01-Leaf5A
+  peer_interface: Ethernet54/1
+  peer_type: mlag_peer
+  description: MLAG_PEER_OTI-DC01-Leaf5A_Ethernet54/1
+  type: port-channel-member
+  shutdown: false
+  channel_group:
+    id: 531
+    mode: active
+- name: Ethernet55/1
+  peer: OTI-DC01-Spine1
+  peer_interface: Ethernet6/1
+  peer_type: spine
+  description: P2P_LINK_TO_OTI-DC01-SPINE1_Ethernet6/1
+  shutdown: false
+  mtu: 1500
+  type: routed
+  ip_address: 192.168.11.21/31
+- name: Ethernet56/1
+  peer: OTI-DC01-Spine2
+  peer_interface: Ethernet6/1
+  peer_type: spine
+  description: P2P_LINK_TO_OTI-DC01-SPINE2_Ethernet6/1
+  shutdown: false
+  mtu: 1500
+  type: routed
+  ip_address: 192.168.11.23/31
+- name: Ethernet52/1
+  peer: OTI-DC02-Leaf5B
+  peer_interface: Ethernet52/1
+  peer_type: other
+  description: P2P_LINK_TO_OTI-DC02-Leaf5B_Ethernet52/1
+  type: routed
+  shutdown: false
+  mtu: 1500
+  ip_address: 192.168.10.250/31
+- name: Ethernet1
+  peer: DC01-0601-ESX01
+  peer_interface: PCI_slot_2_Port_1
+  peer_type: server
+  description: DC01-0601-ESX01_PCI_slot_2_Port_1
+  shutdown: false
+  type: port-channel-member
+  channel_group:
+    id: 1
+    mode: active
+- name: Ethernet2
+  peer: DC01-0601-ESX02
+  peer_interface: PCI_slot_2_Port_1
+  peer_type: server
+  description: DC01-0601-ESX02_PCI_slot_2_Port_1
+  shutdown: false
+  type: port-channel-member
+  channel_group:
+    id: 2
+    mode: active
+- name: Ethernet3
+  peer: DC01-0601-ESX03
+  peer_interface: PCI_slot_2_Port_1
+  peer_type: server
+  description: DC01-0601-ESX03_PCI_slot_2_Port_1
+  shutdown: false
+  type: port-channel-member
+  channel_group:
+    id: 3
+    mode: active
+- name: Ethernet4
+  peer: DC01-0601-ESX04
+  peer_interface: PCI_slot_2_Port_1
+  peer_type: server
+  description: DC01-0601-ESX04_PCI_slot_2_Port_1
+  shutdown: false
+  type: port-channel-member
+  channel_group:
+    id: 4
+    mode: active
+- name: Ethernet25
+  peer: DC01-0601-SRVD
+  peer_interface: Port_3
+  peer_type: server
+  description: DC01-0601-SRVD_Port_3
+  shutdown: false
+  type: port-channel-member
+  channel_group:
+    id: 25
+    mode: active
+- name: Ethernet5
+  peer: DC01-0601-ESX05
+  peer_interface: PCI_slot_2_Port_1
+  peer_type: server
+  description: DC01-0601-ESX05_PCI_slot_2_Port_1
+  shutdown: false
+  type: port-channel-member
+  channel_group:
+    id: 5
+    mode: active
+- name: Ethernet6
+  peer: DC01-0601-ESX06
+  peer_interface: PCI_slot_2_Port_1
+  peer_type: server
+  description: DC01-0601-ESX06_PCI_slot_2_Port_1
+  shutdown: false
+  type: port-channel-member
+  channel_group:
+    id: 6
+    mode: active
+mlag_configuration:
+  domain_id: OTI-DC01-Leaf5
+  local_interface: Vlan4094
+  peer_address: 192.168.13.104
+  peer_link: Port-Channel531
+  reload_delay_mlag: '300'
+  reload_delay_non_mlag: '330'
+route_maps:
+- name: RM-MLAG-PEER-IN
+  sequence_numbers:
+  - sequence: 10
+    type: permit
+    set:
+    - origin incomplete
+    description: Make routes learned over MLAG Peer-link less preferred on spines to ensure optimal routing
+- name: RM-CONN-2-BGP
+  sequence_numbers:
+  - sequence: 10
+    type: permit
+    match:
+    - ip address prefix-list PL-LOOPBACKS-EVPN-OVERLAY
+loopback_interfaces:
+- name: Loopback0
+  description: EVPN_Overlay_Peering
+  shutdown: false
+  ip_address: 10.245.217.8/32
+- name: Loopback1
+  description: VTEP_VXLAN_Tunnel_Source
+  shutdown: false
+  ip_address: 10.245.217.39/32
+- name: Loopback11
+  description: Development_VTEP_DIAGNOSTICS
+  shutdown: false
+  vrf: Development
+  ip_address: 10.1.11.8/32
+- name: Loopback10
+  description: Production_VTEP_DIAGNOSTICS
+  shutdown: false
+  vrf: Production
+  ip_address: 10.1.10.8/32
+prefix_lists:
+- name: PL-LOOPBACKS-EVPN-OVERLAY
+  sequence_numbers:
+  - sequence: 10
+    action: permit 10.245.217.0/27 eq 32
+  - sequence: 20
+    action: permit 10.245.217.32/27 eq 32
+router_bfd:
+  multihop:
+    interval: 300
+    min_rx: 300
+    multiplier: 3
+ip_igmp_snooping:
+  globally_enabled: true
+ip_virtual_router_mac_address: 00:1c:73:00:09:99
+vxlan_interface:
+  Vxlan1:
+    description: OTI-DC01-Leaf5B_VTEP
+    vxlan:
+      udp_port: 4789
+      source_interface: Loopback1
+      virtual_router_encapsulation_mac_address: mlag-system-id
+      vlans:
+      - id: 2500
+        vni: 12500
+      - id: 2821
+        vni: 12821
+      - id: 2822
+        vni: 12822
+      - id: 2833
+        vni: 12833
+      - id: 2834
+        vni: 12834
+      - id: 55
+        vni: 10055
+      - id: 821
+        vni: 10821
+      - id: 3911
+        vni: 13911
+      vrfs:
+      - name: Development
+        vni: 11
+      - name: Production
+        vni: 10
+virtual_source_nat_vrfs:
+- name: Development
+  ip_address: 10.1.11.8
+- name: Production
+  ip_address: 10.1.10.8
+metadata:
+  platform: vEOS-lab

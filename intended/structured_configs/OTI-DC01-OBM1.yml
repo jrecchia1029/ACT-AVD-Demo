@@ -1,0 +1,146 @@
+hostname: OTI-DC01-OBM1
+is_deployed: true
+serial_number: SN-OTI-DC01-OBM1
+service_routing_protocols_model: multi-agent
+daemon_terminattr:
+  cvaddrs:
+  - apiserver.arista.io:443
+  cvauth:
+    method: token-secure
+    token_file: /tmp/cv-onboarding-token
+  cvvrf: default
+  smashexcludes: ale,flexCounter,hardware,kni,pulse,strata
+  ingestexclude: /Sysdb/cell/1/agent,/Sysdb/cell/2/agent
+  disable_aaa: false
+vlan_internal_order:
+  allocation: ascending
+  range:
+    beginning: 1006
+    ending: 1199
+spanning_tree:
+  mode: mstp
+  mst_instances:
+  - id: '0'
+    priority: 4096
+local_users:
+- name: cvpadmin
+  privilege: 15
+  role: network-admin
+  sha512_password: $6$ikGzKyb6w4yEqLly$mJLofKfPrT2Mx6UffrY2dwFXuTCbtf2Okjfu9CgyuduVdN3WIrq9quRZXXFjrRI754ewFQ3uZSlwSEKAe2zbP1
+vrfs:
+- name: default
+  ip_routing: false
+management_interfaces:
+- name: Management1
+  description: oob_management
+  shutdown: false
+  vrf: default
+  ip_address: 192.168.255.19/24
+  gateway: null
+  type: oob
+  lldp:
+    transmit: false
+    receive: false
+management_api_http:
+  enable_vrfs:
+  - name: default
+  enable_https: true
+vlans:
+- id: 3545
+  name: DC01_IDRAC
+  tenant: OTI_OOB_Mgmt
+ip_igmp_snooping:
+  globally_enabled: true
+ethernet_interfaces:
+- name: Ethernet1
+  peer: DC01-0601-ESX01
+  peer_interface: idrac
+  peer_type: server
+  description: DC01-0601-ESX01_idrac
+  shutdown: false
+  type: switched
+  mode: access
+  vlans: '3545'
+- name: Ethernet2
+  peer: DC01-0601-ESX02
+  peer_interface: idrac
+  peer_type: server
+  description: DC01-0601-ESX02_idrac
+  shutdown: false
+  type: switched
+  mode: access
+  vlans: '3545'
+- name: Ethernet3
+  peer: DC01-0601-ESX03
+  peer_interface: idrac
+  peer_type: server
+  description: DC01-0601-ESX03_idrac
+  shutdown: false
+  type: switched
+  mode: access
+  vlans: '3545'
+- name: Ethernet4
+  peer: DC01-0601-ESX04
+  peer_interface: idrac
+  peer_type: server
+  description: DC01-0601-ESX04_idrac
+  shutdown: false
+  type: switched
+  mode: access
+  vlans: '3545'
+- name: Ethernet7
+  peer: DC01-0601-SRVA
+  peer_interface: iLo
+  peer_type: server
+  description: DC01-0601-SRVA_iLo
+  shutdown: false
+  type: switched
+  mode: access
+  vlans: '3545'
+- name: Ethernet8
+  peer: DC01-0601-SRVB
+  peer_interface: iLo
+  peer_type: server
+  description: DC01-0601-SRVB_iLo
+  shutdown: false
+  type: switched
+  mode: access
+  vlans: '3545'
+- name: Ethernet9
+  peer: DC01-0601-SRVC
+  peer_interface: iLo
+  peer_type: server
+  description: DC01-0601-SRVC_iLo
+  shutdown: false
+  type: switched
+  mode: access
+  vlans: '3545'
+- name: Ethernet10
+  peer: DC01-0601-SRVD
+  peer_interface: iLo
+  peer_type: server
+  description: DC01-0601-SRVD_iLo
+  shutdown: false
+  type: switched
+  mode: access
+  vlans: '3545'
+- name: Ethernet5
+  peer: DC01-0601-ESX05
+  peer_interface: idrac
+  peer_type: server
+  description: DC01-0601-ESX05_idrac
+  shutdown: false
+  type: switched
+  mode: access
+  vlans: '3545'
+- name: Ethernet6
+  peer: DC01-0601-ESX06
+  peer_interface: idrac
+  peer_type: server
+  description: DC01-0601-ESX06_idrac
+  shutdown: false
+  type: switched
+  mode: access
+  vlans: '3545'
+metadata:
+  platform: 7050SX3-48YC8
