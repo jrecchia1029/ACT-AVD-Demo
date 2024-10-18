@@ -356,6 +356,21 @@ servers:
       - OTI-DC02-Leaf1
       - OTI-DC02-Leaf2
    -  endpoint_ports:
+      - Onboard_NIC_2
+      - PCI_slot_2_Port_2
+      ethernet_segment:
+         short_esi: auto
+      mode: trunk
+      mtu: 9214
+      port_channel:
+         mode: active
+      switch_ports:
+      - Ethernet3
+      - Ethernet3
+      switches:
+      - OTI-DC02-Leaf3
+      - OTI-DC02-Leaf4
+   -  endpoint_ports:
       - PCI_slot_1_Port_2
       - PCI_slot_2_Port_1
       ethernet_segment:

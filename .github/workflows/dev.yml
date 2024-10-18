@@ -1,0 +1,32 @@
+name: Test the upcoming changes
+
+on:
+  push:
+    branches-ignore:
+      - main
+
+jobs:
+  dev:
+    timeout-minutes: 15
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+
+      - name: Install Python requirements
+        run: pip install -r requirements-python.yml
+
+      - name: Run pre-commit on files
+        uses: pre-commit/action@v3.0.0
+
+      - name: Install collections
+        run: ansible-galaxy collection install -r requirements.yml
+
+      - name: Update OTI Endpoints based on xlsx
+        run: python OTI_XLSX_TO_AVD_ENDPOINTS.py
+
+      - name: Test configuration
+        run: ansible-playbook playbooks/build_all.yml -i inventory.yml --tags generate

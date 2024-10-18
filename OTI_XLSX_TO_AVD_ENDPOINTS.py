@@ -1,7 +1,7 @@
 import json, csv, os, yaml
 import pandas as pd
 
-XLSXName = "OTI Network Connectivity Spreadsheet - sample v6.xlsx"
+XLSXName = "OtiNetworkConnectivitySpreadsheet.xlsx"
 
 data_xls = pd.read_excel(XLSXName, 'Sheet1', index_col=None)
 data_xls.to_csv('oti.csv', encoding='utf-8')
@@ -253,12 +253,12 @@ if __name__ == "__main__":
         print("%s has %s merged adapters FYI!" % (checkFor, str(len(   [endpoint["adapters"] for endpoint in data["servers"] if endpoint['name'] == checkFor][0]))))
     
     
-    with open('outputConfig.json', 'w') as json_file:
-        json.dump(data, json_file)
+    # with open('outputConfig.json', 'w') as json_file:
+    #     json.dump(data, json_file)
     
     
     yaml.Dumper.ignore_aliases = lambda *args : True
-    with open('OTI_Endpoints.yml', 'w') as yaml_file:
+    with open('group_vars/OTI_Endpoints.yml', 'w') as yaml_file:
         yaml.dump(data, yaml_file, indent=3)
     
     
