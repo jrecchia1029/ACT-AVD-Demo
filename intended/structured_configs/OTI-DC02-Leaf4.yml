@@ -431,6 +431,16 @@ ethernet_interfaces:
   channel_group:
     id: 2
     mode: active
+- name: Ethernet3
+  peer: DC02-0901-ESX03
+  peer_interface: PCI_slot_2_Port_2
+  peer_type: server
+  description: DC02-0901-ESX03_PCI_slot_2_Port_2
+  shutdown: false
+  type: port-channel-member
+  channel_group:
+    id: 3
+    mode: active
 - name: Ethernet49/1
   peer: DC02-0901-ESX03
   peer_interface: PCI_slot_2_Port_1
@@ -901,6 +911,16 @@ port_channel_interfaces:
     identifier: 0000:0000:88be:cb52:74af
     route_target: 88:be:cb:52:74:af
   lacp_id: 88be.cb52.74af
+- name: Port-Channel3
+  description: DC02-0901-ESX03
+  type: switched
+  shutdown: false
+  mtu: 9214
+  mode: trunk
+  evpn_ethernet_segment:
+    identifier: 0000:0000:398b:3546:ee71
+    route_target: 39:8b:35:46:ee:71
+  lacp_id: 398b.3546.ee71
 - name: Port-Channel491
   description: DC02-0901-ESX03
   type: switched
