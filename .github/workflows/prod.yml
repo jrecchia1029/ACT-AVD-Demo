@@ -20,6 +20,9 @@ jobs:
       - name: Install Python requirements
         run: pip install -r requirements-python.yml
 
+      - name: Fix openssl bug
+        run: pip install pyopenssl --upgrade
+
       - name: Run pre-commit on files
         uses: pre-commit/action@v3.0.0
 
