@@ -1,0 +1,16 @@
+---
+- name: Configuration deployment with CVP
+  hosts: OTI
+  connection: local
+  gather_facts: false
+  tasks:
+    - name: Deploy configurations and tags to CloudVision
+      tags: [deploy]
+      ansible.builtin.import_role:
+        name: arista.avd.cv_deploy
+      vars:
+        cv_skip_missing_devices: true
+        cv_run_change_control: true
+        cv_verify_certs: false
+        cv_server: www.arista.io
+        cv_token: eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJkaWQiOjcwODkzNDMxODEzNjM2NDc0MTAsImRzbiI6ImdldF9jb25maWdzX3Rlc3QiLCJkc3QiOiJhY2NvdW50IiwiZXhwIjoxODI0OTI0OTg5LCJpYXQiOjE3Mjg5MzQ1OTUsIm9naSI6NzA4OTM0MzE4MTM2MzU4MzIzNywib2duIjoiZW50LXNlLWVhc3QiLCJzaWQiOiIzNDRmZDZhNmY0M2NiODk2MWVlNDc1YzYyZTdlY2JkMzRhMmUxMGE3MTA2ZGQyYTZmZGQzZTE1ZWM1MGZlMjM1LVZ2eS1XWFpuc1FyWVYwZlplbi1EenFhOEpMXzdRT2U0RlA5M01EYnMifQ.9hZkHkfUqioOjkhWXkubCZCnVzdxE_YnjV_4fxsD0ChoV0HF9kcqSJcs_qBWvttD-8UjEpvYOJZTKaFPDNRp_g
