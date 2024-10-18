@@ -4,7 +4,8 @@ on:
   push:
     branches:
       - main
-
+permissions:
+  contents: write
 jobs:
   deploy-prod:
     timeout-minutes: 15
@@ -22,6 +23,14 @@ jobs:
       - name: Run pre-commit on files
         uses: pre-commit/action@v3.0.0
 
+      - name: Check paths for Endpoints file
+        uses: dorny/paths-filter@v3
+        id: endpoints_xlsx
+        with:
+          filters: |
+            workflows:
+              - 'OtiNetworkConnectivitySpreadsheet.xlsx'
+
       - name: Check paths for group_vars/DC01
         uses: dorny/paths-filter@v3
         id: filter-site1
@@ -29,6 +38,7 @@ jobs:
           filters: |
             workflows:
               - 'group_vars/DC01*'
+              - 'group_vars/OTI*'
 
       - name: Check paths for group_vars/DC02
         uses: dorny/paths-filter@v3
@@ -37,18 +47,28 @@ jobs:
           filters: |
             workflows:
               - 'group_vars/DC02*'
+              - 'group_vars/OTI*'
 
       - name: Install collections
         run: ansible-galaxy collection install -r requirements.yml
-        if: steps.filter-site1.outputs.workflows == 'true' || steps.filter-site2.outputs.workflows == 'true'
+        if: steps.endpoints_xlsx.outputs.workflows == 'true' || steps.filter-site1.outputs.workflows == 'true' || steps.filter-site2.outputs.workflows == 'true'
 
       # - name: Build and deploy
       #   run: ansible-playbook playbooks/build_all.yml -i inventory.yml --tags deploy
 
-      - name: Build and deploy site1
-        run: ansible-playbook playbooks/build_dc01.yml -i inventory.yml --tags deploy
-        if: steps.filter-site1.outputs.workflows == 'true'
+      - name: deploy
+        run: ansible-playbook playbooks/auto_deploy.yml -i inventory.yml
+        if: steps.endpoints_xlsx.outputs.workflows == 'true' || steps.filter-site1.outputs.workflows == 'true' || steps.filter-site2.outputs.workflows == 'true'
 
-      - name: Build and deploy site2
-        run: ansible-playbook playbooks/build_dc02.yml -i inventory.yml --tags deploy
-        if: steps.filter-site2.outputs.workflows == 'true'
+      - name: validate
+        run: ansible-playbook playbooks/validate_all.yml -i inventory.yml
+        if: steps.endpoints_xlsx.outputs.workflows == 'true' || steps.filter-site1.outputs.workflows == 'true' || steps.filter-site2.outputs.workflows == 'true'
+
+      - name: Commit report
+        run: |
+          git config --global user.name 'Joe Recchia'
+          git config --global user.email 'joerecchia@users.noreply.github.com'
+          git add .
+          git commit -am "Automated validation report"
+          git push
+        if: steps.endpoints_xlsx.outputs.workflows == 'true' || steps.filter-site1.outputs.workflows == 'true' || steps.filter-site2.outputs.workflows == 'true'
