@@ -51,10 +51,7 @@ jobs:
 
       - name: Install collections
         run: ansible-galaxy collection install -r requirements.yml
-        if: steps.endpoints_xlsx.outputs.workflows == 'true' || steps.filter-site1.outputs.workflows == 'true' || steps.filter-site2.outputs.workflows == 'true'
-
-      # - name: Build and deploy
-      #   run: ansible-playbook playbooks/build_all.yml -i inventory.yml --tags deploy
+        # if: steps.endpoints_xlsx.outputs.workflows == 'true' || steps.filter-site1.outputs.workflows == 'true' || steps.filter-site2.outputs.workflows == 'true'
 
       - name: deploy
         run: ansible-playbook playbooks/auto_deploy.yml -i inventory.yml
