@@ -18,7 +18,7 @@ jobs:
         uses: actions/setup-python@v5
 
       - name: Install Python requirements
-        run: pip3 install "pyavd[ansible]==4.10.0"
+        run: pip install -r requirements-python.yml
 
       - name: Run pre-commit on files
         uses: pre-commit/action@v3.0.0
@@ -62,7 +62,7 @@ jobs:
 
       - name: validate
         run: ansible-playbook playbooks/validate_all.yml -i inventory.yml
-        if: steps.endpoints_xlsx.outputs.workflows == 'true' || steps.filter-site1.outputs.workflows == 'true' || steps.filter-site2.outputs.workflows == 'true'
+        # if: steps.endpoints_xlsx.outputs.workflows == 'true' || steps.filter-site1.outputs.workflows == 'true' || steps.filter-site2.outputs.workflows == 'true'
 
       - name: Commit report
         run: |
