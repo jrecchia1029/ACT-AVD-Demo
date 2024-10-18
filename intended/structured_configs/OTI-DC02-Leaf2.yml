@@ -491,6 +491,16 @@ ethernet_interfaces:
   channel_group:
     id: 5
     mode: active
+- name: Ethernet6
+  peer: DC02-0901-ESX06
+  peer_interface: PCI_slot_1_Port_1
+  peer_type: server
+  description: DC02-0901-ESX06_PCI_slot_1_Port_1
+  shutdown: false
+  type: port-channel-member
+  channel_group:
+    id: 6
+    mode: active
 loopback_interfaces:
 - name: Loopback0
   description: EVPN_Overlay_Peering
@@ -961,5 +971,15 @@ port_channel_interfaces:
     identifier: 0000:0000:7869:6402:a182
     route_target: 78:69:64:02:a1:82
   lacp_id: 7869.6402.a182
+- name: Port-Channel6
+  description: DC02-0901-ESX06
+  type: switched
+  shutdown: false
+  mtu: 9214
+  mode: trunk
+  evpn_ethernet_segment:
+    identifier: 0000:0000:6ec9:e834:38c2
+    route_target: 6e:c9:e8:34:38:c2
+  lacp_id: 6ec9.e834.38c2
 metadata:
   platform: vEOS-lab

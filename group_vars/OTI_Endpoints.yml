@@ -818,3 +818,57 @@ servers:
       vlans: 1100, 1101, 1102
    name: DC02-0901-ESX05
    rack: 0901.01.Rack09
+-  adapters:
+   -  endpoint_ports:
+      - idrac
+      mode: access
+      switch_ports:
+      - Ethernet6
+      switches:
+      - OTI-DC02-OBM1
+      vlans: '2545'
+   -  endpoint_ports:
+      - Onboard_NIC_1
+      - PCI_slot_1_Port_1
+      ethernet_segment:
+         short_esi: auto
+      mode: trunk
+      mtu: 9214
+      port_channel:
+         mode: active
+      switch_ports:
+      - Ethernet6
+      - Ethernet6
+      switches:
+      - OTI-DC02-Leaf1
+      - OTI-DC02-Leaf2
+   -  endpoint_ports:
+      - Onboard_NIC_2
+      - PCI_slot_2_Port_2
+      mode: trunk
+      mtu: 9214
+      port_channel:
+         mode: active
+      switch_ports:
+      - Ethernet2
+      - Ethernet2
+      switches:
+      - OTI-DC02-Leaf5A
+      - OTI-DC02-Leaf5B
+      vlans: 899, 999
+   -  endpoint_ports:
+      - PCI_slot_1_Port_2
+      - PCI_slot_2_Port_1
+      mode: trunk
+      mtu: 9214
+      port_channel:
+         mode: active
+      switch_ports:
+      - Ethernet50/1
+      - Ethernet50/1
+      switches:
+      - OTI-DC02-Leaf5A
+      - OTI-DC02-Leaf5B
+      vlans: 887, 888
+   name: DC02-0901-ESX06
+   rack: 0901.01.Rack09
