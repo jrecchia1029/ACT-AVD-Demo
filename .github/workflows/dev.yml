@@ -20,6 +20,9 @@ jobs:
       - name: Install Python requirements
         run: pip install -r requirements-python.yml
 
+      - name: Fix openssl bug
+        run: pip install pyopenssl --upgrade
+
       - name: Check paths for Endpoints file
         uses: dorny/paths-filter@v3
         id: endpoints_xlsx
