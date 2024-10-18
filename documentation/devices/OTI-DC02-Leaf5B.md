@@ -264,6 +264,8 @@ vlan internal order ascending range 1006 1199
 
 | VLAN ID | Name | Trunk Groups |
 | ------- | ---- | ------------ |
+| 887 | NOCB_WORKLOAD1 | - |
+| 888 | NOCB_WORKLOAD2 | - |
 | 899 | NAS | - |
 | 999 | BWS | - |
 | 1100 | SRVR_FARM_BLADE_0 | - |
@@ -276,6 +278,12 @@ vlan internal order ascending range 1006 1199
 ### VLANs Device Configuration
 
 ```eos
+!
+vlan 887
+   name NOCB_WORKLOAD1
+!
+vlan 888
+   name NOCB_WORKLOAD2
 !
 vlan 899
    name NAS
@@ -316,7 +324,9 @@ vlan 4094
 | Interface | Description | Mode | VLANs | Native VLAN | Trunk Group | Channel-Group |
 | --------- | ----------- | ---- | ----- | ----------- | ----------- | ------------- |
 | Ethernet1 | DC02-0901-ESX04_PCI_slot_2_Port_2 | *trunk | *899, 999 | *- | *- | 1 |
+| Ethernet2 | DC02-0901-ESX06_PCI_slot_2_Port_2 | *trunk | *899, 999 | *- | *- | 2 |
 | Ethernet49/1 | DC02-0901-ESX05_PCI_slot_2_Port_1 | *trunk | *1100, 1101, 1102 | *- | *- | 491 |
+| Ethernet50/1 | DC02-0901-ESX06_PCI_slot_2_Port_1 | *trunk | *887, 888 | *- | *- | 501 |
 | Ethernet53/1 | MLAG_PEER_OTI-DC02-Leaf5A_Ethernet53/1 | *trunk | *- | *- | *['LEAF_PEER_L3', 'MLAG'] | 531 |
 | Ethernet54/1 | MLAG_PEER_OTI-DC02-Leaf5A_Ethernet54/1 | *trunk | *- | *- | *['LEAF_PEER_L3', 'MLAG'] | 531 |
 
@@ -339,10 +349,20 @@ interface Ethernet1
    no shutdown
    channel-group 1 mode active
 !
+interface Ethernet2
+   description DC02-0901-ESX06_PCI_slot_2_Port_2
+   no shutdown
+   channel-group 2 mode active
+!
 interface Ethernet49/1
    description DC02-0901-ESX05_PCI_slot_2_Port_1
    no shutdown
    channel-group 491 mode active
+!
+interface Ethernet50/1
+   description DC02-0901-ESX06_PCI_slot_2_Port_1
+   no shutdown
+   channel-group 501 mode active
 !
 interface Ethernet52/1
    description P2P_LINK_TO_OTI-DC01-Leaf5B_Ethernet52/1
@@ -385,7 +405,9 @@ interface Ethernet56/1
 | Interface | Description | Type | Mode | VLANs | Native VLAN | Trunk Group | LACP Fallback Timeout | LACP Fallback Mode | MLAG ID | EVPN ESI |
 | --------- | ----------- | ---- | ---- | ----- | ----------- | ------------| --------------------- | ------------------ | ------- | -------- |
 | Port-Channel1 | DC02-0901-ESX04 | switched | trunk | 899, 999 | - | - | - | - | 1 | - |
+| Port-Channel2 | DC02-0901-ESX06 | switched | trunk | 899, 999 | - | - | - | - | 2 | - |
 | Port-Channel491 | DC02-0901-ESX05 | switched | trunk | 1100, 1101, 1102 | - | - | - | - | 491 | - |
+| Port-Channel501 | DC02-0901-ESX06 | switched | trunk | 887, 888 | - | - | - | - | 501 | - |
 | Port-Channel531 | MLAG_PEER_OTI-DC02-Leaf5A_Po531 | switched | trunk | - | - | ['LEAF_PEER_L3', 'MLAG'] | - | - | - | - |
 
 #### Port-Channel Interfaces Device Configuration
@@ -401,6 +423,15 @@ interface Port-Channel1
    switchport mode trunk
    mlag 1
 !
+interface Port-Channel2
+   description DC02-0901-ESX06
+   no shutdown
+   mtu 9214
+   switchport
+   switchport trunk allowed vlan 899, 999
+   switchport mode trunk
+   mlag 2
+!
 interface Port-Channel491
    description DC02-0901-ESX05
    no shutdown
@@ -409,6 +440,15 @@ interface Port-Channel491
    switchport trunk allowed vlan 1100, 1101, 1102
    switchport mode trunk
    mlag 491
+!
+interface Port-Channel501
+   description DC02-0901-ESX06
+   no shutdown
+   mtu 9214
+   switchport
+   switchport trunk allowed vlan 887, 888
+   switchport mode trunk
+   mlag 501
 !
 interface Port-Channel531
    description MLAG_PEER_OTI-DC02-Leaf5A_Po531
@@ -466,6 +506,8 @@ interface Loopback10
 
 | Interface | Description | VRF |  MTU | Shutdown |
 | --------- | ----------- | --- | ---- | -------- |
+| Vlan887 | NOCB_WORKLOAD1 | Production | - | False |
+| Vlan888 | NOCB_WORKLOAD2 | Production | - | False |
 | Vlan899 | NAS | Production | - | False |
 | Vlan999 | BWS | Production | - | False |
 | Vlan1100 | SRVR_FARM_BLADE_0 | Production | - | False |
@@ -479,6 +521,8 @@ interface Loopback10
 
 | Interface | VRF | IP Address | IP Address Virtual | IP Router Virtual Address | VRRP | ACL In | ACL Out |
 | --------- | --- | ---------- | ------------------ | ------------------------- | ---- | ------ | ------- |
+| Vlan887 |  Production  |  -  |  10.88.7.1/24  |  -  |  -  |  -  |  -  |
+| Vlan888 |  Production  |  -  |  10.88.8.1/24  |  -  |  -  |  -  |  -  |
 | Vlan899 |  Production  |  -  |  10.89.9.1/24  |  -  |  -  |  -  |  -  |
 | Vlan999 |  Production  |  -  |  10.99.9.1/24  |  -  |  -  |  -  |  -  |
 | Vlan1100 |  Production  |  -  |  11.0.0.1/24  |  -  |  -  |  -  |  -  |
@@ -491,6 +535,18 @@ interface Loopback10
 #### VLAN Interfaces Device Configuration
 
 ```eos
+!
+interface Vlan887
+   description NOCB_WORKLOAD1
+   no shutdown
+   vrf Production
+   ip address virtual 10.88.7.1/24
+!
+interface Vlan888
+   description NOCB_WORKLOAD2
+   no shutdown
+   vrf Production
+   ip address virtual 10.88.8.1/24
 !
 interface Vlan899
    description NAS
@@ -557,6 +613,8 @@ interface Vlan4094
 
 | VLAN | VNI | Flood List | Multicast Group |
 | ---- | --- | ---------- | --------------- |
+| 887 | 10887 | - | - |
+| 888 | 10888 | - | - |
 | 899 | 10899 | - | - |
 | 999 | 10999 | - | - |
 | 1100 | 11100 | - | - |
@@ -578,6 +636,8 @@ interface Vxlan1
    vxlan source-interface Loopback1
    vxlan virtual-router encapsulation mac-address mlag-system-id
    vxlan udp-port 4789
+   vxlan vlan 887 vni 10887
+   vxlan vlan 888 vni 10888
    vxlan vlan 899 vni 10899
    vxlan vlan 999 vni 10999
    vxlan vlan 1100 vni 11100
@@ -734,6 +794,8 @@ ASN Notation: asplain
 
 | VLAN | Route-Distinguisher | Both Route-Target | Import Route Target | Export Route-Target | Redistribute |
 | ---- | ------------------- | ----------------- | ------------------- | ------------------- | ------------ |
+| 887 | 10.245.218.8:10887 | 10887:10887 | - | - | learned |
+| 888 | 10.245.218.8:10888 | 10888:10888 | - | - | learned |
 | 899 | 10.245.218.8:10899 | 10899:10899 | - | - | learned |
 | 999 | 10.245.218.8:10999 | 10999:10999 | - | - | learned |
 | 1100 | 10.245.218.8:11100 | 11100:11100 | - | - | learned |
@@ -815,6 +877,16 @@ router bgp 65105
    vlan 1102
       rd 10.245.218.8:11102
       route-target both 11102:11102
+      redistribute learned
+   !
+   vlan 887
+      rd 10.245.218.8:10887
+      route-target both 10887:10887
+      redistribute learned
+   !
+   vlan 888
+      rd 10.245.218.8:10888
+      route-target both 10888:10888
       redistribute learned
    !
    vlan 899

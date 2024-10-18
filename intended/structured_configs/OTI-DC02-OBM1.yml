@@ -124,5 +124,14 @@ ethernet_interfaces:
   type: switched
   mode: access
   vlans: '2545'
+- name: Ethernet6
+  peer: DC02-0901-ESX06
+  peer_interface: idrac
+  peer_type: server
+  description: DC02-0901-ESX06_idrac
+  shutdown: false
+  type: switched
+  mode: access
+  vlans: '2545'
 metadata:
   platform: 7050SX3-48YC8
