@@ -1,0 +1,965 @@
+hostname: OTI-DC01-Leaf2
+is_deployed: true
+serial_number: SN-OTI-DC01-Leaf2
+router_bgp:
+  as: '65002'
+  router_id: 10.245.217.4
+  distance:
+    external_routes: 20
+    internal_routes: 200
+    local_routes: 200
+  bgp:
+    default:
+      ipv4_unicast: true
+  maximum_paths:
+    paths: 4
+    ecmp: 4
+  graceful_restart:
+    enabled: true
+    restart_time: 300
+  peer_groups:
+  - name: IPv4-UNDERLAY-PEERS
+    type: ipv4
+    maximum_routes: 12000
+    send_community: all
+  - name: EVPN-OVERLAY-PEERS
+    type: evpn
+    update_source: Loopback0
+    bfd: true
+    send_community: all
+    maximum_routes: 0
+    ebgp_multihop: 3
+  address_family_ipv4:
+    peer_groups:
+    - name: IPv4-UNDERLAY-PEERS
+      activate: true
+    - name: EVPN-OVERLAY-PEERS
+      activate: false
+  redistribute_routes:
+  - source_protocol: connected
+    route_map: RM-CONN-2-BGP
+  neighbors:
+  - ip_address: 192.168.11.4
+    peer_group: IPv4-UNDERLAY-PEERS
+    remote_as: '65000'
+    peer: OTI-DC01-Spine1
+    description: OTI-DC01-Spine1_Ethernet2/1
+  - ip_address: 192.168.11.6
+    peer_group: IPv4-UNDERLAY-PEERS
+    remote_as: '65000'
+    peer: OTI-DC01-Spine2
+    description: OTI-DC01-Spine2_Ethernet2/1
+  - ip_address: 10.245.217.1
+    peer_group: EVPN-OVERLAY-PEERS
+    peer: OTI-DC01-Spine1
+    description: OTI-DC01-Spine1
+    remote_as: '65000'
+  - ip_address: 10.245.217.2
+    peer_group: EVPN-OVERLAY-PEERS
+    peer: OTI-DC01-Spine2
+    description: OTI-DC01-Spine2
+    remote_as: '65000'
+  address_family_evpn:
+    peer_groups:
+    - name: EVPN-OVERLAY-PEERS
+      activate: true
+  vrfs:
+  - name: Development
+    router_id: 10.245.217.4
+    rd: 10.245.217.4:11
+    route_targets:
+      import:
+      - address_family: evpn
+        route_targets:
+        - '11:11'
+      export:
+      - address_family: evpn
+        route_targets:
+        - '11:11'
+    redistribute_routes:
+    - source_protocol: connected
+  - name: Production
+    router_id: 10.245.217.4
+    rd: 10.245.217.4:10
+    route_targets:
+      import:
+      - address_family: evpn
+        route_targets:
+        - '10:10'
+      export:
+      - address_family: evpn
+        route_targets:
+        - '10:10'
+    redistribute_routes:
+    - source_protocol: connected
+  vlans:
+  - id: 21
+    tenant: OTI
+    rd: 10.245.217.4:10021
+    route_targets:
+      both:
+      - 10021:10021
+    redistribute_routes:
+    - learned
+  - id: 22
+    tenant: OTI
+    rd: 10.245.217.4:10022
+    route_targets:
+      both:
+      - 10022:10022
+    redistribute_routes:
+    - learned
+  - id: 2500
+    tenant: OTI
+    rd: 10.245.217.4:12500
+    route_targets:
+      both:
+      - 12500:12500
+    redistribute_routes:
+    - learned
+  - id: 2821
+    tenant: OTI
+    rd: 10.245.217.4:12821
+    route_targets:
+      both:
+      - 12821:12821
+    redistribute_routes:
+    - learned
+  - id: 2822
+    tenant: OTI
+    rd: 10.245.217.4:12822
+    route_targets:
+      both:
+      - 12822:12822
+    redistribute_routes:
+    - learned
+  - id: 2833
+    tenant: OTI
+    rd: 10.245.217.4:12833
+    route_targets:
+      both:
+      - 12833:12833
+    redistribute_routes:
+    - learned
+  - id: 2834
+    tenant: OTI
+    rd: 10.245.217.4:12834
+    route_targets:
+      both:
+      - 12834:12834
+    redistribute_routes:
+    - learned
+  - id: 55
+    tenant: OTI
+    rd: 10.245.217.4:10055
+    route_targets:
+      both:
+      - 10055:10055
+    redistribute_routes:
+    - learned
+  - id: 100
+    tenant: OTI
+    rd: 10.245.217.4:10100
+    route_targets:
+      both:
+      - 10100:10100
+    redistribute_routes:
+    - learned
+  - id: 101
+    tenant: OTI
+    rd: 10.245.217.4:10101
+    route_targets:
+      both:
+      - 10101:10101
+    redistribute_routes:
+    - learned
+  - id: 201
+    tenant: OTI
+    rd: 10.245.217.4:10201
+    route_targets:
+      both:
+      - 10201:10201
+    redistribute_routes:
+    - learned
+  - id: 202
+    tenant: OTI
+    rd: 10.245.217.4:10202
+    route_targets:
+      both:
+      - 10202:10202
+    redistribute_routes:
+    - learned
+  - id: 400
+    tenant: OTI
+    rd: 10.245.217.4:10400
+    route_targets:
+      both:
+      - 10400:10400
+    redistribute_routes:
+    - learned
+  - id: 500
+    tenant: OTI
+    rd: 10.245.217.4:10500
+    route_targets:
+      both:
+      - 10500:10500
+    redistribute_routes:
+    - learned
+  - id: 501
+    tenant: OTI
+    rd: 10.245.217.4:10501
+    route_targets:
+      both:
+      - 10501:10501
+    redistribute_routes:
+    - learned
+  - id: 821
+    tenant: OTI
+    rd: 10.245.217.4:10821
+    route_targets:
+      both:
+      - 10821:10821
+    redistribute_routes:
+    - learned
+  - id: 887
+    tenant: OTI
+    rd: 10.245.217.4:10887
+    route_targets:
+      both:
+      - 10887:10887
+    redistribute_routes:
+    - learned
+  - id: 888
+    tenant: OTI
+    rd: 10.245.217.4:10888
+    route_targets:
+      both:
+      - 10888:10888
+    redistribute_routes:
+    - learned
+  - id: 899
+    tenant: OTI
+    rd: 10.245.217.4:10899
+    route_targets:
+      both:
+      - 10899:10899
+    redistribute_routes:
+    - learned
+  - id: 999
+    tenant: OTI
+    rd: 10.245.217.4:10999
+    route_targets:
+      both:
+      - 10999:10999
+    redistribute_routes:
+    - learned
+  - id: 1000
+    tenant: OTI
+    rd: 10.245.217.4:11000
+    route_targets:
+      both:
+      - 11000:11000
+    redistribute_routes:
+    - learned
+  - id: 1100
+    tenant: OTI
+    rd: 10.245.217.4:11100
+    route_targets:
+      both:
+      - 11100:11100
+    redistribute_routes:
+    - learned
+  - id: 1101
+    tenant: OTI
+    rd: 10.245.217.4:11101
+    route_targets:
+      both:
+      - 11101:11101
+    redistribute_routes:
+    - learned
+  - id: 1102
+    tenant: OTI
+    rd: 10.245.217.4:11102
+    route_targets:
+      both:
+      - 11102:11102
+    redistribute_routes:
+    - learned
+  - id: 1201
+    tenant: OTI
+    rd: 10.245.217.4:11201
+    route_targets:
+      both:
+      - 11201:11201
+    redistribute_routes:
+    - learned
+  - id: 1202
+    tenant: OTI
+    rd: 10.245.217.4:11202
+    route_targets:
+      both:
+      - 11202:11202
+    redistribute_routes:
+    - learned
+  - id: 2000
+    tenant: OTI
+    rd: 10.245.217.4:12000
+    route_targets:
+      both:
+      - 12000:12000
+    redistribute_routes:
+    - learned
+  - id: 3434
+    tenant: OTI
+    rd: 10.245.217.4:13434
+    route_targets:
+      both:
+      - 13434:13434
+    redistribute_routes:
+    - learned
+  - id: 3911
+    tenant: OTI
+    rd: 10.245.217.4:13911
+    route_targets:
+      both:
+      - 13911:13911
+    redistribute_routes:
+    - learned
+  - id: 3401
+    tenant: OTI
+    rd: 10.245.217.4:13401
+    route_targets:
+      both:
+      - 13401:13401
+    redistribute_routes:
+    - learned
+  - id: 3402
+    tenant: OTI
+    rd: 10.245.217.4:13402
+    route_targets:
+      both:
+      - 13402:13402
+    redistribute_routes:
+    - learned
+service_routing_protocols_model: multi-agent
+ip_routing: true
+daemon_terminattr:
+  cvaddrs:
+  - apiserver.arista.io:443
+  cvauth:
+    method: token-secure
+    token_file: /tmp/cv-onboarding-token
+  cvvrf: default
+  smashexcludes: ale,flexCounter,hardware,kni,pulse,strata
+  ingestexclude: /Sysdb/cell/1/agent,/Sysdb/cell/2/agent
+  disable_aaa: false
+vlan_internal_order:
+  allocation: ascending
+  range:
+    beginning: 1006
+    ending: 1199
+spanning_tree:
+  mode: mstp
+  mst_instances:
+  - id: '0'
+    priority: 4096
+local_users:
+- name: cvpadmin
+  privilege: 15
+  role: network-admin
+  sha512_password: $6$ikGzKyb6w4yEqLly$mJLofKfPrT2Mx6UffrY2dwFXuTCbtf2Okjfu9CgyuduVdN3WIrq9quRZXXFjrRI754ewFQ3uZSlwSEKAe2zbP1
+vrfs:
+- name: default
+  ip_routing: false
+- name: Development
+  tenant: OTI
+  ip_routing: true
+- name: Production
+  tenant: OTI
+  ip_routing: true
+management_interfaces:
+- name: Management1
+  description: oob_management
+  shutdown: false
+  vrf: default
+  ip_address: 192.168.255.14/24
+  gateway: null
+  type: oob
+  lldp:
+    transmit: false
+    receive: false
+management_api_http:
+  enable_vrfs:
+  - name: default
+  enable_https: true
+ethernet_interfaces:
+- name: Ethernet55/1
+  peer: OTI-DC01-Spine1
+  peer_interface: Ethernet2/1
+  peer_type: spine
+  description: P2P_LINK_TO_OTI-DC01-SPINE1_Ethernet2/1
+  shutdown: false
+  mtu: 1500
+  type: routed
+  ip_address: 192.168.11.5/31
+- name: Ethernet56/1
+  peer: OTI-DC01-Spine2
+  peer_interface: Ethernet2/1
+  peer_type: spine
+  description: P2P_LINK_TO_OTI-DC01-SPINE2_Ethernet2/1
+  shutdown: false
+  mtu: 1500
+  type: routed
+  ip_address: 192.168.11.7/31
+- name: Ethernet1
+  peer: DC01-0601-ESX01
+  peer_interface: PCI_slot_1_Port_1
+  peer_type: server
+  description: DC01-0601-ESX01_PCI_slot_1_Port_1
+  shutdown: false
+  type: port-channel-member
+  channel_group:
+    id: 1
+    mode: active
+- name: Ethernet25
+  peer: DC01-0601-ESX01
+  peer_interface: PCI_slot_2_Port_2
+  peer_type: server
+  description: DC01-0601-ESX01_PCI_slot_2_Port_2
+  shutdown: false
+  type: port-channel-member
+  channel_group:
+    id: 25
+    mode: active
+- name: Ethernet2
+  peer: DC01-0601-ESX02
+  peer_interface: PCI_slot_1_Port_1
+  peer_type: server
+  description: DC01-0601-ESX02_PCI_slot_1_Port_1
+  shutdown: false
+  type: port-channel-member
+  channel_group:
+    id: 2
+    mode: active
+- name: Ethernet26
+  peer: DC01-0601-ESX02
+  peer_interface: PCI_slot_2_Port_2
+  peer_type: server
+  description: DC01-0601-ESX02_PCI_slot_2_Port_2
+  shutdown: false
+  type: port-channel-member
+  channel_group:
+    id: 26
+    mode: active
+- name: Ethernet11
+  peer: DC01-0601-ESX03
+  peer_interface: PCI_slot_1_Port_1
+  peer_type: server
+  description: DC01-0601-ESX03_PCI_slot_1_Port_1
+  shutdown: false
+  type: port-channel-member
+  channel_group:
+    id: 11
+    mode: active
+- name: Ethernet12
+  peer: DC01-0601-ESX04
+  peer_interface: PCI_slot_1_Port_1
+  peer_type: server
+  description: DC01-0601-ESX04_PCI_slot_1_Port_1
+  shutdown: false
+  type: port-channel-member
+  channel_group:
+    id: 12
+    mode: active
+- name: Ethernet30
+  peer: DC01-0601-ESX05
+  peer_interface: PCI_slot_1_Port_1
+  peer_type: server
+  description: DC01-0601-ESX05_PCI_slot_1_Port_1
+  shutdown: false
+  type: port-channel-member
+  channel_group:
+    id: 30
+    mode: active
+- name: Ethernet31
+  peer: DC01-0601-ESX06
+  peer_interface: PCI_slot_1_Port_1
+  peer_type: server
+  description: DC01-0601-ESX06_PCI_slot_1_Port_1
+  shutdown: false
+  type: port-channel-member
+  channel_group:
+    id: 31
+    mode: active
+loopback_interfaces:
+- name: Loopback0
+  description: EVPN_Overlay_Peering
+  shutdown: false
+  ip_address: 10.245.217.4/32
+- name: Loopback1
+  description: VTEP_VXLAN_Tunnel_Source
+  shutdown: false
+  ip_address: 10.245.217.36/32
+- name: Loopback11
+  description: Development_VTEP_DIAGNOSTICS
+  shutdown: false
+  vrf: Development
+  ip_address: 10.1.11.4/32
+- name: Loopback10
+  description: Production_VTEP_DIAGNOSTICS
+  shutdown: false
+  vrf: Production
+  ip_address: 10.1.10.4/32
+prefix_lists:
+- name: PL-LOOPBACKS-EVPN-OVERLAY
+  sequence_numbers:
+  - sequence: 10
+    action: permit 10.245.217.0/27 eq 32
+  - sequence: 20
+    action: permit 10.245.217.32/27 eq 32
+route_maps:
+- name: RM-CONN-2-BGP
+  sequence_numbers:
+  - sequence: 10
+    type: permit
+    match:
+    - ip address prefix-list PL-LOOPBACKS-EVPN-OVERLAY
+router_bfd:
+  multihop:
+    interval: 300
+    min_rx: 300
+    multiplier: 3
+vlans:
+- id: 21
+  name: VRF11_VLAN21
+  tenant: OTI
+- id: 22
+  name: VRF11_VLAN22
+  tenant: OTI
+- id: 2500
+  name: Scada_Dev
+  tenant: OTI
+- id: 2821
+  name: Users_Dev
+  tenant: OTI
+- id: 2822
+  name: Voice_Dev
+  tenant: OTI
+- id: 2833
+  name: Broadcast1
+  tenant: OTI
+- id: 2834
+  name: Broadcast2
+  tenant: OTI
+- id: 55
+  name: HYPER_PROD
+  tenant: OTI
+- id: 100
+  name: Compute
+  tenant: OTI
+- id: 101
+  name: Data
+  tenant: OTI
+- id: 201
+  name: VMOTION_A
+  tenant: OTI
+- id: 202
+  name: VXRAIL
+  tenant: OTI
+- id: 400
+  name: VMWARE_REPL
+  tenant: OTI
+- id: 500
+  name: Compute_Backup
+  tenant: OTI
+- id: 501
+  name: Data_Backup
+  tenant: OTI
+- id: 821
+  name: SAN_Disk
+  tenant: OTI
+- id: 887
+  name: NOCB_WORKLOAD1
+  tenant: OTI
+- id: 888
+  name: NOCB_WORKLOAD2
+  tenant: OTI
+- id: 899
+  name: NAS
+  tenant: OTI
+- id: 999
+  name: BWS
+  tenant: OTI
+- id: 1000
+  name: SRVR_FARM_BLADE
+  tenant: OTI
+- id: 1100
+  name: SRVR_FARM_BLADE_0
+  tenant: OTI
+- id: 1101
+  name: SRVR_FARM_BLADE_1
+  tenant: OTI
+- id: 1102
+  name: SRVR_FARM_BLADE_2
+  tenant: OTI
+- id: 1201
+  name: UCP_MGMT_1
+  tenant: OTI
+- id: 1202
+  name: UCP_MGMT_2
+  tenant: OTI
+- id: 2000
+  name: Data_Prod
+  tenant: OTI
+- id: 3434
+  name: VM_Servers
+  tenant: OTI
+- id: 3911
+  name: SCADA_PROD
+  tenant: OTI
+- id: 3401
+  name: L2_VLAN3401
+  tenant: OTI
+- id: 3402
+  name: L2_VLAN3402
+  tenant: OTI
+ip_igmp_snooping:
+  globally_enabled: true
+ip_virtual_router_mac_address: 00:1c:73:00:09:99
+vlan_interfaces:
+- name: Vlan21
+  tenant: OTI
+  description: VRF11_VLAN21
+  shutdown: false
+  ip_address_virtual: 10.10.21.1/24
+  vrf: Development
+- name: Vlan22
+  tenant: OTI
+  description: VRF11_VLAN22
+  shutdown: false
+  ip_address_virtual: 10.10.22.1/24
+  vrf: Development
+- name: Vlan2500
+  tenant: OTI
+  description: Scada_Dev
+  shutdown: false
+  ip_address_virtual: 12.50.0.1/24
+  vrf: Development
+- name: Vlan2821
+  tenant: OTI
+  description: Users_Dev
+  shutdown: false
+  ip_address_virtual: 10.28.21.1/24
+  vrf: Development
+- name: Vlan2822
+  tenant: OTI
+  description: Voice_Dev
+  shutdown: false
+  ip_address_virtual: 10.28.22.1/24
+  vrf: Development
+- name: Vlan2833
+  tenant: OTI
+  description: Broadcast1
+  shutdown: false
+  ip_address_virtual: 10.28.33.1/24
+  vrf: Development
+- name: Vlan2834
+  tenant: OTI
+  description: Broadcast2
+  shutdown: false
+  ip_address_virtual: 10.28.34.1/24
+  vrf: Development
+- name: Vlan55
+  tenant: OTI
+  description: HYPER_PROD
+  shutdown: false
+  ip_address_virtual: 10.10.55.1/24
+  vrf: Production
+- name: Vlan100
+  tenant: OTI
+  description: Compute
+  shutdown: false
+  ip_address_virtual: 10.10.100.1/24
+  vrf: Production
+- name: Vlan101
+  tenant: OTI
+  description: Data
+  shutdown: false
+  ip_address_virtual: 10.10.101.1/24
+  vrf: Production
+- name: Vlan201
+  tenant: OTI
+  description: VMOTION_A
+  shutdown: false
+  ip_address_virtual: 10.0.201.1/24
+  vrf: Production
+- name: Vlan202
+  tenant: OTI
+  description: VXRAIL
+  shutdown: false
+  ip_address_virtual: 10.0.202.1/24
+  vrf: Production
+- name: Vlan400
+  tenant: OTI
+  description: VMWARE_REPL
+  shutdown: false
+  ip_address_virtual: 10.40.0.1/24
+  vrf: Production
+- name: Vlan500
+  tenant: OTI
+  description: Compute_Backup
+  shutdown: false
+  ip_address_virtual: 10.50.0.1/24
+  vrf: Production
+- name: Vlan501
+  tenant: OTI
+  description: Data_Backup
+  shutdown: false
+  ip_address_virtual: 10.50.1.1/24
+  vrf: Production
+- name: Vlan821
+  tenant: OTI
+  description: SAN_Disk
+  shutdown: false
+  ip_address_virtual: 10.82.1.1/24
+  vrf: Production
+- name: Vlan887
+  tenant: OTI
+  description: NOCB_WORKLOAD1
+  shutdown: false
+  ip_address_virtual: 10.88.7.1/24
+  vrf: Production
+- name: Vlan888
+  tenant: OTI
+  description: NOCB_WORKLOAD2
+  shutdown: false
+  ip_address_virtual: 10.88.8.1/24
+  vrf: Production
+- name: Vlan899
+  tenant: OTI
+  description: NAS
+  shutdown: false
+  ip_address_virtual: 10.89.9.1/24
+  vrf: Production
+- name: Vlan999
+  tenant: OTI
+  description: BWS
+  shutdown: false
+  ip_address_virtual: 10.99.9.1/24
+  vrf: Production
+- name: Vlan1000
+  tenant: OTI
+  description: SRVR_FARM_BLADE
+  shutdown: false
+  ip_address_virtual: 10.0.0.1/24
+  vrf: Production
+- name: Vlan1100
+  tenant: OTI
+  description: SRVR_FARM_BLADE_0
+  shutdown: false
+  ip_address_virtual: 11.0.0.1/24
+  vrf: Production
+- name: Vlan1101
+  tenant: OTI
+  description: SRVR_FARM_BLADE_1
+  shutdown: false
+  ip_address_virtual: 11.0.1.1/24
+  vrf: Production
+- name: Vlan1102
+  tenant: OTI
+  description: SRVR_FARM_BLADE_2
+  shutdown: false
+  ip_address_virtual: 11.0.2.1/24
+  vrf: Production
+- name: Vlan1201
+  tenant: OTI
+  description: UCP_MGMT_1
+  shutdown: false
+  ip_address_virtual: 12.0.1.1/24
+  vrf: Production
+- name: Vlan1202
+  tenant: OTI
+  description: UCP_MGMT_2
+  shutdown: false
+  ip_address_virtual: 12.0.2.1/24
+  vrf: Production
+- name: Vlan2000
+  tenant: OTI
+  description: Data_Prod
+  shutdown: false
+  ip_address_virtual: 20.0.0.1/24
+  vrf: Production
+- name: Vlan3434
+  tenant: OTI
+  description: VM_Servers
+  shutdown: false
+  ip_address_virtual: 10.34.34.1/24
+  vrf: Production
+- name: Vlan3911
+  tenant: OTI
+  description: SCADA_PROD
+  shutdown: false
+  ip_address_virtual: 10.39.11.1/24
+  vrf: Production
+vxlan_interface:
+  Vxlan1:
+    description: OTI-DC01-Leaf2_VTEP
+    vxlan:
+      udp_port: 4789
+      source_interface: Loopback1
+      vlans:
+      - id: 21
+        vni: 10021
+      - id: 22
+        vni: 10022
+      - id: 2500
+        vni: 12500
+      - id: 2821
+        vni: 12821
+      - id: 2822
+        vni: 12822
+      - id: 2833
+        vni: 12833
+      - id: 2834
+        vni: 12834
+      - id: 55
+        vni: 10055
+      - id: 100
+        vni: 10100
+      - id: 101
+        vni: 10101
+      - id: 201
+        vni: 10201
+      - id: 202
+        vni: 10202
+      - id: 400
+        vni: 10400
+      - id: 500
+        vni: 10500
+      - id: 501
+        vni: 10501
+      - id: 821
+        vni: 10821
+      - id: 887
+        vni: 10887
+      - id: 888
+        vni: 10888
+      - id: 899
+        vni: 10899
+      - id: 999
+        vni: 10999
+      - id: 1000
+        vni: 11000
+      - id: 1100
+        vni: 11100
+      - id: 1101
+        vni: 11101
+      - id: 1102
+        vni: 11102
+      - id: 1201
+        vni: 11201
+      - id: 1202
+        vni: 11202
+      - id: 2000
+        vni: 12000
+      - id: 3434
+        vni: 13434
+      - id: 3911
+        vni: 13911
+      - id: 3401
+        vni: 13401
+      - id: 3402
+        vni: 13402
+      vrfs:
+      - name: Development
+        vni: 11
+      - name: Production
+        vni: 10
+virtual_source_nat_vrfs:
+- name: Development
+  ip_address: 10.1.11.4
+- name: Production
+  ip_address: 10.1.10.4
+port_channel_interfaces:
+- name: Port-Channel1
+  description: DC01-0601-ESX01
+  type: switched
+  shutdown: false
+  mtu: 9214
+  mode: trunk
+  evpn_ethernet_segment:
+    identifier: 0000:0000:ac9b:deb4:3bc0
+    route_target: ac:9b:de:b4:3b:c0
+  lacp_id: ac9b.deb4.3bc0
+- name: Port-Channel25
+  description: DC01-0601-ESX01
+  type: switched
+  shutdown: false
+  mtu: 9214
+  mode: trunk
+  evpn_ethernet_segment:
+    identifier: 0000:0000:c8d4:663f:a199
+    route_target: c8:d4:66:3f:a1:99
+  lacp_id: c8d4.663f.a199
+- name: Port-Channel2
+  description: DC01-0601-ESX02
+  type: switched
+  shutdown: false
+  mtu: 9214
+  mode: trunk
+  evpn_ethernet_segment:
+    identifier: 0000:0000:e26a:e644:0b4b
+    route_target: e2:6a:e6:44:0b:4b
+  lacp_id: e26a.e644.0b4b
+- name: Port-Channel26
+  description: DC01-0601-ESX02
+  type: switched
+  shutdown: false
+  mtu: 9214
+  mode: trunk
+  evpn_ethernet_segment:
+    identifier: 0000:0000:d7b3:de6b:1a64
+    route_target: d7:b3:de:6b:1a:64
+  lacp_id: d7b3.de6b.1a64
+- name: Port-Channel11
+  description: DC01-0601-ESX03
+  type: switched
+  shutdown: false
+  mtu: 9214
+  mode: trunk
+  evpn_ethernet_segment:
+    identifier: 0000:0000:402c:d2f2:b799
+    route_target: 40:2c:d2:f2:b7:99
+  lacp_id: 402c.d2f2.b799
+- name: Port-Channel12
+  description: DC01-0601-ESX04
+  type: switched
+  shutdown: false
+  mtu: 9214
+  mode: trunk
+  evpn_ethernet_segment:
+    identifier: 0000:0000:d9ea:a6b7:fb99
+    route_target: d9:ea:a6:b7:fb:99
+  lacp_id: d9ea.a6b7.fb99
+- name: Port-Channel30
+  description: DC01-0601-ESX05
+  type: switched
+  shutdown: false
+  mtu: 9214
+  mode: trunk
+  evpn_ethernet_segment:
+    identifier: 0000:0000:674e:7967:8c54
+    route_target: 67:4e:79:67:8c:54
+  lacp_id: 674e.7967.8c54
+- name: Port-Channel31
+  description: DC01-0601-ESX06
+  type: switched
+  shutdown: false
+  mtu: 9214
+  mode: trunk
+  evpn_ethernet_segment:
+    identifier: 0000:0000:2130:949d:008e
+    route_target: 21:30:94:9d:00:8e
+  lacp_id: 2130.949d.008e
+metadata:
+  platform: vEOS-lab
