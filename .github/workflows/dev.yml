@@ -31,7 +31,8 @@ jobs:
         with:
           filters: |
             workflows:
-              - 'group_vars/DC01*'
+              - 'group_vars/DC01**'
+              - 'group_vars/OTI_**'
 
       - name: Check paths for group_vars/DC02
         uses: dorny/paths-filter@v3
@@ -39,7 +40,8 @@ jobs:
         with:
           filters: |
             workflows:
-              - 'group_vars/DC02*'
+              - 'group_vars/DC02**'
+              - 'group_vars/OTI_**'
 
       - name: Install collections
         run: ansible-galaxy collection install -r requirements.yml
