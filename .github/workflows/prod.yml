@@ -54,10 +54,10 @@ jobs:
         uses: actions/setup-python@v5
 
       - name: Install Python requirements
-        run: pip install pyavd[ansible]==4.10.0
+        run: sudo pip install pyavd[ansible]==4.10.0
 
       - name: Fix openssl bug
-        run: pip install pyopenssl --upgrade
+        run: sudo pip install pyopenssl --upgrade
 
       - name: Set environment variable
         run: export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
