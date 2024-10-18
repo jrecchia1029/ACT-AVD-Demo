@@ -1,12 +1,12 @@
-name: Test the upcoming changes
+name: Deploy updates
 
 on:
   push:
-    branches-ignore:
+    branches:
       - main
 
 jobs:
-  dev:
+  deploy-prod:
     timeout-minutes: 15
     runs-on: ubuntu-latest
     steps:
@@ -17,10 +17,7 @@ jobs:
         uses: actions/setup-python@v5
 
       - name: Install Python requirements
-        run: pip install -r requirements-python.yml
-
-      - name: Update OTI Endpoints based on xlsx
-        run: python OTI_XLSX_TO_AVD_ENDPOINTS.py
+        run: pip3 install "pyavd[ansible]==4.10.0"
 
       - name: Run pre-commit on files
         uses: pre-commit/action@v3.0.0
@@ -45,13 +42,13 @@ jobs:
         run: ansible-galaxy collection install -r requirements.yml
         if: steps.filter-site1.outputs.workflows == 'true' || steps.filter-site2.outputs.workflows == 'true'
 
-      # - name: Test configuration
-      #   run: ansible-playbook playbooks/build_all.yml -i inventory.yml --tags generate
+      # - name: Build and deploy
+      #   run: ansible-playbook playbooks/build_all.yml -i inventory.yml --tags deploy
 
-      - name: Build DC01
-        run: ansible-playbook playbooks/build_dc01.yml -i inventory.yml --tags generate
+      - name: Build and deploy site1
+        run: ansible-playbook playbooks/build_dc01.yml -i inventory.yml --tags deploy
         if: steps.filter-site1.outputs.workflows == 'true'
 
-      - name: Build DC01
-        run: ansible-playbook playbooks/build_dc02.yml -i inventory.yml --tags generate
+      - name: Build and deploy site2
+        run: ansible-playbook playbooks/build_dc02.yml -i inventory.yml --tags deploy
         if: steps.filter-site2.outputs.workflows == 'true'
