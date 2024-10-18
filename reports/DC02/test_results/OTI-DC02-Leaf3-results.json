@@ -338,6 +338,16 @@
     ],
     "description": "Verifies the status of the provided interfaces.",
     "result": "success",
+    "custom_field": "Interface Ethernet3 - DC02-0901-ESX03_Onboard_NIC_2 = 'up'"
+  },
+  {
+    "name": "OTI-DC02-Leaf3",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the status of the provided interfaces.",
+    "result": "success",
     "custom_field": "Interface Ethernet4 - DC02-0901-ESX05_Onboard_NIC_2 = 'up'"
   },
   {
@@ -475,6 +485,16 @@
       "The following interface(s) are not in the expected state: ['Port-Channel26 is down/lowerLayerDown']"
     ],
     "custom_field": "Interface Port-Channel26 - DC02-0901-SRVC = 'up'"
+  },
+  {
+    "name": "OTI-DC02-Leaf3",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the status of the provided interfaces.",
+    "result": "success",
+    "custom_field": "Interface Port-Channel3 - DC02-0901-ESX03 = 'up'"
   },
   {
     "name": "OTI-DC02-Leaf3",
@@ -1098,7 +1118,7 @@
     "description": "Verifies whether the CPU utilization is below 75%.",
     "result": "failure",
     "messages": [
-      "Device has reported a high CPU utilization: 87.5%"
+      "Device has reported a high CPU utilization: 91.2%"
     ]
   },
   {

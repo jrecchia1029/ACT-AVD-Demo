@@ -338,6 +338,16 @@
     ],
     "description": "Verifies the status of the provided interfaces.",
     "result": "success",
+    "custom_field": "Interface Ethernet3 - DC02-0901-ESX03_PCI_slot_2_Port_2 = 'up'"
+  },
+  {
+    "name": "OTI-DC02-Leaf4",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the status of the provided interfaces.",
+    "result": "success",
     "custom_field": "Interface Ethernet4 - DC02-0901-ESX05_PCI_slot_2_Port_2 = 'up'"
   },
   {
@@ -475,6 +485,16 @@
       "The following interface(s) are not in the expected state: ['Port-Channel26 is down/lowerLayerDown']"
     ],
     "custom_field": "Interface Port-Channel26 - DC02-0901-SRVC = 'up'"
+  },
+  {
+    "name": "OTI-DC02-Leaf4",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the status of the provided interfaces.",
+    "result": "success",
+    "custom_field": "Interface Port-Channel3 - DC02-0901-ESX03 = 'up'"
   },
   {
     "name": "OTI-DC02-Leaf4",
