@@ -140,16 +140,5 @@ ethernet_interfaces:
   mode: access
   vlans: '2545'
   spanning_tree_portfast: edge
-- name: Ethernet6
-  peer: DC02-0901-ESX06
-  peer_interface: idrac
-  peer_type: server
-  port_profile: Access
-  description: DC02-0901-ESX06_idrac
-  shutdown: false
-  type: switched
-  mode: access
-  vlans: '2545'
-  spanning_tree_portfast: edge
 metadata:
   platform: 7050SX3-48YC8

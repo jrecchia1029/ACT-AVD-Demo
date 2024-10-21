@@ -118,22 +118,6 @@ router_bgp:
     - ip_address: 192.168.14.73
       peer_group: MLAG-IPv4-UNDERLAY-PEER
   vlans:
-  - id: 887
-    tenant: OTI
-    rd: 10.245.218.7:10887
-    route_targets:
-      both:
-      - 10887:10887
-    redistribute_routes:
-    - learned
-  - id: 888
-    tenant: OTI
-    rd: 10.245.218.7:10888
-    route_targets:
-      both:
-      - 10888:10888
-    redistribute_routes:
-    - learned
   - id: 899
     tenant: OTI
     rd: 10.245.218.7:10899
@@ -234,12 +218,6 @@ vlans:
   name: MLAG_PEER
   trunk_groups:
   - MLAG
-- id: 887
-  name: NOCB_WORKLOAD1
-  tenant: OTI
-- id: 888
-  name: NOCB_WORKLOAD2
-  tenant: OTI
 - id: 899
   name: NAS
   tenant: OTI
@@ -272,18 +250,6 @@ vlan_interfaces:
   no_autostate: true
   mtu: 1500
   ip_address: 192.168.14.104/31
-- name: Vlan887
-  tenant: OTI
-  description: NOCB_WORKLOAD1
-  shutdown: false
-  ip_address_virtual: 10.88.7.1/24
-  vrf: Production
-- name: Vlan888
-  tenant: OTI
-  description: NOCB_WORKLOAD2
-  shutdown: false
-  ip_address_virtual: 10.88.8.1/24
-  vrf: Production
 - name: Vlan899
   tenant: OTI
   description: NAS
@@ -349,24 +315,6 @@ port_channel_interfaces:
   vlans: 1100, 1101, 1102
   spanning_tree_portfast: edge
   mlag: 491
-- name: Port-Channel2
-  description: DC02-0901-ESX06
-  type: switched
-  shutdown: false
-  mtu: 9214
-  mode: trunk
-  vlans: 899, 999
-  spanning_tree_portfast: edge
-  mlag: 2
-- name: Port-Channel501
-  description: DC02-0901-ESX06
-  type: switched
-  shutdown: false
-  mtu: 9214
-  mode: trunk
-  vlans: 887, 888
-  spanning_tree_portfast: edge
-  mlag: 501
 ethernet_interfaces:
 - name: Ethernet53/1
   peer: OTI-DC02-Leaf5B
@@ -437,28 +385,6 @@ ethernet_interfaces:
   channel_group:
     id: 491
     mode: active
-- name: Ethernet2
-  peer: DC02-0901-ESX06
-  peer_interface: Onboard_NIC_2
-  peer_type: server
-  port_profile: Access
-  description: DC02-0901-ESX06_Onboard_NIC_2
-  shutdown: false
-  type: port-channel-member
-  channel_group:
-    id: 2
-    mode: active
-- name: Ethernet50/1
-  peer: DC02-0901-ESX06
-  peer_interface: PCI_slot_1_Port_2
-  peer_type: server
-  port_profile: Access
-  description: DC02-0901-ESX06_PCI_slot_1_Port_2
-  shutdown: false
-  type: port-channel-member
-  channel_group:
-    id: 501
-    mode: active
 mlag_configuration:
   domain_id: OTI-DC02-Leaf5
   local_interface: Vlan4094
@@ -517,10 +443,6 @@ vxlan_interface:
       source_interface: Loopback1
       virtual_router_encapsulation_mac_address: mlag-system-id
       vlans:
-      - id: 887
-        vni: 10887
-      - id: 888
-        vni: 10888
       - id: 899
         vni: 10899
       - id: 999

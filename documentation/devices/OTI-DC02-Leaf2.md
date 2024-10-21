@@ -378,7 +378,6 @@ vlan 3911
 | Ethernet3 | DC02-0901-ESX03_PCI_slot_1_Port_1 | *trunk | *- | *- | *- | 3 |
 | Ethernet4 | DC02-0901-ESX04_PCI_slot_1_Port_1 | *trunk | *- | *- | *- | 4 |
 | Ethernet5 | DC02-0901-ESX05_PCI_slot_1_Port_1 | *trunk | *- | *- | *- | 5 |
-| Ethernet6 | DC02-0901-ESX06_PCI_slot_1_Port_1 | *trunk | *- | *- | *- | 6 |
 | Ethernet25 | DC02-0901-SRVA_Port_1 | *trunk | *- | *- | *- | 25 |
 | Ethernet47 | DC02-0901-ESX02_PCI_slot_2_Port_2 | *trunk | *- | *- | *- | 47 |
 | Ethernet48 | DC02-0901-ESX01_PCI_slot_2_Port_2 | *trunk | *- | *- | *- | 48 |
@@ -420,11 +419,6 @@ interface Ethernet5
    description DC02-0901-ESX05_PCI_slot_1_Port_1
    no shutdown
    channel-group 5 mode active
-!
-interface Ethernet6
-   description DC02-0901-ESX06_PCI_slot_1_Port_1
-   no shutdown
-   channel-group 6 mode active
 !
 interface Ethernet25
    description DC02-0901-SRVA_Port_1
@@ -469,7 +463,6 @@ interface Ethernet56/1
 | Port-Channel3 | DC02-0901-ESX03 | switched | trunk | - | - | - | - | - | - | 0000:0000:5464:8822:1362 |
 | Port-Channel4 | DC02-0901-ESX04 | switched | trunk | - | - | - | - | - | - | 0000:0000:11d7:3a44:20e2 |
 | Port-Channel5 | DC02-0901-ESX05 | switched | trunk | - | - | - | - | - | - | 0000:0000:7869:6402:a182 |
-| Port-Channel6 | DC02-0901-ESX06 | switched | trunk | - | - | - | - | - | - | 0000:0000:6ec9:e834:38c2 |
 | Port-Channel25 | DC02-0901-SRVA | switched | trunk | - | - | - | - | - | - | 0000:0000:22ed:72fb:33f6 |
 | Port-Channel47 | DC02-0901-ESX02 | switched | trunk | - | - | - | - | - | - | 0000:0000:f8ae:690b:c05f |
 | Port-Channel48 | DC02-0901-ESX01 | switched | trunk | - | - | - | - | - | - | 0000:0000:aa2f:cd7d:9ee5 |
@@ -485,7 +478,6 @@ interface Ethernet56/1
 | Port-Channel3 | 0000:0000:5464:8822:1362 | all-active | 54:64:88:22:13:62 |
 | Port-Channel4 | 0000:0000:11d7:3a44:20e2 | all-active | 11:d7:3a:44:20:e2 |
 | Port-Channel5 | 0000:0000:7869:6402:a182 | all-active | 78:69:64:02:a1:82 |
-| Port-Channel6 | 0000:0000:6ec9:e834:38c2 | all-active | 6e:c9:e8:34:38:c2 |
 | Port-Channel25 | 0000:0000:22ed:72fb:33f6 | all-active | 22:ed:72:fb:33:f6 |
 | Port-Channel47 | 0000:0000:f8ae:690b:c05f | all-active | f8:ae:69:0b:c0:5f |
 | Port-Channel48 | 0000:0000:aa2f:cd7d:9ee5 | all-active | aa:2f:cd:7d:9e:e5 |
@@ -552,18 +544,6 @@ interface Port-Channel5
       identifier 0000:0000:7869:6402:a182
       route-target import 78:69:64:02:a1:82
    lacp system-id 7869.6402.a182
-   spanning-tree portfast
-!
-interface Port-Channel6
-   description DC02-0901-ESX06
-   no shutdown
-   mtu 9214
-   switchport
-   switchport mode trunk
-   evpn ethernet-segment
-      identifier 0000:0000:6ec9:e834:38c2
-      route-target import 6e:c9:e8:34:38:c2
-   lacp system-id 6ec9.e834.38c2
    spanning-tree portfast
 !
 interface Port-Channel25
