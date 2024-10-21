@@ -44,6 +44,7 @@ jobs:
       #   if: steps.structured-config.outputs.workflows == 'true'
 
   validate_prod:
+    needs: deploy-prod
     runs-on: self-hosted
     timeout-minutes: 15
     steps:
@@ -72,7 +73,7 @@ jobs:
 
       - name: validate
         run: ansible-playbook playbooks/validate_all.yml -i inventory.yml
-      #   if: steps.structured-config.outputs.workflows == 'true'
+        if: steps.structured-config.outputs.workflows == 'true'
 
       - name: Commit report
         run: |
@@ -81,4 +82,4 @@ jobs:
           git add .
           git diff --quiet && git diff --staged --quiet || git commit -am 'Automated report'
           git push
-      #   if: steps.endpoints_xlsx.outputs.workflows == 'true' || steps.structured-config.outputs.workflows == 'true' || steps.filter-site2.outputs.workflows == 'true'
+        if: steps.endpoints_xlsx.outputs.workflows == 'true' || steps.structured-config.outputs.workflows == 'true' || steps.filter-site2.outputs.workflows == 'true'
