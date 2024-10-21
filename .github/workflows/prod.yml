@@ -35,13 +35,13 @@ jobs:
         run: ansible-galaxy collection install -r requirements.yml
         if: steps.structured-config.outputs.workflows == 'true'
 
-      - name: deploy
-        run: ansible-playbook playbooks/build_all.yml -i inventory.yml
-        if: steps.structured-config.outputs.workflows == 'true'
-
       # - name: deploy
-      #   run: ansible-playbook playbooks/auto_deploy.yml -i inventory.yml
+      #   run: ansible-playbook playbooks/build_all.yml -i inventory.yml
       #   if: steps.structured-config.outputs.workflows == 'true'
+
+      - name: deploy
+        run: ansible-playbook playbooks/auto_deploy.yml -i inventory.yml
+        if: steps.structured-config.outputs.workflows == 'true'
 
   validate_prod:
     needs: deploy-prod
