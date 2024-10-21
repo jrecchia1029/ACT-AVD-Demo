@@ -415,6 +415,7 @@ ethernet_interfaces:
   peer: DC01-0601-ESX03
   peer_interface: PCI_slot_2_Port_2
   peer_type: server
+  port_profile: Access
   description: DC01-0601-ESX03_PCI_slot_2_Port_2
   shutdown: false
   type: port-channel-member
@@ -425,6 +426,7 @@ ethernet_interfaces:
   peer: DC01-0601-ESX04
   peer_interface: PCI_slot_2_Port_2
   peer_type: server
+  port_profile: Access
   description: DC01-0601-ESX04_PCI_slot_2_Port_2
   shutdown: false
   type: port-channel-member
@@ -435,6 +437,7 @@ ethernet_interfaces:
   peer: DC01-0601-SRVA
   peer_interface: Port_1
   peer_type: server
+  port_profile: Access
   description: DC01-0601-SRVA_Port_1
   shutdown: false
   type: port-channel-member
@@ -445,6 +448,7 @@ ethernet_interfaces:
   peer: DC01-0601-SRVB
   peer_interface: Port_1
   peer_type: server
+  port_profile: Access
   description: DC01-0601-SRVB_Port_1
   shutdown: false
   type: port-channel-member
@@ -455,6 +459,7 @@ ethernet_interfaces:
   peer: DC01-0601-SRVC
   peer_interface: Port_1
   peer_type: server
+  port_profile: Access
   description: DC01-0601-SRVC_Port_1
   shutdown: false
   type: port-channel-member
@@ -465,6 +470,7 @@ ethernet_interfaces:
   peer: DC01-0601-SRVD
   peer_interface: Port_1
   peer_type: server
+  port_profile: Access
   description: DC01-0601-SRVD_Port_1
   shutdown: false
   type: port-channel-member
@@ -475,6 +481,7 @@ ethernet_interfaces:
   peer: DC01-0601-ESX05
   peer_interface: PCI_slot_2_Port_2
   peer_type: server
+  port_profile: Access
   description: DC01-0601-ESX05_PCI_slot_2_Port_2
   shutdown: false
   type: port-channel-member
@@ -485,6 +492,7 @@ ethernet_interfaces:
   peer: DC01-0601-ESX06
   peer_interface: PCI_slot_2_Port_2
   peer_type: server
+  port_profile: Access
   description: DC01-0601-ESX06_PCI_slot_2_Port_2
   shutdown: false
   type: port-channel-member
@@ -887,6 +895,7 @@ port_channel_interfaces:
   shutdown: false
   mtu: 9214
   mode: trunk
+  spanning_tree_portfast: edge
   evpn_ethernet_segment:
     identifier: 0000:0000:cf03:9408:ec9a
     route_target: cf:03:94:08:ec:9a
@@ -897,6 +906,7 @@ port_channel_interfaces:
   shutdown: false
   mtu: 9214
   mode: trunk
+  spanning_tree_portfast: edge
   evpn_ethernet_segment:
     identifier: 0000:0000:cabf:e649:c9a1
     route_target: ca:bf:e6:49:c9:a1
@@ -907,6 +917,7 @@ port_channel_interfaces:
   shutdown: false
   mtu: 9214
   mode: trunk
+  spanning_tree_portfast: edge
   evpn_ethernet_segment:
     identifier: 0000:0000:635d:134d:9b86
     route_target: 63:5d:13:4d:9b:86
@@ -917,6 +928,7 @@ port_channel_interfaces:
   shutdown: false
   mtu: 9214
   mode: trunk
+  spanning_tree_portfast: edge
   evpn_ethernet_segment:
     identifier: 0000:0000:873f:92fb:cd3d
     route_target: 87:3f:92:fb:cd:3d
@@ -927,6 +939,7 @@ port_channel_interfaces:
   shutdown: false
   mtu: 9214
   mode: trunk
+  spanning_tree_portfast: edge
   evpn_ethernet_segment:
     identifier: 0000:0000:88a9:5b0f:593d
     route_target: 88:a9:5b:0f:59:3d
@@ -937,6 +950,7 @@ port_channel_interfaces:
   shutdown: false
   mtu: 9214
   mode: trunk
+  spanning_tree_portfast: edge
   evpn_ethernet_segment:
     identifier: 0000:0000:60ea:4b72:cbc5
     route_target: 60:ea:4b:72:cb:c5
@@ -947,6 +961,7 @@ port_channel_interfaces:
   shutdown: false
   mtu: 9214
   mode: trunk
+  spanning_tree_portfast: edge
   evpn_ethernet_segment:
     identifier: 0000:0000:6e36:5d4b:7972
     route_target: 6e:36:5d:4b:79:72
@@ -957,6 +972,7 @@ port_channel_interfaces:
   shutdown: false
   mtu: 9214
   mode: trunk
+  spanning_tree_portfast: edge
   evpn_ethernet_segment:
     identifier: 0000:0000:5fad:6495:5ad4
     route_target: 5f:ad:64:95:5a:d4

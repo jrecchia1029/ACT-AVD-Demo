@@ -15,6 +15,7 @@
 - [Connected Endpoints](#connected-endpoints)
   - [Connected Endpoint Keys](#connected-endpoint-keys)
   - [Servers](#servers)
+  - [Port Profiles](#port-profiles)
 
 ## Fabric Switches and Management IP
 
@@ -89,12 +90,18 @@
 
 | Name | Port | Fabric Device | Fabric Port | Description | Shutdown | Type | Mode | VLANs | Profile |
 | ---- | ---- | ------------- | ------------| ----------- | -------- | ---- | ---- | ----- | ------- |
-| DC02-0901-ESX01 | idrac | OTI-DC02-OBM1 | Ethernet1 | DC02-0901-ESX01_idrac | False | switched | access | 2545 | - |
-| DC02-0901-ESX02 | idrac | OTI-DC02-OBM1 | Ethernet2 | DC02-0901-ESX02_idrac | False | switched | access | 2545 | - |
-| DC02-0901-ESX03 | idrac | OTI-DC02-OBM1 | Ethernet3 | DC02-0901-ESX03_idrac | False | switched | access | 2545 | - |
-| DC02-0901-ESX04 | idrac | OTI-DC02-OBM1 | Ethernet4 | DC02-0901-ESX04_idrac | False | switched | access | 2545 | - |
-| DC02-0901-ESX05 | idrac | OTI-DC02-OBM1 | Ethernet5 | DC02-0901-ESX05_idrac | False | switched | access | 2545 | - |
-| DC02-0901-ESX06 | idrac | OTI-DC02-OBM1 | Ethernet6 | DC02-0901-ESX06_idrac | False | switched | access | 2545 | - |
-| DC02-0901-SRVA | iLo | OTI-DC02-OBM1 | Ethernet7 | DC02-0901-SRVA_iLo | False | switched | access | 2545 | - |
-| DC02-0901-SRVB | iLo | OTI-DC02-OBM1 | Ethernet8 | DC02-0901-SRVB_iLo | False | switched | access | 2545 | - |
-| DC02-0901-SRVC | iLo | OTI-DC02-OBM1 | Ethernet9 | DC02-0901-SRVC_iLo | False | switched | access | 2545 | - |
+| DC02-0901-ESX01 | idrac | OTI-DC02-OBM1 | Ethernet1 | DC02-0901-ESX01_idrac | False | switched | access | 2545 | Access |
+| DC02-0901-ESX02 | idrac | OTI-DC02-OBM1 | Ethernet2 | DC02-0901-ESX02_idrac | False | switched | access | 2545 | Access |
+| DC02-0901-ESX03 | idrac | OTI-DC02-OBM1 | Ethernet3 | DC02-0901-ESX03_idrac | False | switched | access | 2545 | Access |
+| DC02-0901-ESX04 | idrac | OTI-DC02-OBM1 | Ethernet4 | DC02-0901-ESX04_idrac | False | switched | access | 2545 | Access |
+| DC02-0901-ESX05 | idrac | OTI-DC02-OBM1 | Ethernet5 | DC02-0901-ESX05_idrac | False | switched | access | 2545 | Access |
+| DC02-0901-ESX06 | idrac | OTI-DC02-OBM1 | Ethernet6 | DC02-0901-ESX06_idrac | False | switched | access | 2545 | Access |
+| DC02-0901-SRVA | iLo | OTI-DC02-OBM1 | Ethernet7 | DC02-0901-SRVA_iLo | False | switched | access | 2545 | Access |
+| DC02-0901-SRVB | iLo | OTI-DC02-OBM1 | Ethernet8 | DC02-0901-SRVB_iLo | False | switched | access | 2545 | Access |
+| DC02-0901-SRVC | iLo | OTI-DC02-OBM1 | Ethernet9 | DC02-0901-SRVC_iLo | False | switched | access | 2545 | Access |
+
+### Port Profiles
+
+| Profile Name | Parent Profile |
+| ------------ | -------------- |
+| Access | - |

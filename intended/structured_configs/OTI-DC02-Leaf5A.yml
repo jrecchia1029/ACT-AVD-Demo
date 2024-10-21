@@ -338,6 +338,7 @@ port_channel_interfaces:
   mtu: 9214
   mode: trunk
   vlans: 899, 999
+  spanning_tree_portfast: edge
   mlag: 1
 - name: Port-Channel491
   description: DC02-0901-ESX05
@@ -346,6 +347,7 @@ port_channel_interfaces:
   mtu: 9214
   mode: trunk
   vlans: 1100, 1101, 1102
+  spanning_tree_portfast: edge
   mlag: 491
 - name: Port-Channel2
   description: DC02-0901-ESX06
@@ -354,6 +356,7 @@ port_channel_interfaces:
   mtu: 9214
   mode: trunk
   vlans: 899, 999
+  spanning_tree_portfast: edge
   mlag: 2
 - name: Port-Channel501
   description: DC02-0901-ESX06
@@ -362,6 +365,7 @@ port_channel_interfaces:
   mtu: 9214
   mode: trunk
   vlans: 887, 888
+  spanning_tree_portfast: edge
   mlag: 501
 ethernet_interfaces:
 - name: Ethernet53/1
@@ -415,6 +419,7 @@ ethernet_interfaces:
   peer: DC02-0901-ESX04
   peer_interface: Onboard_NIC_2
   peer_type: server
+  port_profile: Access
   description: DC02-0901-ESX04_Onboard_NIC_2
   shutdown: false
   type: port-channel-member
@@ -425,6 +430,7 @@ ethernet_interfaces:
   peer: DC02-0901-ESX05
   peer_interface: PCI_slot_1_Port_2
   peer_type: server
+  port_profile: Access
   description: DC02-0901-ESX05_PCI_slot_1_Port_2
   shutdown: false
   type: port-channel-member
@@ -435,6 +441,7 @@ ethernet_interfaces:
   peer: DC02-0901-ESX06
   peer_interface: Onboard_NIC_2
   peer_type: server
+  port_profile: Access
   description: DC02-0901-ESX06_Onboard_NIC_2
   shutdown: false
   type: port-channel-member
@@ -445,6 +452,7 @@ ethernet_interfaces:
   peer: DC02-0901-ESX06
   peer_interface: PCI_slot_1_Port_2
   peer_type: server
+  port_profile: Access
   description: DC02-0901-ESX06_PCI_slot_1_Port_2
   shutdown: false
   type: port-channel-member

@@ -1,5 +1,16 @@
-import json, csv, os, yaml
+import json, csv, os, yaml, sys
 import pandas as pd
+
+# total arguments
+n = len(sys.argv)
+print("Total arguments passed:", n)
+
+if n > 1:
+    port_profiles = bool(sys.argv[1])
+else:
+    port_profiles = True
+
+print("port_profiles is %s!" % str(port_profiles))
 
 XLSXName = "OtiNetworkConnectivitySpreadsheet.xlsx"
 
@@ -8,9 +19,9 @@ data_xls.to_csv('oti.csv', encoding='utf-8')
 
 PWD = os.path.dirname(os.path.realpath(__file__))
 
-checkFor = "DC02-0901-ESX03"
+# checkFor = "DC02-0901-ESX03"
+checkFor = None
 checkInts = 4
-# checkFor = None
 
 
 
@@ -50,6 +61,9 @@ def rowToEndpoint(rowIn):
         rowIn['Vlan'] = rowIn['Vlan'][0:-1]
     
     adapters[0]['vlans'] = str(rowIn['Vlan']).replace('\n', ", ")
+    
+    if port_profiles:
+        adapters[0]['profile'] = "Access"
     
     adapters[0]['mlag'] = None
     adapters[0]['esi'] = None
@@ -92,10 +106,10 @@ def mergeOne(twoIN):
     
         return ", ".join([str(VLAN).strip() for VLAN in str(strIN).split(",")].sort())[:-2]
 
-
+    dataOut = None
     if join("esi"):
         # We are in a situation where we are AA with ESI and need to define those parameters
-        return {
+        dataOut = {
             "name":twoIN[0]["name"],
             "rack":twoIN[0]["rack"],
             "adapters":[{
@@ -115,7 +129,7 @@ def mergeOne(twoIN):
                 },]}
     else:
         # If we are not in ESI mode then we are an MLAG PO
-        return {
+        dataOut = {
             "name":twoIN[0]["name"],
             "rack":twoIN[0]["rack"],
             "adapters":[{
@@ -130,6 +144,12 @@ def mergeOne(twoIN):
                         "mode": "active"
                     }
                 },]}
+    
+    if port_profiles:
+        dataOut["adapters"][0]["profile"] = "Access"
+
+    return dataOut 
+    
 
 def mergeAllRows(dataIn):
     output = {"servers":[]}
@@ -182,6 +202,7 @@ def mergeAllRows(dataIn):
         else:
             # print(en
             # dpoint)
+            dataIn["servers"][endpoint]["profile"] = "Access"
             output["servers"].append(dataIn["servers"][endpoint])
         # print( mergeOne(listoflinks))
     return output
@@ -253,6 +274,16 @@ if __name__ == "__main__":
         print("%s has %s merged adapters FYI!" % (checkFor, str(len(   [endpoint["adapters"] for endpoint in data["servers"] if endpoint['name'] == checkFor][0]))))
     
     
+    # Set port profile to add portfast after all is done!
+    #  
+    # port_profiles:
+#    - profile: Access
+#      spanning_tree_portfast: edge
+    data["port_profiles"] = [ { "profile":"Access", \
+                                "spanning_tree_portfast":"edge"},]
+
+
+
     # with open('outputConfig.json', 'w') as json_file:
     #     json.dump(data, json_file)
     

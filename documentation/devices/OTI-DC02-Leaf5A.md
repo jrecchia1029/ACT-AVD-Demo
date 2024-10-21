@@ -422,6 +422,7 @@ interface Port-Channel1
    switchport trunk allowed vlan 899, 999
    switchport mode trunk
    mlag 1
+   spanning-tree portfast
 !
 interface Port-Channel2
    description DC02-0901-ESX06
@@ -431,6 +432,7 @@ interface Port-Channel2
    switchport trunk allowed vlan 899, 999
    switchport mode trunk
    mlag 2
+   spanning-tree portfast
 !
 interface Port-Channel491
    description DC02-0901-ESX05
@@ -440,6 +442,7 @@ interface Port-Channel491
    switchport trunk allowed vlan 1100, 1101, 1102
    switchport mode trunk
    mlag 491
+   spanning-tree portfast
 !
 interface Port-Channel501
    description DC02-0901-ESX06
@@ -449,6 +452,7 @@ interface Port-Channel501
    switchport trunk allowed vlan 887, 888
    switchport mode trunk
    mlag 501
+   spanning-tree portfast
 !
 interface Port-Channel531
    description MLAG_PEER_OTI-DC02-Leaf5B_Po531

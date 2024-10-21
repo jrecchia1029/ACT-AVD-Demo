@@ -261,6 +261,7 @@ interface Ethernet1
    switchport access vlan 3545
    switchport mode access
    switchport
+   spanning-tree portfast
 !
 interface Ethernet2
    description DC01-0601-ESX02_idrac
@@ -268,6 +269,7 @@ interface Ethernet2
    switchport access vlan 3545
    switchport mode access
    switchport
+   spanning-tree portfast
 !
 interface Ethernet3
    description DC01-0601-ESX03_idrac
@@ -275,6 +277,7 @@ interface Ethernet3
    switchport access vlan 3545
    switchport mode access
    switchport
+   spanning-tree portfast
 !
 interface Ethernet4
    description DC01-0601-ESX04_idrac
@@ -282,6 +285,7 @@ interface Ethernet4
    switchport access vlan 3545
    switchport mode access
    switchport
+   spanning-tree portfast
 !
 interface Ethernet5
    description DC01-0601-ESX05_idrac
@@ -289,6 +293,7 @@ interface Ethernet5
    switchport access vlan 3545
    switchport mode access
    switchport
+   spanning-tree portfast
 !
 interface Ethernet6
    description DC01-0601-ESX06_idrac
@@ -296,6 +301,7 @@ interface Ethernet6
    switchport access vlan 3545
    switchport mode access
    switchport
+   spanning-tree portfast
 !
 interface Ethernet7
    description DC01-0601-SRVA_iLo
@@ -303,6 +309,7 @@ interface Ethernet7
    switchport access vlan 3545
    switchport mode access
    switchport
+   spanning-tree portfast
 !
 interface Ethernet8
    description DC01-0601-SRVB_iLo
@@ -310,6 +317,7 @@ interface Ethernet8
    switchport access vlan 3545
    switchport mode access
    switchport
+   spanning-tree portfast
 !
 interface Ethernet9
    description DC01-0601-SRVC_iLo
@@ -317,6 +325,7 @@ interface Ethernet9
    switchport access vlan 3545
    switchport mode access
    switchport
+   spanning-tree portfast
 !
 interface Ethernet10
    description DC01-0601-SRVD_iLo
@@ -324,6 +333,7 @@ interface Ethernet10
    switchport access vlan 3545
    switchport mode access
    switchport
+   spanning-tree portfast
 ```
 
 ## Routing

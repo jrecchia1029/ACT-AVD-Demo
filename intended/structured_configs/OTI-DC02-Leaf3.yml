@@ -415,6 +415,7 @@ ethernet_interfaces:
   peer: DC02-0901-ESX01
   peer_interface: PCI_slot_1_Port_2
   peer_type: server
+  port_profile: Access
   description: DC02-0901-ESX01_PCI_slot_1_Port_2
   shutdown: false
   type: port-channel-member
@@ -425,6 +426,7 @@ ethernet_interfaces:
   peer: DC02-0901-ESX02
   peer_interface: PCI_slot_1_Port_2
   peer_type: server
+  port_profile: Access
   description: DC02-0901-ESX02_PCI_slot_1_Port_2
   shutdown: false
   type: port-channel-member
@@ -435,6 +437,7 @@ ethernet_interfaces:
   peer: DC02-0901-ESX03
   peer_interface: Onboard_NIC_2
   peer_type: server
+  port_profile: Access
   description: DC02-0901-ESX03_Onboard_NIC_2
   shutdown: false
   type: port-channel-member
@@ -445,6 +448,7 @@ ethernet_interfaces:
   peer: DC02-0901-ESX03
   peer_interface: PCI_slot_1_Port_2
   peer_type: server
+  port_profile: Access
   description: DC02-0901-ESX03_PCI_slot_1_Port_2
   shutdown: false
   type: port-channel-member
@@ -455,6 +459,7 @@ ethernet_interfaces:
   peer: DC02-0901-ESX04
   peer_interface: PCI_slot_1_Port_2
   peer_type: server
+  port_profile: Access
   description: DC02-0901-ESX04_PCI_slot_1_Port_2
   shutdown: false
   type: port-channel-member
@@ -465,6 +470,7 @@ ethernet_interfaces:
   peer: DC02-0901-SRVA
   peer_interface: Port_2
   peer_type: server
+  port_profile: Access
   description: DC02-0901-SRVA_Port_2
   shutdown: false
   type: port-channel-member
@@ -475,6 +481,7 @@ ethernet_interfaces:
   peer: DC02-0901-SRVB
   peer_interface: Port_0
   peer_type: server
+  port_profile: Access
   description: DC02-0901-SRVB_Port_0
   shutdown: false
   type: port-channel-member
@@ -485,6 +492,7 @@ ethernet_interfaces:
   peer: DC02-0901-SRVC
   peer_interface: Port_0
   peer_type: server
+  port_profile: Access
   description: DC02-0901-SRVC_Port_0
   shutdown: false
   type: port-channel-member
@@ -495,6 +503,7 @@ ethernet_interfaces:
   peer: DC02-0901-ESX05
   peer_interface: Onboard_NIC_2
   peer_type: server
+  port_profile: Access
   description: DC02-0901-ESX05_Onboard_NIC_2
   shutdown: false
   type: port-channel-member
@@ -897,6 +906,7 @@ port_channel_interfaces:
   shutdown: false
   mtu: 9214
   mode: trunk
+  spanning_tree_portfast: edge
   evpn_ethernet_segment:
     identifier: 0000:0000:0460:f2c1:b009
     route_target: 04:60:f2:c1:b0:09
@@ -907,6 +917,7 @@ port_channel_interfaces:
   shutdown: false
   mtu: 9214
   mode: trunk
+  spanning_tree_portfast: edge
   evpn_ethernet_segment:
     identifier: 0000:0000:88be:cb52:74af
     route_target: 88:be:cb:52:74:af
@@ -917,6 +928,7 @@ port_channel_interfaces:
   shutdown: false
   mtu: 9214
   mode: trunk
+  spanning_tree_portfast: edge
   evpn_ethernet_segment:
     identifier: 0000:0000:398b:3546:ee71
     route_target: 39:8b:35:46:ee:71
@@ -927,6 +939,7 @@ port_channel_interfaces:
   shutdown: false
   mtu: 9214
   mode: trunk
+  spanning_tree_portfast: edge
   evpn_ethernet_segment:
     identifier: 0000:0000:4513:f51a:99bc
     route_target: 45:13:f5:1a:99:bc
@@ -937,6 +950,7 @@ port_channel_interfaces:
   shutdown: false
   mtu: 9214
   mode: trunk
+  spanning_tree_portfast: edge
   evpn_ethernet_segment:
     identifier: 0000:0000:df46:d263:ab4a
     route_target: df:46:d2:63:ab:4a
@@ -947,6 +961,7 @@ port_channel_interfaces:
   shutdown: false
   mtu: 9214
   mode: trunk
+  spanning_tree_portfast: edge
   evpn_ethernet_segment:
     identifier: 0000:0000:5432:40fd:3258
     route_target: 54:32:40:fd:32:58
@@ -957,6 +972,7 @@ port_channel_interfaces:
   shutdown: false
   mtu: 9214
   mode: access
+  spanning_tree_portfast: edge
   evpn_ethernet_segment:
     identifier: 0000:0000:aefb:c364:b08d
     route_target: ae:fb:c3:64:b0:8d
@@ -967,6 +983,7 @@ port_channel_interfaces:
   shutdown: false
   mtu: 9214
   mode: access
+  spanning_tree_portfast: edge
   evpn_ethernet_segment:
     identifier: 0000:0000:e9d0:08be:cfd8
     route_target: e9:d0:08:be:cf:d8
@@ -977,6 +994,7 @@ port_channel_interfaces:
   shutdown: false
   mtu: 9214
   mode: trunk
+  spanning_tree_portfast: edge
   evpn_ethernet_segment:
     identifier: 0000:0000:8c3b:0e87:0455
     route_target: 8c:3b:0e:87:04:55

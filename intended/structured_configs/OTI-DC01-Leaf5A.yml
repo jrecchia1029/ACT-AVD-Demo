@@ -388,6 +388,7 @@ port_channel_interfaces:
   mtu: 9214
   mode: trunk
   vlans: 2821, 2822, 2833, 2834
+  spanning_tree_portfast: edge
   mlag: 1
 - name: Port-Channel2
   description: DC01-0601-ESX02
@@ -396,6 +397,7 @@ port_channel_interfaces:
   mtu: 9214
   mode: trunk
   vlans: '821'
+  spanning_tree_portfast: edge
   mlag: 2
 - name: Port-Channel3
   description: DC01-0601-ESX03
@@ -404,6 +406,7 @@ port_channel_interfaces:
   mtu: 9214
   mode: access
   vlans: '55'
+  spanning_tree_portfast: edge
   mlag: 3
 - name: Port-Channel4
   description: DC01-0601-ESX04
@@ -412,6 +415,7 @@ port_channel_interfaces:
   mtu: 9214
   mode: access
   vlans: '55'
+  spanning_tree_portfast: edge
   mlag: 4
 - name: Port-Channel25
   description: DC01-0601-SRVD
@@ -420,6 +424,7 @@ port_channel_interfaces:
   mtu: 9214
   mode: trunk
   vlans: 3911, 2500
+  spanning_tree_portfast: edge
   mlag: 25
 - name: Port-Channel5
   description: DC01-0601-ESX05
@@ -428,6 +433,7 @@ port_channel_interfaces:
   mtu: 9214
   mode: trunk
   vlans: 2821, 2822, 2833, 2834
+  spanning_tree_portfast: edge
   mlag: 5
 - name: Port-Channel6
   description: DC01-0601-ESX06
@@ -436,6 +442,7 @@ port_channel_interfaces:
   mtu: 9214
   mode: access
   vlans: '821'
+  spanning_tree_portfast: edge
   mlag: 6
 ethernet_interfaces:
 - name: Ethernet53/1
@@ -489,6 +496,7 @@ ethernet_interfaces:
   peer: DC01-0601-ESX01
   peer_interface: PCI_slot_1_Port_2
   peer_type: server
+  port_profile: Access
   description: DC01-0601-ESX01_PCI_slot_1_Port_2
   shutdown: false
   type: port-channel-member
@@ -499,6 +507,7 @@ ethernet_interfaces:
   peer: DC01-0601-ESX02
   peer_interface: PCI_slot_1_Port_2
   peer_type: server
+  port_profile: Access
   description: DC01-0601-ESX02_PCI_slot_1_Port_2
   shutdown: false
   type: port-channel-member
@@ -509,6 +518,7 @@ ethernet_interfaces:
   peer: DC01-0601-ESX03
   peer_interface: PCI_slot_1_Port_2
   peer_type: server
+  port_profile: Access
   description: DC01-0601-ESX03_PCI_slot_1_Port_2
   shutdown: false
   type: port-channel-member
@@ -519,6 +529,7 @@ ethernet_interfaces:
   peer: DC01-0601-ESX04
   peer_interface: PCI_slot_1_Port_2
   peer_type: server
+  port_profile: Access
   description: DC01-0601-ESX04_PCI_slot_1_Port_2
   shutdown: false
   type: port-channel-member
@@ -529,6 +540,7 @@ ethernet_interfaces:
   peer: DC01-0601-SRVD
   peer_interface: Port_2
   peer_type: server
+  port_profile: Access
   description: DC01-0601-SRVD_Port_2
   shutdown: false
   type: port-channel-member
@@ -539,6 +551,7 @@ ethernet_interfaces:
   peer: DC01-0601-ESX05
   peer_interface: PCI_slot_1_Port_2
   peer_type: server
+  port_profile: Access
   description: DC01-0601-ESX05_PCI_slot_1_Port_2
   shutdown: false
   type: port-channel-member
@@ -549,6 +562,7 @@ ethernet_interfaces:
   peer: DC01-0601-ESX06
   peer_interface: PCI_slot_1_Port_2
   peer_type: server
+  port_profile: Access
   description: DC01-0601-ESX06_PCI_slot_1_Port_2
   shutdown: false
   type: port-channel-member
