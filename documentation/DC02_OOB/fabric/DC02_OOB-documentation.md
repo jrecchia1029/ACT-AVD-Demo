@@ -13,8 +13,6 @@
   - [VTEP Loopback VXLAN Tunnel Source Interfaces (VTEPs Only)](#vtep-loopback-vxlan-tunnel-source-interfaces-vteps-only)
   - [VTEP Loopback Node allocation](#vtep-loopback-node-allocation)
 - [Connected Endpoints](#connected-endpoints)
-  - [Connected Endpoint Keys](#connected-endpoint-keys)
-  - [Servers](#servers)
   - [Port Profiles](#port-profiles)
 
 ## Fabric Switches and Management IP
@@ -69,35 +67,7 @@
 
 ## Connected Endpoints
 
-### Connected Endpoint Keys
-
-| Key | Type | Description |
-| --- | ---- | ----------- |
-| access_points | access_point | Access Point |
-| cameras | camera | Camera |
-| cpes | cpe | CPE |
-| firewalls | firewall | Firewall |
-| generic_devices | generic_device | Generic Device |
-| load_balancers | load_balancer | Load Balancer |
-| phones | phone | Phone |
-| printers | printer | Printer |
-| routers | router | Router |
-| servers | server | Server |
-| storage_arrays | storage_array | Storage Array |
-| workstations | workstation | Workstation |
-
-### Servers
-
-| Name | Port | Fabric Device | Fabric Port | Description | Shutdown | Type | Mode | VLANs | Profile |
-| ---- | ---- | ------------- | ------------| ----------- | -------- | ---- | ---- | ----- | ------- |
-| DC02-0901-ESX01 | idrac | OTI-DC02-OBM1 | Ethernet1 | DC02-0901-ESX01_idrac | False | switched | access | 2545 | Access |
-| DC02-0901-ESX02 | idrac | OTI-DC02-OBM1 | Ethernet2 | DC02-0901-ESX02_idrac | False | switched | access | 2545 | Access |
-| DC02-0901-ESX03 | idrac | OTI-DC02-OBM1 | Ethernet3 | DC02-0901-ESX03_idrac | False | switched | access | 2545 | Access |
-| DC02-0901-ESX04 | idrac | OTI-DC02-OBM1 | Ethernet4 | DC02-0901-ESX04_idrac | False | switched | access | 2545 | Access |
-| DC02-0901-ESX05 | idrac | OTI-DC02-OBM1 | Ethernet5 | DC02-0901-ESX05_idrac | False | switched | access | 2545 | Access |
-| DC02-0901-SRVA | iLo | OTI-DC02-OBM1 | Ethernet7 | DC02-0901-SRVA_iLo | False | switched | access | 2545 | Access |
-| DC02-0901-SRVB | iLo | OTI-DC02-OBM1 | Ethernet8 | DC02-0901-SRVB_iLo | False | switched | access | 2545 | Access |
-| DC02-0901-SRVC | iLo | OTI-DC02-OBM1 | Ethernet9 | DC02-0901-SRVC_iLo | False | switched | access | 2545 | Access |
+No connected endpoint configured!
 
 ### Port Profiles
 
