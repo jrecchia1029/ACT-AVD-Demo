@@ -398,16 +398,6 @@
     ],
     "description": "Verifies the status of the provided interfaces.",
     "result": "success",
-    "custom_field": "Interface Ethernet6 - DC02-0901-ESX06_PCI_slot_1_Port_1 = 'up'"
-  },
-  {
-    "name": "OTI-DC02-Leaf2",
-    "test": "VerifyInterfacesStatus",
-    "categories": [
-      "interfaces"
-    ],
-    "description": "Verifies the status of the provided interfaces.",
-    "result": "success",
     "custom_field": "Interface Loopback0 - EVPN_Overlay_Peering = 'up'"
   },
   {
@@ -522,16 +512,6 @@
     "description": "Verifies the status of the provided interfaces.",
     "result": "success",
     "custom_field": "Interface Port-Channel5 - DC02-0901-ESX05 = 'up'"
-  },
-  {
-    "name": "OTI-DC02-Leaf2",
-    "test": "VerifyInterfacesStatus",
-    "categories": [
-      "interfaces"
-    ],
-    "description": "Verifies the status of the provided interfaces.",
-    "result": "success",
-    "custom_field": "Interface Port-Channel6 - DC02-0901-ESX06 = 'up'"
   },
   {
     "name": "OTI-DC02-Leaf2",

@@ -1116,10 +1116,7 @@
       "system"
     ],
     "description": "Verifies whether the CPU utilization is below 75%.",
-    "result": "failure",
-    "messages": [
-      "Device has reported a high CPU utilization: 84.8%"
-    ]
+    "result": "success"
   },
   {
     "name": "OTI-DC02-Leaf4",

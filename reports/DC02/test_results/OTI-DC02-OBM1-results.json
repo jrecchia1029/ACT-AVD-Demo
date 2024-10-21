@@ -108,16 +108,6 @@
     ],
     "description": "Verifies the status of the provided interfaces.",
     "result": "success",
-    "custom_field": "Interface Ethernet6 - DC02-0901-ESX06_idrac = 'up'"
-  },
-  {
-    "name": "OTI-DC02-OBM1",
-    "test": "VerifyInterfacesStatus",
-    "categories": [
-      "interfaces"
-    ],
-    "description": "Verifies the status of the provided interfaces.",
-    "result": "success",
     "custom_field": "Interface Ethernet7 - DC02-0901-SRVA_iLo = 'up'"
   },
   {

@@ -408,27 +408,7 @@
     ],
     "description": "Verifies the status of the provided interfaces.",
     "result": "success",
-    "custom_field": "Interface Ethernet2 - DC02-0901-ESX06_PCI_slot_2_Port_2 = 'up'"
-  },
-  {
-    "name": "OTI-DC02-Leaf5B",
-    "test": "VerifyInterfacesStatus",
-    "categories": [
-      "interfaces"
-    ],
-    "description": "Verifies the status of the provided interfaces.",
-    "result": "success",
     "custom_field": "Interface Ethernet49/1 - DC02-0901-ESX05_PCI_slot_2_Port_1 = 'up'"
-  },
-  {
-    "name": "OTI-DC02-Leaf5B",
-    "test": "VerifyInterfacesStatus",
-    "categories": [
-      "interfaces"
-    ],
-    "description": "Verifies the status of the provided interfaces.",
-    "result": "success",
-    "custom_field": "Interface Ethernet50/1 - DC02-0901-ESX06_PCI_slot_2_Port_1 = 'up'"
   },
   {
     "name": "OTI-DC02-Leaf5B",
@@ -528,27 +508,7 @@
     ],
     "description": "Verifies the status of the provided interfaces.",
     "result": "success",
-    "custom_field": "Interface Port-Channel2 - DC02-0901-ESX06 = 'up'"
-  },
-  {
-    "name": "OTI-DC02-Leaf5B",
-    "test": "VerifyInterfacesStatus",
-    "categories": [
-      "interfaces"
-    ],
-    "description": "Verifies the status of the provided interfaces.",
-    "result": "success",
     "custom_field": "Interface Port-Channel491 - DC02-0901-ESX05 = 'up'"
-  },
-  {
-    "name": "OTI-DC02-Leaf5B",
-    "test": "VerifyInterfacesStatus",
-    "categories": [
-      "interfaces"
-    ],
-    "description": "Verifies the status of the provided interfaces.",
-    "result": "success",
-    "custom_field": "Interface Port-Channel501 - DC02-0901-ESX06 = 'up'"
   },
   {
     "name": "OTI-DC02-Leaf5B",
@@ -619,26 +579,6 @@
     "description": "Verifies the status of the provided interfaces.",
     "result": "success",
     "custom_field": "Interface Vlan4094 - MLAG_PEER = 'up'"
-  },
-  {
-    "name": "OTI-DC02-Leaf5B",
-    "test": "VerifyInterfacesStatus",
-    "categories": [
-      "interfaces"
-    ],
-    "description": "Verifies the status of the provided interfaces.",
-    "result": "success",
-    "custom_field": "Interface Vlan887 - NOCB_WORKLOAD1 = 'up'"
-  },
-  {
-    "name": "OTI-DC02-Leaf5B",
-    "test": "VerifyInterfacesStatus",
-    "categories": [
-      "interfaces"
-    ],
-    "description": "Verifies the status of the provided interfaces.",
-    "result": "success",
-    "custom_field": "Interface Vlan888 - NOCB_WORKLOAD2 = 'up'"
   },
   {
     "name": "OTI-DC02-Leaf5B",
@@ -956,10 +896,7 @@
       "system"
     ],
     "description": "Verifies whether the CPU utilization is below 75%.",
-    "result": "failure",
-    "messages": [
-      "Device has reported a high CPU utilization: 83.9%"
-    ]
+    "result": "success"
   },
   {
     "name": "OTI-DC02-Leaf5B",
