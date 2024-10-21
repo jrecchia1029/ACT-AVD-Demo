@@ -452,6 +452,7 @@ interface Port-Channel1
    switchport trunk allowed vlan 2821, 2822, 2833, 2834
    switchport mode trunk
    mlag 1
+   spanning-tree portfast
 !
 interface Port-Channel2
    description DC01-0601-ESX02
@@ -461,6 +462,7 @@ interface Port-Channel2
    switchport trunk allowed vlan 821
    switchport mode trunk
    mlag 2
+   spanning-tree portfast
 !
 interface Port-Channel3
    description DC01-0601-ESX03
@@ -469,6 +471,7 @@ interface Port-Channel3
    switchport
    switchport access vlan 55
    mlag 3
+   spanning-tree portfast
 !
 interface Port-Channel4
    description DC01-0601-ESX04
@@ -477,6 +480,7 @@ interface Port-Channel4
    switchport
    switchport access vlan 55
    mlag 4
+   spanning-tree portfast
 !
 interface Port-Channel5
    description DC01-0601-ESX05
@@ -486,6 +490,7 @@ interface Port-Channel5
    switchport trunk allowed vlan 2821, 2822, 2833, 2834
    switchport mode trunk
    mlag 5
+   spanning-tree portfast
 !
 interface Port-Channel6
    description DC01-0601-ESX06
@@ -494,6 +499,7 @@ interface Port-Channel6
    switchport
    switchport access vlan 821
    mlag 6
+   spanning-tree portfast
 !
 interface Port-Channel25
    description DC01-0601-SRVD
@@ -503,6 +509,7 @@ interface Port-Channel25
    switchport trunk allowed vlan 3911, 2500
    switchport mode trunk
    mlag 25
+   spanning-tree portfast
 !
 interface Port-Channel531
    description MLAG_PEER_OTI-DC01-Leaf5A_Po531

@@ -1,8 +1,12 @@
+port_profiles:
+-  profile: Access
+   spanning_tree_portfast: edge
 servers:
 -  adapters:
    -  endpoint_ports:
       - idrac
       mode: access
+      profile: Access
       switch_ports:
       - Ethernet1
       switches:
@@ -17,6 +21,7 @@ servers:
       mtu: 9214
       port_channel:
          mode: active
+      profile: Access
       switch_ports:
       - Ethernet1
       - Ethernet1
@@ -32,6 +37,7 @@ servers:
       mtu: 9214
       port_channel:
          mode: active
+      profile: Access
       switch_ports:
       - Ethernet25
       - Ethernet25
@@ -45,6 +51,7 @@ servers:
       mtu: 9214
       port_channel:
          mode: active
+      profile: Access
       switch_ports:
       - Ethernet1
       - Ethernet1
@@ -58,6 +65,7 @@ servers:
    -  endpoint_ports:
       - idrac
       mode: access
+      profile: Access
       switch_ports:
       - Ethernet2
       switches:
@@ -72,6 +80,7 @@ servers:
       mtu: 9214
       port_channel:
          mode: active
+      profile: Access
       switch_ports:
       - Ethernet2
       - Ethernet2
@@ -87,6 +96,7 @@ servers:
       mtu: 9214
       port_channel:
          mode: active
+      profile: Access
       switch_ports:
       - Ethernet26
       - Ethernet26
@@ -100,6 +110,7 @@ servers:
       mtu: 9214
       port_channel:
          mode: active
+      profile: Access
       switch_ports:
       - Ethernet2
       - Ethernet2
@@ -113,6 +124,7 @@ servers:
    -  endpoint_ports:
       - idrac
       mode: access
+      profile: Access
       switch_ports:
       - Ethernet1
       switches:
@@ -127,6 +139,7 @@ servers:
       mtu: 9214
       port_channel:
          mode: active
+      profile: Access
       switch_ports:
       - Ethernet1
       - Ethernet1
@@ -142,6 +155,7 @@ servers:
       mtu: 9214
       port_channel:
          mode: active
+      profile: Access
       switch_ports:
       - Ethernet48
       - Ethernet48
@@ -157,6 +171,7 @@ servers:
       mtu: 9214
       port_channel:
          mode: active
+      profile: Access
       switch_ports:
       - Ethernet1
       - Ethernet1
@@ -169,6 +184,7 @@ servers:
    -  endpoint_ports:
       - idrac
       mode: access
+      profile: Access
       switch_ports:
       - Ethernet2
       switches:
@@ -183,6 +199,7 @@ servers:
       mtu: 9214
       port_channel:
          mode: active
+      profile: Access
       switch_ports:
       - Ethernet2
       - Ethernet2
@@ -198,6 +215,7 @@ servers:
       mtu: 9214
       port_channel:
          mode: active
+      profile: Access
       switch_ports:
       - Ethernet47
       - Ethernet47
@@ -213,6 +231,7 @@ servers:
       mtu: 9214
       port_channel:
          mode: active
+      profile: Access
       switch_ports:
       - Ethernet2
       - Ethernet2
@@ -225,6 +244,7 @@ servers:
    -  endpoint_ports:
       - idrac
       mode: access
+      profile: Access
       switch_ports:
       - Ethernet3
       switches:
@@ -239,6 +259,7 @@ servers:
       mtu: 9214
       port_channel:
          mode: active
+      profile: Access
       switch_ports:
       - Ethernet11
       - Ethernet11
@@ -254,6 +275,7 @@ servers:
       mtu: 9214
       port_channel:
          mode: active
+      profile: Access
       switch_ports:
       - Ethernet1
       - Ethernet1
@@ -267,6 +289,7 @@ servers:
       mtu: 9214
       port_channel:
          mode: active
+      profile: Access
       switch_ports:
       - Ethernet3
       - Ethernet3
@@ -280,6 +303,7 @@ servers:
    -  endpoint_ports:
       - idrac
       mode: access
+      profile: Access
       switch_ports:
       - Ethernet4
       switches:
@@ -294,6 +318,7 @@ servers:
       mtu: 9214
       port_channel:
          mode: active
+      profile: Access
       switch_ports:
       - Ethernet12
       - Ethernet12
@@ -309,6 +334,7 @@ servers:
       mtu: 9214
       port_channel:
          mode: active
+      profile: Access
       switch_ports:
       - Ethernet2
       - Ethernet2
@@ -322,6 +348,7 @@ servers:
       mtu: 9214
       port_channel:
          mode: active
+      profile: Access
       switch_ports:
       - Ethernet4
       - Ethernet4
@@ -335,6 +362,7 @@ servers:
    -  endpoint_ports:
       - idrac
       mode: access
+      profile: Access
       switch_ports:
       - Ethernet3
       switches:
@@ -349,6 +377,7 @@ servers:
       mtu: 9214
       port_channel:
          mode: active
+      profile: Access
       switch_ports:
       - Ethernet3
       - Ethernet3
@@ -364,6 +393,7 @@ servers:
       mtu: 9214
       port_channel:
          mode: active
+      profile: Access
       switch_ports:
       - Ethernet3
       - Ethernet3
@@ -379,6 +409,7 @@ servers:
       mtu: 9214
       port_channel:
          mode: active
+      profile: Access
       switch_ports:
       - Ethernet49/1
       - Ethernet49/1
@@ -391,6 +422,7 @@ servers:
    -  endpoint_ports:
       - idrac
       mode: access
+      profile: Access
       switch_ports:
       - Ethernet4
       switches:
@@ -405,6 +437,7 @@ servers:
       mtu: 9214
       port_channel:
          mode: active
+      profile: Access
       switch_ports:
       - Ethernet4
       - Ethernet4
@@ -418,6 +451,7 @@ servers:
       mtu: 9214
       port_channel:
          mode: active
+      profile: Access
       switch_ports:
       - Ethernet1
       - Ethernet1
@@ -434,6 +468,7 @@ servers:
       mtu: 9214
       port_channel:
          mode: active
+      profile: Access
       switch_ports:
       - Ethernet50/1
       - Ethernet50/1
@@ -446,6 +481,7 @@ servers:
    -  endpoint_ports:
       - iLo
       mode: access
+      profile: Access
       switch_ports:
       - Ethernet7
       switches:
@@ -460,6 +496,7 @@ servers:
       mtu: 9214
       port_channel:
          mode: active
+      profile: Access
       switch_ports:
       - Ethernet11
       - Ethernet11
@@ -472,6 +509,7 @@ servers:
    -  endpoint_ports:
       - iLo
       mode: access
+      profile: Access
       switch_ports:
       - Ethernet8
       switches:
@@ -486,6 +524,7 @@ servers:
       mtu: 9214
       port_channel:
          mode: active
+      profile: Access
       switch_ports:
       - Ethernet12
       - Ethernet12
@@ -498,6 +537,7 @@ servers:
    -  endpoint_ports:
       - iLo
       mode: access
+      profile: Access
       switch_ports:
       - Ethernet9
       switches:
@@ -512,6 +552,7 @@ servers:
       mtu: 9214
       port_channel:
          mode: active
+      profile: Access
       switch_ports:
       - Ethernet13
       - Ethernet13
@@ -524,6 +565,7 @@ servers:
    -  endpoint_ports:
       - iLo
       mode: access
+      profile: Access
       switch_ports:
       - Ethernet10
       switches:
@@ -538,6 +580,7 @@ servers:
       mtu: 9214
       port_channel:
          mode: active
+      profile: Access
       switch_ports:
       - Ethernet14
       - Ethernet14
@@ -551,6 +594,7 @@ servers:
       mtu: 9214
       port_channel:
          mode: active
+      profile: Access
       switch_ports:
       - Ethernet25
       - Ethernet25
@@ -564,6 +608,7 @@ servers:
    -  endpoint_ports:
       - iLo
       mode: access
+      profile: Access
       switch_ports:
       - Ethernet7
       switches:
@@ -578,6 +623,7 @@ servers:
       mtu: 9214
       port_channel:
          mode: active
+      profile: Access
       switch_ports:
       - Ethernet25
       - Ethernet25
@@ -593,6 +639,7 @@ servers:
       mtu: 9214
       port_channel:
          mode: active
+      profile: Access
       switch_ports:
       - Ethernet5
       - Ethernet5
@@ -605,6 +652,7 @@ servers:
    -  endpoint_ports:
       - iLo
       mode: access
+      profile: Access
       switch_ports:
       - Ethernet8
       switches:
@@ -619,6 +667,7 @@ servers:
       mtu: 9214
       port_channel:
          mode: active
+      profile: Access
       switch_ports:
       - Ethernet25
       - Ethernet25
@@ -631,6 +680,7 @@ servers:
    -  endpoint_ports:
       - iLo
       mode: access
+      profile: Access
       switch_ports:
       - Ethernet9
       switches:
@@ -645,6 +695,7 @@ servers:
       mtu: 9214
       port_channel:
          mode: active
+      profile: Access
       switch_ports:
       - Ethernet26
       - Ethernet26
@@ -657,6 +708,7 @@ servers:
    -  endpoint_ports:
       - idrac
       mode: access
+      profile: Access
       switch_ports:
       - Ethernet5
       switches:
@@ -671,6 +723,7 @@ servers:
       mtu: 9214
       port_channel:
          mode: active
+      profile: Access
       switch_ports:
       - Ethernet30
       - Ethernet30
@@ -686,6 +739,7 @@ servers:
       mtu: 9214
       port_channel:
          mode: active
+      profile: Access
       switch_ports:
       - Ethernet3
       - Ethernet3
@@ -699,6 +753,7 @@ servers:
       mtu: 9214
       port_channel:
          mode: active
+      profile: Access
       switch_ports:
       - Ethernet5
       - Ethernet5
@@ -712,6 +767,7 @@ servers:
    -  endpoint_ports:
       - idrac
       mode: access
+      profile: Access
       switch_ports:
       - Ethernet6
       switches:
@@ -726,6 +782,7 @@ servers:
       mtu: 9214
       port_channel:
          mode: active
+      profile: Access
       switch_ports:
       - Ethernet31
       - Ethernet31
@@ -741,6 +798,7 @@ servers:
       mtu: 9214
       port_channel:
          mode: active
+      profile: Access
       switch_ports:
       - Ethernet4
       - Ethernet4
@@ -754,6 +812,7 @@ servers:
       mtu: 9214
       port_channel:
          mode: active
+      profile: Access
       switch_ports:
       - Ethernet6
       - Ethernet6
@@ -767,6 +826,7 @@ servers:
    -  endpoint_ports:
       - idrac
       mode: access
+      profile: Access
       switch_ports:
       - Ethernet5
       switches:
@@ -781,6 +841,7 @@ servers:
       mtu: 9214
       port_channel:
          mode: active
+      profile: Access
       switch_ports:
       - Ethernet5
       - Ethernet5
@@ -796,6 +857,7 @@ servers:
       mtu: 9214
       port_channel:
          mode: active
+      profile: Access
       switch_ports:
       - Ethernet4
       - Ethernet4
@@ -809,6 +871,7 @@ servers:
       mtu: 9214
       port_channel:
          mode: active
+      profile: Access
       switch_ports:
       - Ethernet49/1
       - Ethernet49/1
@@ -822,6 +885,7 @@ servers:
    -  endpoint_ports:
       - idrac
       mode: access
+      profile: Access
       switch_ports:
       - Ethernet6
       switches:
@@ -836,6 +900,7 @@ servers:
       mtu: 9214
       port_channel:
          mode: active
+      profile: Access
       switch_ports:
       - Ethernet6
       - Ethernet6
@@ -849,6 +914,7 @@ servers:
       mtu: 9214
       port_channel:
          mode: active
+      profile: Access
       switch_ports:
       - Ethernet2
       - Ethernet2
@@ -863,6 +929,7 @@ servers:
       mtu: 9214
       port_channel:
          mode: active
+      profile: Access
       switch_ports:
       - Ethernet50/1
       - Ethernet50/1

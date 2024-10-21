@@ -504,6 +504,7 @@ interface Port-Channel1
       identifier 0000:0000:0460:f2c1:b009
       route-target import 04:60:f2:c1:b0:09
    lacp system-id 0460.f2c1.b009
+   spanning-tree portfast
 !
 interface Port-Channel2
    description DC02-0901-ESX02
@@ -515,6 +516,7 @@ interface Port-Channel2
       identifier 0000:0000:88be:cb52:74af
       route-target import 88:be:cb:52:74:af
    lacp system-id 88be.cb52.74af
+   spanning-tree portfast
 !
 interface Port-Channel3
    description DC02-0901-ESX03
@@ -526,6 +528,7 @@ interface Port-Channel3
       identifier 0000:0000:398b:3546:ee71
       route-target import 39:8b:35:46:ee:71
    lacp system-id 398b.3546.ee71
+   spanning-tree portfast
 !
 interface Port-Channel4
    description DC02-0901-ESX05
@@ -537,6 +540,7 @@ interface Port-Channel4
       identifier 0000:0000:8c3b:0e87:0455
       route-target import 8c:3b:0e:87:04:55
    lacp system-id 8c3b.0e87.0455
+   spanning-tree portfast
 !
 interface Port-Channel5
    description DC02-0901-SRVA
@@ -548,6 +552,7 @@ interface Port-Channel5
       identifier 0000:0000:5432:40fd:3258
       route-target import 54:32:40:fd:32:58
    lacp system-id 5432.40fd.3258
+   spanning-tree portfast
 !
 interface Port-Channel25
    description DC02-0901-SRVB
@@ -558,6 +563,7 @@ interface Port-Channel25
       identifier 0000:0000:aefb:c364:b08d
       route-target import ae:fb:c3:64:b0:8d
    lacp system-id aefb.c364.b08d
+   spanning-tree portfast
 !
 interface Port-Channel26
    description DC02-0901-SRVC
@@ -568,6 +574,7 @@ interface Port-Channel26
       identifier 0000:0000:e9d0:08be:cfd8
       route-target import e9:d0:08:be:cf:d8
    lacp system-id e9d0.08be.cfd8
+   spanning-tree portfast
 !
 interface Port-Channel491
    description DC02-0901-ESX03
@@ -579,6 +586,7 @@ interface Port-Channel491
       identifier 0000:0000:4513:f51a:99bc
       route-target import 45:13:f5:1a:99:bc
    lacp system-id 4513.f51a.99bc
+   spanning-tree portfast
 !
 interface Port-Channel501
    description DC02-0901-ESX04
@@ -590,6 +598,7 @@ interface Port-Channel501
       identifier 0000:0000:df46:d263:ab4a
       route-target import df:46:d2:63:ab:4a
    lacp system-id df46.d263.ab4a
+   spanning-tree portfast
 ```
 
 ### Loopback Interfaces

@@ -496,6 +496,7 @@ interface Port-Channel1
       identifier 0000:0000:ac9b:deb4:3bc0
       route-target import ac:9b:de:b4:3b:c0
    lacp system-id ac9b.deb4.3bc0
+   spanning-tree portfast
 !
 interface Port-Channel2
    description DC01-0601-ESX02
@@ -507,6 +508,7 @@ interface Port-Channel2
       identifier 0000:0000:e26a:e644:0b4b
       route-target import e2:6a:e6:44:0b:4b
    lacp system-id e26a.e644.0b4b
+   spanning-tree portfast
 !
 interface Port-Channel11
    description DC01-0601-ESX03
@@ -518,6 +520,7 @@ interface Port-Channel11
       identifier 0000:0000:402c:d2f2:b799
       route-target import 40:2c:d2:f2:b7:99
    lacp system-id 402c.d2f2.b799
+   spanning-tree portfast
 !
 interface Port-Channel12
    description DC01-0601-ESX04
@@ -529,6 +532,7 @@ interface Port-Channel12
       identifier 0000:0000:d9ea:a6b7:fb99
       route-target import d9:ea:a6:b7:fb:99
    lacp system-id d9ea.a6b7.fb99
+   spanning-tree portfast
 !
 interface Port-Channel25
    description DC01-0601-ESX01
@@ -540,6 +544,7 @@ interface Port-Channel25
       identifier 0000:0000:c8d4:663f:a199
       route-target import c8:d4:66:3f:a1:99
    lacp system-id c8d4.663f.a199
+   spanning-tree portfast
 !
 interface Port-Channel26
    description DC01-0601-ESX02
@@ -551,6 +556,7 @@ interface Port-Channel26
       identifier 0000:0000:d7b3:de6b:1a64
       route-target import d7:b3:de:6b:1a:64
    lacp system-id d7b3.de6b.1a64
+   spanning-tree portfast
 !
 interface Port-Channel30
    description DC01-0601-ESX05
@@ -562,6 +568,7 @@ interface Port-Channel30
       identifier 0000:0000:674e:7967:8c54
       route-target import 67:4e:79:67:8c:54
    lacp system-id 674e.7967.8c54
+   spanning-tree portfast
 !
 interface Port-Channel31
    description DC01-0601-ESX06
@@ -573,6 +580,7 @@ interface Port-Channel31
       identifier 0000:0000:2130:949d:008e
       route-target import 21:30:94:9d:00:8e
    lacp system-id 2130.949d.008e
+   spanning-tree portfast
 ```
 
 ### Loopback Interfaces
