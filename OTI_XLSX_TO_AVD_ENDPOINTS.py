@@ -290,7 +290,7 @@ if __name__ == "__main__":
     
     yaml.Dumper.ignore_aliases = lambda *args : True
     with open('group_vars/OTI_Endpoints.yml', 'w') as yaml_file:
-        yaml.dump(data, yaml_file, indent=3)
+        yaml.dump(data, yaml_file, indent=3, sort_keys=False)
     
     
     if checkFor:
