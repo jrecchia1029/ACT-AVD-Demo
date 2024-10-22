@@ -269,12 +269,10 @@ if __name__ == "__main__":
         print("%s has %s individual adapters FYI!" % (checkFor, str(len(   [endpoint for endpoint in data["servers"] if endpoint['name'][:endpoint['name'].find("~")] == checkFor]))))
     
     data = mergePos(data)
-    
     if checkFor:
         print("%s has %s merged adapters FYI!" % (checkFor, str(len(   [endpoint["adapters"] for endpoint in data["servers"] if endpoint['name'] == checkFor][0]))))
     
-    
-    # Set port profile to add portfast after all is done!
+        # Set port profile to add portfast after all is done!
     #  
     # port_profiles:
 #    - profile: Access
@@ -282,7 +280,10 @@ if __name__ == "__main__":
     data["port_profiles"] = [ { "profile":"Access", \
                                 "spanning_tree_portfast":"edge"},]
 
-
+    endpoints_data = {
+        "port_profiles": data.get("port_profiles", []),
+        "servers": data.get("servers", [])
+    }
 
     # with open('outputConfig.json', 'w') as json_file:
     #     json.dump(data, json_file)
@@ -290,8 +291,7 @@ if __name__ == "__main__":
     
     yaml.Dumper.ignore_aliases = lambda *args : True
     with open('group_vars/OTI_Endpoints.yml', 'w') as yaml_file:
-        yaml.dump(data, yaml_file, indent=3, sort_keys=False)
-    
+        yaml.dump(endpoints_data, yaml_file, indent=3, sort_keys=False)
     
     if checkFor:
         assert(len([endpoint["adapters"] for endpoint in data["servers"] if endpoint['name'] == checkFor][0]) == checkInts)

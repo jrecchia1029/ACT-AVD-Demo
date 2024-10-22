@@ -1,3 +1,6 @@
+port_profiles:
+-  profile: Access
+   spanning_tree_portfast: edge
 servers:
 -  name: DC01-0601-ESX01
    rack: 0601.01.Rack01
@@ -58,6 +61,3 @@ servers:
       port_channel:
          mode: active
       profile: Access
-port_profiles:
--  profile: Access
-   spanning_tree_portfast: edge
