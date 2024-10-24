@@ -27,6 +27,4 @@ jobs:
         run: ansible-galaxy collection install -r requirements.yml
 
       - name: Test configuration
-        run: ansible-playbook playbooks/build_all.yml -i inventory.yml --tags generate
-
-
+        run: ansible-playbook playbooks/build_all.yml -i inventory.yml

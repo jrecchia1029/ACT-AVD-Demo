@@ -5,10 +5,6 @@ import os
 dirname = os.path.dirname(__file__)
 parent_directory = os.path.abspath(os.path.join(dirname, os.pardir))
 
-# print(parent_directory)
-
-# sys.exit(0)
-
 # total arguments
 n = len(sys.argv)
 print("Total arguments passed:", n)
