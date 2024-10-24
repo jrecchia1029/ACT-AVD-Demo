@@ -318,6 +318,56 @@
     ],
     "description": "Verifies the status of the provided interfaces.",
     "result": "success",
+    "custom_field": "Interface Ethernet2 - SERVER_DC01-0601-ESX02_PCI_slot_1_Port_2 = 'up'"
+  },
+  {
+    "name": "OTI-DC01-Leaf5A",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the status of the provided interfaces.",
+    "result": "success",
+    "custom_field": "Interface Ethernet25 - SERVER_DC01-0601-SRVD_Port_2 = 'up'"
+  },
+  {
+    "name": "OTI-DC01-Leaf5A",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the status of the provided interfaces.",
+    "result": "success",
+    "custom_field": "Interface Ethernet3 - SERVER_DC01-0601-ESX03_PCI_slot_1_Port_2 = 'up'"
+  },
+  {
+    "name": "OTI-DC01-Leaf5A",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the status of the provided interfaces.",
+    "result": "success",
+    "custom_field": "Interface Ethernet4 - SERVER_DC01-0601-ESX04_PCI_slot_1_Port_2 = 'up'"
+  },
+  {
+    "name": "OTI-DC01-Leaf5A",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the status of the provided interfaces.",
+    "result": "success",
+    "custom_field": "Interface Ethernet5 - SERVER_DC01-0601-ESX05_PCI_slot_1_Port_2 = 'up'"
+  },
+  {
+    "name": "OTI-DC01-Leaf5A",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the status of the provided interfaces.",
+    "result": "success",
     "custom_field": "Interface Ethernet52/1 - P2P_OTI-DC02-Leaf5A_Ethernet52/1 = 'up'"
   },
   {
@@ -368,6 +418,16 @@
     ],
     "description": "Verifies the status of the provided interfaces.",
     "result": "success",
+    "custom_field": "Interface Ethernet6 - SERVER_DC01-0601-ESX06_PCI_slot_1_Port_2 = 'up'"
+  },
+  {
+    "name": "OTI-DC01-Leaf5A",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the status of the provided interfaces.",
+    "result": "success",
     "custom_field": "Interface Loopback0 - ROUTER_ID = 'up'"
   },
   {
@@ -379,6 +439,16 @@
     "description": "Verifies the status of the provided interfaces.",
     "result": "success",
     "custom_field": "Interface Loopback1 - VXLAN_TUNNEL_SOURCE = 'up'"
+  },
+  {
+    "name": "OTI-DC01-Leaf5A",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the status of the provided interfaces.",
+    "result": "success",
+    "custom_field": "Interface Loopback10 - DIAG_VRF_Production = 'up'"
   },
   {
     "name": "OTI-DC01-Leaf5A",
@@ -408,7 +478,80 @@
     ],
     "description": "Verifies the status of the provided interfaces.",
     "result": "success",
+    "custom_field": "Interface Port-Channel2 - SERVER_DC01-0601-ESX02 = 'up'"
+  },
+  {
+    "name": "OTI-DC01-Leaf5A",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the status of the provided interfaces.",
+    "result": "failure",
+    "messages": [
+      "The following interface(s) are not in the expected state: ['Port-Channel25 is down/lowerLayerDown']"
+    ],
+    "custom_field": "Interface Port-Channel25 - SERVER_DC01-0601-SRVD = 'up'"
+  },
+  {
+    "name": "OTI-DC01-Leaf5A",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the status of the provided interfaces.",
+    "result": "success",
+    "custom_field": "Interface Port-Channel3 - SERVER_DC01-0601-ESX03 = 'up'"
+  },
+  {
+    "name": "OTI-DC01-Leaf5A",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the status of the provided interfaces.",
+    "result": "success",
+    "custom_field": "Interface Port-Channel4 - SERVER_DC01-0601-ESX04 = 'up'"
+  },
+  {
+    "name": "OTI-DC01-Leaf5A",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the status of the provided interfaces.",
+    "result": "success",
+    "custom_field": "Interface Port-Channel5 - SERVER_DC01-0601-ESX05 = 'up'"
+  },
+  {
+    "name": "OTI-DC01-Leaf5A",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the status of the provided interfaces.",
+    "result": "success",
     "custom_field": "Interface Port-Channel531 - MLAG_OTI-DC01-Leaf5B_Port-Channel531 = 'up'"
+  },
+  {
+    "name": "OTI-DC01-Leaf5A",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the status of the provided interfaces.",
+    "result": "success",
+    "custom_field": "Interface Port-Channel6 - SERVER_DC01-0601-ESX06 = 'up'"
+  },
+  {
+    "name": "OTI-DC01-Leaf5A",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the status of the provided interfaces.",
+    "result": "success",
+    "custom_field": "Interface Vlan2500 - Scada_Dev = 'up'"
   },
   {
     "name": "OTI-DC01-Leaf5A",
@@ -458,7 +601,27 @@
     ],
     "description": "Verifies the status of the provided interfaces.",
     "result": "success",
+    "custom_field": "Interface Vlan3009 - MLAG_L3_VRF_Production = 'up'"
+  },
+  {
+    "name": "OTI-DC01-Leaf5A",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the status of the provided interfaces.",
+    "result": "success",
     "custom_field": "Interface Vlan3010 - MLAG_L3_VRF_Development = 'up'"
+  },
+  {
+    "name": "OTI-DC01-Leaf5A",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the status of the provided interfaces.",
+    "result": "success",
+    "custom_field": "Interface Vlan3911 - SCADA_PROD = 'up'"
   },
   {
     "name": "OTI-DC01-Leaf5A",
@@ -479,6 +642,26 @@
     "description": "Verifies the status of the provided interfaces.",
     "result": "success",
     "custom_field": "Interface Vlan4094 - MLAG = 'up'"
+  },
+  {
+    "name": "OTI-DC01-Leaf5A",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the status of the provided interfaces.",
+    "result": "success",
+    "custom_field": "Interface Vlan55 - HYPER_PROD = 'up'"
+  },
+  {
+    "name": "OTI-DC01-Leaf5A",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the status of the provided interfaces.",
+    "result": "success",
+    "custom_field": "Interface Vlan821 - SAN_Disk = 'up'"
   },
   {
     "name": "OTI-DC01-Leaf5A",
@@ -648,7 +831,7 @@
     "description": "Verifies whether the CPU utilization is below 75%.",
     "result": "failure",
     "messages": [
-      "Device has reported a high CPU utilization: 94.1%"
+      "Device has reported a high CPU utilization: 93.9%"
     ]
   },
   {
