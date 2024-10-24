@@ -80,10 +80,6 @@
 | Name | Port | Fabric Device | Fabric Port | Description | Shutdown | Mode | Access VLAN | Trunk Allowed VLANs | Profile |
 | ---- | ---- | ------------- | ------------| ----------- | -------- | ---- | ----------- | ------------------- | ------- |
 | DC01-0601-ESX01 | idrac | OTI-DC01-OBM1 | Ethernet1 | SERVER_DC01-0601-ESX01_idrac | False | access | 3545 | - | Access |
-| DC01-0601-ESX03 | idrac | OTI-DC01-OBM1 | Ethernet3 | SERVER_DC01-0601-ESX03_idrac | False | access | 3545 | - | Access |
-| DC01-0601-ESX04 | idrac | OTI-DC01-OBM1 | Ethernet4 | SERVER_DC01-0601-ESX04_idrac | False | access | 3545 | - | Access |
-| DC01-0601-ESX05 | idrac | OTI-DC01-OBM1 | Ethernet5 | SERVER_DC01-0601-ESX05_idrac | False | access | 3545 | - | Access |
-| DC01-0601-ESX06 | idrac | OTI-DC01-OBM1 | Ethernet6 | SERVER_DC01-0601-ESX06_idrac | False | access | 3545 | - | Access |
 
 ### Port Profiles
 

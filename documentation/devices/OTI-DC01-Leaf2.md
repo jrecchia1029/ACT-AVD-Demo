@@ -379,11 +379,7 @@ vlan 3911
 | Interface | Description | Mode | VLANs | Native VLAN | Trunk Group | Channel-Group |
 | --------- | ----------- | ---- | ----- | ----------- | ----------- | ------------- |
 | Ethernet1 | SERVER_DC01-0601-ESX01_PCI_slot_1_Port_1 | *trunk | *- | *- | *- | 1 |
-| Ethernet11 | SERVER_DC01-0601-ESX03_PCI_slot_1_Port_1 | *trunk | *- | *- | *- | 11 |
-| Ethernet12 | SERVER_DC01-0601-ESX04_PCI_slot_1_Port_1 | *trunk | *- | *- | *- | 12 |
 | Ethernet25 | SERVER_DC01-0601-ESX01_PCI_slot_2_Port_2 | *trunk | *- | *- | *- | 25 |
-| Ethernet30 | SERVER_DC01-0601-ESX05_PCI_slot_1_Port_1 | *trunk | *- | *- | *- | 30 |
-| Ethernet31 | SERVER_DC01-0601-ESX06_PCI_slot_1_Port_1 | *trunk | *- | *- | *- | 31 |
 
 *Inherited from Port-Channel Interface
 
@@ -403,30 +399,10 @@ interface Ethernet1
    no shutdown
    channel-group 1 mode active
 !
-interface Ethernet11
-   description SERVER_DC01-0601-ESX03_PCI_slot_1_Port_1
-   no shutdown
-   channel-group 11 mode active
-!
-interface Ethernet12
-   description SERVER_DC01-0601-ESX04_PCI_slot_1_Port_1
-   no shutdown
-   channel-group 12 mode active
-!
 interface Ethernet25
    description SERVER_DC01-0601-ESX01_PCI_slot_2_Port_2
    no shutdown
    channel-group 25 mode active
-!
-interface Ethernet30
-   description SERVER_DC01-0601-ESX05_PCI_slot_1_Port_1
-   no shutdown
-   channel-group 30 mode active
-!
-interface Ethernet31
-   description SERVER_DC01-0601-ESX06_PCI_slot_1_Port_1
-   no shutdown
-   channel-group 31 mode active
 !
 interface Ethernet55/1
    description P2P_OTI-DC01-Spine1_Ethernet2/1
@@ -452,11 +428,7 @@ interface Ethernet56/1
 | Interface | Description | Mode | VLANs | Native VLAN | Trunk Group | LACP Fallback Timeout | LACP Fallback Mode | MLAG ID | EVPN ESI |
 | --------- | ----------- | ---- | ----- | ----------- | ------------| --------------------- | ------------------ | ------- | -------- |
 | Port-Channel1 | SERVER_DC01-0601-ESX01 | trunk | - | - | - | - | - | - | 0000:0000:ac9b:deb4:3bc0 |
-| Port-Channel11 | SERVER_DC01-0601-ESX03 | trunk | - | - | - | - | - | - | 0000:0000:402c:d2f2:b799 |
-| Port-Channel12 | SERVER_DC01-0601-ESX04 | trunk | - | - | - | - | - | - | 0000:0000:d9ea:a6b7:fb99 |
 | Port-Channel25 | SERVER_DC01-0601-ESX01 | trunk | - | - | - | - | - | - | 0000:0000:c8d4:663f:a199 |
-| Port-Channel30 | SERVER_DC01-0601-ESX05 | trunk | - | - | - | - | - | - | 0000:0000:674e:7967:8c54 |
-| Port-Channel31 | SERVER_DC01-0601-ESX06 | trunk | - | - | - | - | - | - | 0000:0000:2130:949d:008e |
 
 ##### EVPN Multihoming
 
@@ -465,11 +437,7 @@ interface Ethernet56/1
 | Interface | Ethernet Segment Identifier | Multihoming Redundancy Mode | Route Target |
 | --------- | --------------------------- | --------------------------- | ------------ |
 | Port-Channel1 | 0000:0000:ac9b:deb4:3bc0 | all-active | ac:9b:de:b4:3b:c0 |
-| Port-Channel11 | 0000:0000:402c:d2f2:b799 | all-active | 40:2c:d2:f2:b7:99 |
-| Port-Channel12 | 0000:0000:d9ea:a6b7:fb99 | all-active | d9:ea:a6:b7:fb:99 |
 | Port-Channel25 | 0000:0000:c8d4:663f:a199 | all-active | c8:d4:66:3f:a1:99 |
-| Port-Channel30 | 0000:0000:674e:7967:8c54 | all-active | 67:4e:79:67:8c:54 |
-| Port-Channel31 | 0000:0000:2130:949d:008e | all-active | 21:30:94:9d:00:8e |
 
 #### Port-Channel Interfaces Device Configuration
 
@@ -488,32 +456,6 @@ interface Port-Channel1
    lacp system-id ac9b.deb4.3bc0
    spanning-tree portfast
 !
-interface Port-Channel11
-   description SERVER_DC01-0601-ESX03
-   no shutdown
-   mtu 9214
-   switchport mode trunk
-   switchport
-   !
-   evpn ethernet-segment
-      identifier 0000:0000:402c:d2f2:b799
-      route-target import 40:2c:d2:f2:b7:99
-   lacp system-id 402c.d2f2.b799
-   spanning-tree portfast
-!
-interface Port-Channel12
-   description SERVER_DC01-0601-ESX04
-   no shutdown
-   mtu 9214
-   switchport mode trunk
-   switchport
-   !
-   evpn ethernet-segment
-      identifier 0000:0000:d9ea:a6b7:fb99
-      route-target import d9:ea:a6:b7:fb:99
-   lacp system-id d9ea.a6b7.fb99
-   spanning-tree portfast
-!
 interface Port-Channel25
    description SERVER_DC01-0601-ESX01
    no shutdown
@@ -525,32 +467,6 @@ interface Port-Channel25
       identifier 0000:0000:c8d4:663f:a199
       route-target import c8:d4:66:3f:a1:99
    lacp system-id c8d4.663f.a199
-   spanning-tree portfast
-!
-interface Port-Channel30
-   description SERVER_DC01-0601-ESX05
-   no shutdown
-   mtu 9214
-   switchport mode trunk
-   switchport
-   !
-   evpn ethernet-segment
-      identifier 0000:0000:674e:7967:8c54
-      route-target import 67:4e:79:67:8c:54
-   lacp system-id 674e.7967.8c54
-   spanning-tree portfast
-!
-interface Port-Channel31
-   description SERVER_DC01-0601-ESX06
-   no shutdown
-   mtu 9214
-   switchport mode trunk
-   switchport
-   !
-   evpn ethernet-segment
-      identifier 0000:0000:2130:949d:008e
-      route-target import 21:30:94:9d:00:8e
-   lacp system-id 2130.949d.008e
    spanning-tree portfast
 ```
 

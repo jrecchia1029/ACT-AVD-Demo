@@ -121,26 +121,6 @@ router_bgp:
     - ip_address: 192.168.13.72
       peer_group: MLAG-IPv4-UNDERLAY-PEER
       description: OTI-DC01-Leaf5A_Vlan3010
-  - name: Production
-    rd: 10.245.217.8:10
-    route_targets:
-      import:
-      - address_family: evpn
-        route_targets:
-        - '10:10'
-      export:
-      - address_family: evpn
-        route_targets:
-        - '10:10'
-    router_id: 10.245.217.8
-    redistribute:
-      connected:
-        enabled: true
-        route_map: RM-CONN-2-BGP-VRFS
-    neighbors:
-    - ip_address: 192.168.13.72
-      peer_group: MLAG-IPv4-UNDERLAY-PEER
-      description: OTI-DC01-Leaf5A_Vlan3009
   vlans:
   - id: 2821
     tenant: OTI
@@ -172,22 +152,6 @@ router_bgp:
     route_targets:
       both:
       - 12834:12834
-    redistribute_routes:
-    - learned
-  - id: 55
-    tenant: OTI
-    rd: 10.245.217.8:10055
-    route_targets:
-      both:
-      - 10055:10055
-    redistribute_routes:
-    - learned
-  - id: 821
-    tenant: OTI
-    rd: 10.245.217.8:10821
-    route_targets:
-      both:
-      - 10821:10821
     redistribute_routes:
     - learned
 service_routing_protocols_model: multi-agent
@@ -230,9 +194,6 @@ vrfs:
 - name: Development
   tenant: OTI
   ip_routing: true
-- name: Production
-  tenant: OTI
-  ip_routing: true
 management_interfaces:
 - name: Management1
   description: OOB_MANAGEMENT
@@ -273,17 +234,6 @@ vlans:
   tenant: OTI
 - id: 3010
   name: MLAG_L3_VRF_Development
-  trunk_groups:
-  - MLAG
-  tenant: OTI
-- id: 55
-  name: HYPER_PROD
-  tenant: OTI
-- id: 821
-  name: SAN_Disk
-  tenant: OTI
-- id: 3009
-  name: MLAG_L3_VRF_Production
   trunk_groups:
   - MLAG
   tenant: OTI
@@ -331,26 +281,6 @@ vlan_interfaces:
   vrf: Development
   mtu: 1500
   ip_address: 192.168.13.73/31
-- name: Vlan55
-  tenant: OTI
-  description: HYPER_PROD
-  shutdown: false
-  ip_address_virtual: 10.10.55.1/24
-  vrf: Production
-- name: Vlan821
-  tenant: OTI
-  description: SAN_Disk
-  shutdown: false
-  ip_address_virtual: 10.82.1.1/24
-  vrf: Production
-- name: Vlan3009
-  tenant: OTI
-  type: underlay_peering
-  shutdown: false
-  description: MLAG_L3_VRF_Production
-  vrf: Production
-  mtu: 1500
-  ip_address: 192.168.13.73/31
 port_channel_interfaces:
 - name: Port-Channel531
   description: MLAG_OTI-DC01-Leaf5A_Port-Channel531
@@ -372,47 +302,6 @@ port_channel_interfaces:
       allowed_vlan: 2821, 2822, 2833, 2834
   spanning_tree_portfast: edge
   mlag: 1
-- name: Port-Channel3
-  description: SERVER_DC01-0601-ESX03
-  shutdown: false
-  mtu: 9214
-  switchport:
-    enabled: true
-    mode: access
-    access_vlan: '55'
-  spanning_tree_portfast: edge
-  mlag: 3
-- name: Port-Channel4
-  description: SERVER_DC01-0601-ESX04
-  shutdown: false
-  mtu: 9214
-  switchport:
-    enabled: true
-    mode: access
-    access_vlan: '55'
-  spanning_tree_portfast: edge
-  mlag: 4
-- name: Port-Channel5
-  description: SERVER_DC01-0601-ESX05
-  shutdown: false
-  mtu: 9214
-  switchport:
-    enabled: true
-    mode: trunk
-    trunk:
-      allowed_vlan: 2821, 2822, 2833, 2834
-  spanning_tree_portfast: edge
-  mlag: 5
-- name: Port-Channel6
-  description: SERVER_DC01-0601-ESX06
-  shutdown: false
-  mtu: 9214
-  switchport:
-    enabled: true
-    mode: access
-    access_vlan: '821'
-  spanning_tree_portfast: edge
-  mlag: 6
 ethernet_interfaces:
 - name: Ethernet53/1
   peer: OTI-DC01-Leaf5A
@@ -472,46 +361,6 @@ ethernet_interfaces:
   channel_group:
     id: 1
     mode: active
-- name: Ethernet3
-  peer: DC01-0601-ESX03
-  peer_interface: PCI_slot_2_Port_1
-  peer_type: server
-  port_profile: Access
-  description: SERVER_DC01-0601-ESX03_PCI_slot_2_Port_1
-  shutdown: false
-  channel_group:
-    id: 3
-    mode: active
-- name: Ethernet4
-  peer: DC01-0601-ESX04
-  peer_interface: PCI_slot_2_Port_1
-  peer_type: server
-  port_profile: Access
-  description: SERVER_DC01-0601-ESX04_PCI_slot_2_Port_1
-  shutdown: false
-  channel_group:
-    id: 4
-    mode: active
-- name: Ethernet5
-  peer: DC01-0601-ESX05
-  peer_interface: PCI_slot_2_Port_1
-  peer_type: server
-  port_profile: Access
-  description: SERVER_DC01-0601-ESX05_PCI_slot_2_Port_1
-  shutdown: false
-  channel_group:
-    id: 5
-    mode: active
-- name: Ethernet6
-  peer: DC01-0601-ESX06
-  peer_interface: PCI_slot_2_Port_1
-  peer_type: server
-  port_profile: Access
-  description: SERVER_DC01-0601-ESX06_PCI_slot_2_Port_1
-  shutdown: false
-  channel_group:
-    id: 6
-    mode: active
 mlag_configuration:
   domain_id: OTI-DC01-Leaf5
   local_interface: Vlan4094
@@ -555,11 +404,6 @@ loopback_interfaces:
   shutdown: false
   vrf: Development
   ip_address: 10.1.11.8/32
-- name: Loopback10
-  description: DIAG_VRF_Production
-  shutdown: false
-  vrf: Production
-  ip_address: 10.1.10.8/32
 prefix_lists:
 - name: PL-LOOPBACKS-EVPN-OVERLAY
   sequence_numbers:
@@ -595,19 +439,11 @@ vxlan_interface:
         vni: 12833
       - id: 2834
         vni: 12834
-      - id: 55
-        vni: 10055
-      - id: 821
-        vni: 10821
       vrfs:
       - name: Development
         vni: 11
-      - name: Production
-        vni: 10
 virtual_source_nat_vrfs:
 - name: Development
   ip_address: 10.1.11.8
-- name: Production
-  ip_address: 10.1.10.8
 metadata:
   platform: vEOS-lab

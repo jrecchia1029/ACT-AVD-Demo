@@ -244,10 +244,6 @@ vlan 3545
 | Interface | Description | Mode | VLANs | Native VLAN | Trunk Group | Channel-Group |
 | --------- | ----------- | ---- | ----- | ----------- | ----------- | ------------- |
 | Ethernet1 | SERVER_DC01-0601-ESX01_idrac | access | 3545 | - | - | - |
-| Ethernet3 | SERVER_DC01-0601-ESX03_idrac | access | 3545 | - | - | - |
-| Ethernet4 | SERVER_DC01-0601-ESX04_idrac | access | 3545 | - | - | - |
-| Ethernet5 | SERVER_DC01-0601-ESX05_idrac | access | 3545 | - | - | - |
-| Ethernet6 | SERVER_DC01-0601-ESX06_idrac | access | 3545 | - | - | - |
 
 *Inherited from Port-Channel Interface
 
@@ -257,38 +253,6 @@ vlan 3545
 !
 interface Ethernet1
    description SERVER_DC01-0601-ESX01_idrac
-   no shutdown
-   switchport access vlan 3545
-   switchport mode access
-   switchport
-   spanning-tree portfast
-!
-interface Ethernet3
-   description SERVER_DC01-0601-ESX03_idrac
-   no shutdown
-   switchport access vlan 3545
-   switchport mode access
-   switchport
-   spanning-tree portfast
-!
-interface Ethernet4
-   description SERVER_DC01-0601-ESX04_idrac
-   no shutdown
-   switchport access vlan 3545
-   switchport mode access
-   switchport
-   spanning-tree portfast
-!
-interface Ethernet5
-   description SERVER_DC01-0601-ESX05_idrac
-   no shutdown
-   switchport access vlan 3545
-   switchport mode access
-   switchport
-   spanning-tree portfast
-!
-interface Ethernet6
-   description SERVER_DC01-0601-ESX06_idrac
    no shutdown
    switchport access vlan 3545
    switchport mode access

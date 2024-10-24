@@ -70,53 +70,5 @@ ethernet_interfaces:
     mode: access
     access_vlan: '3545'
   spanning_tree_portfast: edge
-- name: Ethernet3
-  peer: DC01-0601-ESX03
-  peer_interface: idrac
-  peer_type: server
-  port_profile: Access
-  description: SERVER_DC01-0601-ESX03_idrac
-  shutdown: false
-  switchport:
-    enabled: true
-    mode: access
-    access_vlan: '3545'
-  spanning_tree_portfast: edge
-- name: Ethernet4
-  peer: DC01-0601-ESX04
-  peer_interface: idrac
-  peer_type: server
-  port_profile: Access
-  description: SERVER_DC01-0601-ESX04_idrac
-  shutdown: false
-  switchport:
-    enabled: true
-    mode: access
-    access_vlan: '3545'
-  spanning_tree_portfast: edge
-- name: Ethernet5
-  peer: DC01-0601-ESX05
-  peer_interface: idrac
-  peer_type: server
-  port_profile: Access
-  description: SERVER_DC01-0601-ESX05_idrac
-  shutdown: false
-  switchport:
-    enabled: true
-    mode: access
-    access_vlan: '3545'
-  spanning_tree_portfast: edge
-- name: Ethernet6
-  peer: DC01-0601-ESX06
-  peer_interface: idrac
-  peer_type: server
-  port_profile: Access
-  description: SERVER_DC01-0601-ESX06_idrac
-  shutdown: false
-  switchport:
-    enabled: true
-    mode: access
-    access_vlan: '3545'
-  spanning_tree_portfast: edge
 metadata:
   platform: 7050SX3-48YC8
