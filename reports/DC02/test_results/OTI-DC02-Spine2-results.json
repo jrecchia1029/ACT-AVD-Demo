@@ -377,7 +377,10 @@
       "system"
     ],
     "description": "Verifies whether the CPU utilization is below 75%.",
-    "result": "success"
+    "result": "failure",
+    "messages": [
+      "Device has reported a high CPU utilization: 96.9%"
+    ]
   },
   {
     "name": "OTI-DC02-Spine2",

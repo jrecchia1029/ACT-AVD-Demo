@@ -398,46 +398,6 @@
     ],
     "description": "Verifies the status of the provided interfaces.",
     "result": "success",
-    "custom_field": "Interface Ethernet1 - SERVER_DC02-0901-ESX04_Onboard_NIC_2 = 'up'"
-  },
-  {
-    "name": "OTI-DC02-Leaf5A",
-    "test": "VerifyInterfacesStatus",
-    "categories": [
-      "interfaces"
-    ],
-    "description": "Verifies the status of the provided interfaces.",
-    "result": "success",
-    "custom_field": "Interface Ethernet2 - SERVER_DC02-0901-ESX06_Onboard_NIC_2 = 'up'"
-  },
-  {
-    "name": "OTI-DC02-Leaf5A",
-    "test": "VerifyInterfacesStatus",
-    "categories": [
-      "interfaces"
-    ],
-    "description": "Verifies the status of the provided interfaces.",
-    "result": "success",
-    "custom_field": "Interface Ethernet49/1 - SERVER_DC02-0901-ESX05_PCI_slot_1_Port_2 = 'up'"
-  },
-  {
-    "name": "OTI-DC02-Leaf5A",
-    "test": "VerifyInterfacesStatus",
-    "categories": [
-      "interfaces"
-    ],
-    "description": "Verifies the status of the provided interfaces.",
-    "result": "success",
-    "custom_field": "Interface Ethernet50/1 - SERVER_DC02-0901-ESX06_PCI_slot_1_Port_2 = 'up'"
-  },
-  {
-    "name": "OTI-DC02-Leaf5A",
-    "test": "VerifyInterfacesStatus",
-    "categories": [
-      "interfaces"
-    ],
-    "description": "Verifies the status of the provided interfaces.",
-    "result": "success",
     "custom_field": "Interface Ethernet52/1 - P2P_OTI-DC01-Leaf5A_Ethernet52/1 = 'up'"
   },
   {
@@ -508,97 +468,7 @@
     ],
     "description": "Verifies the status of the provided interfaces.",
     "result": "success",
-    "custom_field": "Interface Loopback10 - DIAG_VRF_Production = 'up'"
-  },
-  {
-    "name": "OTI-DC02-Leaf5A",
-    "test": "VerifyInterfacesStatus",
-    "categories": [
-      "interfaces"
-    ],
-    "description": "Verifies the status of the provided interfaces.",
-    "result": "success",
-    "custom_field": "Interface Port-Channel1 - SERVER_DC02-0901-ESX04 = 'up'"
-  },
-  {
-    "name": "OTI-DC02-Leaf5A",
-    "test": "VerifyInterfacesStatus",
-    "categories": [
-      "interfaces"
-    ],
-    "description": "Verifies the status of the provided interfaces.",
-    "result": "success",
-    "custom_field": "Interface Port-Channel2 - SERVER_DC02-0901-ESX06 = 'up'"
-  },
-  {
-    "name": "OTI-DC02-Leaf5A",
-    "test": "VerifyInterfacesStatus",
-    "categories": [
-      "interfaces"
-    ],
-    "description": "Verifies the status of the provided interfaces.",
-    "result": "success",
-    "custom_field": "Interface Port-Channel491 - SERVER_DC02-0901-ESX05 = 'up'"
-  },
-  {
-    "name": "OTI-DC02-Leaf5A",
-    "test": "VerifyInterfacesStatus",
-    "categories": [
-      "interfaces"
-    ],
-    "description": "Verifies the status of the provided interfaces.",
-    "result": "success",
-    "custom_field": "Interface Port-Channel501 - SERVER_DC02-0901-ESX06 = 'up'"
-  },
-  {
-    "name": "OTI-DC02-Leaf5A",
-    "test": "VerifyInterfacesStatus",
-    "categories": [
-      "interfaces"
-    ],
-    "description": "Verifies the status of the provided interfaces.",
-    "result": "success",
     "custom_field": "Interface Port-Channel531 - MLAG_OTI-DC02-Leaf5B_Port-Channel531 = 'up'"
-  },
-  {
-    "name": "OTI-DC02-Leaf5A",
-    "test": "VerifyInterfacesStatus",
-    "categories": [
-      "interfaces"
-    ],
-    "description": "Verifies the status of the provided interfaces.",
-    "result": "success",
-    "custom_field": "Interface Vlan1100 - SRVR_FARM_BLADE_0 = 'up'"
-  },
-  {
-    "name": "OTI-DC02-Leaf5A",
-    "test": "VerifyInterfacesStatus",
-    "categories": [
-      "interfaces"
-    ],
-    "description": "Verifies the status of the provided interfaces.",
-    "result": "success",
-    "custom_field": "Interface Vlan1101 - SRVR_FARM_BLADE_1 = 'up'"
-  },
-  {
-    "name": "OTI-DC02-Leaf5A",
-    "test": "VerifyInterfacesStatus",
-    "categories": [
-      "interfaces"
-    ],
-    "description": "Verifies the status of the provided interfaces.",
-    "result": "success",
-    "custom_field": "Interface Vlan1102 - SRVR_FARM_BLADE_2 = 'up'"
-  },
-  {
-    "name": "OTI-DC02-Leaf5A",
-    "test": "VerifyInterfacesStatus",
-    "categories": [
-      "interfaces"
-    ],
-    "description": "Verifies the status of the provided interfaces.",
-    "result": "success",
-    "custom_field": "Interface Vlan3009 - MLAG_L3_VRF_Production = 'up'"
   },
   {
     "name": "OTI-DC02-Leaf5A",
@@ -627,47 +497,10 @@
       "interfaces"
     ],
     "description": "Verifies the status of the provided interfaces.",
-    "result": "success",
-    "custom_field": "Interface Vlan887 - NOCB_WORKLOAD1 = 'up'"
-  },
-  {
-    "name": "OTI-DC02-Leaf5A",
-    "test": "VerifyInterfacesStatus",
-    "categories": [
-      "interfaces"
+    "result": "failure",
+    "messages": [
+      "The following interface(s) are not in the expected state: ['Vxlan1 is down/down']"
     ],
-    "description": "Verifies the status of the provided interfaces.",
-    "result": "success",
-    "custom_field": "Interface Vlan888 - NOCB_WORKLOAD2 = 'up'"
-  },
-  {
-    "name": "OTI-DC02-Leaf5A",
-    "test": "VerifyInterfacesStatus",
-    "categories": [
-      "interfaces"
-    ],
-    "description": "Verifies the status of the provided interfaces.",
-    "result": "success",
-    "custom_field": "Interface Vlan899 - NAS = 'up'"
-  },
-  {
-    "name": "OTI-DC02-Leaf5A",
-    "test": "VerifyInterfacesStatus",
-    "categories": [
-      "interfaces"
-    ],
-    "description": "Verifies the status of the provided interfaces.",
-    "result": "success",
-    "custom_field": "Interface Vlan999 - BWS = 'up'"
-  },
-  {
-    "name": "OTI-DC02-Leaf5A",
-    "test": "VerifyInterfacesStatus",
-    "categories": [
-      "interfaces"
-    ],
-    "description": "Verifies the status of the provided interfaces.",
-    "result": "success",
     "custom_field": "Interface Vxlan1 = 'up'"
   },
   {
@@ -956,10 +789,7 @@
       "system"
     ],
     "description": "Verifies whether the CPU utilization is below 75%.",
-    "result": "failure",
-    "messages": [
-      "Device has reported a high CPU utilization: 81.2%"
-    ]
+    "result": "success"
   },
   {
     "name": "OTI-DC02-Leaf5A",
