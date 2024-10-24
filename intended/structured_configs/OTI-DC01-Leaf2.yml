@@ -442,6 +442,66 @@ ethernet_interfaces:
   channel_group:
     id: 25
     mode: active
+- name: Ethernet2
+  peer: DC01-0601-ESX02
+  peer_interface: PCI_slot_1_Port_1
+  peer_type: server
+  port_profile: Access
+  description: SERVER_DC01-0601-ESX02_PCI_slot_1_Port_1
+  shutdown: false
+  channel_group:
+    id: 2
+    mode: active
+- name: Ethernet26
+  peer: DC01-0601-ESX02
+  peer_interface: PCI_slot_2_Port_2
+  peer_type: server
+  port_profile: Access
+  description: SERVER_DC01-0601-ESX02_PCI_slot_2_Port_2
+  shutdown: false
+  channel_group:
+    id: 26
+    mode: active
+- name: Ethernet11
+  peer: DC01-0601-ESX03
+  peer_interface: PCI_slot_1_Port_1
+  peer_type: server
+  port_profile: Access
+  description: SERVER_DC01-0601-ESX03_PCI_slot_1_Port_1
+  shutdown: false
+  channel_group:
+    id: 11
+    mode: active
+- name: Ethernet12
+  peer: DC01-0601-ESX04
+  peer_interface: PCI_slot_1_Port_1
+  peer_type: server
+  port_profile: Access
+  description: SERVER_DC01-0601-ESX04_PCI_slot_1_Port_1
+  shutdown: false
+  channel_group:
+    id: 12
+    mode: active
+- name: Ethernet30
+  peer: DC01-0601-ESX05
+  peer_interface: PCI_slot_1_Port_1
+  peer_type: server
+  port_profile: Access
+  description: SERVER_DC01-0601-ESX05_PCI_slot_1_Port_1
+  shutdown: false
+  channel_group:
+    id: 30
+    mode: active
+- name: Ethernet31
+  peer: DC01-0601-ESX06
+  peer_interface: PCI_slot_1_Port_1
+  peer_type: server
+  port_profile: Access
+  description: SERVER_DC01-0601-ESX06_PCI_slot_1_Port_1
+  shutdown: false
+  channel_group:
+    id: 31
+    mode: active
 loopback_interfaces:
 - name: Loopback0
   description: ROUTER_ID
@@ -856,5 +916,77 @@ port_channel_interfaces:
     identifier: 0000:0000:c8d4:663f:a199
     route_target: c8:d4:66:3f:a1:99
   lacp_id: c8d4.663f.a199
+- name: Port-Channel2
+  description: SERVER_DC01-0601-ESX02
+  shutdown: false
+  mtu: 9214
+  switchport:
+    enabled: true
+    mode: trunk
+  spanning_tree_portfast: edge
+  evpn_ethernet_segment:
+    identifier: 0000:0000:e26a:e644:0b4b
+    route_target: e2:6a:e6:44:0b:4b
+  lacp_id: e26a.e644.0b4b
+- name: Port-Channel26
+  description: SERVER_DC01-0601-ESX02
+  shutdown: false
+  mtu: 9214
+  switchport:
+    enabled: true
+    mode: trunk
+  spanning_tree_portfast: edge
+  evpn_ethernet_segment:
+    identifier: 0000:0000:d7b3:de6b:1a64
+    route_target: d7:b3:de:6b:1a:64
+  lacp_id: d7b3.de6b.1a64
+- name: Port-Channel11
+  description: SERVER_DC01-0601-ESX03
+  shutdown: false
+  mtu: 9214
+  switchport:
+    enabled: true
+    mode: trunk
+  spanning_tree_portfast: edge
+  evpn_ethernet_segment:
+    identifier: 0000:0000:402c:d2f2:b799
+    route_target: 40:2c:d2:f2:b7:99
+  lacp_id: 402c.d2f2.b799
+- name: Port-Channel12
+  description: SERVER_DC01-0601-ESX04
+  shutdown: false
+  mtu: 9214
+  switchport:
+    enabled: true
+    mode: trunk
+  spanning_tree_portfast: edge
+  evpn_ethernet_segment:
+    identifier: 0000:0000:d9ea:a6b7:fb99
+    route_target: d9:ea:a6:b7:fb:99
+  lacp_id: d9ea.a6b7.fb99
+- name: Port-Channel30
+  description: SERVER_DC01-0601-ESX05
+  shutdown: false
+  mtu: 9214
+  switchport:
+    enabled: true
+    mode: trunk
+  spanning_tree_portfast: edge
+  evpn_ethernet_segment:
+    identifier: 0000:0000:674e:7967:8c54
+    route_target: 67:4e:79:67:8c:54
+  lacp_id: 674e.7967.8c54
+- name: Port-Channel31
+  description: SERVER_DC01-0601-ESX06
+  shutdown: false
+  mtu: 9214
+  switchport:
+    enabled: true
+    mode: trunk
+  spanning_tree_portfast: edge
+  evpn_ethernet_segment:
+    identifier: 0000:0000:2130:949d:008e
+    route_target: 21:30:94:9d:00:8e
+  lacp_id: 2130.949d.008e
 metadata:
   platform: vEOS-lab

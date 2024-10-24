@@ -1,6 +1,14 @@
 import json, csv, os, yaml, sys
 import pandas as pd
 
+import os
+dirname = os.path.dirname(__file__)
+parent_directory = os.path.abspath(os.path.join(dirname, os.pardir))
+
+# print(parent_directory)
+
+# sys.exit(0)
+
 # total arguments
 n = len(sys.argv)
 print("Total arguments passed:", n)
@@ -12,12 +20,15 @@ else:
 
 print("port_profiles is %s!" % str(port_profiles))
 
-XLSXName = "OtiNetworkConnectivitySpreadsheet.xlsx"
+XLSXName = os.path.join(dirname, "OtiNetworkConnectivitySpreadsheet.xlsx")
 
 data_xls = pd.read_excel(XLSXName, 'Sheet1', index_col=None)
 data_xls.to_csv('oti.csv', encoding='utf-8')
 
-PWD = os.path.dirname(os.path.realpath(__file__))
+
+# PWD = os.path.dirname(os.path.realpath(__file__))
+PWD = os.path.dirname(__file__)
+
 
 # checkFor = "DC02-0901-ESX03"
 checkFor = None

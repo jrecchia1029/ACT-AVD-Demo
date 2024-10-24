@@ -135,6 +135,46 @@
 | DC01-0601-ESX01 | PCI_slot_2_Port_2 | OTI-DC01-Leaf2 | Ethernet25 | SERVER_DC01-0601-ESX01_PCI_slot_2_Port_2 | False | trunk | - | - | Access |
 | DC01-0601-ESX01 | PCI_slot_1_Port_2 | OTI-DC01-Leaf5A | Ethernet1 | SERVER_DC01-0601-ESX01_PCI_slot_1_Port_2 | False | trunk | - | 2821, 2822, 2833, 2834 | Access |
 | DC01-0601-ESX01 | PCI_slot_2_Port_1 | OTI-DC01-Leaf5B | Ethernet1 | SERVER_DC01-0601-ESX01_PCI_slot_2_Port_1 | False | trunk | - | 2821, 2822, 2833, 2834 | Access |
+| DC01-0601-ESX02 | Onboard_NIC_1 | OTI-DC01-Leaf1 | Ethernet2 | SERVER_DC01-0601-ESX02_Onboard_NIC_1 | False | trunk | - | - | Access |
+| DC01-0601-ESX02 | Onboard_NIC_2 | OTI-DC01-Leaf1 | Ethernet26 | SERVER_DC01-0601-ESX02_Onboard_NIC_2 | False | trunk | - | - | Access |
+| DC01-0601-ESX02 | PCI_slot_1_Port_1 | OTI-DC01-Leaf2 | Ethernet2 | SERVER_DC01-0601-ESX02_PCI_slot_1_Port_1 | False | trunk | - | - | Access |
+| DC01-0601-ESX02 | PCI_slot_2_Port_2 | OTI-DC01-Leaf2 | Ethernet26 | SERVER_DC01-0601-ESX02_PCI_slot_2_Port_2 | False | trunk | - | - | Access |
+| DC01-0601-ESX02 | PCI_slot_1_Port_2 | OTI-DC01-Leaf5A | Ethernet2 | SERVER_DC01-0601-ESX02_PCI_slot_1_Port_2 | False | trunk | - | 821 | Access |
+| DC01-0601-ESX02 | PCI_slot_2_Port_1 | OTI-DC01-Leaf5B | Ethernet2 | SERVER_DC01-0601-ESX02_PCI_slot_2_Port_1 | False | trunk | - | 821 | Access |
+| DC01-0601-ESX03 | Onboard_NIC_1 | OTI-DC01-Leaf1 | Ethernet11 | SERVER_DC01-0601-ESX03_Onboard_NIC_1 | False | trunk | - | - | Access |
+| DC01-0601-ESX03 | PCI_slot_1_Port_1 | OTI-DC01-Leaf2 | Ethernet11 | SERVER_DC01-0601-ESX03_PCI_slot_1_Port_1 | False | trunk | - | - | Access |
+| DC01-0601-ESX03 | Onboard_NIC_2 | OTI-DC01-Leaf3 | Ethernet1 | SERVER_DC01-0601-ESX03_Onboard_NIC_2 | False | trunk | - | - | Access |
+| DC01-0601-ESX03 | PCI_slot_2_Port_2 | OTI-DC01-Leaf4 | Ethernet1 | SERVER_DC01-0601-ESX03_PCI_slot_2_Port_2 | False | trunk | - | - | Access |
+| DC01-0601-ESX03 | PCI_slot_1_Port_2 | OTI-DC01-Leaf5A | Ethernet3 | SERVER_DC01-0601-ESX03_PCI_slot_1_Port_2 | False | access | 55 | - | Access |
+| DC01-0601-ESX03 | PCI_slot_2_Port_1 | OTI-DC01-Leaf5B | Ethernet3 | SERVER_DC01-0601-ESX03_PCI_slot_2_Port_1 | False | access | 55 | - | Access |
+| DC01-0601-ESX04 | Onboard_NIC_1 | OTI-DC01-Leaf1 | Ethernet12 | SERVER_DC01-0601-ESX04_Onboard_NIC_1 | False | trunk | - | - | Access |
+| DC01-0601-ESX04 | PCI_slot_1_Port_1 | OTI-DC01-Leaf2 | Ethernet12 | SERVER_DC01-0601-ESX04_PCI_slot_1_Port_1 | False | trunk | - | - | Access |
+| DC01-0601-ESX04 | Onboard_NIC_2 | OTI-DC01-Leaf3 | Ethernet2 | SERVER_DC01-0601-ESX04_Onboard_NIC_2 | False | trunk | - | - | Access |
+| DC01-0601-ESX04 | PCI_slot_2_Port_2 | OTI-DC01-Leaf4 | Ethernet2 | SERVER_DC01-0601-ESX04_PCI_slot_2_Port_2 | False | trunk | - | - | Access |
+| DC01-0601-ESX04 | PCI_slot_1_Port_2 | OTI-DC01-Leaf5A | Ethernet4 | SERVER_DC01-0601-ESX04_PCI_slot_1_Port_2 | False | access | 55 | - | Access |
+| DC01-0601-ESX04 | PCI_slot_2_Port_1 | OTI-DC01-Leaf5B | Ethernet4 | SERVER_DC01-0601-ESX04_PCI_slot_2_Port_1 | False | access | 55 | - | Access |
+| DC01-0601-ESX05 | Onboard_NIC_1 | OTI-DC01-Leaf1 | Ethernet30 | SERVER_DC01-0601-ESX05_Onboard_NIC_1 | False | trunk | - | - | Access |
+| DC01-0601-ESX05 | PCI_slot_1_Port_1 | OTI-DC01-Leaf2 | Ethernet30 | SERVER_DC01-0601-ESX05_PCI_slot_1_Port_1 | False | trunk | - | - | Access |
+| DC01-0601-ESX05 | Onboard_NIC_2 | OTI-DC01-Leaf3 | Ethernet3 | SERVER_DC01-0601-ESX05_Onboard_NIC_2 | False | trunk | - | - | Access |
+| DC01-0601-ESX05 | PCI_slot_2_Port_2 | OTI-DC01-Leaf4 | Ethernet3 | SERVER_DC01-0601-ESX05_PCI_slot_2_Port_2 | False | trunk | - | - | Access |
+| DC01-0601-ESX05 | PCI_slot_1_Port_2 | OTI-DC01-Leaf5A | Ethernet5 | SERVER_DC01-0601-ESX05_PCI_slot_1_Port_2 | False | trunk | - | 2821, 2822, 2833, 2834 | Access |
+| DC01-0601-ESX05 | PCI_slot_2_Port_1 | OTI-DC01-Leaf5B | Ethernet5 | SERVER_DC01-0601-ESX05_PCI_slot_2_Port_1 | False | trunk | - | 2821, 2822, 2833, 2834 | Access |
+| DC01-0601-ESX06 | Onboard_NIC_1 | OTI-DC01-Leaf1 | Ethernet31 | SERVER_DC01-0601-ESX06_Onboard_NIC_1 | False | trunk | - | - | Access |
+| DC01-0601-ESX06 | PCI_slot_1_Port_1 | OTI-DC01-Leaf2 | Ethernet31 | SERVER_DC01-0601-ESX06_PCI_slot_1_Port_1 | False | trunk | - | - | Access |
+| DC01-0601-ESX06 | Onboard_NIC_2 | OTI-DC01-Leaf3 | Ethernet4 | SERVER_DC01-0601-ESX06_Onboard_NIC_2 | False | trunk | - | - | Access |
+| DC01-0601-ESX06 | PCI_slot_2_Port_2 | OTI-DC01-Leaf4 | Ethernet4 | SERVER_DC01-0601-ESX06_PCI_slot_2_Port_2 | False | trunk | - | - | Access |
+| DC01-0601-ESX06 | PCI_slot_1_Port_2 | OTI-DC01-Leaf5A | Ethernet6 | SERVER_DC01-0601-ESX06_PCI_slot_1_Port_2 | False | access | 821 | - | Access |
+| DC01-0601-ESX06 | PCI_slot_2_Port_1 | OTI-DC01-Leaf5B | Ethernet6 | SERVER_DC01-0601-ESX06_PCI_slot_2_Port_1 | False | access | 821 | - | Access |
+| DC01-0601-SRVA | Port_0 | OTI-DC01-Leaf3 | Ethernet11 | SERVER_DC01-0601-SRVA_Port_0 | False | trunk | - | - | Access |
+| DC01-0601-SRVA | Port_1 | OTI-DC01-Leaf4 | Ethernet11 | SERVER_DC01-0601-SRVA_Port_1 | False | trunk | - | - | Access |
+| DC01-0601-SRVB | Port_0 | OTI-DC01-Leaf3 | Ethernet12 | SERVER_DC01-0601-SRVB_Port_0 | False | trunk | - | - | Access |
+| DC01-0601-SRVB | Port_1 | OTI-DC01-Leaf4 | Ethernet12 | SERVER_DC01-0601-SRVB_Port_1 | False | trunk | - | - | Access |
+| DC01-0601-SRVC | Port_0 | OTI-DC01-Leaf3 | Ethernet13 | SERVER_DC01-0601-SRVC_Port_0 | False | trunk | - | - | Access |
+| DC01-0601-SRVC | Port_1 | OTI-DC01-Leaf4 | Ethernet13 | SERVER_DC01-0601-SRVC_Port_1 | False | trunk | - | - | Access |
+| DC01-0601-SRVD | Port_0 | OTI-DC01-Leaf3 | Ethernet14 | SERVER_DC01-0601-SRVD_Port_0 | False | trunk | - | - | Access |
+| DC01-0601-SRVD | Port_1 | OTI-DC01-Leaf4 | Ethernet14 | SERVER_DC01-0601-SRVD_Port_1 | False | trunk | - | - | Access |
+| DC01-0601-SRVD | Port_2 | OTI-DC01-Leaf5A | Ethernet25 | SERVER_DC01-0601-SRVD_Port_2 | False | trunk | - | 3911, 2500 | Access |
+| DC01-0601-SRVD | Port_3 | OTI-DC01-Leaf5B | Ethernet25 | SERVER_DC01-0601-SRVD_Port_3 | False | trunk | - | 3911, 2500 | Access |
 
 ### Port Profiles
 

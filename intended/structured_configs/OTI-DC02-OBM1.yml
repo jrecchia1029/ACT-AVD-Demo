@@ -51,7 +51,120 @@ management_api_http:
   enable_vrfs:
   - name: default
   enable_https: true
+vlans:
+- id: 2545
+  name: DC02_IDRAC
+  tenant: OTI_OOB_Mgmt
 ip_igmp_snooping:
   globally_enabled: true
+ethernet_interfaces:
+- name: Ethernet1
+  peer: DC02-0901-ESX01
+  peer_interface: idrac
+  peer_type: server
+  port_profile: Access
+  description: SERVER_DC02-0901-ESX01_idrac
+  shutdown: false
+  switchport:
+    enabled: true
+    mode: access
+    access_vlan: '2545'
+  spanning_tree_portfast: edge
+- name: Ethernet2
+  peer: DC02-0901-ESX02
+  peer_interface: idrac
+  peer_type: server
+  port_profile: Access
+  description: SERVER_DC02-0901-ESX02_idrac
+  shutdown: false
+  switchport:
+    enabled: true
+    mode: access
+    access_vlan: '2545'
+  spanning_tree_portfast: edge
+- name: Ethernet3
+  peer: DC02-0901-ESX03
+  peer_interface: idrac
+  peer_type: server
+  port_profile: Access
+  description: SERVER_DC02-0901-ESX03_idrac
+  shutdown: false
+  switchport:
+    enabled: true
+    mode: access
+    access_vlan: '2545'
+  spanning_tree_portfast: edge
+- name: Ethernet4
+  peer: DC02-0901-ESX04
+  peer_interface: idrac
+  peer_type: server
+  port_profile: Access
+  description: SERVER_DC02-0901-ESX04_idrac
+  shutdown: false
+  switchport:
+    enabled: true
+    mode: access
+    access_vlan: '2545'
+  spanning_tree_portfast: edge
+- name: Ethernet7
+  peer: DC02-0901-SRVA
+  peer_interface: iLo
+  peer_type: server
+  port_profile: Access
+  description: SERVER_DC02-0901-SRVA_iLo
+  shutdown: false
+  switchport:
+    enabled: true
+    mode: access
+    access_vlan: '2545'
+  spanning_tree_portfast: edge
+- name: Ethernet8
+  peer: DC02-0901-SRVB
+  peer_interface: iLo
+  peer_type: server
+  port_profile: Access
+  description: SERVER_DC02-0901-SRVB_iLo
+  shutdown: false
+  switchport:
+    enabled: true
+    mode: access
+    access_vlan: '2545'
+  spanning_tree_portfast: edge
+- name: Ethernet9
+  peer: DC02-0901-SRVC
+  peer_interface: iLo
+  peer_type: server
+  port_profile: Access
+  description: SERVER_DC02-0901-SRVC_iLo
+  shutdown: false
+  switchport:
+    enabled: true
+    mode: access
+    access_vlan: '2545'
+  spanning_tree_portfast: edge
+- name: Ethernet5
+  peer: DC02-0901-ESX05
+  peer_interface: idrac
+  peer_type: server
+  port_profile: Access
+  description: SERVER_DC02-0901-ESX05_idrac
+  shutdown: false
+  switchport:
+    enabled: true
+    mode: access
+    access_vlan: '2545'
+  spanning_tree_portfast: edge
+- name: Ethernet6
+  peer: DC02-0901-ESX06
+  peer_interface: idrac
+  peer_type: server
+  port_profile: Access
+  description: SERVER_DC02-0901-ESX06_idrac
+  shutdown: false
+  switchport:
+    enabled: true
+    mode: access
+    access_vlan: '2545'
+  spanning_tree_portfast: edge
 metadata:
   platform: 7050SX3-48YC8
