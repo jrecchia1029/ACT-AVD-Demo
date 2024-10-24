@@ -228,7 +228,47 @@
     ],
     "description": "Verifies the status of the provided interfaces.",
     "result": "success",
+    "custom_field": "Interface Ethernet11 - SERVER_DC01-0601-ESX03_PCI_slot_1_Port_1 = 'up'"
+  },
+  {
+    "name": "OTI-DC01-Leaf2",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the status of the provided interfaces.",
+    "result": "success",
+    "custom_field": "Interface Ethernet12 - SERVER_DC01-0601-ESX04_PCI_slot_1_Port_1 = 'up'"
+  },
+  {
+    "name": "OTI-DC01-Leaf2",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the status of the provided interfaces.",
+    "result": "success",
     "custom_field": "Interface Ethernet25 - SERVER_DC01-0601-ESX01_PCI_slot_2_Port_2 = 'up'"
+  },
+  {
+    "name": "OTI-DC01-Leaf2",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the status of the provided interfaces.",
+    "result": "success",
+    "custom_field": "Interface Ethernet30 - SERVER_DC01-0601-ESX05_PCI_slot_1_Port_1 = 'up'"
+  },
+  {
+    "name": "OTI-DC01-Leaf2",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the status of the provided interfaces.",
+    "result": "success",
+    "custom_field": "Interface Ethernet31 - SERVER_DC01-0601-ESX06_PCI_slot_1_Port_1 = 'up'"
   },
   {
     "name": "OTI-DC01-Leaf2",
@@ -308,7 +348,47 @@
     ],
     "description": "Verifies the status of the provided interfaces.",
     "result": "success",
+    "custom_field": "Interface Port-Channel11 - SERVER_DC01-0601-ESX03 = 'up'"
+  },
+  {
+    "name": "OTI-DC01-Leaf2",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the status of the provided interfaces.",
+    "result": "success",
+    "custom_field": "Interface Port-Channel12 - SERVER_DC01-0601-ESX04 = 'up'"
+  },
+  {
+    "name": "OTI-DC01-Leaf2",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the status of the provided interfaces.",
+    "result": "success",
     "custom_field": "Interface Port-Channel25 - SERVER_DC01-0601-ESX01 = 'up'"
+  },
+  {
+    "name": "OTI-DC01-Leaf2",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the status of the provided interfaces.",
+    "result": "success",
+    "custom_field": "Interface Port-Channel30 - SERVER_DC01-0601-ESX05 = 'up'"
+  },
+  {
+    "name": "OTI-DC01-Leaf2",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the status of the provided interfaces.",
+    "result": "success",
+    "custom_field": "Interface Port-Channel31 - SERVER_DC01-0601-ESX06 = 'up'"
   },
   {
     "name": "OTI-DC01-Leaf2",
@@ -759,7 +839,7 @@
     "description": "Verifies whether the CPU utilization is below 75%.",
     "result": "failure",
     "messages": [
-      "Device has reported a high CPU utilization: 90.6%"
+      "Device has reported a high CPU utilization: 97.0%"
     ]
   },
   {

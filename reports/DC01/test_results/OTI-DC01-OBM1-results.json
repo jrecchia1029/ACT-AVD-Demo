@@ -62,12 +62,95 @@
   },
   {
     "name": "OTI-DC01-OBM1",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the status of the provided interfaces.",
+    "result": "success",
+    "custom_field": "Interface Ethernet10 - SERVER_DC01-0601-SRVD_iLo = 'up'"
+  },
+  {
+    "name": "OTI-DC01-OBM1",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the status of the provided interfaces.",
+    "result": "success",
+    "custom_field": "Interface Ethernet3 - SERVER_DC01-0601-ESX03_idrac = 'up'"
+  },
+  {
+    "name": "OTI-DC01-OBM1",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the status of the provided interfaces.",
+    "result": "success",
+    "custom_field": "Interface Ethernet4 - SERVER_DC01-0601-ESX04_idrac = 'up'"
+  },
+  {
+    "name": "OTI-DC01-OBM1",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the status of the provided interfaces.",
+    "result": "success",
+    "custom_field": "Interface Ethernet5 - SERVER_DC01-0601-ESX05_idrac = 'up'"
+  },
+  {
+    "name": "OTI-DC01-OBM1",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the status of the provided interfaces.",
+    "result": "success",
+    "custom_field": "Interface Ethernet6 - SERVER_DC01-0601-ESX06_idrac = 'up'"
+  },
+  {
+    "name": "OTI-DC01-OBM1",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the status of the provided interfaces.",
+    "result": "success",
+    "custom_field": "Interface Ethernet7 - SERVER_DC01-0601-SRVA_iLo = 'up'"
+  },
+  {
+    "name": "OTI-DC01-OBM1",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the status of the provided interfaces.",
+    "result": "success",
+    "custom_field": "Interface Ethernet8 - SERVER_DC01-0601-SRVB_iLo = 'up'"
+  },
+  {
+    "name": "OTI-DC01-OBM1",
+    "test": "VerifyInterfacesStatus",
+    "categories": [
+      "interfaces"
+    ],
+    "description": "Verifies the status of the provided interfaces.",
+    "result": "success",
+    "custom_field": "Interface Ethernet9 - SERVER_DC01-0601-SRVC_iLo = 'up'"
+  },
+  {
+    "name": "OTI-DC01-OBM1",
     "test": "VerifyCPUUtilization",
     "categories": [
       "system"
     ],
     "description": "Verifies whether the CPU utilization is below 75%.",
-    "result": "success"
+    "result": "failure",
+    "messages": [
+      "Device has reported a high CPU utilization: 77.4%"
+    ]
   },
   {
     "name": "OTI-DC01-OBM1",

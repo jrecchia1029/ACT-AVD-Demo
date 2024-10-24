@@ -1,1 +1,10 @@
 Node Type,Node,Node Interface,Peer Type,Peer Node,Peer Interface,Node Interface Enabled
+leaf,OTI-DC02-OBM1,Ethernet1,server,DC02-0901-ESX01,idrac,True
+leaf,OTI-DC02-OBM1,Ethernet2,server,DC02-0901-ESX02,idrac,True
+leaf,OTI-DC02-OBM1,Ethernet3,server,DC02-0901-ESX03,idrac,True
+leaf,OTI-DC02-OBM1,Ethernet4,server,DC02-0901-ESX04,idrac,True
+leaf,OTI-DC02-OBM1,Ethernet5,server,DC02-0901-ESX05,idrac,True
+leaf,OTI-DC02-OBM1,Ethernet6,server,DC02-0901-ESX06,idrac,True
+leaf,OTI-DC02-OBM1,Ethernet7,server,DC02-0901-SRVA,iLo,True
+leaf,OTI-DC02-OBM1,Ethernet8,server,DC02-0901-SRVB,iLo,True
+leaf,OTI-DC02-OBM1,Ethernet9,server,DC02-0901-SRVC,iLo,True

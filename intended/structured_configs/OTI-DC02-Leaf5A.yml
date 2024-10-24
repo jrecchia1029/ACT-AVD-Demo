@@ -83,7 +83,7 @@ router_bgp:
     peer: OTI-DC02-Spine2
     description: OTI-DC02-Spine2_Loopback0
     remote_as: '65100'
-  - ip_address: 192.168.10.249
+  - ip_address: 192.168.10.248
     remote_as: '65005'
     peer: OTI-DC01-Leaf5A
     description: OTI-DC01-Leaf5A
@@ -100,6 +100,84 @@ router_bgp:
       activate: true
     - name: INTER-DC-EVPN-PEERS
       activate: true
+  vrfs:
+  - name: Production
+    rd: 10.245.218.7:10
+    route_targets:
+      import:
+      - address_family: evpn
+        route_targets:
+        - '10:10'
+      export:
+      - address_family: evpn
+        route_targets:
+        - '10:10'
+    router_id: 10.245.218.7
+    redistribute:
+      connected:
+        enabled: true
+        route_map: RM-CONN-2-BGP-VRFS
+    neighbors:
+    - ip_address: 192.168.14.73
+      peer_group: MLAG-IPv4-UNDERLAY-PEER
+      description: OTI-DC02-Leaf5B_Vlan3009
+  vlans:
+  - id: 887
+    tenant: OTI
+    rd: 10.245.218.7:10887
+    route_targets:
+      both:
+      - 10887:10887
+    redistribute_routes:
+    - learned
+  - id: 888
+    tenant: OTI
+    rd: 10.245.218.7:10888
+    route_targets:
+      both:
+      - 10888:10888
+    redistribute_routes:
+    - learned
+  - id: 899
+    tenant: OTI
+    rd: 10.245.218.7:10899
+    route_targets:
+      both:
+      - 10899:10899
+    redistribute_routes:
+    - learned
+  - id: 999
+    tenant: OTI
+    rd: 10.245.218.7:10999
+    route_targets:
+      both:
+      - 10999:10999
+    redistribute_routes:
+    - learned
+  - id: 1100
+    tenant: OTI
+    rd: 10.245.218.7:11100
+    route_targets:
+      both:
+      - 11100:11100
+    redistribute_routes:
+    - learned
+  - id: 1101
+    tenant: OTI
+    rd: 10.245.218.7:11101
+    route_targets:
+      both:
+      - 11101:11101
+    redistribute_routes:
+    - learned
+  - id: 1102
+    tenant: OTI
+    rd: 10.245.218.7:11102
+    route_targets:
+      both:
+      - 11102:11102
+    redistribute_routes:
+    - learned
 service_routing_protocols_model: multi-agent
 ip_routing: true
 daemon_terminattr:
@@ -137,6 +215,9 @@ local_users:
 vrfs:
 - name: default
   ip_routing: false
+- name: Production
+  tenant: OTI
+  ip_routing: true
 management_interfaces:
 - name: Management1
   description: OOB_MANAGEMENT
@@ -163,6 +244,32 @@ vlans:
   name: MLAG
   trunk_groups:
   - MLAG
+- id: 887
+  name: NOCB_WORKLOAD1
+  tenant: OTI
+- id: 888
+  name: NOCB_WORKLOAD2
+  tenant: OTI
+- id: 899
+  name: NAS
+  tenant: OTI
+- id: 999
+  name: BWS
+  tenant: OTI
+- id: 1100
+  name: SRVR_FARM_BLADE_0
+  tenant: OTI
+- id: 1101
+  name: SRVR_FARM_BLADE_1
+  tenant: OTI
+- id: 1102
+  name: SRVR_FARM_BLADE_2
+  tenant: OTI
+- id: 3009
+  name: MLAG_L3_VRF_Production
+  trunk_groups:
+  - MLAG
+  tenant: OTI
 vlan_interfaces:
 - name: Vlan4093
   description: MLAG_L3
@@ -175,6 +282,56 @@ vlan_interfaces:
   no_autostate: true
   mtu: 1500
   ip_address: 192.168.14.104/31
+- name: Vlan887
+  tenant: OTI
+  description: NOCB_WORKLOAD1
+  shutdown: false
+  ip_address_virtual: 10.88.7.1/24
+  vrf: Production
+- name: Vlan888
+  tenant: OTI
+  description: NOCB_WORKLOAD2
+  shutdown: false
+  ip_address_virtual: 10.88.8.1/24
+  vrf: Production
+- name: Vlan899
+  tenant: OTI
+  description: NAS
+  shutdown: false
+  ip_address_virtual: 10.89.9.1/24
+  vrf: Production
+- name: Vlan999
+  tenant: OTI
+  description: BWS
+  shutdown: false
+  ip_address_virtual: 10.99.9.1/24
+  vrf: Production
+- name: Vlan1100
+  tenant: OTI
+  description: SRVR_FARM_BLADE_0
+  shutdown: false
+  ip_address_virtual: 11.0.0.1/24
+  vrf: Production
+- name: Vlan1101
+  tenant: OTI
+  description: SRVR_FARM_BLADE_1
+  shutdown: false
+  ip_address_virtual: 11.0.1.1/24
+  vrf: Production
+- name: Vlan1102
+  tenant: OTI
+  description: SRVR_FARM_BLADE_2
+  shutdown: false
+  ip_address_virtual: 11.0.2.1/24
+  vrf: Production
+- name: Vlan3009
+  tenant: OTI
+  type: underlay_peering
+  shutdown: false
+  description: MLAG_L3_VRF_Production
+  vrf: Production
+  mtu: 1500
+  ip_address: 192.168.14.72/31
 port_channel_interfaces:
 - name: Port-Channel531
   description: MLAG_OTI-DC02-Leaf5B_Port-Channel531
@@ -185,6 +342,50 @@ port_channel_interfaces:
       groups:
       - MLAG
   shutdown: false
+- name: Port-Channel1
+  description: SERVER_DC02-0901-ESX04
+  shutdown: false
+  mtu: 9214
+  switchport:
+    enabled: true
+    mode: trunk
+    trunk:
+      allowed_vlan: 899, 999
+  spanning_tree_portfast: edge
+  mlag: 1
+- name: Port-Channel491
+  description: SERVER_DC02-0901-ESX05
+  shutdown: false
+  mtu: 9214
+  switchport:
+    enabled: true
+    mode: trunk
+    trunk:
+      allowed_vlan: 1100, 1101, 1102
+  spanning_tree_portfast: edge
+  mlag: 491
+- name: Port-Channel2
+  description: SERVER_DC02-0901-ESX06
+  shutdown: false
+  mtu: 9214
+  switchport:
+    enabled: true
+    mode: trunk
+    trunk:
+      allowed_vlan: 899, 999
+  spanning_tree_portfast: edge
+  mlag: 2
+- name: Port-Channel501
+  description: SERVER_DC02-0901-ESX06
+  shutdown: false
+  mtu: 9214
+  switchport:
+    enabled: true
+    mode: trunk
+    trunk:
+      allowed_vlan: 887, 888
+  spanning_tree_portfast: edge
+  mlag: 501
 ethernet_interfaces:
 - name: Ethernet53/1
   peer: OTI-DC02-Leaf5B
@@ -232,8 +433,48 @@ ethernet_interfaces:
     enabled: false
   shutdown: false
   mtu: 1500
-  ip_address: 192.168.10.248/31
+  ip_address: 192.168.10.249/31
   description: P2P_OTI-DC01-Leaf5A_Ethernet52/1
+- name: Ethernet1
+  peer: DC02-0901-ESX04
+  peer_interface: Onboard_NIC_2
+  peer_type: server
+  port_profile: Access
+  description: SERVER_DC02-0901-ESX04_Onboard_NIC_2
+  shutdown: false
+  channel_group:
+    id: 1
+    mode: active
+- name: Ethernet49/1
+  peer: DC02-0901-ESX05
+  peer_interface: PCI_slot_1_Port_2
+  peer_type: server
+  port_profile: Access
+  description: SERVER_DC02-0901-ESX05_PCI_slot_1_Port_2
+  shutdown: false
+  channel_group:
+    id: 491
+    mode: active
+- name: Ethernet2
+  peer: DC02-0901-ESX06
+  peer_interface: Onboard_NIC_2
+  peer_type: server
+  port_profile: Access
+  description: SERVER_DC02-0901-ESX06_Onboard_NIC_2
+  shutdown: false
+  channel_group:
+    id: 2
+    mode: active
+- name: Ethernet50/1
+  peer: DC02-0901-ESX06
+  peer_interface: PCI_slot_1_Port_2
+  peer_type: server
+  port_profile: Access
+  description: SERVER_DC02-0901-ESX06_PCI_slot_1_Port_2
+  shutdown: false
+  channel_group:
+    id: 501
+    mode: active
 mlag_configuration:
   domain_id: OTI-DC02-Leaf5
   local_interface: Vlan4094
@@ -255,6 +496,14 @@ route_maps:
     type: permit
     match:
     - ip address prefix-list PL-LOOPBACKS-EVPN-OVERLAY
+- name: RM-CONN-2-BGP-VRFS
+  sequence_numbers:
+  - sequence: 10
+    type: deny
+    match:
+    - ip address prefix-list PL-MLAG-PEER-VRFS
+  - sequence: 20
+    type: permit
 loopback_interfaces:
 - name: Loopback0
   description: ROUTER_ID
@@ -264,6 +513,11 @@ loopback_interfaces:
   description: VXLAN_TUNNEL_SOURCE
   shutdown: false
   ip_address: 10.245.218.39/32
+- name: Loopback10
+  description: DIAG_VRF_Production
+  shutdown: false
+  vrf: Production
+  ip_address: 10.2.10.7/32
 prefix_lists:
 - name: PL-LOOPBACKS-EVPN-OVERLAY
   sequence_numbers:
@@ -271,6 +525,10 @@ prefix_lists:
     action: permit 10.245.218.0/27 eq 32
   - sequence: 20
     action: permit 10.245.218.32/27 eq 32
+- name: PL-MLAG-PEER-VRFS
+  sequence_numbers:
+  - sequence: 10
+    action: permit 192.168.14.72/31
 router_bfd:
   multihop:
     interval: 300
@@ -286,5 +544,26 @@ vxlan_interface:
       udp_port: 4789
       source_interface: Loopback1
       virtual_router_encapsulation_mac_address: mlag-system-id
+      vlans:
+      - id: 887
+        vni: 10887
+      - id: 888
+        vni: 10888
+      - id: 899
+        vni: 10899
+      - id: 999
+        vni: 10999
+      - id: 1100
+        vni: 11100
+      - id: 1101
+        vni: 11101
+      - id: 1102
+        vni: 11102
+      vrfs:
+      - name: Production
+        vni: 10
+virtual_source_nat_vrfs:
+- name: Production
+  ip_address: 10.2.10.7
 metadata:
   platform: vEOS-lab
