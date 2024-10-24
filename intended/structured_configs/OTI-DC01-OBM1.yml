@@ -17,6 +17,12 @@ vlan_internal_order:
   range:
     beginning: 1006
     ending: 1199
+aaa_root:
+  disabled: true
+config_end: true
+enable_password:
+  disabled: true
+transceiver_qsfp_default_mode_4x10: true
 spanning_tree:
   mode: mstp
   mst_instances:
@@ -32,7 +38,7 @@ vrfs:
   ip_routing: false
 management_interfaces:
 - name: Management1
-  description: oob_management
+  description: OOB_MANAGEMENT
   shutdown: false
   vrf: default
   ip_address: 192.168.255.19/24
@@ -57,11 +63,12 @@ ethernet_interfaces:
   peer_interface: idrac
   peer_type: server
   port_profile: Access
-  description: DC01-0601-ESX01_idrac
+  description: SERVER_DC01-0601-ESX01_idrac
   shutdown: false
-  type: switched
-  mode: access
-  vlans: '3545'
+  switchport:
+    enabled: true
+    mode: access
+    access_vlan: '3545'
   spanning_tree_portfast: edge
 metadata:
   platform: 7050SX3-48YC8

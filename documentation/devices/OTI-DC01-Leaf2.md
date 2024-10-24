@@ -10,6 +10,7 @@
   - [Management API HTTP](#management-api-http)
 - [Authentication](#authentication)
   - [Local Users](#local-users)
+  - [Enable Password](#enable-password)
 - [Monitoring](#monitoring)
   - [TerminAttr Daemon](#terminattr-daemon)
 - [Spanning Tree](#spanning-tree)
@@ -75,20 +76,20 @@ agent KernelFib environment KERNELFIB_PROGRAM_ALL_ECMP='true'
 
 | Management Interface | Description | Type | VRF | IP Address | Gateway |
 | -------------------- | ----------- | ---- | --- | ---------- | ------- |
-| Management1 | oob_management | oob | default | 192.168.255.14/24 | - |
+| Management1 | OOB_MANAGEMENT | oob | default | 192.168.255.14/24 | - |
 
 ##### IPv6
 
 | Management Interface | Description | Type | VRF | IPv6 Address | IPv6 Gateway |
 | -------------------- | ----------- | ---- | --- | ------------ | ------------ |
-| Management1 | oob_management | oob | default | - | - |
+| Management1 | OOB_MANAGEMENT | oob | default | - | - |
 
 #### Management Interfaces Device Configuration
 
 ```eos
 !
 interface Management1
-   description oob_management
+   description OOB_MANAGEMENT
    no shutdown
    ip address 192.168.255.14/24
    no lldp transmit
@@ -172,6 +173,10 @@ management api http-commands
 !
 username cvpadmin privilege 15 role network-admin secret sha512 <removed>
 ```
+
+### Enable Password
+
+Enable password has been disabled
 
 ## Monitoring
 
@@ -373,41 +378,41 @@ vlan 3911
 
 | Interface | Description | Mode | VLANs | Native VLAN | Trunk Group | Channel-Group |
 | --------- | ----------- | ---- | ----- | ----------- | ----------- | ------------- |
-| Ethernet1 | DC01-0601-ESX01_PCI_slot_1_Port_1 | *trunk | *- | *- | *- | 1 |
-| Ethernet25 | DC01-0601-ESX01_PCI_slot_2_Port_2 | *trunk | *- | *- | *- | 25 |
+| Ethernet1 | SERVER_DC01-0601-ESX01_PCI_slot_1_Port_1 | *trunk | *- | *- | *- | 1 |
+| Ethernet25 | SERVER_DC01-0601-ESX01_PCI_slot_2_Port_2 | *trunk | *- | *- | *- | 25 |
 
 *Inherited from Port-Channel Interface
 
 ##### IPv4
 
-| Interface | Description | Type | Channel Group | IP Address | VRF |  MTU | Shutdown | ACL In | ACL Out |
-| --------- | ----------- | -----| ------------- | ---------- | ----| ---- | -------- | ------ | ------- |
-| Ethernet55/1 | P2P_LINK_TO_OTI-DC01-SPINE1_Ethernet2/1 | routed | - | 192.168.11.5/31 | default | 1500 | False | - | - |
-| Ethernet56/1 | P2P_LINK_TO_OTI-DC01-SPINE2_Ethernet2/1 | routed | - | 192.168.11.7/31 | default | 1500 | False | - | - |
+| Interface | Description | Channel Group | IP Address | VRF |  MTU | Shutdown | ACL In | ACL Out |
+| --------- | ----------- | ------------- | ---------- | ----| ---- | -------- | ------ | ------- |
+| Ethernet55/1 | P2P_OTI-DC01-Spine1_Ethernet2/1 | - | 192.168.11.5/31 | default | 1500 | False | - | - |
+| Ethernet56/1 | P2P_OTI-DC01-Spine2_Ethernet2/1 | - | 192.168.11.7/31 | default | 1500 | False | - | - |
 
 #### Ethernet Interfaces Device Configuration
 
 ```eos
 !
 interface Ethernet1
-   description DC01-0601-ESX01_PCI_slot_1_Port_1
+   description SERVER_DC01-0601-ESX01_PCI_slot_1_Port_1
    no shutdown
    channel-group 1 mode active
 !
 interface Ethernet25
-   description DC01-0601-ESX01_PCI_slot_2_Port_2
+   description SERVER_DC01-0601-ESX01_PCI_slot_2_Port_2
    no shutdown
    channel-group 25 mode active
 !
 interface Ethernet55/1
-   description P2P_LINK_TO_OTI-DC01-SPINE1_Ethernet2/1
+   description P2P_OTI-DC01-Spine1_Ethernet2/1
    no shutdown
    mtu 1500
    no switchport
    ip address 192.168.11.5/31
 !
 interface Ethernet56/1
-   description P2P_LINK_TO_OTI-DC01-SPINE2_Ethernet2/1
+   description P2P_OTI-DC01-Spine2_Ethernet2/1
    no shutdown
    mtu 1500
    no switchport
@@ -420,10 +425,10 @@ interface Ethernet56/1
 
 ##### L2
 
-| Interface | Description | Type | Mode | VLANs | Native VLAN | Trunk Group | LACP Fallback Timeout | LACP Fallback Mode | MLAG ID | EVPN ESI |
-| --------- | ----------- | ---- | ---- | ----- | ----------- | ------------| --------------------- | ------------------ | ------- | -------- |
-| Port-Channel1 | DC01-0601-ESX01 | switched | trunk | - | - | - | - | - | - | 0000:0000:ac9b:deb4:3bc0 |
-| Port-Channel25 | DC01-0601-ESX01 | switched | trunk | - | - | - | - | - | - | 0000:0000:c8d4:663f:a199 |
+| Interface | Description | Mode | VLANs | Native VLAN | Trunk Group | LACP Fallback Timeout | LACP Fallback Mode | MLAG ID | EVPN ESI |
+| --------- | ----------- | ---- | ----- | ----------- | ------------| --------------------- | ------------------ | ------- | -------- |
+| Port-Channel1 | SERVER_DC01-0601-ESX01 | trunk | - | - | - | - | - | - | 0000:0000:ac9b:deb4:3bc0 |
+| Port-Channel25 | SERVER_DC01-0601-ESX01 | trunk | - | - | - | - | - | - | 0000:0000:c8d4:663f:a199 |
 
 ##### EVPN Multihoming
 
@@ -439,11 +444,12 @@ interface Ethernet56/1
 ```eos
 !
 interface Port-Channel1
-   description DC01-0601-ESX01
+   description SERVER_DC01-0601-ESX01
    no shutdown
    mtu 9214
-   switchport
    switchport mode trunk
+   switchport
+   !
    evpn ethernet-segment
       identifier 0000:0000:ac9b:deb4:3bc0
       route-target import ac:9b:de:b4:3b:c0
@@ -451,11 +457,12 @@ interface Port-Channel1
    spanning-tree portfast
 !
 interface Port-Channel25
-   description DC01-0601-ESX01
+   description SERVER_DC01-0601-ESX01
    no shutdown
    mtu 9214
-   switchport
    switchport mode trunk
+   switchport
+   !
    evpn ethernet-segment
       identifier 0000:0000:c8d4:663f:a199
       route-target import c8:d4:66:3f:a1:99
@@ -471,42 +478,42 @@ interface Port-Channel25
 
 | Interface | Description | VRF | IP Address |
 | --------- | ----------- | --- | ---------- |
-| Loopback0 | EVPN_Overlay_Peering | default | 10.245.217.4/32 |
-| Loopback1 | VTEP_VXLAN_Tunnel_Source | default | 10.245.217.36/32 |
-| Loopback10 | Production_VTEP_DIAGNOSTICS | Production | 10.1.10.4/32 |
-| Loopback11 | Development_VTEP_DIAGNOSTICS | Development | 10.1.11.4/32 |
+| Loopback0 | ROUTER_ID | default | 10.245.217.4/32 |
+| Loopback1 | VXLAN_TUNNEL_SOURCE | default | 10.245.217.36/32 |
+| Loopback10 | DIAG_VRF_Production | Production | 10.1.10.4/32 |
+| Loopback11 | DIAG_VRF_Development | Development | 10.1.11.4/32 |
 
 ##### IPv6
 
 | Interface | Description | VRF | IPv6 Address |
 | --------- | ----------- | --- | ------------ |
-| Loopback0 | EVPN_Overlay_Peering | default | - |
-| Loopback1 | VTEP_VXLAN_Tunnel_Source | default | - |
-| Loopback10 | Production_VTEP_DIAGNOSTICS | Production | - |
-| Loopback11 | Development_VTEP_DIAGNOSTICS | Development | - |
+| Loopback0 | ROUTER_ID | default | - |
+| Loopback1 | VXLAN_TUNNEL_SOURCE | default | - |
+| Loopback10 | DIAG_VRF_Production | Production | - |
+| Loopback11 | DIAG_VRF_Development | Development | - |
 
 #### Loopback Interfaces Device Configuration
 
 ```eos
 !
 interface Loopback0
-   description EVPN_Overlay_Peering
+   description ROUTER_ID
    no shutdown
    ip address 10.245.217.4/32
 !
 interface Loopback1
-   description VTEP_VXLAN_Tunnel_Source
+   description VXLAN_TUNNEL_SOURCE
    no shutdown
    ip address 10.245.217.36/32
 !
 interface Loopback10
-   description Production_VTEP_DIAGNOSTICS
+   description DIAG_VRF_Production
    no shutdown
    vrf Production
    ip address 10.1.10.4/32
 !
 interface Loopback11
-   description Development_VTEP_DIAGNOSTICS
+   description DIAG_VRF_Development
    no shutdown
    vrf Development
    ip address 10.1.11.4/32
@@ -550,37 +557,37 @@ interface Loopback11
 
 ##### IPv4
 
-| Interface | VRF | IP Address | IP Address Virtual | IP Router Virtual Address | VRRP | ACL In | ACL Out |
-| --------- | --- | ---------- | ------------------ | ------------------------- | ---- | ------ | ------- |
-| Vlan21 |  Development  |  -  |  10.10.21.1/24  |  -  |  -  |  -  |  -  |
-| Vlan22 |  Development  |  -  |  10.10.22.1/24  |  -  |  -  |  -  |  -  |
-| Vlan55 |  Production  |  -  |  10.10.55.1/24  |  -  |  -  |  -  |  -  |
-| Vlan100 |  Production  |  -  |  10.10.100.1/24  |  -  |  -  |  -  |  -  |
-| Vlan101 |  Production  |  -  |  10.10.101.1/24  |  -  |  -  |  -  |  -  |
-| Vlan201 |  Production  |  -  |  10.0.201.1/24  |  -  |  -  |  -  |  -  |
-| Vlan202 |  Production  |  -  |  10.0.202.1/24  |  -  |  -  |  -  |  -  |
-| Vlan400 |  Production  |  -  |  10.40.0.1/24  |  -  |  -  |  -  |  -  |
-| Vlan500 |  Production  |  -  |  10.50.0.1/24  |  -  |  -  |  -  |  -  |
-| Vlan501 |  Production  |  -  |  10.50.1.1/24  |  -  |  -  |  -  |  -  |
-| Vlan821 |  Production  |  -  |  10.82.1.1/24  |  -  |  -  |  -  |  -  |
-| Vlan887 |  Production  |  -  |  10.88.7.1/24  |  -  |  -  |  -  |  -  |
-| Vlan888 |  Production  |  -  |  10.88.8.1/24  |  -  |  -  |  -  |  -  |
-| Vlan899 |  Production  |  -  |  10.89.9.1/24  |  -  |  -  |  -  |  -  |
-| Vlan999 |  Production  |  -  |  10.99.9.1/24  |  -  |  -  |  -  |  -  |
-| Vlan1000 |  Production  |  -  |  10.0.0.1/24  |  -  |  -  |  -  |  -  |
-| Vlan1100 |  Production  |  -  |  11.0.0.1/24  |  -  |  -  |  -  |  -  |
-| Vlan1101 |  Production  |  -  |  11.0.1.1/24  |  -  |  -  |  -  |  -  |
-| Vlan1102 |  Production  |  -  |  11.0.2.1/24  |  -  |  -  |  -  |  -  |
-| Vlan1201 |  Production  |  -  |  12.0.1.1/24  |  -  |  -  |  -  |  -  |
-| Vlan1202 |  Production  |  -  |  12.0.2.1/24  |  -  |  -  |  -  |  -  |
-| Vlan2000 |  Production  |  -  |  20.0.0.1/24  |  -  |  -  |  -  |  -  |
-| Vlan2500 |  Development  |  -  |  12.50.0.1/24  |  -  |  -  |  -  |  -  |
-| Vlan2821 |  Development  |  -  |  10.28.21.1/24  |  -  |  -  |  -  |  -  |
-| Vlan2822 |  Development  |  -  |  10.28.22.1/24  |  -  |  -  |  -  |  -  |
-| Vlan2833 |  Development  |  -  |  10.28.33.1/24  |  -  |  -  |  -  |  -  |
-| Vlan2834 |  Development  |  -  |  10.28.34.1/24  |  -  |  -  |  -  |  -  |
-| Vlan3434 |  Production  |  -  |  10.34.34.1/24  |  -  |  -  |  -  |  -  |
-| Vlan3911 |  Production  |  -  |  10.39.11.1/24  |  -  |  -  |  -  |  -  |
+| Interface | VRF | IP Address | IP Address Virtual | IP Router Virtual Address | ACL In | ACL Out |
+| --------- | --- | ---------- | ------------------ | ------------------------- | ------ | ------- |
+| Vlan21 |  Development  |  -  |  10.10.21.1/24  |  -  |  -  |  -  |
+| Vlan22 |  Development  |  -  |  10.10.22.1/24  |  -  |  -  |  -  |
+| Vlan55 |  Production  |  -  |  10.10.55.1/24  |  -  |  -  |  -  |
+| Vlan100 |  Production  |  -  |  10.10.100.1/24  |  -  |  -  |  -  |
+| Vlan101 |  Production  |  -  |  10.10.101.1/24  |  -  |  -  |  -  |
+| Vlan201 |  Production  |  -  |  10.0.201.1/24  |  -  |  -  |  -  |
+| Vlan202 |  Production  |  -  |  10.0.202.1/24  |  -  |  -  |  -  |
+| Vlan400 |  Production  |  -  |  10.40.0.1/24  |  -  |  -  |  -  |
+| Vlan500 |  Production  |  -  |  10.50.0.1/24  |  -  |  -  |  -  |
+| Vlan501 |  Production  |  -  |  10.50.1.1/24  |  -  |  -  |  -  |
+| Vlan821 |  Production  |  -  |  10.82.1.1/24  |  -  |  -  |  -  |
+| Vlan887 |  Production  |  -  |  10.88.7.1/24  |  -  |  -  |  -  |
+| Vlan888 |  Production  |  -  |  10.88.8.1/24  |  -  |  -  |  -  |
+| Vlan899 |  Production  |  -  |  10.89.9.1/24  |  -  |  -  |  -  |
+| Vlan999 |  Production  |  -  |  10.99.9.1/24  |  -  |  -  |  -  |
+| Vlan1000 |  Production  |  -  |  10.0.0.1/24  |  -  |  -  |  -  |
+| Vlan1100 |  Production  |  -  |  11.0.0.1/24  |  -  |  -  |  -  |
+| Vlan1101 |  Production  |  -  |  11.0.1.1/24  |  -  |  -  |  -  |
+| Vlan1102 |  Production  |  -  |  11.0.2.1/24  |  -  |  -  |  -  |
+| Vlan1201 |  Production  |  -  |  12.0.1.1/24  |  -  |  -  |  -  |
+| Vlan1202 |  Production  |  -  |  12.0.2.1/24  |  -  |  -  |  -  |
+| Vlan2000 |  Production  |  -  |  20.0.0.1/24  |  -  |  -  |  -  |
+| Vlan2500 |  Development  |  -  |  12.50.0.1/24  |  -  |  -  |  -  |
+| Vlan2821 |  Development  |  -  |  10.28.21.1/24  |  -  |  -  |  -  |
+| Vlan2822 |  Development  |  -  |  10.28.22.1/24  |  -  |  -  |  -  |
+| Vlan2833 |  Development  |  -  |  10.28.33.1/24  |  -  |  -  |  -  |
+| Vlan2834 |  Development  |  -  |  10.28.34.1/24  |  -  |  -  |  -  |
+| Vlan3434 |  Production  |  -  |  10.34.34.1/24  |  -  |  -  |  -  |
+| Vlan3911 |  Production  |  -  |  10.39.11.1/24  |  -  |  -  |  -  |
 
 #### VLAN Interfaces Device Configuration
 
@@ -1026,11 +1033,11 @@ ASN Notation: asplain
 !
 router bgp 65002
    router-id 10.245.217.4
+   bgp default ipv4-unicast
    distance bgp 20 200 200
    graceful-restart restart-time 300
    graceful-restart
    maximum-paths 4 ecmp 4
-   bgp default ipv4-unicast
    neighbor EVPN-OVERLAY-PEERS peer group
    neighbor EVPN-OVERLAY-PEERS update-source Loopback0
    neighbor EVPN-OVERLAY-PEERS bfd
@@ -1042,10 +1049,10 @@ router bgp 65002
    neighbor IPv4-UNDERLAY-PEERS maximum-routes 12000
    neighbor 10.245.217.1 peer group EVPN-OVERLAY-PEERS
    neighbor 10.245.217.1 remote-as 65000
-   neighbor 10.245.217.1 description OTI-DC01-Spine1
+   neighbor 10.245.217.1 description OTI-DC01-Spine1_Loopback0
    neighbor 10.245.217.2 peer group EVPN-OVERLAY-PEERS
    neighbor 10.245.217.2 remote-as 65000
-   neighbor 10.245.217.2 description OTI-DC01-Spine2
+   neighbor 10.245.217.2 description OTI-DC01-Spine2_Loopback0
    neighbor 192.168.11.4 peer group IPv4-UNDERLAY-PEERS
    neighbor 192.168.11.4 remote-as 65000
    neighbor 192.168.11.4 description OTI-DC01-Spine1_Ethernet2/1
@@ -1054,19 +1061,84 @@ router bgp 65002
    neighbor 192.168.11.6 description OTI-DC01-Spine2_Ethernet2/1
    redistribute connected route-map RM-CONN-2-BGP
    !
+   vlan 21
+      rd 10.245.217.4:10021
+      route-target both 10021:10021
+      redistribute learned
+   !
+   vlan 22
+      rd 10.245.217.4:10022
+      route-target both 10022:10022
+      redistribute learned
+   !
+   vlan 55
+      rd 10.245.217.4:10055
+      route-target both 10055:10055
+      redistribute learned
+   !
    vlan 100
       rd 10.245.217.4:10100
       route-target both 10100:10100
       redistribute learned
    !
-   vlan 1000
-      rd 10.245.217.4:11000
-      route-target both 11000:11000
-      redistribute learned
-   !
    vlan 101
       rd 10.245.217.4:10101
       route-target both 10101:10101
+      redistribute learned
+   !
+   vlan 201
+      rd 10.245.217.4:10201
+      route-target both 10201:10201
+      redistribute learned
+   !
+   vlan 202
+      rd 10.245.217.4:10202
+      route-target both 10202:10202
+      redistribute learned
+   !
+   vlan 400
+      rd 10.245.217.4:10400
+      route-target both 10400:10400
+      redistribute learned
+   !
+   vlan 500
+      rd 10.245.217.4:10500
+      route-target both 10500:10500
+      redistribute learned
+   !
+   vlan 501
+      rd 10.245.217.4:10501
+      route-target both 10501:10501
+      redistribute learned
+   !
+   vlan 821
+      rd 10.245.217.4:10821
+      route-target both 10821:10821
+      redistribute learned
+   !
+   vlan 887
+      rd 10.245.217.4:10887
+      route-target both 10887:10887
+      redistribute learned
+   !
+   vlan 888
+      rd 10.245.217.4:10888
+      route-target both 10888:10888
+      redistribute learned
+   !
+   vlan 899
+      rd 10.245.217.4:10899
+      route-target both 10899:10899
+      redistribute learned
+   !
+   vlan 999
+      rd 10.245.217.4:10999
+      route-target both 10999:10999
+      redistribute learned
+   !
+   vlan 1000
+      rd 10.245.217.4:11000
+      route-target both 11000:11000
       redistribute learned
    !
    vlan 1100
@@ -1097,26 +1169,6 @@ router bgp 65002
    vlan 2000
       rd 10.245.217.4:12000
       route-target both 12000:12000
-      redistribute learned
-   !
-   vlan 201
-      rd 10.245.217.4:10201
-      route-target both 10201:10201
-      redistribute learned
-   !
-   vlan 202
-      rd 10.245.217.4:10202
-      route-target both 10202:10202
-      redistribute learned
-   !
-   vlan 21
-      rd 10.245.217.4:10021
-      route-target both 10021:10021
-      redistribute learned
-   !
-   vlan 22
-      rd 10.245.217.4:10022
-      route-target both 10022:10022
       redistribute learned
    !
    vlan 2500
@@ -1162,51 +1214,6 @@ router bgp 65002
    vlan 3911
       rd 10.245.217.4:13911
       route-target both 13911:13911
-      redistribute learned
-   !
-   vlan 400
-      rd 10.245.217.4:10400
-      route-target both 10400:10400
-      redistribute learned
-   !
-   vlan 500
-      rd 10.245.217.4:10500
-      route-target both 10500:10500
-      redistribute learned
-   !
-   vlan 501
-      rd 10.245.217.4:10501
-      route-target both 10501:10501
-      redistribute learned
-   !
-   vlan 55
-      rd 10.245.217.4:10055
-      route-target both 10055:10055
-      redistribute learned
-   !
-   vlan 821
-      rd 10.245.217.4:10821
-      route-target both 10821:10821
-      redistribute learned
-   !
-   vlan 887
-      rd 10.245.217.4:10887
-      route-target both 10887:10887
-      redistribute learned
-   !
-   vlan 888
-      rd 10.245.217.4:10888
-      route-target both 10888:10888
-      redistribute learned
-   !
-   vlan 899
-      rd 10.245.217.4:10899
-      route-target both 10899:10899
-      redistribute learned
-   !
-   vlan 999
-      rd 10.245.217.4:10999
-      route-target both 10999:10999
       redistribute learned
    !
    address-family evpn

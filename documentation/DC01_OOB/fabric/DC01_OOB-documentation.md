@@ -60,7 +60,7 @@
 ### VTEP Loopback VXLAN Tunnel Source Interfaces (VTEPs Only)
 
 | VTEP Loopback Pool | Available Addresses | Assigned addresses | Assigned Address % |
-| --------------------- | ------------------- | ------------------ | ------------------ |
+| ------------------ | ------------------- | ------------------ | ------------------ |
 
 ### VTEP Loopback Node allocation
 
@@ -73,24 +73,13 @@
 
 | Key | Type | Description |
 | --- | ---- | ----------- |
-| access_points | access_point | Access Point |
-| cameras | camera | Camera |
-| cpes | cpe | CPE |
-| firewalls | firewall | Firewall |
-| generic_devices | generic_device | Generic Device |
-| load_balancers | load_balancer | Load Balancer |
-| phones | phone | Phone |
-| printers | printer | Printer |
-| routers | router | Router |
 | servers | server | Server |
-| storage_arrays | storage_array | Storage Array |
-| workstations | workstation | Workstation |
 
 ### Servers
 
-| Name | Port | Fabric Device | Fabric Port | Description | Shutdown | Type | Mode | VLANs | Profile |
-| ---- | ---- | ------------- | ------------| ----------- | -------- | ---- | ---- | ----- | ------- |
-| DC01-0601-ESX01 | idrac | OTI-DC01-OBM1 | Ethernet1 | DC01-0601-ESX01_idrac | False | switched | access | 3545 | Access |
+| Name | Port | Fabric Device | Fabric Port | Description | Shutdown | Mode | Access VLAN | Trunk Allowed VLANs | Profile |
+| ---- | ---- | ------------- | ------------| ----------- | -------- | ---- | ----------- | ------------------- | ------- |
+| DC01-0601-ESX01 | idrac | OTI-DC01-OBM1 | Ethernet1 | SERVER_DC01-0601-ESX01_idrac | False | access | 3545 | - | Access |
 
 ### Port Profiles
 

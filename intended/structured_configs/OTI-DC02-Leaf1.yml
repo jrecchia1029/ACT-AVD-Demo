@@ -14,6 +14,10 @@ router_bgp:
   maximum_paths:
     paths: 4
     ecmp: 4
+  redistribute:
+    connected:
+      enabled: true
+      route_map: RM-CONN-2-BGP
   graceful_restart:
     enabled: true
     restart_time: 300
@@ -35,9 +39,6 @@ router_bgp:
       activate: true
     - name: EVPN-OVERLAY-PEERS
       activate: false
-  redistribute_routes:
-  - source_protocol: connected
-    route_map: RM-CONN-2-BGP
   neighbors:
   - ip_address: 192.168.12.0
     peer_group: IPv4-UNDERLAY-PEERS
@@ -52,12 +53,12 @@ router_bgp:
   - ip_address: 10.245.218.1
     peer_group: EVPN-OVERLAY-PEERS
     peer: OTI-DC02-Spine1
-    description: OTI-DC02-Spine1
+    description: OTI-DC02-Spine1_Loopback0
     remote_as: '65100'
   - ip_address: 10.245.218.2
     peer_group: EVPN-OVERLAY-PEERS
     peer: OTI-DC02-Spine2
-    description: OTI-DC02-Spine2
+    description: OTI-DC02-Spine2_Loopback0
     remote_as: '65100'
   address_family_evpn:
     peer_groups:
@@ -80,6 +81,12 @@ vlan_internal_order:
   range:
     beginning: 1006
     ending: 1199
+aaa_root:
+  disabled: true
+config_end: true
+enable_password:
+  disabled: true
+transceiver_qsfp_default_mode_4x10: true
 spanning_tree:
   mode: mstp
   mst_instances:
@@ -95,7 +102,7 @@ vrfs:
   ip_routing: false
 management_interfaces:
 - name: Management1
-  description: oob_management
+  description: OOB_MANAGEMENT
   shutdown: false
   vrf: default
   ip_address: 192.168.255.23/24
@@ -113,27 +120,29 @@ ethernet_interfaces:
   peer: OTI-DC02-Spine1
   peer_interface: Ethernet1/1
   peer_type: spine
-  description: P2P_LINK_TO_OTI-DC02-SPINE1_Ethernet1/1
+  description: P2P_OTI-DC02-Spine1_Ethernet1/1
   shutdown: false
   mtu: 1500
-  type: routed
+  switchport:
+    enabled: false
   ip_address: 192.168.12.1/31
 - name: Ethernet56/1
   peer: OTI-DC02-Spine2
   peer_interface: Ethernet1/1
   peer_type: spine
-  description: P2P_LINK_TO_OTI-DC02-SPINE2_Ethernet1/1
+  description: P2P_OTI-DC02-Spine2_Ethernet1/1
   shutdown: false
   mtu: 1500
-  type: routed
+  switchport:
+    enabled: false
   ip_address: 192.168.12.3/31
 loopback_interfaces:
 - name: Loopback0
-  description: EVPN_Overlay_Peering
+  description: ROUTER_ID
   shutdown: false
   ip_address: 10.245.218.3/32
 - name: Loopback1
-  description: VTEP_VXLAN_Tunnel_Source
+  description: VXLAN_TUNNEL_SOURCE
   shutdown: false
   ip_address: 10.245.218.35/32
 prefix_lists:
@@ -159,7 +168,7 @@ ip_igmp_snooping:
   globally_enabled: true
 ip_virtual_router_mac_address: 00:1c:73:00:09:99
 vxlan_interface:
-  Vxlan1:
+  vxlan1:
     description: OTI-DC02-Leaf1_VTEP
     vxlan:
       udp_port: 4789

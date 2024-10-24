@@ -69,6 +69,8 @@ avd_eos_designs_unset_facts: true
 # Include connected endpoints in the fabric-wide documentation.
 eos_designs_documentation:
   connected_endpoints: true
+  topology_csv: true
+  p2p_links_csv: true
 
 # EOS connection vars
 ansible_connection: httpapi

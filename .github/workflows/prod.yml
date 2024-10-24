@@ -17,31 +17,28 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v5
 
-      - name: Install Python requirements
-        run: pip install pyavd[ansible]==4.10.0
-
       - name: Run pre-commit on files
         uses: pre-commit/action@v3.0.0
 
       - name: Check paths for group_vars/DC01
         uses: dorny/paths-filter@v3
-        id: structured-config
+        id: structured_config
         with:
           filters: |
             workflows:
               - 'intended/configs/*'
 
+      - name: Install Python requirements
+        run: pip install "pyavd[ansible]==5.0.0rc2"
+        if: steps.structured_config.outputs.workflows == 'true'
+
       - name: Install collections
         run: ansible-galaxy collection install -r requirements.yml
-        if: steps.structured-config.outputs.workflows == 'true'
-
-      # - name: deploy
-      #   run: ansible-playbook playbooks/build_all.yml -i inventory.yml
-      #   if: steps.structured-config.outputs.workflows == 'true'
+        if: steps.structured_config.outputs.workflows == 'true'
 
       - name: deploy
-        run: ansible-playbook playbooks/auto_deploy.yml -i inventory.yml
-        if: steps.structured-config.outputs.workflows == 'true'
+        run: ansible-playbook playbooks/deploy_auto.yml -i inventory.yml
+        if: steps.structured_config.outputs.workflows == 'true'
 
   validate_prod:
     needs: deploy-prod
@@ -54,26 +51,28 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v5
 
-      - name: Install Python requirements
-        run: sudo pip install pyavd[ansible]==4.10.0
-
-      - name: Fix openssl bug
-        run: sudo pip install pyopenssl --upgrade
-
-      - name: Set environment variable
-        run: export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
-
       - name: Check paths for configs
         uses: dorny/paths-filter@v3
-        id: structured-config
+        id: structured_config
         with:
           filters: |
             workflows:
               - 'intended/configs/*'
 
+      - name: Install Python requirements
+        run: sudo pip install "pyavd[ansible]==5.0.0rc2"
+        if: steps.structured_config.outputs.workflows == 'true'
+
+      - name: Fix openssl bug
+        run: sudo pip install pyopenssl --upgrade
+        if: steps.structured_config.outputs.workflows == 'true'
+
+      - name: Set environment variable
+        run: export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
+
       - name: validate
         run: ansible-playbook playbooks/validate_all.yml -i inventory.yml
-        if: steps.structured-config.outputs.workflows == 'true'
+        if: steps.structured_config.outputs.workflows == 'true'
 
       - name: Commit report
         run: |
@@ -82,4 +81,4 @@ jobs:
           git add .
           git diff --quiet && git diff --staged --quiet || git commit -am 'Automated report'
           git push
-        if: steps.endpoints_xlsx.outputs.workflows == 'true' || steps.structured-config.outputs.workflows == 'true' || steps.filter-site2.outputs.workflows == 'true'
+        if: steps.structured_config.outputs.workflows == 'true'

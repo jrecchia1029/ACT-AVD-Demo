@@ -10,6 +10,7 @@
   - [Management API HTTP](#management-api-http)
 - [Authentication](#authentication)
   - [Local Users](#local-users)
+  - [Enable Password](#enable-password)
 - [Monitoring](#monitoring)
   - [TerminAttr Daemon](#terminattr-daemon)
 - [MLAG](#mlag)
@@ -75,20 +76,20 @@ agent KernelFib environment KERNELFIB_PROGRAM_ALL_ECMP='true'
 
 | Management Interface | Description | Type | VRF | IP Address | Gateway |
 | -------------------- | ----------- | ---- | --- | ---------- | ------- |
-| Management1 | oob_management | oob | default | 192.168.255.27/24 | - |
+| Management1 | OOB_MANAGEMENT | oob | default | 192.168.255.27/24 | - |
 
 ##### IPv6
 
 | Management Interface | Description | Type | VRF | IPv6 Address | IPv6 Gateway |
 | -------------------- | ----------- | ---- | --- | ------------ | ------------ |
-| Management1 | oob_management | oob | default | - | - |
+| Management1 | OOB_MANAGEMENT | oob | default | - | - |
 
 #### Management Interfaces Device Configuration
 
 ```eos
 !
 interface Management1
-   description oob_management
+   description OOB_MANAGEMENT
    no shutdown
    ip address 192.168.255.27/24
    no lldp transmit
@@ -172,6 +173,10 @@ management api http-commands
 !
 username cvpadmin privilege 15 role network-admin secret sha512 <removed>
 ```
+
+### Enable Password
+
+Enable password has been disabled
 
 ## Monitoring
 
@@ -261,19 +266,19 @@ vlan internal order ascending range 1006 1199
 
 | VLAN ID | Name | Trunk Groups |
 | ------- | ---- | ------------ |
-| 4093 | LEAF_PEER_L3 | LEAF_PEER_L3 |
-| 4094 | MLAG_PEER | MLAG |
+| 4093 | MLAG_L3 | MLAG |
+| 4094 | MLAG | MLAG |
 
 ### VLANs Device Configuration
 
 ```eos
 !
 vlan 4093
-   name LEAF_PEER_L3
-   trunk group LEAF_PEER_L3
+   name MLAG_L3
+   trunk group MLAG
 !
 vlan 4094
-   name MLAG_PEER
+   name MLAG
    trunk group MLAG
 ```
 
@@ -287,49 +292,49 @@ vlan 4094
 
 | Interface | Description | Mode | VLANs | Native VLAN | Trunk Group | Channel-Group |
 | --------- | ----------- | ---- | ----- | ----------- | ----------- | ------------- |
-| Ethernet53/1 | MLAG_PEER_OTI-DC02-Leaf5B_Ethernet53/1 | *trunk | *- | *- | *['LEAF_PEER_L3', 'MLAG'] | 531 |
-| Ethernet54/1 | MLAG_PEER_OTI-DC02-Leaf5B_Ethernet54/1 | *trunk | *- | *- | *['LEAF_PEER_L3', 'MLAG'] | 531 |
+| Ethernet53/1 | MLAG_OTI-DC02-Leaf5B_Ethernet53/1 | *trunk | *- | *- | *MLAG | 531 |
+| Ethernet54/1 | MLAG_OTI-DC02-Leaf5B_Ethernet54/1 | *trunk | *- | *- | *MLAG | 531 |
 
 *Inherited from Port-Channel Interface
 
 ##### IPv4
 
-| Interface | Description | Type | Channel Group | IP Address | VRF |  MTU | Shutdown | ACL In | ACL Out |
-| --------- | ----------- | -----| ------------- | ---------- | ----| ---- | -------- | ------ | ------- |
-| Ethernet52/1 | P2P_LINK_TO_OTI-DC01-Leaf5A_Ethernet52/1 | routed | - | 192.168.10.248/31 | default | 1500 | False | - | - |
-| Ethernet55/1 | P2P_LINK_TO_OTI-DC02-SPINE1_Ethernet5/1 | routed | - | 192.168.12.17/31 | default | 1500 | False | - | - |
-| Ethernet56/1 | P2P_LINK_TO_OTI-DC02-SPINE2_Ethernet5/1 | routed | - | 192.168.12.19/31 | default | 1500 | False | - | - |
+| Interface | Description | Channel Group | IP Address | VRF |  MTU | Shutdown | ACL In | ACL Out |
+| --------- | ----------- | ------------- | ---------- | ----| ---- | -------- | ------ | ------- |
+| Ethernet52/1 | P2P_OTI-DC01-Leaf5A_Ethernet52/1 | - | 192.168.10.248/31 | default | 1500 | False | - | - |
+| Ethernet55/1 | P2P_OTI-DC02-Spine1_Ethernet5/1 | - | 192.168.12.17/31 | default | 1500 | False | - | - |
+| Ethernet56/1 | P2P_OTI-DC02-Spine2_Ethernet5/1 | - | 192.168.12.19/31 | default | 1500 | False | - | - |
 
 #### Ethernet Interfaces Device Configuration
 
 ```eos
 !
 interface Ethernet52/1
-   description P2P_LINK_TO_OTI-DC01-Leaf5A_Ethernet52/1
+   description P2P_OTI-DC01-Leaf5A_Ethernet52/1
    no shutdown
    mtu 1500
    no switchport
    ip address 192.168.10.248/31
 !
 interface Ethernet53/1
-   description MLAG_PEER_OTI-DC02-Leaf5B_Ethernet53/1
+   description MLAG_OTI-DC02-Leaf5B_Ethernet53/1
    no shutdown
    channel-group 531 mode active
 !
 interface Ethernet54/1
-   description MLAG_PEER_OTI-DC02-Leaf5B_Ethernet54/1
+   description MLAG_OTI-DC02-Leaf5B_Ethernet54/1
    no shutdown
    channel-group 531 mode active
 !
 interface Ethernet55/1
-   description P2P_LINK_TO_OTI-DC02-SPINE1_Ethernet5/1
+   description P2P_OTI-DC02-Spine1_Ethernet5/1
    no shutdown
    mtu 1500
    no switchport
    ip address 192.168.12.17/31
 !
 interface Ethernet56/1
-   description P2P_LINK_TO_OTI-DC02-SPINE2_Ethernet5/1
+   description P2P_OTI-DC02-Spine2_Ethernet5/1
    no shutdown
    mtu 1500
    no switchport
@@ -342,21 +347,20 @@ interface Ethernet56/1
 
 ##### L2
 
-| Interface | Description | Type | Mode | VLANs | Native VLAN | Trunk Group | LACP Fallback Timeout | LACP Fallback Mode | MLAG ID | EVPN ESI |
-| --------- | ----------- | ---- | ---- | ----- | ----------- | ------------| --------------------- | ------------------ | ------- | -------- |
-| Port-Channel531 | MLAG_PEER_OTI-DC02-Leaf5B_Po531 | switched | trunk | - | - | ['LEAF_PEER_L3', 'MLAG'] | - | - | - | - |
+| Interface | Description | Mode | VLANs | Native VLAN | Trunk Group | LACP Fallback Timeout | LACP Fallback Mode | MLAG ID | EVPN ESI |
+| --------- | ----------- | ---- | ----- | ----------- | ------------| --------------------- | ------------------ | ------- | -------- |
+| Port-Channel531 | MLAG_OTI-DC02-Leaf5B_Port-Channel531 | trunk | - | - | MLAG | - | - | - | - |
 
 #### Port-Channel Interfaces Device Configuration
 
 ```eos
 !
 interface Port-Channel531
-   description MLAG_PEER_OTI-DC02-Leaf5B_Po531
+   description MLAG_OTI-DC02-Leaf5B_Port-Channel531
    no shutdown
-   switchport
    switchport mode trunk
-   switchport trunk group LEAF_PEER_L3
    switchport trunk group MLAG
+   switchport
 ```
 
 ### Loopback Interfaces
@@ -367,27 +371,27 @@ interface Port-Channel531
 
 | Interface | Description | VRF | IP Address |
 | --------- | ----------- | --- | ---------- |
-| Loopback0 | EVPN_Overlay_Peering | default | 10.245.218.7/32 |
-| Loopback1 | VTEP_VXLAN_Tunnel_Source | default | 10.245.218.39/32 |
+| Loopback0 | ROUTER_ID | default | 10.245.218.7/32 |
+| Loopback1 | VXLAN_TUNNEL_SOURCE | default | 10.245.218.39/32 |
 
 ##### IPv6
 
 | Interface | Description | VRF | IPv6 Address |
 | --------- | ----------- | --- | ------------ |
-| Loopback0 | EVPN_Overlay_Peering | default | - |
-| Loopback1 | VTEP_VXLAN_Tunnel_Source | default | - |
+| Loopback0 | ROUTER_ID | default | - |
+| Loopback1 | VXLAN_TUNNEL_SOURCE | default | - |
 
 #### Loopback Interfaces Device Configuration
 
 ```eos
 !
 interface Loopback0
-   description EVPN_Overlay_Peering
+   description ROUTER_ID
    no shutdown
    ip address 10.245.218.7/32
 !
 interface Loopback1
-   description VTEP_VXLAN_Tunnel_Source
+   description VXLAN_TUNNEL_SOURCE
    no shutdown
    ip address 10.245.218.39/32
 ```
@@ -398,28 +402,28 @@ interface Loopback1
 
 | Interface | Description | VRF |  MTU | Shutdown |
 | --------- | ----------- | --- | ---- | -------- |
-| Vlan4093 | MLAG_PEER_L3_PEERING | default | 1500 | False |
-| Vlan4094 | MLAG_PEER | default | 1500 | False |
+| Vlan4093 | MLAG_L3 | default | 1500 | False |
+| Vlan4094 | MLAG | default | 1500 | False |
 
 ##### IPv4
 
-| Interface | VRF | IP Address | IP Address Virtual | IP Router Virtual Address | VRRP | ACL In | ACL Out |
-| --------- | --- | ---------- | ------------------ | ------------------------- | ---- | ------ | ------- |
-| Vlan4093 |  default  |  192.168.14.72/31  |  -  |  -  |  -  |  -  |  -  |
-| Vlan4094 |  default  |  192.168.14.104/31  |  -  |  -  |  -  |  -  |  -  |
+| Interface | VRF | IP Address | IP Address Virtual | IP Router Virtual Address | ACL In | ACL Out |
+| --------- | --- | ---------- | ------------------ | ------------------------- | ------ | ------- |
+| Vlan4093 |  default  |  192.168.14.72/31  |  -  |  -  |  -  |  -  |
+| Vlan4094 |  default  |  192.168.14.104/31  |  -  |  -  |  -  |  -  |
 
 #### VLAN Interfaces Device Configuration
 
 ```eos
 !
 interface Vlan4093
-   description MLAG_PEER_L3_PEERING
+   description MLAG_L3
    no shutdown
    mtu 1500
    ip address 192.168.14.72/31
 !
 interface Vlan4094
-   description MLAG_PEER
+   description MLAG
    no shutdown
    mtu 1500
    no autostate
@@ -593,11 +597,11 @@ ASN Notation: asplain
 !
 router bgp 65105
    router-id 10.245.218.7
+   bgp default ipv4-unicast
    distance bgp 20 200 200
    graceful-restart restart-time 300
    graceful-restart
    maximum-paths 4 ecmp 4
-   bgp default ipv4-unicast
    neighbor EVPN-OVERLAY-PEERS peer group
    neighbor EVPN-OVERLAY-PEERS update-source Loopback0
    neighbor EVPN-OVERLAY-PEERS bfd
@@ -617,19 +621,19 @@ router bgp 65105
    neighbor MLAG-IPv4-UNDERLAY-PEER remote-as 65105
    neighbor MLAG-IPv4-UNDERLAY-PEER next-hop-self
    neighbor MLAG-IPv4-UNDERLAY-PEER description OTI-DC02-Leaf5B
+   neighbor MLAG-IPv4-UNDERLAY-PEER route-map RM-MLAG-PEER-IN in
    neighbor MLAG-IPv4-UNDERLAY-PEER send-community
    neighbor MLAG-IPv4-UNDERLAY-PEER maximum-routes 12000
-   neighbor MLAG-IPv4-UNDERLAY-PEER route-map RM-MLAG-PEER-IN in
    neighbor 10.245.217.7 peer group INTER-DC-EVPN-PEERS
    neighbor 10.245.217.7 description OTI-DC01-Leaf5A
    neighbor 10.245.217.8 peer group INTER-DC-EVPN-PEERS
    neighbor 10.245.217.8 description OTI-DC01-Leaf5B
    neighbor 10.245.218.1 peer group EVPN-OVERLAY-PEERS
    neighbor 10.245.218.1 remote-as 65100
-   neighbor 10.245.218.1 description OTI-DC02-Spine1
+   neighbor 10.245.218.1 description OTI-DC02-Spine1_Loopback0
    neighbor 10.245.218.2 peer group EVPN-OVERLAY-PEERS
    neighbor 10.245.218.2 remote-as 65100
-   neighbor 10.245.218.2 description OTI-DC02-Spine2
+   neighbor 10.245.218.2 description OTI-DC02-Spine2_Loopback0
    neighbor 192.168.10.249 peer group IPv4-UNDERLAY-PEERS
    neighbor 192.168.10.249 remote-as 65005
    neighbor 192.168.10.249 description OTI-DC01-Leaf5A
@@ -640,7 +644,7 @@ router bgp 65105
    neighbor 192.168.12.18 remote-as 65100
    neighbor 192.168.12.18 description OTI-DC02-Spine2_Ethernet5/1
    neighbor 192.168.14.73 peer group MLAG-IPv4-UNDERLAY-PEER
-   neighbor 192.168.14.73 description OTI-DC02-Leaf5B
+   neighbor 192.168.14.73 description OTI-DC02-Leaf5B_Vlan4093
    redistribute connected route-map RM-CONN-2-BGP
    !
    address-family evpn

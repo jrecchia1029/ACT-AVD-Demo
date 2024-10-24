@@ -10,6 +10,7 @@
   - [Management API HTTP](#management-api-http)
 - [Authentication](#authentication)
   - [Local Users](#local-users)
+  - [Enable Password](#enable-password)
 - [Monitoring](#monitoring)
   - [TerminAttr Daemon](#terminattr-daemon)
 - [Spanning Tree](#spanning-tree)
@@ -67,20 +68,20 @@ agent KernelFib environment KERNELFIB_PROGRAM_ALL_ECMP='true'
 
 | Management Interface | Description | Type | VRF | IP Address | Gateway |
 | -------------------- | ----------- | ---- | --- | ---------- | ------- |
-| Management1 | oob_management | oob | default | 192.168.255.23/24 | - |
+| Management1 | OOB_MANAGEMENT | oob | default | 192.168.255.23/24 | - |
 
 ##### IPv6
 
 | Management Interface | Description | Type | VRF | IPv6 Address | IPv6 Gateway |
 | -------------------- | ----------- | ---- | --- | ------------ | ------------ |
-| Management1 | oob_management | oob | default | - | - |
+| Management1 | OOB_MANAGEMENT | oob | default | - | - |
 
 #### Management Interfaces Device Configuration
 
 ```eos
 !
 interface Management1
-   description oob_management
+   description OOB_MANAGEMENT
    no shutdown
    ip address 192.168.255.23/24
    no lldp transmit
@@ -165,6 +166,10 @@ management api http-commands
 username cvpadmin privilege 15 role network-admin secret sha512 <removed>
 ```
 
+### Enable Password
+
+Enable password has been disabled
+
 ## Monitoring
 
 ### TerminAttr Daemon
@@ -234,24 +239,24 @@ vlan internal order ascending range 1006 1199
 
 ##### IPv4
 
-| Interface | Description | Type | Channel Group | IP Address | VRF |  MTU | Shutdown | ACL In | ACL Out |
-| --------- | ----------- | -----| ------------- | ---------- | ----| ---- | -------- | ------ | ------- |
-| Ethernet55/1 | P2P_LINK_TO_OTI-DC02-SPINE1_Ethernet1/1 | routed | - | 192.168.12.1/31 | default | 1500 | False | - | - |
-| Ethernet56/1 | P2P_LINK_TO_OTI-DC02-SPINE2_Ethernet1/1 | routed | - | 192.168.12.3/31 | default | 1500 | False | - | - |
+| Interface | Description | Channel Group | IP Address | VRF |  MTU | Shutdown | ACL In | ACL Out |
+| --------- | ----------- | ------------- | ---------- | ----| ---- | -------- | ------ | ------- |
+| Ethernet55/1 | P2P_OTI-DC02-Spine1_Ethernet1/1 | - | 192.168.12.1/31 | default | 1500 | False | - | - |
+| Ethernet56/1 | P2P_OTI-DC02-Spine2_Ethernet1/1 | - | 192.168.12.3/31 | default | 1500 | False | - | - |
 
 #### Ethernet Interfaces Device Configuration
 
 ```eos
 !
 interface Ethernet55/1
-   description P2P_LINK_TO_OTI-DC02-SPINE1_Ethernet1/1
+   description P2P_OTI-DC02-Spine1_Ethernet1/1
    no shutdown
    mtu 1500
    no switchport
    ip address 192.168.12.1/31
 !
 interface Ethernet56/1
-   description P2P_LINK_TO_OTI-DC02-SPINE2_Ethernet1/1
+   description P2P_OTI-DC02-Spine2_Ethernet1/1
    no shutdown
    mtu 1500
    no switchport
@@ -266,27 +271,27 @@ interface Ethernet56/1
 
 | Interface | Description | VRF | IP Address |
 | --------- | ----------- | --- | ---------- |
-| Loopback0 | EVPN_Overlay_Peering | default | 10.245.218.3/32 |
-| Loopback1 | VTEP_VXLAN_Tunnel_Source | default | 10.245.218.35/32 |
+| Loopback0 | ROUTER_ID | default | 10.245.218.3/32 |
+| Loopback1 | VXLAN_TUNNEL_SOURCE | default | 10.245.218.35/32 |
 
 ##### IPv6
 
 | Interface | Description | VRF | IPv6 Address |
 | --------- | ----------- | --- | ------------ |
-| Loopback0 | EVPN_Overlay_Peering | default | - |
-| Loopback1 | VTEP_VXLAN_Tunnel_Source | default | - |
+| Loopback0 | ROUTER_ID | default | - |
+| Loopback1 | VXLAN_TUNNEL_SOURCE | default | - |
 
 #### Loopback Interfaces Device Configuration
 
 ```eos
 !
 interface Loopback0
-   description EVPN_Overlay_Peering
+   description ROUTER_ID
    no shutdown
    ip address 10.245.218.3/32
 !
 interface Loopback1
-   description VTEP_VXLAN_Tunnel_Source
+   description VXLAN_TUNNEL_SOURCE
    no shutdown
    ip address 10.245.218.35/32
 ```
@@ -431,11 +436,11 @@ ASN Notation: asplain
 !
 router bgp 65101
    router-id 10.245.218.3
+   bgp default ipv4-unicast
    distance bgp 20 200 200
    graceful-restart restart-time 300
    graceful-restart
    maximum-paths 4 ecmp 4
-   bgp default ipv4-unicast
    neighbor EVPN-OVERLAY-PEERS peer group
    neighbor EVPN-OVERLAY-PEERS update-source Loopback0
    neighbor EVPN-OVERLAY-PEERS bfd
@@ -447,10 +452,10 @@ router bgp 65101
    neighbor IPv4-UNDERLAY-PEERS maximum-routes 12000
    neighbor 10.245.218.1 peer group EVPN-OVERLAY-PEERS
    neighbor 10.245.218.1 remote-as 65100
-   neighbor 10.245.218.1 description OTI-DC02-Spine1
+   neighbor 10.245.218.1 description OTI-DC02-Spine1_Loopback0
    neighbor 10.245.218.2 peer group EVPN-OVERLAY-PEERS
    neighbor 10.245.218.2 remote-as 65100
-   neighbor 10.245.218.2 description OTI-DC02-Spine2
+   neighbor 10.245.218.2 description OTI-DC02-Spine2_Loopback0
    neighbor 192.168.12.0 peer group IPv4-UNDERLAY-PEERS
    neighbor 192.168.12.0 remote-as 65100
    neighbor 192.168.12.0 description OTI-DC02-Spine1_Ethernet1/1

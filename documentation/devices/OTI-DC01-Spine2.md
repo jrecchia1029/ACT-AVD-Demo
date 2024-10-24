@@ -10,6 +10,7 @@
   - [Management API HTTP](#management-api-http)
 - [Authentication](#authentication)
   - [Local Users](#local-users)
+  - [Enable Password](#enable-password)
 - [Monitoring](#monitoring)
   - [TerminAttr Daemon](#terminattr-daemon)
 - [Spanning Tree](#spanning-tree)
@@ -63,20 +64,20 @@ agent KernelFib environment KERNELFIB_PROGRAM_ALL_ECMP='true'
 
 | Management Interface | Description | Type | VRF | IP Address | Gateway |
 | -------------------- | ----------- | ---- | --- | ---------- | ------- |
-| Management1 | oob_management | oob | default | 192.168.255.12/24 | - |
+| Management1 | OOB_MANAGEMENT | oob | default | 192.168.255.12/24 | - |
 
 ##### IPv6
 
 | Management Interface | Description | Type | VRF | IPv6 Address | IPv6 Gateway |
 | -------------------- | ----------- | ---- | --- | ------------ | ------------ |
-| Management1 | oob_management | oob | default | - | - |
+| Management1 | OOB_MANAGEMENT | oob | default | - | - |
 
 #### Management Interfaces Device Configuration
 
 ```eos
 !
 interface Management1
-   description oob_management
+   description OOB_MANAGEMENT
    no shutdown
    ip address 192.168.255.12/24
    no lldp transmit
@@ -161,6 +162,10 @@ management api http-commands
 username cvpadmin privilege 15 role network-admin secret sha512 <removed>
 ```
 
+### Enable Password
+
+Enable password has been disabled
+
 ## Monitoring
 
 ### TerminAttr Daemon
@@ -223,56 +228,56 @@ vlan internal order ascending range 1006 1199
 
 ##### IPv4
 
-| Interface | Description | Type | Channel Group | IP Address | VRF |  MTU | Shutdown | ACL In | ACL Out |
-| --------- | ----------- | -----| ------------- | ---------- | ----| ---- | -------- | ------ | ------- |
-| Ethernet1/1 | P2P_LINK_TO_OTI-DC01-LEAF1_Ethernet56/1 | routed | - | 192.168.11.2/31 | default | 1500 | False | - | - |
-| Ethernet2/1 | P2P_LINK_TO_OTI-DC01-LEAF2_Ethernet56/1 | routed | - | 192.168.11.6/31 | default | 1500 | False | - | - |
-| Ethernet3/1 | P2P_LINK_TO_OTI-DC01-LEAF3_Ethernet56/1 | routed | - | 192.168.11.10/31 | default | 1500 | False | - | - |
-| Ethernet4/1 | P2P_LINK_TO_OTI-DC01-LEAF4_Ethernet56/1 | routed | - | 192.168.11.14/31 | default | 1500 | False | - | - |
-| Ethernet5/1 | P2P_LINK_TO_OTI-DC01-LEAF5A_Ethernet56/1 | routed | - | 192.168.11.18/31 | default | 1500 | False | - | - |
-| Ethernet6/1 | P2P_LINK_TO_OTI-DC01-LEAF5B_Ethernet56/1 | routed | - | 192.168.11.22/31 | default | 1500 | False | - | - |
+| Interface | Description | Channel Group | IP Address | VRF |  MTU | Shutdown | ACL In | ACL Out |
+| --------- | ----------- | ------------- | ---------- | ----| ---- | -------- | ------ | ------- |
+| Ethernet1/1 | P2P_OTI-DC01-Leaf1_Ethernet56/1 | - | 192.168.11.2/31 | default | 1500 | False | - | - |
+| Ethernet2/1 | P2P_OTI-DC01-Leaf2_Ethernet56/1 | - | 192.168.11.6/31 | default | 1500 | False | - | - |
+| Ethernet3/1 | P2P_OTI-DC01-Leaf3_Ethernet56/1 | - | 192.168.11.10/31 | default | 1500 | False | - | - |
+| Ethernet4/1 | P2P_OTI-DC01-Leaf4_Ethernet56/1 | - | 192.168.11.14/31 | default | 1500 | False | - | - |
+| Ethernet5/1 | P2P_OTI-DC01-Leaf5A_Ethernet56/1 | - | 192.168.11.18/31 | default | 1500 | False | - | - |
+| Ethernet6/1 | P2P_OTI-DC01-Leaf5B_Ethernet56/1 | - | 192.168.11.22/31 | default | 1500 | False | - | - |
 
 #### Ethernet Interfaces Device Configuration
 
 ```eos
 !
 interface Ethernet1/1
-   description P2P_LINK_TO_OTI-DC01-LEAF1_Ethernet56/1
+   description P2P_OTI-DC01-Leaf1_Ethernet56/1
    no shutdown
    mtu 1500
    no switchport
    ip address 192.168.11.2/31
 !
 interface Ethernet2/1
-   description P2P_LINK_TO_OTI-DC01-LEAF2_Ethernet56/1
+   description P2P_OTI-DC01-Leaf2_Ethernet56/1
    no shutdown
    mtu 1500
    no switchport
    ip address 192.168.11.6/31
 !
 interface Ethernet3/1
-   description P2P_LINK_TO_OTI-DC01-LEAF3_Ethernet56/1
+   description P2P_OTI-DC01-Leaf3_Ethernet56/1
    no shutdown
    mtu 1500
    no switchport
    ip address 192.168.11.10/31
 !
 interface Ethernet4/1
-   description P2P_LINK_TO_OTI-DC01-LEAF4_Ethernet56/1
+   description P2P_OTI-DC01-Leaf4_Ethernet56/1
    no shutdown
    mtu 1500
    no switchport
    ip address 192.168.11.14/31
 !
 interface Ethernet5/1
-   description P2P_LINK_TO_OTI-DC01-LEAF5A_Ethernet56/1
+   description P2P_OTI-DC01-Leaf5A_Ethernet56/1
    no shutdown
    mtu 1500
    no switchport
    ip address 192.168.11.18/31
 !
 interface Ethernet6/1
-   description P2P_LINK_TO_OTI-DC01-LEAF5B_Ethernet56/1
+   description P2P_OTI-DC01-Leaf5B_Ethernet56/1
    no shutdown
    mtu 1500
    no switchport
@@ -287,20 +292,20 @@ interface Ethernet6/1
 
 | Interface | Description | VRF | IP Address |
 | --------- | ----------- | --- | ---------- |
-| Loopback0 | EVPN_Overlay_Peering | default | 10.245.217.2/32 |
+| Loopback0 | ROUTER_ID | default | 10.245.217.2/32 |
 
 ##### IPv6
 
 | Interface | Description | VRF | IPv6 Address |
 | --------- | ----------- | --- | ------------ |
-| Loopback0 | EVPN_Overlay_Peering | default | - |
+| Loopback0 | ROUTER_ID | default | - |
 
 #### Loopback Interfaces Device Configuration
 
 ```eos
 !
 interface Loopback0
-   description EVPN_Overlay_Peering
+   description ROUTER_ID
    no shutdown
    ip address 10.245.217.2/32
 ```
@@ -422,11 +427,11 @@ ASN Notation: asplain
 !
 router bgp 65000
    router-id 10.245.217.2
+   bgp default ipv4-unicast
    distance bgp 20 200 200
    graceful-restart restart-time 300
    graceful-restart
    maximum-paths 4 ecmp 4
-   bgp default ipv4-unicast
    neighbor EVPN-OVERLAY-PEERS peer group
    neighbor EVPN-OVERLAY-PEERS next-hop-unchanged
    neighbor EVPN-OVERLAY-PEERS update-source Loopback0
@@ -439,22 +444,22 @@ router bgp 65000
    neighbor IPv4-UNDERLAY-PEERS maximum-routes 12000
    neighbor 10.245.217.3 peer group EVPN-OVERLAY-PEERS
    neighbor 10.245.217.3 remote-as 65001
-   neighbor 10.245.217.3 description OTI-DC01-Leaf1
+   neighbor 10.245.217.3 description OTI-DC01-Leaf1_Loopback0
    neighbor 10.245.217.4 peer group EVPN-OVERLAY-PEERS
    neighbor 10.245.217.4 remote-as 65002
-   neighbor 10.245.217.4 description OTI-DC01-Leaf2
+   neighbor 10.245.217.4 description OTI-DC01-Leaf2_Loopback0
    neighbor 10.245.217.5 peer group EVPN-OVERLAY-PEERS
    neighbor 10.245.217.5 remote-as 65003
-   neighbor 10.245.217.5 description OTI-DC01-Leaf3
+   neighbor 10.245.217.5 description OTI-DC01-Leaf3_Loopback0
    neighbor 10.245.217.6 peer group EVPN-OVERLAY-PEERS
    neighbor 10.245.217.6 remote-as 65004
-   neighbor 10.245.217.6 description OTI-DC01-Leaf4
+   neighbor 10.245.217.6 description OTI-DC01-Leaf4_Loopback0
    neighbor 10.245.217.7 peer group EVPN-OVERLAY-PEERS
    neighbor 10.245.217.7 remote-as 65005
-   neighbor 10.245.217.7 description OTI-DC01-Leaf5A
+   neighbor 10.245.217.7 description OTI-DC01-Leaf5A_Loopback0
    neighbor 10.245.217.8 peer group EVPN-OVERLAY-PEERS
    neighbor 10.245.217.8 remote-as 65005
-   neighbor 10.245.217.8 description OTI-DC01-Leaf5B
+   neighbor 10.245.217.8 description OTI-DC01-Leaf5B_Loopback0
    neighbor 192.168.11.3 peer group IPv4-UNDERLAY-PEERS
    neighbor 192.168.11.3 remote-as 65001
    neighbor 192.168.11.3 description OTI-DC01-Leaf1_Ethernet56/1

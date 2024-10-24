@@ -14,6 +14,10 @@ router_bgp:
   maximum_paths:
     paths: 4
     ecmp: 4
+  redistribute:
+    connected:
+      enabled: true
+      route_map: RM-CONN-2-BGP
   graceful_restart:
     enabled: true
     restart_time: 300
@@ -36,9 +40,6 @@ router_bgp:
       activate: true
     - name: EVPN-OVERLAY-PEERS
       activate: false
-  redistribute_routes:
-  - source_protocol: connected
-    route_map: RM-CONN-2-BGP
   neighbors:
   - ip_address: 192.168.12.1
     peer_group: IPv4-UNDERLAY-PEERS
@@ -73,32 +74,32 @@ router_bgp:
   - ip_address: 10.245.218.3
     peer_group: EVPN-OVERLAY-PEERS
     peer: OTI-DC02-Leaf1
-    description: OTI-DC02-Leaf1
+    description: OTI-DC02-Leaf1_Loopback0
     remote_as: '65101'
   - ip_address: 10.245.218.4
     peer_group: EVPN-OVERLAY-PEERS
     peer: OTI-DC02-Leaf2
-    description: OTI-DC02-Leaf2
+    description: OTI-DC02-Leaf2_Loopback0
     remote_as: '65102'
   - ip_address: 10.245.218.5
     peer_group: EVPN-OVERLAY-PEERS
     peer: OTI-DC02-Leaf3
-    description: OTI-DC02-Leaf3
+    description: OTI-DC02-Leaf3_Loopback0
     remote_as: '65103'
   - ip_address: 10.245.218.6
     peer_group: EVPN-OVERLAY-PEERS
     peer: OTI-DC02-Leaf4
-    description: OTI-DC02-Leaf4
+    description: OTI-DC02-Leaf4_Loopback0
     remote_as: '65104'
   - ip_address: 10.245.218.7
     peer_group: EVPN-OVERLAY-PEERS
     peer: OTI-DC02-Leaf5A
-    description: OTI-DC02-Leaf5A
+    description: OTI-DC02-Leaf5A_Loopback0
     remote_as: '65105'
   - ip_address: 10.245.218.8
     peer_group: EVPN-OVERLAY-PEERS
     peer: OTI-DC02-Leaf5B
-    description: OTI-DC02-Leaf5B
+    description: OTI-DC02-Leaf5B_Loopback0
     remote_as: '65105'
   address_family_evpn:
     peer_groups:
@@ -121,6 +122,12 @@ vlan_internal_order:
   range:
     beginning: 1006
     ending: 1199
+aaa_root:
+  disabled: true
+config_end: true
+enable_password:
+  disabled: true
+transceiver_qsfp_default_mode_4x10: true
 spanning_tree:
   mode: none
 local_users:
@@ -133,7 +140,7 @@ vrfs:
   ip_routing: false
 management_interfaces:
 - name: Management1
-  description: oob_management
+  description: OOB_MANAGEMENT
   shutdown: false
   vrf: default
   ip_address: 192.168.255.21/24
@@ -151,59 +158,65 @@ ethernet_interfaces:
   peer: OTI-DC02-Leaf1
   peer_interface: Ethernet55/1
   peer_type: l3leaf
-  description: P2P_LINK_TO_OTI-DC02-LEAF1_Ethernet55/1
+  description: P2P_OTI-DC02-Leaf1_Ethernet55/1
   shutdown: false
   mtu: 1500
-  type: routed
+  switchport:
+    enabled: false
   ip_address: 192.168.12.0/31
 - name: Ethernet2/1
   peer: OTI-DC02-Leaf2
   peer_interface: Ethernet55/1
   peer_type: l3leaf
-  description: P2P_LINK_TO_OTI-DC02-LEAF2_Ethernet55/1
+  description: P2P_OTI-DC02-Leaf2_Ethernet55/1
   shutdown: false
   mtu: 1500
-  type: routed
+  switchport:
+    enabled: false
   ip_address: 192.168.12.4/31
 - name: Ethernet3/1
   peer: OTI-DC02-Leaf3
   peer_interface: Ethernet55/1
   peer_type: l3leaf
-  description: P2P_LINK_TO_OTI-DC02-LEAF3_Ethernet55/1
+  description: P2P_OTI-DC02-Leaf3_Ethernet55/1
   shutdown: false
   mtu: 1500
-  type: routed
+  switchport:
+    enabled: false
   ip_address: 192.168.12.8/31
 - name: Ethernet4/1
   peer: OTI-DC02-Leaf4
   peer_interface: Ethernet55/1
   peer_type: l3leaf
-  description: P2P_LINK_TO_OTI-DC02-LEAF4_Ethernet55/1
+  description: P2P_OTI-DC02-Leaf4_Ethernet55/1
   shutdown: false
   mtu: 1500
-  type: routed
+  switchport:
+    enabled: false
   ip_address: 192.168.12.12/31
 - name: Ethernet5/1
   peer: OTI-DC02-Leaf5A
   peer_interface: Ethernet55/1
   peer_type: l3leaf
-  description: P2P_LINK_TO_OTI-DC02-LEAF5A_Ethernet55/1
+  description: P2P_OTI-DC02-Leaf5A_Ethernet55/1
   shutdown: false
   mtu: 1500
-  type: routed
+  switchport:
+    enabled: false
   ip_address: 192.168.12.16/31
 - name: Ethernet6/1
   peer: OTI-DC02-Leaf5B
   peer_interface: Ethernet55/1
   peer_type: l3leaf
-  description: P2P_LINK_TO_OTI-DC02-LEAF5B_Ethernet55/1
+  description: P2P_OTI-DC02-Leaf5B_Ethernet55/1
   shutdown: false
   mtu: 1500
-  type: routed
+  switchport:
+    enabled: false
   ip_address: 192.168.12.20/31
 loopback_interfaces:
 - name: Loopback0
-  description: EVPN_Overlay_Peering
+  description: ROUTER_ID
   shutdown: false
   ip_address: 10.245.218.1/32
 prefix_lists:

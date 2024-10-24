@@ -14,6 +14,10 @@ router_bgp:
   maximum_paths:
     paths: 4
     ecmp: 4
+  redistribute:
+    connected:
+      enabled: true
+      route_map: RM-CONN-2-BGP
   graceful_restart:
     enabled: true
     restart_time: 300
@@ -58,7 +62,7 @@ router_bgp:
   - ip_address: 192.168.14.72
     peer_group: MLAG-IPv4-UNDERLAY-PEER
     peer: OTI-DC02-Leaf5A
-    description: OTI-DC02-Leaf5A
+    description: OTI-DC02-Leaf5A_Vlan4093
   - ip_address: 192.168.12.20
     peer_group: IPv4-UNDERLAY-PEERS
     remote_as: '65100'
@@ -72,12 +76,12 @@ router_bgp:
   - ip_address: 10.245.218.1
     peer_group: EVPN-OVERLAY-PEERS
     peer: OTI-DC02-Spine1
-    description: OTI-DC02-Spine1
+    description: OTI-DC02-Spine1_Loopback0
     remote_as: '65100'
   - ip_address: 10.245.218.2
     peer_group: EVPN-OVERLAY-PEERS
     peer: OTI-DC02-Spine2
-    description: OTI-DC02-Spine2
+    description: OTI-DC02-Spine2_Loopback0
     remote_as: '65100'
   - ip_address: 192.168.10.250
     remote_as: '65005'
@@ -90,9 +94,6 @@ router_bgp:
   - ip_address: 10.245.217.8
     description: OTI-DC01-Leaf5B
     peer_group: INTER-DC-EVPN-PEERS
-  redistribute_routes:
-  - source_protocol: connected
-    route_map: RM-CONN-2-BGP
   address_family_evpn:
     peer_groups:
     - name: EVPN-OVERLAY-PEERS
@@ -116,6 +117,12 @@ vlan_internal_order:
   range:
     beginning: 1006
     ending: 1199
+aaa_root:
+  disabled: true
+config_end: true
+enable_password:
+  disabled: true
+transceiver_qsfp_default_mode_4x10: true
 spanning_tree:
   mode: mstp
   mst_instances:
@@ -132,7 +139,7 @@ vrfs:
   ip_routing: false
 management_interfaces:
 - name: Management1
-  description: oob_management
+  description: OOB_MANAGEMENT
   shutdown: false
   vrf: default
   ip_address: 192.168.255.28/24
@@ -148,42 +155,42 @@ management_api_http:
 vlans:
 - id: 4093
   tenant: system
-  name: LEAF_PEER_L3
+  name: MLAG_L3
   trunk_groups:
-  - LEAF_PEER_L3
+  - MLAG
 - id: 4094
   tenant: system
-  name: MLAG_PEER
+  name: MLAG
   trunk_groups:
   - MLAG
 vlan_interfaces:
 - name: Vlan4093
-  description: MLAG_PEER_L3_PEERING
+  description: MLAG_L3
   shutdown: false
   mtu: 1500
   ip_address: 192.168.14.73/31
 - name: Vlan4094
-  description: MLAG_PEER
+  description: MLAG
   shutdown: false
   no_autostate: true
   mtu: 1500
   ip_address: 192.168.14.105/31
 port_channel_interfaces:
 - name: Port-Channel531
-  description: MLAG_PEER_OTI-DC02-Leaf5A_Po531
-  type: switched
+  description: MLAG_OTI-DC02-Leaf5A_Port-Channel531
+  switchport:
+    enabled: true
+    mode: trunk
+    trunk:
+      groups:
+      - MLAG
   shutdown: false
-  mode: trunk
-  trunk_groups:
-  - LEAF_PEER_L3
-  - MLAG
 ethernet_interfaces:
 - name: Ethernet53/1
   peer: OTI-DC02-Leaf5A
   peer_interface: Ethernet53/1
   peer_type: mlag_peer
-  description: MLAG_PEER_OTI-DC02-Leaf5A_Ethernet53/1
-  type: port-channel-member
+  description: MLAG_OTI-DC02-Leaf5A_Ethernet53/1
   shutdown: false
   channel_group:
     id: 531
@@ -192,8 +199,7 @@ ethernet_interfaces:
   peer: OTI-DC02-Leaf5A
   peer_interface: Ethernet54/1
   peer_type: mlag_peer
-  description: MLAG_PEER_OTI-DC02-Leaf5A_Ethernet54/1
-  type: port-channel-member
+  description: MLAG_OTI-DC02-Leaf5A_Ethernet54/1
   shutdown: false
   channel_group:
     id: 531
@@ -202,29 +208,32 @@ ethernet_interfaces:
   peer: OTI-DC02-Spine1
   peer_interface: Ethernet6/1
   peer_type: spine
-  description: P2P_LINK_TO_OTI-DC02-SPINE1_Ethernet6/1
+  description: P2P_OTI-DC02-Spine1_Ethernet6/1
   shutdown: false
   mtu: 1500
-  type: routed
+  switchport:
+    enabled: false
   ip_address: 192.168.12.21/31
 - name: Ethernet56/1
   peer: OTI-DC02-Spine2
   peer_interface: Ethernet6/1
   peer_type: spine
-  description: P2P_LINK_TO_OTI-DC02-SPINE2_Ethernet6/1
+  description: P2P_OTI-DC02-Spine2_Ethernet6/1
   shutdown: false
   mtu: 1500
-  type: routed
+  switchport:
+    enabled: false
   ip_address: 192.168.12.23/31
 - name: Ethernet52/1
   peer: OTI-DC01-Leaf5B
   peer_interface: Ethernet52/1
   peer_type: other
-  description: P2P_LINK_TO_OTI-DC01-Leaf5B_Ethernet52/1
-  type: routed
+  switchport:
+    enabled: false
   shutdown: false
   mtu: 1500
   ip_address: 192.168.10.251/31
+  description: P2P_OTI-DC01-Leaf5B_Ethernet52/1
 mlag_configuration:
   domain_id: OTI-DC02-Leaf5
   local_interface: Vlan4094
@@ -248,11 +257,11 @@ route_maps:
     - ip address prefix-list PL-LOOPBACKS-EVPN-OVERLAY
 loopback_interfaces:
 - name: Loopback0
-  description: EVPN_Overlay_Peering
+  description: ROUTER_ID
   shutdown: false
   ip_address: 10.245.218.8/32
 - name: Loopback1
-  description: VTEP_VXLAN_Tunnel_Source
+  description: VXLAN_TUNNEL_SOURCE
   shutdown: false
   ip_address: 10.245.218.39/32
 prefix_lists:
@@ -271,7 +280,7 @@ ip_igmp_snooping:
   globally_enabled: true
 ip_virtual_router_mac_address: 00:1c:73:00:09:99
 vxlan_interface:
-  Vxlan1:
+  vxlan1:
     description: OTI-DC02-Leaf5B_VTEP
     vxlan:
       udp_port: 4789
