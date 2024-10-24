@@ -13,8 +13,6 @@
   - [VTEP Loopback VXLAN Tunnel Source Interfaces (VTEPs Only)](#vtep-loopback-vxlan-tunnel-source-interfaces-vteps-only)
   - [VTEP Loopback Node allocation](#vtep-loopback-node-allocation)
 - [Connected Endpoints](#connected-endpoints)
-  - [Connected Endpoint Keys](#connected-endpoint-keys)
-  - [Servers](#servers)
   - [Port Profiles](#port-profiles)
 
 ## Fabric Switches and Management IP
@@ -69,25 +67,7 @@
 
 ## Connected Endpoints
 
-### Connected Endpoint Keys
-
-| Key | Type | Description |
-| --- | ---- | ----------- |
-| servers | server | Server |
-
-### Servers
-
-| Name | Port | Fabric Device | Fabric Port | Description | Shutdown | Mode | Access VLAN | Trunk Allowed VLANs | Profile |
-| ---- | ---- | ------------- | ------------| ----------- | -------- | ---- | ----------- | ------------------- | ------- |
-| DC02-0901-ESX01 | idrac | OTI-DC02-OBM1 | Ethernet1 | SERVER_DC02-0901-ESX01_idrac | False | access | 2545 | - | Access |
-| DC02-0901-ESX02 | idrac | OTI-DC02-OBM1 | Ethernet2 | SERVER_DC02-0901-ESX02_idrac | False | access | 2545 | - | Access |
-| DC02-0901-ESX03 | idrac | OTI-DC02-OBM1 | Ethernet3 | SERVER_DC02-0901-ESX03_idrac | False | access | 2545 | - | Access |
-| DC02-0901-ESX04 | idrac | OTI-DC02-OBM1 | Ethernet4 | SERVER_DC02-0901-ESX04_idrac | False | access | 2545 | - | Access |
-| DC02-0901-ESX05 | idrac | OTI-DC02-OBM1 | Ethernet5 | SERVER_DC02-0901-ESX05_idrac | False | access | 2545 | - | Access |
-| DC02-0901-ESX06 | idrac | OTI-DC02-OBM1 | Ethernet6 | SERVER_DC02-0901-ESX06_idrac | False | access | 2545 | - | Access |
-| DC02-0901-SRVA | iLo | OTI-DC02-OBM1 | Ethernet7 | SERVER_DC02-0901-SRVA_iLo | False | access | 2545 | - | Access |
-| DC02-0901-SRVB | iLo | OTI-DC02-OBM1 | Ethernet8 | SERVER_DC02-0901-SRVB_iLo | False | access | 2545 | - | Access |
-| DC02-0901-SRVC | iLo | OTI-DC02-OBM1 | Ethernet9 | SERVER_DC02-0901-SRVC_iLo | False | access | 2545 | - | Access |
+No connected endpoint configured!
 
 ### Port Profiles
 

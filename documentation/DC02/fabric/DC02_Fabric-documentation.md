@@ -13,8 +13,6 @@
   - [VTEP Loopback VXLAN Tunnel Source Interfaces (VTEPs Only)](#vtep-loopback-vxlan-tunnel-source-interfaces-vteps-only)
   - [VTEP Loopback Node allocation](#vtep-loopback-node-allocation)
 - [Connected Endpoints](#connected-endpoints)
-  - [Connected Endpoint Keys](#connected-endpoint-keys)
-  - [Servers](#servers)
   - [Port Profiles](#port-profiles)
 
 ## Fabric Switches and Management IP
@@ -119,60 +117,7 @@
 
 ## Connected Endpoints
 
-### Connected Endpoint Keys
-
-| Key | Type | Description |
-| --- | ---- | ----------- |
-| servers | server | Server |
-
-### Servers
-
-| Name | Port | Fabric Device | Fabric Port | Description | Shutdown | Mode | Access VLAN | Trunk Allowed VLANs | Profile |
-| ---- | ---- | ------------- | ------------| ----------- | -------- | ---- | ----------- | ------------------- | ------- |
-| DC02-0901-ESX01 | Onboard_NIC_1 | OTI-DC02-Leaf1 | Ethernet1 | SERVER_DC02-0901-ESX01_Onboard_NIC_1 | False | trunk | - | - | Access |
-| DC02-0901-ESX01 | Onboard_NIC_2 | OTI-DC02-Leaf1 | Ethernet48 | SERVER_DC02-0901-ESX01_Onboard_NIC_2 | False | trunk | - | - | Access |
-| DC02-0901-ESX01 | PCI_slot_1_Port_1 | OTI-DC02-Leaf2 | Ethernet1 | SERVER_DC02-0901-ESX01_PCI_slot_1_Port_1 | False | trunk | - | - | Access |
-| DC02-0901-ESX01 | PCI_slot_2_Port_2 | OTI-DC02-Leaf2 | Ethernet48 | SERVER_DC02-0901-ESX01_PCI_slot_2_Port_2 | False | trunk | - | - | Access |
-| DC02-0901-ESX01 | PCI_slot_1_Port_2 | OTI-DC02-Leaf3 | Ethernet1 | SERVER_DC02-0901-ESX01_PCI_slot_1_Port_2 | False | trunk | - | - | Access |
-| DC02-0901-ESX01 | PCI_slot_2_Port_1 | OTI-DC02-Leaf4 | Ethernet1 | SERVER_DC02-0901-ESX01_PCI_slot_2_Port_1 | False | trunk | - | - | Access |
-| DC02-0901-ESX02 | Onboard_NIC_1 | OTI-DC02-Leaf1 | Ethernet2 | SERVER_DC02-0901-ESX02_Onboard_NIC_1 | False | trunk | - | - | Access |
-| DC02-0901-ESX02 | Onboard_NIC_2 | OTI-DC02-Leaf1 | Ethernet47 | SERVER_DC02-0901-ESX02_Onboard_NIC_2 | False | trunk | - | - | Access |
-| DC02-0901-ESX02 | PCI_slot_1_Port_1 | OTI-DC02-Leaf2 | Ethernet2 | SERVER_DC02-0901-ESX02_PCI_slot_1_Port_1 | False | trunk | - | - | Access |
-| DC02-0901-ESX02 | PCI_slot_2_Port_2 | OTI-DC02-Leaf2 | Ethernet47 | SERVER_DC02-0901-ESX02_PCI_slot_2_Port_2 | False | trunk | - | - | Access |
-| DC02-0901-ESX02 | PCI_slot_1_Port_2 | OTI-DC02-Leaf3 | Ethernet2 | SERVER_DC02-0901-ESX02_PCI_slot_1_Port_2 | False | trunk | - | - | Access |
-| DC02-0901-ESX02 | PCI_slot_2_Port_1 | OTI-DC02-Leaf4 | Ethernet2 | SERVER_DC02-0901-ESX02_PCI_slot_2_Port_1 | False | trunk | - | - | Access |
-| DC02-0901-ESX03 | Onboard_NIC_1 | OTI-DC02-Leaf1 | Ethernet3 | SERVER_DC02-0901-ESX03_Onboard_NIC_1 | False | trunk | - | - | Access |
-| DC02-0901-ESX03 | PCI_slot_1_Port_1 | OTI-DC02-Leaf2 | Ethernet3 | SERVER_DC02-0901-ESX03_PCI_slot_1_Port_1 | False | trunk | - | - | Access |
-| DC02-0901-ESX03 | Onboard_NIC_2 | OTI-DC02-Leaf3 | Ethernet3 | SERVER_DC02-0901-ESX03_Onboard_NIC_2 | False | trunk | - | - | Access |
-| DC02-0901-ESX03 | PCI_slot_1_Port_2 | OTI-DC02-Leaf3 | Ethernet49/1 | SERVER_DC02-0901-ESX03_PCI_slot_1_Port_2 | False | trunk | - | - | Access |
-| DC02-0901-ESX03 | PCI_slot_2_Port_2 | OTI-DC02-Leaf4 | Ethernet3 | SERVER_DC02-0901-ESX03_PCI_slot_2_Port_2 | False | trunk | - | - | Access |
-| DC02-0901-ESX03 | PCI_slot_2_Port_1 | OTI-DC02-Leaf4 | Ethernet49/1 | SERVER_DC02-0901-ESX03_PCI_slot_2_Port_1 | False | trunk | - | - | Access |
-| DC02-0901-ESX04 | Onboard_NIC_1 | OTI-DC02-Leaf1 | Ethernet4 | SERVER_DC02-0901-ESX04_Onboard_NIC_1 | False | trunk | - | - | Access |
-| DC02-0901-ESX04 | PCI_slot_1_Port_1 | OTI-DC02-Leaf2 | Ethernet4 | SERVER_DC02-0901-ESX04_PCI_slot_1_Port_1 | False | trunk | - | - | Access |
-| DC02-0901-ESX04 | PCI_slot_1_Port_2 | OTI-DC02-Leaf3 | Ethernet50/1 | SERVER_DC02-0901-ESX04_PCI_slot_1_Port_2 | False | trunk | - | - | Access |
-| DC02-0901-ESX04 | PCI_slot_2_Port_1 | OTI-DC02-Leaf4 | Ethernet50/1 | SERVER_DC02-0901-ESX04_PCI_slot_2_Port_1 | False | trunk | - | - | Access |
-| DC02-0901-ESX04 | Onboard_NIC_2 | OTI-DC02-Leaf5A | Ethernet1 | SERVER_DC02-0901-ESX04_Onboard_NIC_2 | False | trunk | - | 899, 999 | Access |
-| DC02-0901-ESX04 | PCI_slot_2_Port_2 | OTI-DC02-Leaf5B | Ethernet1 | SERVER_DC02-0901-ESX04_PCI_slot_2_Port_2 | False | trunk | - | 899, 999 | Access |
-| DC02-0901-ESX05 | Onboard_NIC_1 | OTI-DC02-Leaf1 | Ethernet5 | SERVER_DC02-0901-ESX05_Onboard_NIC_1 | False | trunk | - | - | Access |
-| DC02-0901-ESX05 | PCI_slot_1_Port_1 | OTI-DC02-Leaf2 | Ethernet5 | SERVER_DC02-0901-ESX05_PCI_slot_1_Port_1 | False | trunk | - | - | Access |
-| DC02-0901-ESX05 | Onboard_NIC_2 | OTI-DC02-Leaf3 | Ethernet4 | SERVER_DC02-0901-ESX05_Onboard_NIC_2 | False | trunk | - | - | Access |
-| DC02-0901-ESX05 | PCI_slot_2_Port_2 | OTI-DC02-Leaf4 | Ethernet4 | SERVER_DC02-0901-ESX05_PCI_slot_2_Port_2 | False | trunk | - | - | Access |
-| DC02-0901-ESX05 | PCI_slot_1_Port_2 | OTI-DC02-Leaf5A | Ethernet49/1 | SERVER_DC02-0901-ESX05_PCI_slot_1_Port_2 | False | trunk | - | 1100, 1101, 1102 | Access |
-| DC02-0901-ESX05 | PCI_slot_2_Port_1 | OTI-DC02-Leaf5B | Ethernet49/1 | SERVER_DC02-0901-ESX05_PCI_slot_2_Port_1 | False | trunk | - | 1100, 1101, 1102 | Access |
-| DC02-0901-ESX06 | Onboard_NIC_1 | OTI-DC02-Leaf1 | Ethernet6 | SERVER_DC02-0901-ESX06_Onboard_NIC_1 | False | trunk | - | - | Access |
-| DC02-0901-ESX06 | PCI_slot_1_Port_1 | OTI-DC02-Leaf2 | Ethernet6 | SERVER_DC02-0901-ESX06_PCI_slot_1_Port_1 | False | trunk | - | - | Access |
-| DC02-0901-ESX06 | Onboard_NIC_2 | OTI-DC02-Leaf5A | Ethernet2 | SERVER_DC02-0901-ESX06_Onboard_NIC_2 | False | trunk | - | 899, 999 | Access |
-| DC02-0901-ESX06 | PCI_slot_1_Port_2 | OTI-DC02-Leaf5A | Ethernet50/1 | SERVER_DC02-0901-ESX06_PCI_slot_1_Port_2 | False | trunk | - | 887, 888 | Access |
-| DC02-0901-ESX06 | PCI_slot_2_Port_2 | OTI-DC02-Leaf5B | Ethernet2 | SERVER_DC02-0901-ESX06_PCI_slot_2_Port_2 | False | trunk | - | 899, 999 | Access |
-| DC02-0901-ESX06 | PCI_slot_2_Port_1 | OTI-DC02-Leaf5B | Ethernet50/1 | SERVER_DC02-0901-ESX06_PCI_slot_2_Port_1 | False | trunk | - | 887, 888 | Access |
-| DC02-0901-SRVA | Port_0 | OTI-DC02-Leaf1 | Ethernet25 | SERVER_DC02-0901-SRVA_Port_0 | False | trunk | - | - | Access |
-| DC02-0901-SRVA | Port_1 | OTI-DC02-Leaf2 | Ethernet25 | SERVER_DC02-0901-SRVA_Port_1 | False | trunk | - | - | Access |
-| DC02-0901-SRVA | Port_2 | OTI-DC02-Leaf3 | Ethernet5 | SERVER_DC02-0901-SRVA_Port_2 | False | trunk | - | - | Access |
-| DC02-0901-SRVA | Port_3 | OTI-DC02-Leaf4 | Ethernet5 | SERVER_DC02-0901-SRVA_Port_3 | False | trunk | - | - | Access |
-| DC02-0901-SRVB | Port_0 | OTI-DC02-Leaf3 | Ethernet25 | SERVER_DC02-0901-SRVB_Port_0 | False | access | - | - | Access |
-| DC02-0901-SRVB | Port_1 | OTI-DC02-Leaf4 | Ethernet25 | SERVER_DC02-0901-SRVB_Port_1 | False | access | - | - | Access |
-| DC02-0901-SRVC | Port_0 | OTI-DC02-Leaf3 | Ethernet26 | SERVER_DC02-0901-SRVC_Port_0 | False | access | - | - | Access |
-| DC02-0901-SRVC | Port_1 | OTI-DC02-Leaf4 | Ethernet26 | SERVER_DC02-0901-SRVC_Port_1 | False | access | - | - | Access |
+No connected endpoint configured!
 
 ### Port Profiles
 
