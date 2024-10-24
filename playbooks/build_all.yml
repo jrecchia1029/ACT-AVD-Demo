@@ -1,12 +1,17 @@
-# ---
-# - name: Translate excel to AVD Endpoints Data Models
-#   hosts: localhost
-#   connection: local
-#   tasks:
-#   - name: Run python script
-#     ansible.builtin.script: OTI_XLSX_TO_AVD_ENDPOINTS.py
-#     args:
-#       executable: python
+---
+- name: Translate excel to AVD Endpoints Data Models
+  hosts: localhost
+  connection: local
+  tasks:
+    - name: Test output
+      shell: 'pwd'
+      register: command_output
+      run_once: True   
+    - name: Run python script
+      shell:
+        cmd: "python ./OTI_XLSX_TO_AVD_ENDPOINTS.py"
+        chdir: "{{command_output.stdout}}/../"
+      run_once: True        
 
 - name: Build DC01 structured configuration
   hosts: DC01_Fabric

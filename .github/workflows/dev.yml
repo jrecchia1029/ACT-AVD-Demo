@@ -17,16 +17,22 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v5
 
-      - name: Install Python requirements
-        run: pip install -r requirements-python.yml
-
       - name: Run pre-commit on files
         uses: pre-commit/action@v3.0.0
+
+      - name: Install Python requirements
+        run: pip install -r requirements-python.yml
 
       - name: Install collections
         run: ansible-galaxy collection install -r requirements.yml
 
       - name: Test configuration
-        run: ansible-playbook playbooks/build_all.yml -i inventory.yml --tags generate
+        run: ansible-playbook playbooks/build_all.yml -i inventory.yml
 
-
+      - name: Commit changes
+        run: |
+          git config --global user.name 'Joe Recchia'
+          git config --global user.email 'joerecchia@users.noreply.github.com'
+          git add .
+          git diff --quiet && git diff --staged --quiet || git commit -am 'Automated changes'
+          git push
