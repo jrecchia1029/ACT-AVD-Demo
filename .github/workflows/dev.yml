@@ -17,11 +17,11 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v5
 
-      - name: Install Python requirements
-        run: pip install -r requirements-python.yml
-
       - name: Run pre-commit on files
         uses: pre-commit/action@v3.0.0
+
+      - name: Install Python requirements
+        run: pip install -r requirements-python.yml
 
       - name: Install collections
         run: ansible-galaxy collection install -r requirements.yml
