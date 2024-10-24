@@ -112,36 +112,6 @@
   },
   {
     "name": "OTI-DC02-OBM1",
-    "test": "VerifyInterfacesStatus",
-    "categories": [
-      "interfaces"
-    ],
-    "description": "Verifies the status of the provided interfaces.",
-    "result": "success",
-    "custom_field": "Interface Ethernet7 - SERVER_DC02-0901-SRVA_iLo = 'up'"
-  },
-  {
-    "name": "OTI-DC02-OBM1",
-    "test": "VerifyInterfacesStatus",
-    "categories": [
-      "interfaces"
-    ],
-    "description": "Verifies the status of the provided interfaces.",
-    "result": "success",
-    "custom_field": "Interface Ethernet8 - SERVER_DC02-0901-SRVB_iLo = 'up'"
-  },
-  {
-    "name": "OTI-DC02-OBM1",
-    "test": "VerifyInterfacesStatus",
-    "categories": [
-      "interfaces"
-    ],
-    "description": "Verifies the status of the provided interfaces.",
-    "result": "success",
-    "custom_field": "Interface Ethernet9 - SERVER_DC02-0901-SRVC_iLo = 'up'"
-  },
-  {
-    "name": "OTI-DC02-OBM1",
     "test": "VerifyCPUUtilization",
     "categories": [
       "system"

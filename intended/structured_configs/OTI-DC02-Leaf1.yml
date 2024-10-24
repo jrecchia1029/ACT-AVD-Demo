@@ -502,16 +502,6 @@ ethernet_interfaces:
   channel_group:
     id: 6
     mode: active
-- name: Ethernet25
-  peer: DC02-0901-SRVA
-  peer_interface: Port_0
-  peer_type: server
-  port_profile: Access
-  description: SERVER_DC02-0901-SRVA_Port_0
-  shutdown: false
-  channel_group:
-    id: 25
-    mode: active
 loopback_interfaces:
 - name: Loopback0
   description: ROUTER_ID
@@ -998,17 +988,5 @@ port_channel_interfaces:
     identifier: 0000:0000:6ec9:e834:38c2
     route_target: 6e:c9:e8:34:38:c2
   lacp_id: 6ec9.e834.38c2
-- name: Port-Channel25
-  description: SERVER_DC02-0901-SRVA
-  shutdown: false
-  mtu: 9214
-  switchport:
-    enabled: true
-    mode: trunk
-  spanning_tree_portfast: edge
-  evpn_ethernet_segment:
-    identifier: 0000:0000:22ed:72fb:33f6
-    route_target: 22:ed:72:fb:33:f6
-  lacp_id: 22ed.72fb.33f6
 metadata:
   platform: vEOS-lab

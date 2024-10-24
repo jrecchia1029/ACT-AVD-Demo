@@ -482,36 +482,6 @@ ethernet_interfaces:
   channel_group:
     id: 4
     mode: active
-- name: Ethernet5
-  peer: DC02-0901-SRVA
-  peer_interface: Port_3
-  peer_type: server
-  port_profile: Access
-  description: SERVER_DC02-0901-SRVA_Port_3
-  shutdown: false
-  channel_group:
-    id: 5
-    mode: active
-- name: Ethernet25
-  peer: DC02-0901-SRVB
-  peer_interface: Port_1
-  peer_type: server
-  port_profile: Access
-  description: SERVER_DC02-0901-SRVB_Port_1
-  shutdown: false
-  channel_group:
-    id: 25
-    mode: active
-- name: Ethernet26
-  peer: DC02-0901-SRVC
-  peer_interface: Port_1
-  peer_type: server
-  port_profile: Access
-  description: SERVER_DC02-0901-SRVC_Port_1
-  shutdown: false
-  channel_group:
-    id: 26
-    mode: active
 loopback_interfaces:
 - name: Loopback0
   description: ROUTER_ID
@@ -974,41 +944,5 @@ port_channel_interfaces:
     identifier: 0000:0000:8c3b:0e87:0455
     route_target: 8c:3b:0e:87:04:55
   lacp_id: 8c3b.0e87.0455
-- name: Port-Channel5
-  description: SERVER_DC02-0901-SRVA
-  shutdown: false
-  mtu: 9214
-  switchport:
-    enabled: true
-    mode: trunk
-  spanning_tree_portfast: edge
-  evpn_ethernet_segment:
-    identifier: 0000:0000:5432:40fd:3258
-    route_target: 54:32:40:fd:32:58
-  lacp_id: 5432.40fd.3258
-- name: Port-Channel25
-  description: SERVER_DC02-0901-SRVB
-  shutdown: false
-  mtu: 9214
-  switchport:
-    enabled: true
-    mode: access
-  spanning_tree_portfast: edge
-  evpn_ethernet_segment:
-    identifier: 0000:0000:aefb:c364:b08d
-    route_target: ae:fb:c3:64:b0:8d
-  lacp_id: aefb.c364.b08d
-- name: Port-Channel26
-  description: SERVER_DC02-0901-SRVC
-  shutdown: false
-  mtu: 9214
-  switchport:
-    enabled: true
-    mode: access
-  spanning_tree_portfast: edge
-  evpn_ethernet_segment:
-    identifier: 0000:0000:e9d0:08be:cfd8
-    route_target: e9:d0:08:be:cf:d8
-  lacp_id: e9d0.08be.cfd8
 metadata:
   platform: vEOS-lab

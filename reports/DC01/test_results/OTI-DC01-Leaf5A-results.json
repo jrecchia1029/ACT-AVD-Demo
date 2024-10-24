@@ -318,16 +318,6 @@
     ],
     "description": "Verifies the status of the provided interfaces.",
     "result": "success",
-    "custom_field": "Interface Ethernet25 - SERVER_DC01-0601-SRVD_Port_2 = 'up'"
-  },
-  {
-    "name": "OTI-DC01-Leaf5A",
-    "test": "VerifyInterfacesStatus",
-    "categories": [
-      "interfaces"
-    ],
-    "description": "Verifies the status of the provided interfaces.",
-    "result": "success",
     "custom_field": "Interface Ethernet3 - SERVER_DC01-0601-ESX03_PCI_slot_1_Port_2 = 'up'"
   },
   {
@@ -467,19 +457,6 @@
       "interfaces"
     ],
     "description": "Verifies the status of the provided interfaces.",
-    "result": "failure",
-    "messages": [
-      "The following interface(s) are not in the expected state: ['Port-Channel25 is down/lowerLayerDown']"
-    ],
-    "custom_field": "Interface Port-Channel25 - SERVER_DC01-0601-SRVD = 'up'"
-  },
-  {
-    "name": "OTI-DC01-Leaf5A",
-    "test": "VerifyInterfacesStatus",
-    "categories": [
-      "interfaces"
-    ],
-    "description": "Verifies the status of the provided interfaces.",
     "result": "success",
     "custom_field": "Interface Port-Channel3 - SERVER_DC01-0601-ESX03 = 'up'"
   },
@@ -522,16 +499,6 @@
     "description": "Verifies the status of the provided interfaces.",
     "result": "success",
     "custom_field": "Interface Port-Channel6 - SERVER_DC01-0601-ESX06 = 'up'"
-  },
-  {
-    "name": "OTI-DC01-Leaf5A",
-    "test": "VerifyInterfacesStatus",
-    "categories": [
-      "interfaces"
-    ],
-    "description": "Verifies the status of the provided interfaces.",
-    "result": "success",
-    "custom_field": "Interface Vlan2500 - Scada_Dev = 'up'"
   },
   {
     "name": "OTI-DC01-Leaf5A",
@@ -592,16 +559,6 @@
     "description": "Verifies the status of the provided interfaces.",
     "result": "success",
     "custom_field": "Interface Vlan3010 - MLAG_L3_VRF_Development = 'up'"
-  },
-  {
-    "name": "OTI-DC01-Leaf5A",
-    "test": "VerifyInterfacesStatus",
-    "categories": [
-      "interfaces"
-    ],
-    "description": "Verifies the status of the provided interfaces.",
-    "result": "success",
-    "custom_field": "Interface Vlan3911 - SCADA_PROD = 'up'"
   },
   {
     "name": "OTI-DC01-Leaf5A",
@@ -811,7 +768,7 @@
     "description": "Verifies whether the CPU utilization is below 75%.",
     "result": "failure",
     "messages": [
-      "Device has reported a high CPU utilization: 94.1%"
+      "Device has reported a high CPU utilization: 93.9%"
     ]
   },
   {

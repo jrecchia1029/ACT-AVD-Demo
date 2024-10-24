@@ -249,9 +249,6 @@ vlan 2545
 | Ethernet4 | SERVER_DC02-0901-ESX04_idrac | access | 2545 | - | - | - |
 | Ethernet5 | SERVER_DC02-0901-ESX05_idrac | access | 2545 | - | - | - |
 | Ethernet6 | SERVER_DC02-0901-ESX06_idrac | access | 2545 | - | - | - |
-| Ethernet7 | SERVER_DC02-0901-SRVA_iLo | access | 2545 | - | - | - |
-| Ethernet8 | SERVER_DC02-0901-SRVB_iLo | access | 2545 | - | - | - |
-| Ethernet9 | SERVER_DC02-0901-SRVC_iLo | access | 2545 | - | - | - |
 
 *Inherited from Port-Channel Interface
 
@@ -301,30 +298,6 @@ interface Ethernet5
 !
 interface Ethernet6
    description SERVER_DC02-0901-ESX06_idrac
-   no shutdown
-   switchport access vlan 2545
-   switchport mode access
-   switchport
-   spanning-tree portfast
-!
-interface Ethernet7
-   description SERVER_DC02-0901-SRVA_iLo
-   no shutdown
-   switchport access vlan 2545
-   switchport mode access
-   switchport
-   spanning-tree portfast
-!
-interface Ethernet8
-   description SERVER_DC02-0901-SRVB_iLo
-   no shutdown
-   switchport access vlan 2545
-   switchport mode access
-   switchport
-   spanning-tree portfast
-!
-interface Ethernet9
-   description SERVER_DC02-0901-SRVC_iLo
    no shutdown
    switchport access vlan 2545
    switchport mode access

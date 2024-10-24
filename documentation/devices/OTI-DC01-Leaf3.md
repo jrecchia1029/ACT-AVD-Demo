@@ -382,10 +382,6 @@ vlan 3911
 | Ethernet2 | SERVER_DC01-0601-ESX04_Onboard_NIC_2 | *trunk | *- | *- | *- | 2 |
 | Ethernet3 | SERVER_DC01-0601-ESX05_Onboard_NIC_2 | *trunk | *- | *- | *- | 3 |
 | Ethernet4 | SERVER_DC01-0601-ESX06_Onboard_NIC_2 | *trunk | *- | *- | *- | 4 |
-| Ethernet11 | SERVER_DC01-0601-SRVA_Port_0 | *trunk | *- | *- | *- | 11 |
-| Ethernet12 | SERVER_DC01-0601-SRVB_Port_0 | *trunk | *- | *- | *- | 12 |
-| Ethernet13 | SERVER_DC01-0601-SRVC_Port_0 | *trunk | *- | *- | *- | 13 |
-| Ethernet14 | SERVER_DC01-0601-SRVD_Port_0 | *trunk | *- | *- | *- | 14 |
 
 *Inherited from Port-Channel Interface
 
@@ -420,26 +416,6 @@ interface Ethernet4
    no shutdown
    channel-group 4 mode active
 !
-interface Ethernet11
-   description SERVER_DC01-0601-SRVA_Port_0
-   no shutdown
-   channel-group 11 mode active
-!
-interface Ethernet12
-   description SERVER_DC01-0601-SRVB_Port_0
-   no shutdown
-   channel-group 12 mode active
-!
-interface Ethernet13
-   description SERVER_DC01-0601-SRVC_Port_0
-   no shutdown
-   channel-group 13 mode active
-!
-interface Ethernet14
-   description SERVER_DC01-0601-SRVD_Port_0
-   no shutdown
-   channel-group 14 mode active
-!
 interface Ethernet55/1
    description P2P_OTI-DC01-Spine1_Ethernet3/1
    no shutdown
@@ -467,10 +443,6 @@ interface Ethernet56/1
 | Port-Channel2 | SERVER_DC01-0601-ESX04 | trunk | - | - | - | - | - | - | 0000:0000:cabf:e649:c9a1 |
 | Port-Channel3 | SERVER_DC01-0601-ESX05 | trunk | - | - | - | - | - | - | 0000:0000:6e36:5d4b:7972 |
 | Port-Channel4 | SERVER_DC01-0601-ESX06 | trunk | - | - | - | - | - | - | 0000:0000:5fad:6495:5ad4 |
-| Port-Channel11 | SERVER_DC01-0601-SRVA | trunk | - | - | - | - | - | - | 0000:0000:635d:134d:9b86 |
-| Port-Channel12 | SERVER_DC01-0601-SRVB | trunk | - | - | - | - | - | - | 0000:0000:873f:92fb:cd3d |
-| Port-Channel13 | SERVER_DC01-0601-SRVC | trunk | - | - | - | - | - | - | 0000:0000:88a9:5b0f:593d |
-| Port-Channel14 | SERVER_DC01-0601-SRVD | trunk | - | - | - | - | - | - | 0000:0000:60ea:4b72:cbc5 |
 
 ##### EVPN Multihoming
 
@@ -482,10 +454,6 @@ interface Ethernet56/1
 | Port-Channel2 | 0000:0000:cabf:e649:c9a1 | all-active | ca:bf:e6:49:c9:a1 |
 | Port-Channel3 | 0000:0000:6e36:5d4b:7972 | all-active | 6e:36:5d:4b:79:72 |
 | Port-Channel4 | 0000:0000:5fad:6495:5ad4 | all-active | 5f:ad:64:95:5a:d4 |
-| Port-Channel11 | 0000:0000:635d:134d:9b86 | all-active | 63:5d:13:4d:9b:86 |
-| Port-Channel12 | 0000:0000:873f:92fb:cd3d | all-active | 87:3f:92:fb:cd:3d |
-| Port-Channel13 | 0000:0000:88a9:5b0f:593d | all-active | 88:a9:5b:0f:59:3d |
-| Port-Channel14 | 0000:0000:60ea:4b72:cbc5 | all-active | 60:ea:4b:72:cb:c5 |
 
 #### Port-Channel Interfaces Device Configuration
 
@@ -541,58 +509,6 @@ interface Port-Channel4
       identifier 0000:0000:5fad:6495:5ad4
       route-target import 5f:ad:64:95:5a:d4
    lacp system-id 5fad.6495.5ad4
-   spanning-tree portfast
-!
-interface Port-Channel11
-   description SERVER_DC01-0601-SRVA
-   no shutdown
-   mtu 9214
-   switchport mode trunk
-   switchport
-   !
-   evpn ethernet-segment
-      identifier 0000:0000:635d:134d:9b86
-      route-target import 63:5d:13:4d:9b:86
-   lacp system-id 635d.134d.9b86
-   spanning-tree portfast
-!
-interface Port-Channel12
-   description SERVER_DC01-0601-SRVB
-   no shutdown
-   mtu 9214
-   switchport mode trunk
-   switchport
-   !
-   evpn ethernet-segment
-      identifier 0000:0000:873f:92fb:cd3d
-      route-target import 87:3f:92:fb:cd:3d
-   lacp system-id 873f.92fb.cd3d
-   spanning-tree portfast
-!
-interface Port-Channel13
-   description SERVER_DC01-0601-SRVC
-   no shutdown
-   mtu 9214
-   switchport mode trunk
-   switchport
-   !
-   evpn ethernet-segment
-      identifier 0000:0000:88a9:5b0f:593d
-      route-target import 88:a9:5b:0f:59:3d
-   lacp system-id 88a9.5b0f.593d
-   spanning-tree portfast
-!
-interface Port-Channel14
-   description SERVER_DC01-0601-SRVD
-   no shutdown
-   mtu 9214
-   switchport mode trunk
-   switchport
-   !
-   evpn ethernet-segment
-      identifier 0000:0000:60ea:4b72:cbc5
-      route-target import 60:ea:4b:72:cb:c5
-   lacp system-id 60ea.4b72.cbc5
    spanning-tree portfast
 ```
 

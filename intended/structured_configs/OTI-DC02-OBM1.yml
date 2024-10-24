@@ -130,41 +130,5 @@ ethernet_interfaces:
     mode: access
     access_vlan: '2545'
   spanning_tree_portfast: edge
-- name: Ethernet7
-  peer: DC02-0901-SRVA
-  peer_interface: iLo
-  peer_type: server
-  port_profile: Access
-  description: SERVER_DC02-0901-SRVA_iLo
-  shutdown: false
-  switchport:
-    enabled: true
-    mode: access
-    access_vlan: '2545'
-  spanning_tree_portfast: edge
-- name: Ethernet8
-  peer: DC02-0901-SRVB
-  peer_interface: iLo
-  peer_type: server
-  port_profile: Access
-  description: SERVER_DC02-0901-SRVB_iLo
-  shutdown: false
-  switchport:
-    enabled: true
-    mode: access
-    access_vlan: '2545'
-  spanning_tree_portfast: edge
-- name: Ethernet9
-  peer: DC02-0901-SRVC
-  peer_interface: iLo
-  peer_type: server
-  port_profile: Access
-  description: SERVER_DC02-0901-SRVC_iLo
-  shutdown: false
-  switchport:
-    enabled: true
-    mode: access
-    access_vlan: '2545'
-  spanning_tree_portfast: edge
 metadata:
   platform: 7050SX3-48YC8

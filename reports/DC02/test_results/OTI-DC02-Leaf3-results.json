@@ -318,26 +318,6 @@
     ],
     "description": "Verifies the status of the provided interfaces.",
     "result": "success",
-    "custom_field": "Interface Ethernet25 - SERVER_DC02-0901-SRVB_Port_0 = 'up'"
-  },
-  {
-    "name": "OTI-DC02-Leaf3",
-    "test": "VerifyInterfacesStatus",
-    "categories": [
-      "interfaces"
-    ],
-    "description": "Verifies the status of the provided interfaces.",
-    "result": "success",
-    "custom_field": "Interface Ethernet26 - SERVER_DC02-0901-SRVC_Port_0 = 'up'"
-  },
-  {
-    "name": "OTI-DC02-Leaf3",
-    "test": "VerifyInterfacesStatus",
-    "categories": [
-      "interfaces"
-    ],
-    "description": "Verifies the status of the provided interfaces.",
-    "result": "success",
     "custom_field": "Interface Ethernet3 - SERVER_DC02-0901-ESX03_Onboard_NIC_2 = 'up'"
   },
   {
@@ -359,16 +339,6 @@
     "description": "Verifies the status of the provided interfaces.",
     "result": "success",
     "custom_field": "Interface Ethernet49/1 - SERVER_DC02-0901-ESX03_PCI_slot_1_Port_2 = 'up'"
-  },
-  {
-    "name": "OTI-DC02-Leaf3",
-    "test": "VerifyInterfacesStatus",
-    "categories": [
-      "interfaces"
-    ],
-    "description": "Verifies the status of the provided interfaces.",
-    "result": "success",
-    "custom_field": "Interface Ethernet5 - SERVER_DC02-0901-SRVA_Port_2 = 'up'"
   },
   {
     "name": "OTI-DC02-Leaf3",
@@ -467,32 +437,6 @@
       "interfaces"
     ],
     "description": "Verifies the status of the provided interfaces.",
-    "result": "failure",
-    "messages": [
-      "The following interface(s) are not in the expected state: ['Port-Channel25 is down/lowerLayerDown']"
-    ],
-    "custom_field": "Interface Port-Channel25 - SERVER_DC02-0901-SRVB = 'up'"
-  },
-  {
-    "name": "OTI-DC02-Leaf3",
-    "test": "VerifyInterfacesStatus",
-    "categories": [
-      "interfaces"
-    ],
-    "description": "Verifies the status of the provided interfaces.",
-    "result": "failure",
-    "messages": [
-      "The following interface(s) are not in the expected state: ['Port-Channel26 is down/lowerLayerDown']"
-    ],
-    "custom_field": "Interface Port-Channel26 - SERVER_DC02-0901-SRVC = 'up'"
-  },
-  {
-    "name": "OTI-DC02-Leaf3",
-    "test": "VerifyInterfacesStatus",
-    "categories": [
-      "interfaces"
-    ],
-    "description": "Verifies the status of the provided interfaces.",
     "result": "success",
     "custom_field": "Interface Port-Channel3 - SERVER_DC02-0901-ESX03 = 'up'"
   },
@@ -515,19 +459,6 @@
     "description": "Verifies the status of the provided interfaces.",
     "result": "success",
     "custom_field": "Interface Port-Channel491 - SERVER_DC02-0901-ESX03 = 'up'"
-  },
-  {
-    "name": "OTI-DC02-Leaf3",
-    "test": "VerifyInterfacesStatus",
-    "categories": [
-      "interfaces"
-    ],
-    "description": "Verifies the status of the provided interfaces.",
-    "result": "failure",
-    "messages": [
-      "The following interface(s) are not in the expected state: ['Port-Channel5 is down/lowerLayerDown']"
-    ],
-    "custom_field": "Interface Port-Channel5 - SERVER_DC02-0901-SRVA = 'up'"
   },
   {
     "name": "OTI-DC02-Leaf3",
@@ -1118,7 +1049,7 @@
     "description": "Verifies whether the CPU utilization is below 75%.",
     "result": "failure",
     "messages": [
-      "Device has reported a high CPU utilization: 78.1%"
+      "Device has reported a high CPU utilization: 87.9%"
     ]
   },
   {

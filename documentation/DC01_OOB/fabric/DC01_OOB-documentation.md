@@ -84,10 +84,6 @@
 | DC01-0601-ESX04 | idrac | OTI-DC01-OBM1 | Ethernet4 | SERVER_DC01-0601-ESX04_idrac | False | access | 3545 | - | Access |
 | DC01-0601-ESX05 | idrac | OTI-DC01-OBM1 | Ethernet5 | SERVER_DC01-0601-ESX05_idrac | False | access | 3545 | - | Access |
 | DC01-0601-ESX06 | idrac | OTI-DC01-OBM1 | Ethernet6 | SERVER_DC01-0601-ESX06_idrac | False | access | 3545 | - | Access |
-| DC01-0601-SRVA | iLo | OTI-DC01-OBM1 | Ethernet7 | SERVER_DC01-0601-SRVA_iLo | False | access | 3545 | - | Access |
-| DC01-0601-SRVB | iLo | OTI-DC01-OBM1 | Ethernet8 | SERVER_DC01-0601-SRVB_iLo | False | access | 3545 | - | Access |
-| DC01-0601-SRVC | iLo | OTI-DC01-OBM1 | Ethernet9 | SERVER_DC01-0601-SRVC_iLo | False | access | 3545 | - | Access |
-| DC01-0601-SRVD | iLo | OTI-DC01-OBM1 | Ethernet10 | SERVER_DC01-0601-SRVD_iLo | False | access | 3545 | - | Access |
 
 ### Port Profiles
 

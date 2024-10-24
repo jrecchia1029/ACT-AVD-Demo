@@ -142,14 +142,6 @@ router_bgp:
       peer_group: MLAG-IPv4-UNDERLAY-PEER
       description: OTI-DC01-Leaf5A_Vlan3009
   vlans:
-  - id: 2500
-    tenant: OTI
-    rd: 10.245.217.8:12500
-    route_targets:
-      both:
-      - 12500:12500
-    redistribute_routes:
-    - learned
   - id: 2821
     tenant: OTI
     rd: 10.245.217.8:12821
@@ -196,14 +188,6 @@ router_bgp:
     route_targets:
       both:
       - 10821:10821
-    redistribute_routes:
-    - learned
-  - id: 3911
-    tenant: OTI
-    rd: 10.245.217.8:13911
-    route_targets:
-      both:
-      - 13911:13911
     redistribute_routes:
     - learned
 service_routing_protocols_model: multi-agent
@@ -275,9 +259,6 @@ vlans:
   name: MLAG
   trunk_groups:
   - MLAG
-- id: 2500
-  name: Scada_Dev
-  tenant: OTI
 - id: 2821
   name: Users_Dev
   tenant: OTI
@@ -301,9 +282,6 @@ vlans:
 - id: 821
   name: SAN_Disk
   tenant: OTI
-- id: 3911
-  name: SCADA_PROD
-  tenant: OTI
 - id: 3009
   name: MLAG_L3_VRF_Production
   trunk_groups:
@@ -321,12 +299,6 @@ vlan_interfaces:
   no_autostate: true
   mtu: 1500
   ip_address: 192.168.13.105/31
-- name: Vlan2500
-  tenant: OTI
-  description: Scada_Dev
-  shutdown: false
-  ip_address_virtual: 12.50.0.1/24
-  vrf: Development
 - name: Vlan2821
   tenant: OTI
   description: Users_Dev
@@ -370,12 +342,6 @@ vlan_interfaces:
   description: SAN_Disk
   shutdown: false
   ip_address_virtual: 10.82.1.1/24
-  vrf: Production
-- name: Vlan3911
-  tenant: OTI
-  description: SCADA_PROD
-  shutdown: false
-  ip_address_virtual: 10.39.11.1/24
   vrf: Production
 - name: Vlan3009
   tenant: OTI
@@ -447,17 +413,6 @@ port_channel_interfaces:
     access_vlan: '821'
   spanning_tree_portfast: edge
   mlag: 6
-- name: Port-Channel25
-  description: SERVER_DC01-0601-SRVD
-  shutdown: false
-  mtu: 9214
-  switchport:
-    enabled: true
-    mode: trunk
-    trunk:
-      allowed_vlan: 3911, 2500
-  spanning_tree_portfast: edge
-  mlag: 25
 ethernet_interfaces:
 - name: Ethernet53/1
   peer: OTI-DC01-Leaf5A
@@ -557,16 +512,6 @@ ethernet_interfaces:
   channel_group:
     id: 6
     mode: active
-- name: Ethernet25
-  peer: DC01-0601-SRVD
-  peer_interface: Port_3
-  peer_type: server
-  port_profile: Access
-  description: SERVER_DC01-0601-SRVD_Port_3
-  shutdown: false
-  channel_group:
-    id: 25
-    mode: active
 mlag_configuration:
   domain_id: OTI-DC01-Leaf5
   local_interface: Vlan4094
@@ -642,8 +587,6 @@ vxlan_interface:
       source_interface: Loopback1
       virtual_router_encapsulation_mac_address: mlag-system-id
       vlans:
-      - id: 2500
-        vni: 12500
       - id: 2821
         vni: 12821
       - id: 2822
@@ -656,8 +599,6 @@ vxlan_interface:
         vni: 10055
       - id: 821
         vni: 10821
-      - id: 3911
-        vni: 13911
       vrfs:
       - name: Development
         vni: 11

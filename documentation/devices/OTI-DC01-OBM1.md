@@ -248,10 +248,6 @@ vlan 3545
 | Ethernet4 | SERVER_DC01-0601-ESX04_idrac | access | 3545 | - | - | - |
 | Ethernet5 | SERVER_DC01-0601-ESX05_idrac | access | 3545 | - | - | - |
 | Ethernet6 | SERVER_DC01-0601-ESX06_idrac | access | 3545 | - | - | - |
-| Ethernet7 | SERVER_DC01-0601-SRVA_iLo | access | 3545 | - | - | - |
-| Ethernet8 | SERVER_DC01-0601-SRVB_iLo | access | 3545 | - | - | - |
-| Ethernet9 | SERVER_DC01-0601-SRVC_iLo | access | 3545 | - | - | - |
-| Ethernet10 | SERVER_DC01-0601-SRVD_iLo | access | 3545 | - | - | - |
 
 *Inherited from Port-Channel Interface
 
@@ -293,38 +289,6 @@ interface Ethernet5
 !
 interface Ethernet6
    description SERVER_DC01-0601-ESX06_idrac
-   no shutdown
-   switchport access vlan 3545
-   switchport mode access
-   switchport
-   spanning-tree portfast
-!
-interface Ethernet7
-   description SERVER_DC01-0601-SRVA_iLo
-   no shutdown
-   switchport access vlan 3545
-   switchport mode access
-   switchport
-   spanning-tree portfast
-!
-interface Ethernet8
-   description SERVER_DC01-0601-SRVB_iLo
-   no shutdown
-   switchport access vlan 3545
-   switchport mode access
-   switchport
-   spanning-tree portfast
-!
-interface Ethernet9
-   description SERVER_DC01-0601-SRVC_iLo
-   no shutdown
-   switchport access vlan 3545
-   switchport mode access
-   switchport
-   spanning-tree portfast
-!
-interface Ethernet10
-   description SERVER_DC01-0601-SRVD_iLo
    no shutdown
    switchport access vlan 3545
    switchport mode access

@@ -318,16 +318,6 @@
     ],
     "description": "Verifies the status of the provided interfaces.",
     "result": "success",
-    "custom_field": "Interface Ethernet25 - SERVER_DC02-0901-SRVA_Port_1 = 'up'"
-  },
-  {
-    "name": "OTI-DC02-Leaf2",
-    "test": "VerifyInterfacesStatus",
-    "categories": [
-      "interfaces"
-    ],
-    "description": "Verifies the status of the provided interfaces.",
-    "result": "success",
     "custom_field": "Interface Ethernet3 - SERVER_DC02-0901-ESX03_PCI_slot_1_Port_1 = 'up'"
   },
   {
@@ -459,19 +449,6 @@
     "description": "Verifies the status of the provided interfaces.",
     "result": "success",
     "custom_field": "Interface Port-Channel2 - SERVER_DC02-0901-ESX02 = 'up'"
-  },
-  {
-    "name": "OTI-DC02-Leaf2",
-    "test": "VerifyInterfacesStatus",
-    "categories": [
-      "interfaces"
-    ],
-    "description": "Verifies the status of the provided interfaces.",
-    "result": "failure",
-    "messages": [
-      "The following interface(s) are not in the expected state: ['Port-Channel25 is down/lowerLayerDown']"
-    ],
-    "custom_field": "Interface Port-Channel25 - SERVER_DC02-0901-SRVA = 'up'"
   },
   {
     "name": "OTI-DC02-Leaf2",
@@ -1112,7 +1089,7 @@
     "description": "Verifies whether the CPU utilization is below 75%.",
     "result": "failure",
     "messages": [
-      "Device has reported a high CPU utilization: 84.4%"
+      "Device has reported a high CPU utilization: 84.8%"
     ]
   },
   {

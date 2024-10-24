@@ -384,7 +384,6 @@ vlan 3911
 | Ethernet4 | SERVER_DC02-0901-ESX04_PCI_slot_1_Port_1 | *trunk | *- | *- | *- | 4 |
 | Ethernet5 | SERVER_DC02-0901-ESX05_PCI_slot_1_Port_1 | *trunk | *- | *- | *- | 5 |
 | Ethernet6 | SERVER_DC02-0901-ESX06_PCI_slot_1_Port_1 | *trunk | *- | *- | *- | 6 |
-| Ethernet25 | SERVER_DC02-0901-SRVA_Port_1 | *trunk | *- | *- | *- | 25 |
 | Ethernet47 | SERVER_DC02-0901-ESX02_PCI_slot_2_Port_2 | *trunk | *- | *- | *- | 47 |
 | Ethernet48 | SERVER_DC02-0901-ESX01_PCI_slot_2_Port_2 | *trunk | *- | *- | *- | 48 |
 
@@ -431,11 +430,6 @@ interface Ethernet6
    no shutdown
    channel-group 6 mode active
 !
-interface Ethernet25
-   description SERVER_DC02-0901-SRVA_Port_1
-   no shutdown
-   channel-group 25 mode active
-!
 interface Ethernet47
    description SERVER_DC02-0901-ESX02_PCI_slot_2_Port_2
    no shutdown
@@ -475,7 +469,6 @@ interface Ethernet56/1
 | Port-Channel4 | SERVER_DC02-0901-ESX04 | trunk | - | - | - | - | - | - | 0000:0000:11d7:3a44:20e2 |
 | Port-Channel5 | SERVER_DC02-0901-ESX05 | trunk | - | - | - | - | - | - | 0000:0000:7869:6402:a182 |
 | Port-Channel6 | SERVER_DC02-0901-ESX06 | trunk | - | - | - | - | - | - | 0000:0000:6ec9:e834:38c2 |
-| Port-Channel25 | SERVER_DC02-0901-SRVA | trunk | - | - | - | - | - | - | 0000:0000:22ed:72fb:33f6 |
 | Port-Channel47 | SERVER_DC02-0901-ESX02 | trunk | - | - | - | - | - | - | 0000:0000:f8ae:690b:c05f |
 | Port-Channel48 | SERVER_DC02-0901-ESX01 | trunk | - | - | - | - | - | - | 0000:0000:aa2f:cd7d:9ee5 |
 
@@ -491,7 +484,6 @@ interface Ethernet56/1
 | Port-Channel4 | 0000:0000:11d7:3a44:20e2 | all-active | 11:d7:3a:44:20:e2 |
 | Port-Channel5 | 0000:0000:7869:6402:a182 | all-active | 78:69:64:02:a1:82 |
 | Port-Channel6 | 0000:0000:6ec9:e834:38c2 | all-active | 6e:c9:e8:34:38:c2 |
-| Port-Channel25 | 0000:0000:22ed:72fb:33f6 | all-active | 22:ed:72:fb:33:f6 |
 | Port-Channel47 | 0000:0000:f8ae:690b:c05f | all-active | f8:ae:69:0b:c0:5f |
 | Port-Channel48 | 0000:0000:aa2f:cd7d:9ee5 | all-active | aa:2f:cd:7d:9e:e5 |
 
@@ -575,19 +567,6 @@ interface Port-Channel6
       identifier 0000:0000:6ec9:e834:38c2
       route-target import 6e:c9:e8:34:38:c2
    lacp system-id 6ec9.e834.38c2
-   spanning-tree portfast
-!
-interface Port-Channel25
-   description SERVER_DC02-0901-SRVA
-   no shutdown
-   mtu 9214
-   switchport mode trunk
-   switchport
-   !
-   evpn ethernet-segment
-      identifier 0000:0000:22ed:72fb:33f6
-      route-target import 22:ed:72:fb:33:f6
-   lacp system-id 22ed.72fb.33f6
    spanning-tree portfast
 !
 interface Port-Channel47

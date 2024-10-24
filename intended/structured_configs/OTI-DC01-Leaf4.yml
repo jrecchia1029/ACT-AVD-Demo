@@ -462,46 +462,6 @@ ethernet_interfaces:
   channel_group:
     id: 4
     mode: active
-- name: Ethernet11
-  peer: DC01-0601-SRVA
-  peer_interface: Port_1
-  peer_type: server
-  port_profile: Access
-  description: SERVER_DC01-0601-SRVA_Port_1
-  shutdown: false
-  channel_group:
-    id: 11
-    mode: active
-- name: Ethernet12
-  peer: DC01-0601-SRVB
-  peer_interface: Port_1
-  peer_type: server
-  port_profile: Access
-  description: SERVER_DC01-0601-SRVB_Port_1
-  shutdown: false
-  channel_group:
-    id: 12
-    mode: active
-- name: Ethernet13
-  peer: DC01-0601-SRVC
-  peer_interface: Port_1
-  peer_type: server
-  port_profile: Access
-  description: SERVER_DC01-0601-SRVC_Port_1
-  shutdown: false
-  channel_group:
-    id: 13
-    mode: active
-- name: Ethernet14
-  peer: DC01-0601-SRVD
-  peer_interface: Port_1
-  peer_type: server
-  port_profile: Access
-  description: SERVER_DC01-0601-SRVD_Port_1
-  shutdown: false
-  channel_group:
-    id: 14
-    mode: active
 loopback_interfaces:
 - name: Loopback0
   description: ROUTER_ID
@@ -940,53 +900,5 @@ port_channel_interfaces:
     identifier: 0000:0000:5fad:6495:5ad4
     route_target: 5f:ad:64:95:5a:d4
   lacp_id: 5fad.6495.5ad4
-- name: Port-Channel11
-  description: SERVER_DC01-0601-SRVA
-  shutdown: false
-  mtu: 9214
-  switchport:
-    enabled: true
-    mode: trunk
-  spanning_tree_portfast: edge
-  evpn_ethernet_segment:
-    identifier: 0000:0000:635d:134d:9b86
-    route_target: 63:5d:13:4d:9b:86
-  lacp_id: 635d.134d.9b86
-- name: Port-Channel12
-  description: SERVER_DC01-0601-SRVB
-  shutdown: false
-  mtu: 9214
-  switchport:
-    enabled: true
-    mode: trunk
-  spanning_tree_portfast: edge
-  evpn_ethernet_segment:
-    identifier: 0000:0000:873f:92fb:cd3d
-    route_target: 87:3f:92:fb:cd:3d
-  lacp_id: 873f.92fb.cd3d
-- name: Port-Channel13
-  description: SERVER_DC01-0601-SRVC
-  shutdown: false
-  mtu: 9214
-  switchport:
-    enabled: true
-    mode: trunk
-  spanning_tree_portfast: edge
-  evpn_ethernet_segment:
-    identifier: 0000:0000:88a9:5b0f:593d
-    route_target: 88:a9:5b:0f:59:3d
-  lacp_id: 88a9.5b0f.593d
-- name: Port-Channel14
-  description: SERVER_DC01-0601-SRVD
-  shutdown: false
-  mtu: 9214
-  switchport:
-    enabled: true
-    mode: trunk
-  spanning_tree_portfast: edge
-  evpn_ethernet_segment:
-    identifier: 0000:0000:60ea:4b72:cbc5
-    route_target: 60:ea:4b:72:cb:c5
-  lacp_id: 60ea.4b72.cbc5
 metadata:
   platform: vEOS-lab

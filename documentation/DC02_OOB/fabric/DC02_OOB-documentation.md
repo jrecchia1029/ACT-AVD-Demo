@@ -85,9 +85,6 @@
 | DC02-0901-ESX04 | idrac | OTI-DC02-OBM1 | Ethernet4 | SERVER_DC02-0901-ESX04_idrac | False | access | 2545 | - | Access |
 | DC02-0901-ESX05 | idrac | OTI-DC02-OBM1 | Ethernet5 | SERVER_DC02-0901-ESX05_idrac | False | access | 2545 | - | Access |
 | DC02-0901-ESX06 | idrac | OTI-DC02-OBM1 | Ethernet6 | SERVER_DC02-0901-ESX06_idrac | False | access | 2545 | - | Access |
-| DC02-0901-SRVA | iLo | OTI-DC02-OBM1 | Ethernet7 | SERVER_DC02-0901-SRVA_iLo | False | access | 2545 | - | Access |
-| DC02-0901-SRVB | iLo | OTI-DC02-OBM1 | Ethernet8 | SERVER_DC02-0901-SRVB_iLo | False | access | 2545 | - | Access |
-| DC02-0901-SRVC | iLo | OTI-DC02-OBM1 | Ethernet9 | SERVER_DC02-0901-SRVC_iLo | False | access | 2545 | - | Access |
 
 ### Port Profiles
 

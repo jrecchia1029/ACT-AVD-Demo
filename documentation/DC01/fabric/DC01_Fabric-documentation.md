@@ -159,16 +159,6 @@
 | DC01-0601-ESX06 | PCI_slot_2_Port_2 | OTI-DC01-Leaf4 | Ethernet4 | SERVER_DC01-0601-ESX06_PCI_slot_2_Port_2 | False | trunk | - | - | Access |
 | DC01-0601-ESX06 | PCI_slot_1_Port_2 | OTI-DC01-Leaf5A | Ethernet6 | SERVER_DC01-0601-ESX06_PCI_slot_1_Port_2 | False | access | 821 | - | Access |
 | DC01-0601-ESX06 | PCI_slot_2_Port_1 | OTI-DC01-Leaf5B | Ethernet6 | SERVER_DC01-0601-ESX06_PCI_slot_2_Port_1 | False | access | 821 | - | Access |
-| DC01-0601-SRVA | Port_0 | OTI-DC01-Leaf3 | Ethernet11 | SERVER_DC01-0601-SRVA_Port_0 | False | trunk | - | - | Access |
-| DC01-0601-SRVA | Port_1 | OTI-DC01-Leaf4 | Ethernet11 | SERVER_DC01-0601-SRVA_Port_1 | False | trunk | - | - | Access |
-| DC01-0601-SRVB | Port_0 | OTI-DC01-Leaf3 | Ethernet12 | SERVER_DC01-0601-SRVB_Port_0 | False | trunk | - | - | Access |
-| DC01-0601-SRVB | Port_1 | OTI-DC01-Leaf4 | Ethernet12 | SERVER_DC01-0601-SRVB_Port_1 | False | trunk | - | - | Access |
-| DC01-0601-SRVC | Port_0 | OTI-DC01-Leaf3 | Ethernet13 | SERVER_DC01-0601-SRVC_Port_0 | False | trunk | - | - | Access |
-| DC01-0601-SRVC | Port_1 | OTI-DC01-Leaf4 | Ethernet13 | SERVER_DC01-0601-SRVC_Port_1 | False | trunk | - | - | Access |
-| DC01-0601-SRVD | Port_0 | OTI-DC01-Leaf3 | Ethernet14 | SERVER_DC01-0601-SRVD_Port_0 | False | trunk | - | - | Access |
-| DC01-0601-SRVD | Port_1 | OTI-DC01-Leaf4 | Ethernet14 | SERVER_DC01-0601-SRVD_Port_1 | False | trunk | - | - | Access |
-| DC01-0601-SRVD | Port_2 | OTI-DC01-Leaf5A | Ethernet25 | SERVER_DC01-0601-SRVD_Port_2 | False | trunk | - | 3911, 2500 | Access |
-| DC01-0601-SRVD | Port_3 | OTI-DC01-Leaf5B | Ethernet25 | SERVER_DC01-0601-SRVD_Port_3 | False | trunk | - | 3911, 2500 | Access |
 
 ### Port Profiles
 

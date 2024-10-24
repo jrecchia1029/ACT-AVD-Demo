@@ -68,16 +68,6 @@
     ],
     "description": "Verifies the status of the provided interfaces.",
     "result": "success",
-    "custom_field": "Interface Ethernet10 - SERVER_DC01-0601-SRVD_iLo = 'up'"
-  },
-  {
-    "name": "OTI-DC01-OBM1",
-    "test": "VerifyInterfacesStatus",
-    "categories": [
-      "interfaces"
-    ],
-    "description": "Verifies the status of the provided interfaces.",
-    "result": "success",
     "custom_field": "Interface Ethernet3 - SERVER_DC01-0601-ESX03_idrac = 'up'"
   },
   {
@@ -109,36 +99,6 @@
     "description": "Verifies the status of the provided interfaces.",
     "result": "success",
     "custom_field": "Interface Ethernet6 - SERVER_DC01-0601-ESX06_idrac = 'up'"
-  },
-  {
-    "name": "OTI-DC01-OBM1",
-    "test": "VerifyInterfacesStatus",
-    "categories": [
-      "interfaces"
-    ],
-    "description": "Verifies the status of the provided interfaces.",
-    "result": "success",
-    "custom_field": "Interface Ethernet7 - SERVER_DC01-0601-SRVA_iLo = 'up'"
-  },
-  {
-    "name": "OTI-DC01-OBM1",
-    "test": "VerifyInterfacesStatus",
-    "categories": [
-      "interfaces"
-    ],
-    "description": "Verifies the status of the provided interfaces.",
-    "result": "success",
-    "custom_field": "Interface Ethernet8 - SERVER_DC01-0601-SRVB_iLo = 'up'"
-  },
-  {
-    "name": "OTI-DC01-OBM1",
-    "test": "VerifyInterfacesStatus",
-    "categories": [
-      "interfaces"
-    ],
-    "description": "Verifies the status of the provided interfaces.",
-    "result": "success",
-    "custom_field": "Interface Ethernet9 - SERVER_DC01-0601-SRVC_iLo = 'up'"
   },
   {
     "name": "OTI-DC01-OBM1",

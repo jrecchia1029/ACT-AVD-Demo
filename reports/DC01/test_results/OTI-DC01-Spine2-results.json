@@ -379,7 +379,7 @@
     "description": "Verifies whether the CPU utilization is below 75%.",
     "result": "failure",
     "messages": [
-      "Device has reported a high CPU utilization: 81.8%"
+      "Device has reported a high CPU utilization: 87.5%"
     ]
   },
   {
