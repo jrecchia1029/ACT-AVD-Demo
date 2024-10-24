@@ -298,7 +298,7 @@
     ],
     "description": "Verifies the status of the provided interfaces.",
     "result": "success",
-    "custom_field": "Interface Ethernet55/1 - P2P_LINK_TO_OTI-DC02-SPINE1_Ethernet2/1 = 'up'"
+    "custom_field": "Interface Ethernet55/1 - P2P_OTI-DC02-Spine1_Ethernet2/1 = 'up'"
   },
   {
     "name": "OTI-DC02-Leaf2",
@@ -308,7 +308,7 @@
     ],
     "description": "Verifies the status of the provided interfaces.",
     "result": "success",
-    "custom_field": "Interface Ethernet56/1 - P2P_LINK_TO_OTI-DC02-SPINE2_Ethernet2/1 = 'up'"
+    "custom_field": "Interface Ethernet56/1 - P2P_OTI-DC02-Spine2_Ethernet2/1 = 'up'"
   },
   {
     "name": "OTI-DC02-Leaf2",
@@ -318,7 +318,7 @@
     ],
     "description": "Verifies the status of the provided interfaces.",
     "result": "success",
-    "custom_field": "Interface Loopback0 - EVPN_Overlay_Peering = 'up'"
+    "custom_field": "Interface Loopback0 - ROUTER_ID = 'up'"
   },
   {
     "name": "OTI-DC02-Leaf2",
@@ -328,7 +328,7 @@
     ],
     "description": "Verifies the status of the provided interfaces.",
     "result": "success",
-    "custom_field": "Interface Loopback1 - VTEP_VXLAN_Tunnel_Source = 'up'"
+    "custom_field": "Interface Loopback1 - VXLAN_TUNNEL_SOURCE = 'up'"
   },
   {
     "name": "OTI-DC02-Leaf2",
@@ -622,7 +622,7 @@
     "description": "Verifies whether the CPU utilization is below 75%.",
     "result": "failure",
     "messages": [
-      "Device has reported a high CPU utilization: 83.9%"
+      "Device has reported a high CPU utilization: 88.2%"
     ]
   },
   {
@@ -650,6 +650,15 @@
       "system"
     ],
     "description": "Verifies if NTP is synchronised.",
+    "result": "success"
+  },
+  {
+    "name": "OTI-DC02-Leaf2",
+    "test": "VerifyReloadCause",
+    "categories": [
+      "system"
+    ],
+    "description": "Verifies the last reload cause of the device.",
     "result": "success"
   }
 ]

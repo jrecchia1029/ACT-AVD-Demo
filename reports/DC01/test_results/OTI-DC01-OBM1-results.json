@@ -58,7 +58,7 @@
     ],
     "description": "Verifies the status of the provided interfaces.",
     "result": "success",
-    "custom_field": "Interface Ethernet1 - DC01-0601-ESX01_idrac = 'up'"
+    "custom_field": "Interface Ethernet1 - SERVER_DC01-0601-ESX01_idrac = 'up'"
   },
   {
     "name": "OTI-DC01-OBM1",
@@ -94,6 +94,15 @@
       "system"
     ],
     "description": "Verifies if NTP is synchronised.",
+    "result": "success"
+  },
+  {
+    "name": "OTI-DC01-OBM1",
+    "test": "VerifyReloadCause",
+    "categories": [
+      "system"
+    ],
+    "description": "Verifies the last reload cause of the device.",
     "result": "success"
   }
 ]

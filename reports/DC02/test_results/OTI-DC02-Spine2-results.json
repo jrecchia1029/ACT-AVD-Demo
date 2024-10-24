@@ -298,7 +298,7 @@
     ],
     "description": "Verifies the status of the provided interfaces.",
     "result": "success",
-    "custom_field": "Interface Ethernet1/1 - P2P_LINK_TO_OTI-DC02-LEAF1_Ethernet56/1 = 'up'"
+    "custom_field": "Interface Ethernet1/1 - P2P_OTI-DC02-Leaf1_Ethernet56/1 = 'up'"
   },
   {
     "name": "OTI-DC02-Spine2",
@@ -308,7 +308,7 @@
     ],
     "description": "Verifies the status of the provided interfaces.",
     "result": "success",
-    "custom_field": "Interface Ethernet2/1 - P2P_LINK_TO_OTI-DC02-LEAF2_Ethernet56/1 = 'up'"
+    "custom_field": "Interface Ethernet2/1 - P2P_OTI-DC02-Leaf2_Ethernet56/1 = 'up'"
   },
   {
     "name": "OTI-DC02-Spine2",
@@ -318,7 +318,7 @@
     ],
     "description": "Verifies the status of the provided interfaces.",
     "result": "success",
-    "custom_field": "Interface Ethernet3/1 - P2P_LINK_TO_OTI-DC02-LEAF3_Ethernet56/1 = 'up'"
+    "custom_field": "Interface Ethernet3/1 - P2P_OTI-DC02-Leaf3_Ethernet56/1 = 'up'"
   },
   {
     "name": "OTI-DC02-Spine2",
@@ -328,7 +328,7 @@
     ],
     "description": "Verifies the status of the provided interfaces.",
     "result": "success",
-    "custom_field": "Interface Ethernet4/1 - P2P_LINK_TO_OTI-DC02-LEAF4_Ethernet56/1 = 'up'"
+    "custom_field": "Interface Ethernet4/1 - P2P_OTI-DC02-Leaf4_Ethernet56/1 = 'up'"
   },
   {
     "name": "OTI-DC02-Spine2",
@@ -338,7 +338,7 @@
     ],
     "description": "Verifies the status of the provided interfaces.",
     "result": "success",
-    "custom_field": "Interface Ethernet5/1 - P2P_LINK_TO_OTI-DC02-LEAF5A_Ethernet56/1 = 'up'"
+    "custom_field": "Interface Ethernet5/1 - P2P_OTI-DC02-Leaf5A_Ethernet56/1 = 'up'"
   },
   {
     "name": "OTI-DC02-Spine2",
@@ -348,7 +348,7 @@
     ],
     "description": "Verifies the status of the provided interfaces.",
     "result": "success",
-    "custom_field": "Interface Ethernet6/1 - P2P_LINK_TO_OTI-DC02-LEAF5B_Ethernet56/1 = 'up'"
+    "custom_field": "Interface Ethernet6/1 - P2P_OTI-DC02-Leaf5B_Ethernet56/1 = 'up'"
   },
   {
     "name": "OTI-DC02-Spine2",
@@ -358,7 +358,7 @@
     ],
     "description": "Verifies the status of the provided interfaces.",
     "result": "success",
-    "custom_field": "Interface Loopback0 - EVPN_Overlay_Peering = 'up'"
+    "custom_field": "Interface Loopback0 - ROUTER_ID = 'up'"
   },
   {
     "name": "OTI-DC02-Spine2",
@@ -377,10 +377,7 @@
       "system"
     ],
     "description": "Verifies whether the CPU utilization is below 75%.",
-    "result": "failure",
-    "messages": [
-      "Device has reported a high CPU utilization: 85.7%"
-    ]
+    "result": "success"
   },
   {
     "name": "OTI-DC02-Spine2",
@@ -407,6 +404,15 @@
       "system"
     ],
     "description": "Verifies if NTP is synchronised.",
+    "result": "success"
+  },
+  {
+    "name": "OTI-DC02-Spine2",
+    "test": "VerifyReloadCause",
+    "categories": [
+      "system"
+    ],
+    "description": "Verifies the last reload cause of the device.",
     "result": "success"
   }
 ]

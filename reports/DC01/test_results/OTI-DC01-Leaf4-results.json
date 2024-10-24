@@ -218,7 +218,7 @@
     ],
     "description": "Verifies the status of the provided interfaces.",
     "result": "success",
-    "custom_field": "Interface Ethernet55/1 - P2P_LINK_TO_OTI-DC01-SPINE1_Ethernet4/1 = 'up'"
+    "custom_field": "Interface Ethernet55/1 - P2P_OTI-DC01-Spine1_Ethernet4/1 = 'up'"
   },
   {
     "name": "OTI-DC01-Leaf4",
@@ -228,7 +228,7 @@
     ],
     "description": "Verifies the status of the provided interfaces.",
     "result": "success",
-    "custom_field": "Interface Ethernet56/1 - P2P_LINK_TO_OTI-DC01-SPINE2_Ethernet4/1 = 'up'"
+    "custom_field": "Interface Ethernet56/1 - P2P_OTI-DC01-Spine2_Ethernet4/1 = 'up'"
   },
   {
     "name": "OTI-DC01-Leaf4",
@@ -238,7 +238,7 @@
     ],
     "description": "Verifies the status of the provided interfaces.",
     "result": "success",
-    "custom_field": "Interface Loopback0 - EVPN_Overlay_Peering = 'up'"
+    "custom_field": "Interface Loopback0 - ROUTER_ID = 'up'"
   },
   {
     "name": "OTI-DC01-Leaf4",
@@ -248,7 +248,7 @@
     ],
     "description": "Verifies the status of the provided interfaces.",
     "result": "success",
-    "custom_field": "Interface Loopback1 - VTEP_VXLAN_Tunnel_Source = 'up'"
+    "custom_field": "Interface Loopback1 - VXLAN_TUNNEL_SOURCE = 'up'"
   },
   {
     "name": "OTI-DC01-Leaf4",
@@ -437,6 +437,15 @@
       "system"
     ],
     "description": "Verifies if NTP is synchronised.",
+    "result": "success"
+  },
+  {
+    "name": "OTI-DC01-Leaf4",
+    "test": "VerifyReloadCause",
+    "categories": [
+      "system"
+    ],
+    "description": "Verifies the last reload cause of the device.",
     "result": "success"
   }
 ]

@@ -398,7 +398,7 @@
     ],
     "description": "Verifies the status of the provided interfaces.",
     "result": "success",
-    "custom_field": "Interface Ethernet52/1 - P2P_LINK_TO_OTI-DC01-Leaf5A_Ethernet52/1 = 'up'"
+    "custom_field": "Interface Ethernet52/1 - P2P_OTI-DC01-Leaf5A_Ethernet52/1 = 'up'"
   },
   {
     "name": "OTI-DC02-Leaf5A",
@@ -408,7 +408,7 @@
     ],
     "description": "Verifies the status of the provided interfaces.",
     "result": "success",
-    "custom_field": "Interface Ethernet53/1 - MLAG_PEER_OTI-DC02-Leaf5B_Ethernet53/1 = 'up'"
+    "custom_field": "Interface Ethernet53/1 - MLAG_OTI-DC02-Leaf5B_Ethernet53/1 = 'up'"
   },
   {
     "name": "OTI-DC02-Leaf5A",
@@ -418,7 +418,7 @@
     ],
     "description": "Verifies the status of the provided interfaces.",
     "result": "success",
-    "custom_field": "Interface Ethernet54/1 - MLAG_PEER_OTI-DC02-Leaf5B_Ethernet54/1 = 'up'"
+    "custom_field": "Interface Ethernet54/1 - MLAG_OTI-DC02-Leaf5B_Ethernet54/1 = 'up'"
   },
   {
     "name": "OTI-DC02-Leaf5A",
@@ -428,7 +428,7 @@
     ],
     "description": "Verifies the status of the provided interfaces.",
     "result": "success",
-    "custom_field": "Interface Ethernet55/1 - P2P_LINK_TO_OTI-DC02-SPINE1_Ethernet5/1 = 'up'"
+    "custom_field": "Interface Ethernet55/1 - P2P_OTI-DC02-Spine1_Ethernet5/1 = 'up'"
   },
   {
     "name": "OTI-DC02-Leaf5A",
@@ -438,7 +438,7 @@
     ],
     "description": "Verifies the status of the provided interfaces.",
     "result": "success",
-    "custom_field": "Interface Ethernet56/1 - P2P_LINK_TO_OTI-DC02-SPINE2_Ethernet5/1 = 'up'"
+    "custom_field": "Interface Ethernet56/1 - P2P_OTI-DC02-Spine2_Ethernet5/1 = 'up'"
   },
   {
     "name": "OTI-DC02-Leaf5A",
@@ -448,7 +448,7 @@
     ],
     "description": "Verifies the status of the provided interfaces.",
     "result": "success",
-    "custom_field": "Interface Loopback0 - EVPN_Overlay_Peering = 'up'"
+    "custom_field": "Interface Loopback0 - ROUTER_ID = 'up'"
   },
   {
     "name": "OTI-DC02-Leaf5A",
@@ -458,7 +458,7 @@
     ],
     "description": "Verifies the status of the provided interfaces.",
     "result": "success",
-    "custom_field": "Interface Loopback1 - VTEP_VXLAN_Tunnel_Source = 'up'"
+    "custom_field": "Interface Loopback1 - VXLAN_TUNNEL_SOURCE = 'up'"
   },
   {
     "name": "OTI-DC02-Leaf5A",
@@ -468,7 +468,7 @@
     ],
     "description": "Verifies the status of the provided interfaces.",
     "result": "success",
-    "custom_field": "Interface Port-Channel531 - MLAG_PEER_OTI-DC02-Leaf5B_Po531 = 'up'"
+    "custom_field": "Interface Port-Channel531 - MLAG_OTI-DC02-Leaf5B_Port-Channel531 = 'up'"
   },
   {
     "name": "OTI-DC02-Leaf5A",
@@ -478,7 +478,7 @@
     ],
     "description": "Verifies the status of the provided interfaces.",
     "result": "success",
-    "custom_field": "Interface Vlan4093 - MLAG_PEER_L3_PEERING = 'up'"
+    "custom_field": "Interface Vlan4093 - MLAG_L3 = 'up'"
   },
   {
     "name": "OTI-DC02-Leaf5A",
@@ -488,7 +488,7 @@
     ],
     "description": "Verifies the status of the provided interfaces.",
     "result": "success",
-    "custom_field": "Interface Vlan4094 - MLAG_PEER = 'up'"
+    "custom_field": "Interface Vlan4094 - MLAG = 'up'"
   },
   {
     "name": "OTI-DC02-Leaf5A",
@@ -816,6 +816,15 @@
       "system"
     ],
     "description": "Verifies if NTP is synchronised.",
+    "result": "success"
+  },
+  {
+    "name": "OTI-DC02-Leaf5A",
+    "test": "VerifyReloadCause",
+    "categories": [
+      "system"
+    ],
+    "description": "Verifies the last reload cause of the device.",
     "result": "success"
   }
 ]
