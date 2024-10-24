@@ -13,20 +13,20 @@
 
 | Total Tests | Total Tests Passed | Total Tests Failed | Total Tests Skipped |
 | ----------- | ------------------ | ------------------ | ------------------- |
-| 596 | 556 | 4 | 36 |
+| 596 | 555 | 5 | 36 |
 
 ### Summary Totals Device Under Test
 
 | Device Under Test | Total Tests | Tests Passed | Tests Failed | Tests Skipped | Categories Failed | Categories Skipped |
 | ------------------| ----------- | ------------ | ------------ | ------------- | ----------------- | ------------------ |
-| OTI-DC01-Leaf1 | 87 | 82 | 1 | 4 | System | Hardware |
-| OTI-DC01-Leaf2 | 87 | 83 | 0 | 4 | - | Hardware |
+| OTI-DC01-Leaf1 | 87 | 83 | 0 | 4 | - | Hardware |
+| OTI-DC01-Leaf2 | 87 | 82 | 1 | 4 | System | Hardware |
 | OTI-DC01-Leaf3 | 83 | 78 | 1 | 4 | System | Hardware |
 | OTI-DC01-Leaf4 | 83 | 79 | 0 | 4 | - | Hardware |
-| OTI-DC01-Leaf5A | 80 | 75 | 1 | 4 | System | Hardware |
+| OTI-DC01-Leaf5A | 80 | 76 | 0 | 4 | - | Hardware |
 | OTI-DC01-Leaf5B | 80 | 76 | 0 | 4 | - | Hardware |
-| OTI-DC01-OBM1 | 14 | 10 | 0 | 4 | - | Hardware |
-| OTI-DC01-Spine1 | 41 | 37 | 0 | 4 | - | Hardware |
+| OTI-DC01-OBM1 | 14 | 9 | 1 | 4 | System | Hardware |
+| OTI-DC01-Spine1 | 41 | 36 | 1 | 4 | System | Hardware |
 | OTI-DC01-Spine2 | 41 | 36 | 1 | 4 | System | Hardware |
 
 ### Summary Totals Per Category
@@ -39,16 +39,17 @@
 | Interfaces | 265 | 265 | 0 | 0 |
 | MLAG | 2 | 2 | 0 | 0 |
 | Routing | 86 | 86 | 0 | 0 |
-| System | 45 | 41 | 4 | 0 |
+| System | 45 | 40 | 5 | 0 |
 
 ## Failed Test Results Summary
 
 | ID | Device Under Test | Categories | Test | Description | Inputs | Result | Messages |
 | -- | ----------------- | ---------- | ---- | ----------- | ------ | -------| -------- |
-| 83 | OTI-DC01-Leaf1 | System | VerifyCPUUtilization | Verifies whether the CPU utilization is below 75%. | - | FAIL | Device has reported a high CPU utilization: 90.6% |
-| 253 | OTI-DC01-Leaf3 | System | VerifyCPUUtilization | Verifies whether the CPU utilization is below 75%. | - | FAIL | Device has reported a high CPU utilization: 83.9% |
-| 416 | OTI-DC01-Leaf5A | System | VerifyCPUUtilization | Verifies whether the CPU utilization is below 75%. | - | FAIL | Device has reported a high CPU utilization: 93.9% |
-| 592 | OTI-DC01-Spine2 | System | VerifyCPUUtilization | Verifies whether the CPU utilization is below 75%. | - | FAIL | Device has reported a high CPU utilization: 87.5% |
+| 170 | OTI-DC01-Leaf2 | System | VerifyCPUUtilization | Verifies whether the CPU utilization is below 75%. | - | FAIL | Device has reported a high CPU utilization: 83.9% |
+| 253 | OTI-DC01-Leaf3 | System | VerifyCPUUtilization | Verifies whether the CPU utilization is below 75%. | - | FAIL | Device has reported a high CPU utilization: 81.8% |
+| 510 | OTI-DC01-OBM1 | System | VerifyCPUUtilization | Verifies whether the CPU utilization is below 75%. | - | FAIL | Device has reported a high CPU utilization: 82.4% |
+| 551 | OTI-DC01-Spine1 | System | VerifyCPUUtilization | Verifies whether the CPU utilization is below 75%. | - | FAIL | Device has reported a high CPU utilization: 75.0% |
+| 592 | OTI-DC01-Spine2 | System | VerifyCPUUtilization | Verifies whether the CPU utilization is below 75%. | - | FAIL | Device has reported a high CPU utilization: 84.4% |
 
 ## All Test Results
 
@@ -136,7 +137,7 @@
 | 80 | OTI-DC01-Leaf1 | Routing | VerifyRoutingTableEntry | Verifies that the provided routes are present in the routing table of a specified VRF. | Route: 10.245.217.6 - Peer: OTI-DC01-Leaf4 | PASS | - |
 | 81 | OTI-DC01-Leaf1 | Routing | VerifyRoutingTableEntry | Verifies that the provided routes are present in the routing table of a specified VRF. | Route: 10.245.217.7 - Peer: OTI-DC01-Leaf5A | PASS | - |
 | 82 | OTI-DC01-Leaf1 | Routing | VerifyRoutingTableEntry | Verifies that the provided routes are present in the routing table of a specified VRF. | Route: 10.245.217.8 - Peer: OTI-DC01-Leaf5B | PASS | - |
-| 83 | OTI-DC01-Leaf1 | System | VerifyCPUUtilization | Verifies whether the CPU utilization is below 75%. | - | FAIL | Device has reported a high CPU utilization: 90.6% |
+| 83 | OTI-DC01-Leaf1 | System | VerifyCPUUtilization | Verifies whether the CPU utilization is below 75%. | - | PASS | - |
 | 84 | OTI-DC01-Leaf1 | System | VerifyFileSystemUtilization | Verifies that no partition is utilizing more than 75% of its disk space. | - | PASS | - |
 | 85 | OTI-DC01-Leaf1 | System | VerifyMemoryUtilization | Verifies whether the memory utilization is below 75%. | - | PASS | - |
 | 86 | OTI-DC01-Leaf1 | System | VerifyNTP | Verifies if NTP is synchronised. | - | PASS | - |
@@ -223,7 +224,7 @@
 | 167 | OTI-DC01-Leaf2 | Routing | VerifyRoutingTableEntry | Verifies that the provided routes are present in the routing table of a specified VRF. | Route: 10.245.217.6 - Peer: OTI-DC01-Leaf4 | PASS | - |
 | 168 | OTI-DC01-Leaf2 | Routing | VerifyRoutingTableEntry | Verifies that the provided routes are present in the routing table of a specified VRF. | Route: 10.245.217.7 - Peer: OTI-DC01-Leaf5A | PASS | - |
 | 169 | OTI-DC01-Leaf2 | Routing | VerifyRoutingTableEntry | Verifies that the provided routes are present in the routing table of a specified VRF. | Route: 10.245.217.8 - Peer: OTI-DC01-Leaf5B | PASS | - |
-| 170 | OTI-DC01-Leaf2 | System | VerifyCPUUtilization | Verifies whether the CPU utilization is below 75%. | - | PASS | - |
+| 170 | OTI-DC01-Leaf2 | System | VerifyCPUUtilization | Verifies whether the CPU utilization is below 75%. | - | FAIL | Device has reported a high CPU utilization: 83.9% |
 | 171 | OTI-DC01-Leaf2 | System | VerifyFileSystemUtilization | Verifies that no partition is utilizing more than 75% of its disk space. | - | PASS | - |
 | 172 | OTI-DC01-Leaf2 | System | VerifyMemoryUtilization | Verifies whether the memory utilization is below 75%. | - | PASS | - |
 | 173 | OTI-DC01-Leaf2 | System | VerifyNTP | Verifies if NTP is synchronised. | - | PASS | - |
@@ -306,7 +307,7 @@
 | 250 | OTI-DC01-Leaf3 | Routing | VerifyRoutingTableEntry | Verifies that the provided routes are present in the routing table of a specified VRF. | Route: 10.245.217.6 - Peer: OTI-DC01-Leaf4 | PASS | - |
 | 251 | OTI-DC01-Leaf3 | Routing | VerifyRoutingTableEntry | Verifies that the provided routes are present in the routing table of a specified VRF. | Route: 10.245.217.7 - Peer: OTI-DC01-Leaf5A | PASS | - |
 | 252 | OTI-DC01-Leaf3 | Routing | VerifyRoutingTableEntry | Verifies that the provided routes are present in the routing table of a specified VRF. | Route: 10.245.217.8 - Peer: OTI-DC01-Leaf5B | PASS | - |
-| 253 | OTI-DC01-Leaf3 | System | VerifyCPUUtilization | Verifies whether the CPU utilization is below 75%. | - | FAIL | Device has reported a high CPU utilization: 83.9% |
+| 253 | OTI-DC01-Leaf3 | System | VerifyCPUUtilization | Verifies whether the CPU utilization is below 75%. | - | FAIL | Device has reported a high CPU utilization: 81.8% |
 | 254 | OTI-DC01-Leaf3 | System | VerifyFileSystemUtilization | Verifies that no partition is utilizing more than 75% of its disk space. | - | PASS | - |
 | 255 | OTI-DC01-Leaf3 | System | VerifyMemoryUtilization | Verifies whether the memory utilization is below 75%. | - | PASS | - |
 | 256 | OTI-DC01-Leaf3 | System | VerifyNTP | Verifies if NTP is synchronised. | - | PASS | - |
@@ -469,7 +470,7 @@
 | 413 | OTI-DC01-Leaf5A | Routing | VerifyRoutingTableEntry | Verifies that the provided routes are present in the routing table of a specified VRF. | Route: 10.245.217.6 - Peer: OTI-DC01-Leaf4 | PASS | - |
 | 414 | OTI-DC01-Leaf5A | Routing | VerifyRoutingTableEntry | Verifies that the provided routes are present in the routing table of a specified VRF. | Route: 10.245.217.7 - Peer: OTI-DC01-Leaf5A | PASS | - |
 | 415 | OTI-DC01-Leaf5A | Routing | VerifyRoutingTableEntry | Verifies that the provided routes are present in the routing table of a specified VRF. | Route: 10.245.217.8 - Peer: OTI-DC01-Leaf5B | PASS | - |
-| 416 | OTI-DC01-Leaf5A | System | VerifyCPUUtilization | Verifies whether the CPU utilization is below 75%. | - | FAIL | Device has reported a high CPU utilization: 93.9% |
+| 416 | OTI-DC01-Leaf5A | System | VerifyCPUUtilization | Verifies whether the CPU utilization is below 75%. | - | PASS | - |
 | 417 | OTI-DC01-Leaf5A | System | VerifyFileSystemUtilization | Verifies that no partition is utilizing more than 75% of its disk space. | - | PASS | - |
 | 418 | OTI-DC01-Leaf5A | System | VerifyMemoryUtilization | Verifies whether the memory utilization is below 75%. | - | PASS | - |
 | 419 | OTI-DC01-Leaf5A | System | VerifyNTP | Verifies if NTP is synchronised. | - | PASS | - |
@@ -563,7 +564,7 @@
 | 507 | OTI-DC01-OBM1 | Interfaces | VerifyInterfacesStatus | Verifies the status of the provided interfaces. | Interface Ethernet4 - SERVER_DC01-0601-ESX04_idrac = 'up' | PASS | - |
 | 508 | OTI-DC01-OBM1 | Interfaces | VerifyInterfacesStatus | Verifies the status of the provided interfaces. | Interface Ethernet5 - SERVER_DC01-0601-ESX05_idrac = 'up' | PASS | - |
 | 509 | OTI-DC01-OBM1 | Interfaces | VerifyInterfacesStatus | Verifies the status of the provided interfaces. | Interface Ethernet6 - SERVER_DC01-0601-ESX06_idrac = 'up' | PASS | - |
-| 510 | OTI-DC01-OBM1 | System | VerifyCPUUtilization | Verifies whether the CPU utilization is below 75%. | - | PASS | - |
+| 510 | OTI-DC01-OBM1 | System | VerifyCPUUtilization | Verifies whether the CPU utilization is below 75%. | - | FAIL | Device has reported a high CPU utilization: 82.4% |
 | 511 | OTI-DC01-OBM1 | System | VerifyFileSystemUtilization | Verifies that no partition is utilizing more than 75% of its disk space. | - | PASS | - |
 | 512 | OTI-DC01-OBM1 | System | VerifyMemoryUtilization | Verifies whether the memory utilization is below 75%. | - | PASS | - |
 | 513 | OTI-DC01-OBM1 | System | VerifyNTP | Verifies if NTP is synchronised. | - | PASS | - |
@@ -604,7 +605,7 @@
 | 548 | OTI-DC01-Spine1 | Interfaces | VerifyInterfacesStatus | Verifies the status of the provided interfaces. | Interface Ethernet6/1 - P2P_OTI-DC01-Leaf5B_Ethernet55/1 = 'up' | PASS | - |
 | 549 | OTI-DC01-Spine1 | Interfaces | VerifyInterfacesStatus | Verifies the status of the provided interfaces. | Interface Loopback0 - ROUTER_ID = 'up' | PASS | - |
 | 550 | OTI-DC01-Spine1 | Routing | VerifyRoutingProtocolModel | Verifies the configured routing protocol model. | Routing protocol model: multi-agent | PASS | - |
-| 551 | OTI-DC01-Spine1 | System | VerifyCPUUtilization | Verifies whether the CPU utilization is below 75%. | - | PASS | - |
+| 551 | OTI-DC01-Spine1 | System | VerifyCPUUtilization | Verifies whether the CPU utilization is below 75%. | - | FAIL | Device has reported a high CPU utilization: 75.0% |
 | 552 | OTI-DC01-Spine1 | System | VerifyFileSystemUtilization | Verifies that no partition is utilizing more than 75% of its disk space. | - | PASS | - |
 | 553 | OTI-DC01-Spine1 | System | VerifyMemoryUtilization | Verifies whether the memory utilization is below 75%. | - | PASS | - |
 | 554 | OTI-DC01-Spine1 | System | VerifyNTP | Verifies if NTP is synchronised. | - | PASS | - |
@@ -645,7 +646,7 @@
 | 589 | OTI-DC01-Spine2 | Interfaces | VerifyInterfacesStatus | Verifies the status of the provided interfaces. | Interface Ethernet6/1 - P2P_OTI-DC01-Leaf5B_Ethernet56/1 = 'up' | PASS | - |
 | 590 | OTI-DC01-Spine2 | Interfaces | VerifyInterfacesStatus | Verifies the status of the provided interfaces. | Interface Loopback0 - ROUTER_ID = 'up' | PASS | - |
 | 591 | OTI-DC01-Spine2 | Routing | VerifyRoutingProtocolModel | Verifies the configured routing protocol model. | Routing protocol model: multi-agent | PASS | - |
-| 592 | OTI-DC01-Spine2 | System | VerifyCPUUtilization | Verifies whether the CPU utilization is below 75%. | - | FAIL | Device has reported a high CPU utilization: 87.5% |
+| 592 | OTI-DC01-Spine2 | System | VerifyCPUUtilization | Verifies whether the CPU utilization is below 75%. | - | FAIL | Device has reported a high CPU utilization: 84.4% |
 | 593 | OTI-DC01-Spine2 | System | VerifyFileSystemUtilization | Verifies that no partition is utilizing more than 75% of its disk space. | - | PASS | - |
 | 594 | OTI-DC01-Spine2 | System | VerifyMemoryUtilization | Verifies whether the memory utilization is below 75%. | - | PASS | - |
 | 595 | OTI-DC01-Spine2 | System | VerifyNTP | Verifies if NTP is synchronised. | - | PASS | - |
