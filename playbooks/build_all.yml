@@ -9,7 +9,7 @@
       run_once: True   
     - name: Run python script
       shell:
-        cmd: "sudo python ./OTI_XLSX_TO_AVD_ENDPOINTS.py"
+        cmd: "python ./OTI_XLSX_TO_AVD_ENDPOINTS.py"
         chdir: "{{command_output.stdout}}/../"
       run_once: True        
 
